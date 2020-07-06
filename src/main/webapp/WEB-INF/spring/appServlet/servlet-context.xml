@@ -17,7 +17,7 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/" /> <!-- view 기본경로 수정 by.유빈 -->
+		<beans:property name="prefix" value="/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
@@ -42,5 +42,9 @@
 	<Context docBase="C:/Project156/upload"  path="/springfileupload/upload" reloadable="true"/>
 	-->
 	<!-- File Upload 끝 -->
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 by.계정 -->
+	
+	<beans:bean id="naverLoginBO" class="com.spring.alltion.login.NaverLoginBO" />
 	
 </beans:beans>

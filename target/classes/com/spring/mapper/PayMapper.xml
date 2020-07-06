@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+create table paymember(
+    id VARCHAR2(20),
+    pw VARCHAR2(20),
+    email VARCHAR2(20),
+    tel VARCHAR2(20),
+    signdate date,
+    ad number(2)
+);
+-->
+ <!-- 
+create table pay(
+	merchant_uid VARCHAR2(60),
+ 	amount VARCHAR2(100),
+ 	status VARCHAR2(20),
+    buyer_name VARCHAR2(60)
+);
+-->
+<!-- 
+create table payobject(
+    objnum number(30),
+    selid VARCHAR2(20),
+    objname VARCHAR2(20),
+    aucinsbuymoney number(30) 
+);
+ -->
+<mapper namespace="com.spring.mapper.PayMapper">
+ 
+ 	<!--  id는 Mapper.java(여기선 MemberMapper.java)에 동일하게 사용해야 된다. -->
+	<select id="getPayList" resultType="PayVO">
+		SELECT * FROM pay where merchant_uid = #{merchant_uid, jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insertPay" parameterType="PayVO" >
+		INSERT INTO pay VALUES (#{merchant_uid, jdbcType=VARCHAR}, #{amount, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{buyer_name, jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="deletePay" parameterType="String">
+		Delete FROM pay WHERE merchant_uid = #{merchant_uid}
+	</delete>
+	
+</mapper>

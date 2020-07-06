@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.ProductMapper">
+
+	<insert id="productInsert" parameterType="ProductVO">
+		<selectKey keyProperty="product_number" resultType="ProductVO" order="BEFORE">
+			select nvl(max(product_number), 0) + 1 as product_number from product
+		</selectKey>
+		insert into product
+		values(
+			#{product_number}, <!-- 상품번호 -->
+			#{product_id}, <!-- 아이디 -->
+			#{product_category_1}, <!-- 카테고리 1차 -->
+			#{product_category_2}, <!-- 카테고리 2차 -->
+			#{product_subject}, <!-- 상품제목 -->
+			#{product_content}, <!-- 상품내용 -->
+			#{product_img_1}, <!-- 이미지(썸네일)_1 -->
+			#{product_img_2, jdbcType=VARCHAR}, <!-- 이미지(썸네일)_2 -->
+			#{product_img_3, jdbcType=VARCHAR}, <!-- 이미지(썸네일)_3 -->
+			#{product_img_4, jdbcType=VARCHAR}, <!-- 이미지(썸네일)_4 -->
+			#{product_img_5, jdbcType=VARCHAR}, <!-- 이미지(썸네일)_5 -->
+			#{product_starting_price},  <!-- 경매시작가 -->
+			#{product_bidding_unit}, <!-- 입찰단위 -->
+			to_date(#{product_end_date}, 'yyyy-mm-dd hh24:mi:ss'), <!-- 경매종료일 -->
+			#{product_delivery}, <!-- 택배거래(비용) -->
+			#{product_transaction_area}, <!-- 거래가능지역 -->
+			#{product_purchase_price}, <!-- 즉시구매가격 -->
+			#{product_re_auction}, <!-- 재경매 -->
+			#{product_starting_price}, <!-- 경매현재가 -->
+			0, <!-- 입찰수 -->
+			0, <!-- 참가자수 -->
+			1111, <!-- 신용도 -->
+			0, <!-- 조회수 -->
+			sysdate, <!-- 등록일 -->
+			0 <!-- 진행상태 -->
+		)
+	</insert>
+	
+</mapper>
