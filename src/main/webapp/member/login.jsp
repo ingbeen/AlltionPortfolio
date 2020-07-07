@@ -114,6 +114,9 @@ function enterkey() {
                     <li>
                         <a href="./naverjoin.kj">회원 가입</a>
                     </li>
+                    <li>
+                    	<a href="./registration.yb">판매하기</a>
+                    </li>
                 </ul>
             </div>
         </div>

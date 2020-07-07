@@ -8,9 +8,10 @@ public interface MemberService {
 		public int userCheck(MemberVO membervo);
 		public ArrayList<MemberVO> getMemberlist();
 		public MemberVO selectMember(String userId);
-		public int deleteMember(MemberVO membervo);
+		int idCheckService(String member_id);
 		public int updateEmail(MemberVO membervo);
 		public int updatePassword(MemberVO membervo);
-		int idCheckService(String member_id);
-		
+		public int updatePhone(MemberVO membervo);
+		public int updateAddress(MemberVO membervo);
+		public int member_delete(MemberVO membervo);
 }

@@ -264,6 +264,9 @@
                     <li>
                         <a href="./naverjoin.kj">회원 가입</a>
                     </li>
+                    <li>
+                    	<a href="./registration.yb">판매하기</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -352,7 +355,8 @@
             <div class = "join_row">
                 <label class = "join_title" text-align = "left">이메일</label>
                 <div>
-                <input type="text" class = "int" id="email"  name ="email" style="ime-mode:inactive; width:356px;" placeholder="이메일 아이디" value = "${email}">     
+                <input type="hidden" class = "int" id="email"  name ="email" style="ime-mode:inactive; width:356px;" placeholder="이메일 아이디" value = "${email}">     
+            	${email}
             	</div>
             </div>  
             <div class = "join_row">
@@ -505,6 +509,9 @@
                     </li>
                     <li>
                         <a href="./naverjoin.kj">회원 가입</a>
+                    </li>
+                    <li>
+                    	<a href="./registration.yb">판매하기</a>
                     </li>
                 </ul>
             </div>
@@ -747,26 +754,26 @@
 
 <!-- 비밀번호 재확인  -->   
 <script>
-    function checkpassword() {
-    	
-    	var pwd1 = $("#member_password").val();
-        var pwd2 = $("#member_password2").val();
-        
-        if ( pwd1 != '' && pwd2 == '' ) {
-            null;
-        } else if (pwd1 != "" || pwd2 != "") {
-            if (pwd1 == pwd2) {
-                $("#alert-success1").css('display', 'inline-block');
-                $("#alert-danger1").css('display', 'none');
-            } else {
-                
-                $("#alert-success1").css('display', 'none');
-                $("#alert-danger1").css('display', 'inline-block');
-                document.getElementsClassName("base_btn").disabled = true;
-            }
-        }
-    }
+function checkpassword() {
+	
+	var pwd1 = $("#member_password").val();
+    var pwd2 = $("#member_password2").val();
+    
+	if (pwd1 == pwd2) {
+	    $("#alert-success1").css('display', 'inline-block');
+	    $("#alert-danger1").css('display', 'none');
+	} else {
+	    
+	    $("#alert-success1").css('display', 'none');
+	    $("#alert-danger1").css('display', 'inline-block');
+	    $("#member_password").val('');
+	    $("#member_password2").val('');
+	    $("#member_password").focus();
+	}
+
+}
 </script>
+
 
 </body>
 </html>

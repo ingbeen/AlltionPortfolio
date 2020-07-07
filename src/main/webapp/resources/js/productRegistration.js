@@ -9,7 +9,7 @@ $(window).scroll(function () {
     }
 })
 
-/* 카테고리변경  시작 by.유빈 */
+/* 1차 카테고리 선택 시작 by.유빈 */
 function changeCategory(item) {
     let name = item.name; // 카테고리1, 카테고리2
     let value = item.value; // 선택한 카테고리
@@ -105,7 +105,7 @@ function changeCategory(item) {
         }
     }
 }
-/* 카테고리변경  끝 by.유빈 */
+/* 1차 카테고리 선택 끝 by.유빈 */
 
 // 2차 카테고리 체인지
 function changeCategory_2(value) {
@@ -165,7 +165,44 @@ function changeInput(item) {
             $('.purchasePrice').focus();
         }
     }
+    
 }
+
+/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 시작 by.유빈 */
+$(".product--form [name$='price']")
+	.on("focus", function () {
+		let value = $(this).val(); // 입력값
+		value = removeCommas(value); // 쉼표제거
+    	$(this).val(value); // 반환
+	})
+	.on("focusout", function () { 
+		let value = $(this).val(); // 입력값
+		if(value && value.length > 0) { // 데이터가 존재하면
+	        if(!$.isNumeric(value)) { // 숫자가 아닌것은 제거
+	        	value = value.replace(/[^0-9]/g, "");
+	        }
+	        value = addCommas(value); // 쉼표추가
+	        $(this).val(value); // 반환
+		}
+	})
+	.on("keyup", function () {
+    $(this).val($(this).val().replace(/[^0-9]/g, "")); // 숫자가 아닌것은 제거
+});
+
+//3자리 단위마다 콤마 생성
+function addCommas(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+ 
+//모든 콤마 제거
+function removeCommas(value) {
+    if(!value || value.length == 0) {
+    	return "";
+    } else {
+    	return value.split(",").join("");
+    }
+}
+/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 끝 by.유빈 */
 
 // 경매기간에 따른 마감시간 계산 후 input태그에 삽입 by.유빈
 function changeEndDate(value) {
@@ -445,6 +482,13 @@ function formCheck() {
 
 // 상품(경매) 등록 - DB저장
 function productInsert(imgSrcList) {
+	
+	// 시작가, 즉사거래가 쉼표 없애기
+	let purchase_price = $(".product--form [name='product_purchase_price']");
+	let starting_price = $(".product--form [name='product_starting_price']");
+	purchase_price.val(removeCommas(purchase_price.val()));
+	starting_price.val(removeCommas(starting_price.val()));
+	
 	let formData = $('.product--form').serialize(); // 사용자가 입력한 내용
 	$.each(imgSrcList, (idx, imgSrc) => { // 이미지등록(썸네일)에 있는 이미지
 		formData += `&product_img_${idx + 1}=${imgSrc}`;
@@ -454,7 +498,6 @@ function productInsert(imgSrcList) {
         url: 'productInsert.yb',
         type: 'post',
         data: formData,
-//        dataType: "json",
         success: () => alert("성공"), 
         error: () => alert("경매 등록을 실패하였습니다")
     });

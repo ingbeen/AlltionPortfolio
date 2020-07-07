@@ -3,105 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="./resources/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>All-tion</title>
-     
     <style>
-.joinWrap {
-    padding: 100px;
-    text-align: center;
-    font-family: "맑은 고딕","Malgun Gothic";
-}
-.joinWrap h3 {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #393939;
-    margin-bottom: 30px;
-}
-.joinWrap p {
-    font-size: 18px;
-    text-align: center;
-    color: #666;
-}
-.joinWrap ul {
-    overflow: hidden;
-    width: 660px;
-    margin: 40px auto 0;
-    border: 3px solid #e8e8e8;
-    box-sizing: border-box;
-}
-.joinWrap ul li:first-child {
-    border-right: 1px solid #e8e8e8;
-    box-sizing: border-box;
-}
-.joinWrap ul li dl dt {
-    padding-bottom: 20px;
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    line-height: 16px;
-}
-.joinWrap ul li dl dd {
-    display: table;
-    width: 100%;
-    height: 44px;
-    vertical-align: top;
-}
-.joinWrap ul li {
-    float: left;
-    width: 327px;
-    padding: 40px 0;
-    text-align: center;
-}
-.joinWrap .sns_joinbtn {
-    display: table-cell;
-    vertical-align: middle;
-    height: 175px;
-}
-.joinWrap .sns_joinbtn a.naver {
-    background: #1ec700;
-}
-body a.base_btn {
-    display: inline-block;
-    height: 44px;
-    padding: 0 60px;
-    min-width: 118px;
-    line-height: 43px;
-    background: #FFAE36;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    font-family: "맑은 고딕","Malgun Gothic";
-    border-radius: 7px;
-}
-body a.base_btn1 {
-    display: inline-block;
-    height: 44px;
-    padding: 0 20px;
-    min-width: 118px;
-    line-height: 43px;
-    background: #1ec700;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    font-family: "맑은 고딕","Malgun Gothic";
-    border-radius: 7px;
-}
-        
     </style>
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-    
+  
     <div class="header">
         <div class="upper_header">
             <div class="upper_header--nav">
@@ -110,10 +23,10 @@ body a.base_btn1 {
                 </p>
                 <ul>
                     <li>
-                        <a href="loginForm.kj">로그인</a>
+                        <a href="./mypage.kj">${userId}</a>
                     </li>
                     <li>
-                        <a href="#">회원 가입</a>
+                        <a href="./logout.kj">로그아웃</a>
                     </li>
                     <li>
                     	<a href="./registration.yb">판매하기</a>
@@ -124,7 +37,7 @@ body a.base_btn1 {
         <div class="lower_header">
             <div class="lower_header--nav">
                 <h1 class="logo">
-                    <a href="/alltion/">ALL-TION</a>
+                    <a href="#">ALL-TION</a>
                 </h1>
                 <div class="category">
                     <a class="category--drop">
@@ -151,19 +64,19 @@ body a.base_btn1 {
                 </div>
                 <ul class="member_info">
                     <li>
-                        <a href="./loginForm.kj">
+                        <a href="#">
                             <span class="material-icons">perm_identity</span>
                             <span>마이 페이지</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./loginForm.kj">
+                        <a href="#">
                             <span class="material-icons">turned_in_not</span>
                             <span>찜 목록</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./loginForm.kj">
+                        <a href="#">
                             <span class="material-icons">access_time</span>
                             <span>참여 경매</span>
                         </a>
@@ -172,40 +85,17 @@ body a.base_btn1 {
             </div>
         </div>
     </div>
-    
-    <!-- 회원 가입 폼 -->
-    <div class = "joinWrap">
-        <h3>All-tion 통합회원가입</h3>
-        <p>
-        한 번의 통합회원가입으로
-        <br>
-        편리하게 All-tion을 이용하세요
-        </p>
-    <ul>
-        <li>
-            <dl>
-                <dt>기본 회원가입</dt>
-                    <dd>
-                        <p>
-                            <a href ="joinForm.kj" class = "base_btn">회원가입</a>
-                        </p>
-                    </dd>
-            </dl>
-        </li>    
-        <li>
-            <dl>
-                <dt>SNS 간편 회원가입</dt>
-                    <dd>
-                        
-                        <div id="naver_id_login" style="text-align:center"><a href="${url}" class = "base_btn1">
-                        N&nbsp;&nbsp;네이버 간편 회원가입</a></div>
-                        
-                    </dd>
-            </dl>
-        </li>
-    </ul>
+   
+    <!-- 경매 규칙 및 회원 등급 제도 설명 -->
+    <div class="rules">
+        <div class="rules__content">
+            <ul class="rules__content">
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
     </div>
-    
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! end -->
     
     <!-- 푸터 영역 -->
     <div class="footer">

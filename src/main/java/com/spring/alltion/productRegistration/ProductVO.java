@@ -1,5 +1,42 @@
 package com.spring.alltion.productRegistration;
 
+/*
+-- 상품정보
+CREATE TABLE product (
+		product_number number primary key, -- 상품번호
+		product_id varchar2(1000) not null, -- 아이디
+        
+		product_category_1 varchar2(1000) not null, -- 카테고리 1차
+		product_category_2 varchar2(1000) not null, -- 카테고리 2차
+        
+		product_subject varchar2(1000) not null, -- 상품제목
+		product_content varchar2(4000) not null, -- 상품내용
+        product_img_1 varchar2(1000) not null, -- 이미지(썸네일)_1
+        product_img_2 varchar2(1000), -- 이미지(썸네일)_2
+        product_img_3 varchar2(1000), -- 이미지(썸네일)_3
+        product_img_4 varchar2(1000), -- 이미지(썸네일)_4
+        product_img_5 varchar2(1000), -- 이미지(썸네일)_5
+        
+		product_starting_price number not null, -- 경매시작가
+        product_bidding_unit number not null, -- 입찰단위
+        product_end_date date not null, -- 경매종료일
+        
+        product_delivery varchar2(1000) not null, -- 택배거래(비용) : before = 착불, after = 착불, none = 불가능
+		product_transaction_area varchar2(1000) not null, -- 거래가능지역 : none = 불가능, 사용자입력값
+        
+        product_purchase_price number not null, -- 즉시구매가격
+		product_re_auction number not null, -- 재경매 : 0 = 불가능, 1 = 가능
+        
+		product_current_price number not null, -- 경매현재가
+		product_bids number not null, -- 입찰수
+		product_participants number not null, -- 참가자수
+		product_credit_score number not null, -- 신용도
+		product_views number not null, -- 조회수
+		product_issue_date date not null, -- 등록일
+		product_progress number not null -- 진행상태 : 진행중 = 0, 낙찰 = 1
+);
+*/
+
 public class ProductVO {
 	int product_number; // 상품번호
 	String product_id; // 아이디
@@ -29,7 +66,7 @@ public class ProductVO {
 	int product_participants; // 참가자수
 	int product_credit_score; // 신용도
 	int product_views; // 조회수
-	String product_date; // 등록일
+	String product_issue_date; // 등록일
 	int product_progress; // 진행상태
 	
 	public int getProduct_number() {
@@ -170,11 +207,11 @@ public class ProductVO {
 	public void setProduct_views(int product_views) {
 		this.product_views = product_views;
 	}
-	public String getProduct_date() {
-		return product_date;
+	public String getProduct_issue_date() {
+		return product_issue_date;
 	}
-	public void setProduct_date(String product_date) {
-		this.product_date = product_date;
+	public void setProduct_issue_date(String product_issue_date) {
+		this.product_issue_date = product_issue_date;
 	}
 	public int getProduct_progress() {
 		return product_progress;
@@ -182,7 +219,5 @@ public class ProductVO {
 	public void setProduct_progress(int product_progress) {
 		this.product_progress = product_progress;
 	}
-	
-	
 	
 }

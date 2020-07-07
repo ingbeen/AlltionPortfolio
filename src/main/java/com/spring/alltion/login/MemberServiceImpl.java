@@ -50,18 +50,17 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO selectMember(String userId) {
-		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);		
 		MemberVO vo = memberMapper.selectMember(userId);
+		if(vo.getSample4_postcode()==null) {
+			vo.setSample4_postcode("");
+			vo.setSample4_roadAddress("");
+			vo.setSample4_jibunAddress("");
+			vo.setSample4_detailAddress("");
+		}
 		return vo;
 	}
 
-	@Override
-	public int deleteMember(MemberVO membervo) {
-		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		int res = memberMapper.deleteMember(membervo);
-		return res;
-	}
 
 	@Override
 	public int updateEmail(MemberVO membervo) {
@@ -81,6 +80,29 @@ public class MemberServiceImpl implements MemberService{
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		
 		return memberMapper.updatePassword(membervo);
+	}
+
+	@Override
+	public int updatePhone(MemberVO membervo) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		return memberMapper.updatePhone(membervo);
+	}
+
+	@Override
+	public int updateAddress(MemberVO membervo) {
+		
+		
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		return memberMapper.updateAddress(membervo);
+	}
+
+	@Override
+	public int member_delete(MemberVO membervo) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		
+		return memberMapper.member_delete(membervo);
 	}
 
 }

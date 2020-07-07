@@ -43,4 +43,17 @@
 	 <update id="updatePassword" parameterType="MemberVO" >
 	 update member set member_password=#{member_password} where member_id=#{member_id}
 	 </update>
+	 
+	 <update id="updatePhone" parameterType="MemberVO" >
+	 update member set member_phone=#{member_phone} where member_id=#{member_id}
+	 </update>
+	 
+	 <update id = "updateAddress" parameterType="MemberVO">
+	 update member set sample4_postcode=#{sample4_postcode}, sample4_roadAddress = #{sample4_roadAddress}, sample4_jibunAddress = #{sample4_jibunAddress}, sample4_detailAddress = #{sample4_detailAddress}  where member_id=#{member_id} 
+	 </update>
+	 
+	 <update id = "member_delete" parameterType = "MemberVO">
+	 update member set member_delete = 1 where member_id = #{member_id}
+	 </update>
+	 
 </mapper>

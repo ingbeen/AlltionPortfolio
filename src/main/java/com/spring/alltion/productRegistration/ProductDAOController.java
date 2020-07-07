@@ -76,7 +76,7 @@ public class ProductDAOController {
 				out.close();
 				return;
 			}
-			
+
 			// 이미지 가로폭 할당
 			image = ImageIO.read(file.getInputStream());
 			imageWidth = image.getWidth(null);
@@ -171,7 +171,7 @@ public class ProductDAOController {
 	public void productInsert(ProductVO productVO) {
 		
 		try {
-			
+			/* 테스트
 			System.out.println(productVO.getProduct_id());
 			System.out.println(productVO.getProduct_category_1());
 			System.out.println(productVO.getProduct_category_2());
@@ -189,6 +189,7 @@ public class ProductDAOController {
 			System.out.println(productVO.getProduct_transaction_area());
 			System.out.println(productVO.getProduct_purchase_price());
 			System.out.println(productVO.getProduct_re_auction());
+			*/
 			
 			productService.ProductInsert(productVO);
 			

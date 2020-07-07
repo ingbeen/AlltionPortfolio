@@ -9,10 +9,11 @@ public interface MemberMapper {
 	public int insertMember(MemberVO membervo);
 	public int userCheck(MemberVO membervo);
 	public ArrayList<MemberVO> getMemberlist();
-	public int deleteMember(MemberVO membervo);
-	public int updateEmail(MemberVO membervo);
-	public int updatePassword(MemberVO membervo);
 	int idCheckService(String member_id);
 	public MemberVO selectMember(String userId);
-
+	public int updateEmail(MemberVO membervo);
+	public int updatePassword(MemberVO membervo);
+	public int updatePhone(MemberVO membervo);
+	public int updateAddress(MemberVO membervo);
+	public int member_delete(MemberVO membervo);
 }

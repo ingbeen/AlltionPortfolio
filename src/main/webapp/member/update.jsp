@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import = "com.spring.alltion.login.MemberVO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	MemberVO membervo = (MemberVO)request.getAttribute("membervo");
 
@@ -14,55 +15,55 @@
     <link rel="stylesheet" href="./resources/css/update.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Alltion È¸¿ø Á¤º¸ ¼öÁ¤</title>
+    <title>Alltion íšŒì› ì •ë³´ ìˆ˜ì •</title>
     
-<!-- ÁÖ¼Ò api -->
+<!-- ì£¼ì†Œ api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
-//º» ¿¹Á¦¿¡¼­´Â µµ·Î¸í ÁÖ¼Ò Ç¥±â ¹æ½Ä¿¡ ´ëÇÑ ¹ı·É¿¡ µû¶ó, ³»·Á¿À´Â µ¥ÀÌÅÍ¸¦ Á¶ÇÕÇÏ¿© ¿Ã¹Ù¸¥ ÁÖ¼Ò¸¦ ±¸¼ºÇÏ´Â ¹æ¹ıÀ» ¼³¸íÇÕ´Ï´Ù.
+//ë³¸ ì˜ˆì œì—ì„œëŠ” ë„ë¡œëª… ì£¼ì†Œ í‘œê¸° ë°©ì‹ì— ëŒ€í•œ ë²•ë ¹ì— ë”°ë¼, ë‚´ë ¤ì˜¤ëŠ” ë°ì´í„°ë¥¼ ì¡°í•©í•˜ì—¬ ì˜¬ë°”ë¥¸ ì£¼ì†Œë¥¼ êµ¬ì„±í•˜ëŠ” ë°©ë²•ì„ ì„¤ëª…í•©ë‹ˆë‹¤.
 function sample4_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
-            // ÆË¾÷¿¡¼­ °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
+            // íŒì—…ì—ì„œ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
 
-            // µµ·Î¸í ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Ç¥½ÃÇÑ´Ù.
-            // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-            var roadAddr = data.roadAddress; // µµ·Î¸í ÁÖ¼Ò º¯¼ö
-            var extraRoadAddr = ''; // Âü°í Ç×¸ñ º¯¼ö
+            // ë„ë¡œëª… ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ í‘œì‹œí•œë‹¤.
+            // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+            var roadAddr = data.roadAddress; // ë„ë¡œëª… ì£¼ì†Œ ë³€ìˆ˜
+            var extraRoadAddr = ''; // ì°¸ê³  í•­ëª© ë³€ìˆ˜
 
-            // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
-            // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
-            if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
+            // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
+            // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
+            if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
                 extraRoadAddr += data.bname;
             }
-            // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
+            // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
             if(data.buildingName !== '' && data.apartment === 'Y'){
                extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
             }
-            // Ç¥½ÃÇÒ Âü°íÇ×¸ñÀÌ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
+            // í‘œì‹œí•  ì°¸ê³ í•­ëª©ì´ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
             if(extraRoadAddr !== ''){
                 extraRoadAddr = ' (' + extraRoadAddr + ')';
             }
 
-            // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+            // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
             document.getElementById('sample4_postcode').value = data.zonecode;
             document.getElementById("sample4_roadAddress").value = roadAddr;
             document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
             
-            // Âü°íÇ×¸ñ ¹®ÀÚ¿­ÀÌ ÀÖÀ» °æ¿ì ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+            // ì°¸ê³ í•­ëª© ë¬¸ìì—´ì´ ìˆì„ ê²½ìš° í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
          
 
             var guideTextBox = document.getElementById("guide");
-            // »ç¿ëÀÚ°¡ '¼±ÅÃ ¾ÈÇÔ'À» Å¬¸¯ÇÑ °æ¿ì, ¿¹»ó ÁÖ¼Ò¶ó´Â Ç¥½Ã¸¦ ÇØÁØ´Ù.
+            // ì‚¬ìš©ìê°€ 'ì„ íƒ ì•ˆí•¨'ì„ í´ë¦­í•œ ê²½ìš°, ì˜ˆìƒ ì£¼ì†Œë¼ëŠ” í‘œì‹œë¥¼ í•´ì¤€ë‹¤.
             if(data.autoRoadAddress) {
                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                guideTextBox.innerHTML = '(¿¹»ó µµ·Î¸í ÁÖ¼Ò : ' + expRoadAddr + ')';
+                guideTextBox.innerHTML = '(ì˜ˆìƒ ë„ë¡œëª… ì£¼ì†Œ : ' + expRoadAddr + ')';
                 guideTextBox.style.display = 'block';
 
             } else if(data.autoJibunAddress) {
                 var expJibunAddr = data.autoJibunAddress;
-                guideTextBox.innerHTML = '(¿¹»ó Áö¹ø ÁÖ¼Ò : ' + expJibunAddr + ')';
+                guideTextBox.innerHTML = '(ì˜ˆìƒ ì§€ë²ˆ ì£¼ì†Œ : ' + expJibunAddr + ')';
                 guideTextBox.style.display = 'block';
             } else {
                 guideTextBox.innerHTML = '';
@@ -72,21 +73,92 @@ function sample4_execDaumPostcode() {
     }).open();
 }
 </script>
+<!-- ì´ë©”ì¼ ë³€ê²½ ëª¨ë‹¬ -->
 <script>
-function modal_display() {
+function modal_display_email() {
   
-        var member_update_modal = document.getElementById('member_update_modal');
+        var member_update_modal_email = document.getElementById('member_update_modal_email');
         var close0 = document.getElementsByClassName('close')[0];
-        member_update_modal.style.display = "block";
+        member_update_modal_email.style.display = "block";
         close0.onclick = function(event) {
-        	member_update_modal.style.display = "none";
+        	member_update_modal_email.style.display = "none";
         }
 
 
-    // ¡é¡é¸ğ´ŞÃ¢ ¿ÜºÎ Å¬¸¯½Ã ¸ğ´ŞÃ¢ ´İ¾ÆÁü.
+    // â†“â†“ëª¨ë‹¬ì°½ ì™¸ë¶€ í´ë¦­ì‹œ ëª¨ë‹¬ì°½ ë‹«ì•„ì§.
     window.onclick = function(event) {
-        if (event.target == member_update_modal) {
-        	member_update_modal.style.display = "none";
+        if (event.target == member_update_modal_email) {
+        	member_update_modal_email.style.display = "none";
+        }
+        if (event.target == bid_notify_modal) {
+            bid_notify_modal.style.display = "none";
+        }
+    }
+}
+</script>  
+<!-- íœ´ëŒ€ì „í™” ë³€ê²½ ëª¨ë‹¬ -->
+<script>
+function modal_display_phone() {
+  
+        var member_update_modal_phone = document.getElementById('member_update_modal_phone');
+        var close1 = document.getElementsByClassName('close')[1];
+        member_update_modal_phone.style.display = "block";
+        close1.onclick = function(event) {
+        	member_update_modal_phone.style.display = "none";
+        }
+
+
+    // â†“â†“ëª¨ë‹¬ì°½ ì™¸ë¶€ í´ë¦­ì‹œ ëª¨ë‹¬ì°½ ë‹«ì•„ì§.
+    window.onclick = function(event) {
+        if (event.target == member_update_modal_phone) {
+        	member_update_modal_phone.style.display = "none";
+        }
+        if (event.target == bid_notify_modal) {
+            bid_notify_modal.style.display = "none";
+        }
+    }
+}
+</script>  
+
+<!-- ì£¼ì†Œ ë³€ê²½ ëª¨ë‹¬ -->
+<script>
+function modal_display_address() {
+  
+        var member_update_modal_address = document.getElementById('member_update_modal_address');
+        var close2 = document.getElementsByClassName('close')[2];
+        member_update_modal_address.style.display = "block";
+        close2.onclick = function(event) {
+        	member_update_modal_address.style.display = "none";
+        }
+
+
+    // â†“â†“ëª¨ë‹¬ì°½ ì™¸ë¶€ í´ë¦­ì‹œ ëª¨ë‹¬ì°½ ë‹«ì•„ì§.
+    window.onclick = function(event) {
+        if (event.target == member_update_modal_address) {
+        	member_update_modal_address.style.display = "none";
+        }
+        if (event.target == bid_notify_modal) {
+            bid_notify_modal.style.display = "none";
+        }
+    }
+}
+</script>  
+
+<script>
+function modal_display_delete_member() {
+  
+        var member_update_modal_delete_member = document.getElementById('member_update_modal_delete_member');
+        var close3 = document.getElementsByClassName('close')[3];
+        member_update_modal_delete_member.style.display = "block";
+        close3.onclick = function(event) {
+        	member_update_modal_delete_member.style.display = "none";
+        }
+
+
+    // â†“â†“ëª¨ë‹¬ì°½ ì™¸ë¶€ í´ë¦­ì‹œ ëª¨ë‹¬ì°½ ë‹«ì•„ì§.
+    window.onclick = function(event) {
+        if (event.target == member_update_modal_delete_member) {
+        	member_update_modal_delete_member.style.display = "none";
         }
         if (event.target == bid_notify_modal) {
             bid_notify_modal.style.display = "none";
@@ -101,33 +173,37 @@ function checkpassword() {
 	var pwd1 = $("#member_password").val();
     var pwd2 = $("#member_password2").val();
     
-    if ( pwd1 != '' && pwd2 == '' ) {
-        null;
-    } else if (pwd1 != "" || pwd2 != "") {
-        if (pwd1 == pwd2) {
-            $("#alert-success1").css('display', 'inline-block');
-            $("#alert-danger1").css('display', 'none');
-        } else {
-            
-            $("#alert-success1").css('display', 'none');
-            $("#alert-danger1").css('display', 'inline-block');
-            document.getElementsClassName("base_btn").disabled = true;
-        }
-    }
+	if (pwd1 == pwd2) {
+	    $("#alert-success1").css('display', 'inline-block');
+	    $("#alert-danger1").css('display', 'none');
+	} else {
+	    
+	    $("#alert-success1").css('display', 'none');
+	    $("#alert-danger1").css('display', 'inline-block');
+	    $("#member_password").val('');
+	    $("#member_password2").val('');
+	    $("#member_password").focus();
+	}
+
 }
 </script>
+
+
 
 
 </head>
 
 <body>
-    <!-- ¸ğµç ÆäÀÌÁö °øÅë ¿µ¿ª by ÇÏ³ª  -->
-    <!-- top Å° -->
+<c:choose>
+
+<c:when test ="${sample4_postcode != null}">
+    <!-- ëª¨ë“  í˜ì´ì§€ ê³µí†µ ì˜ì—­ by í•˜ë‚˜  -->
+    <!-- top í‚¤ -->
     <div id="topKey" class="topKey_btn" >
         <p class="material-icons">
             keyboard_arrow_up
     </div>
-    <!-- Çì´õ -->
+    <!-- í—¤ë” -->
     <div class="header">
         <div class="upper_header">
              <div class="upper_header--nav">
@@ -139,7 +215,7 @@ function checkpassword() {
                         <a href="./mypage.kj">${userId}</a>
                     </li>
                      <li>
-                        <a href="./logout.kj">·Î±×¾Æ¿ô</a>
+                        <a href="./logout.kj">ë¡œê·¸ì•„ì›ƒ</a>
                     </li>
                 </ul>
             </div>
@@ -147,7 +223,7 @@ function checkpassword() {
         <div class="lower_header">
             <div class="lower_header--nav">
                 <h1 class="logo">
-                    <a href="#">ALL-TION</a>
+                    <a href="/alltion/">ALL-TION</a>
                 </h1>
                 <div class="category">
                     <a class="category--drop">
@@ -156,53 +232,53 @@ function checkpassword() {
                 </div>
                 <div class="search">
                     <select class="search--select">
-                        <option value="">ÀüÃ¼</option>
-                        <option value="ÆĞ¼Ç">ÆĞ¼Ç</option>
-                        <option value="ºäÆ¼">ºäÆ¼</option>
-                        <option value="Ãâ»ê/À¯¾Æµ¿">Ãâ»ê/À¯¾Æµ¿</option>
-                        <option value="ÀüÀÚ±â±â">ÀüÀÚ±â±â</option>
-                        <option value="°¡ÀüÁ¦Ç°">°¡ÀüÁ¦Ç°</option>
-                        <option value="°¡±¸/ÀÎÅ×¸®¾î">°¡±¸/ÀÎÅ×¸®¾î</option>
-                        <option value="¹İ·Áµ¿¹°/Ãë¹Ì">¹İ·Áµ¿¹°/Ãë¹Ì</option>
-                        <option value="µµ¼­/À½¹İ/¹®±¸">µµ¼­/À½¹İ/¹®±¸</option>
-                        <option value="Æ¼ÄÏ/ÄíÆù">Æ¼ÄÏ/ÄíÆù</option>
-                        <option value="½ºÆ÷Ã÷">½ºÆ÷Ã÷</option>
-                        <option value="°ø±¸/»ê¾÷¿ëÇ°">°ø±¸/»ê¾÷¿ëÇ°</option>
-                        <option value="±âÅ¸ÀâÈ­">±âÅ¸ÀâÈ­</option>
+                        <option value="">ì „ì²´</option>
+                        <option value="íŒ¨ì…˜">íŒ¨ì…˜</option>
+                        <option value="ë·°í‹°">ë·°í‹°</option>
+                        <option value="ì¶œì‚°/ìœ ì•„ë™">ì¶œì‚°/ìœ ì•„ë™</option>
+                        <option value="ì „ìê¸°ê¸°">ì „ìê¸°ê¸°</option>
+                        <option value="ê°€ì „ì œí’ˆ">ê°€ì „ì œí’ˆ</option>
+                        <option value="ê°€êµ¬/ì¸í…Œë¦¬ì–´">ê°€êµ¬/ì¸í…Œë¦¬ì–´</option>
+                        <option value="ë°˜ë ¤ë™ë¬¼/ì·¨ë¯¸">ë°˜ë ¤ë™ë¬¼/ì·¨ë¯¸</option>
+                        <option value="ë„ì„œ/ìŒë°˜/ë¬¸êµ¬">ë„ì„œ/ìŒë°˜/ë¬¸êµ¬</option>
+                        <option value="í‹°ì¼“/ì¿ í°">í‹°ì¼“/ì¿ í°</option>
+                        <option value="ìŠ¤í¬ì¸ ">ìŠ¤í¬ì¸ </option>
+                        <option value="ê³µêµ¬/ì‚°ì—…ìš©í’ˆ">ê³µêµ¬/ì‚°ì—…ìš©í’ˆ</option>
+                        <option value="ê¸°íƒ€ì¡í™”">ê¸°íƒ€ì¡í™”</option>
                     </select>
-                    <input type="text" placeholder="Ã£À¸½Ã´Â »óÇ°À» ÀÔ·ÂÇØ ÁÖ¼¼¿ä" class="search__input">
+                    <input type="text" placeholder="ì°¾ìœ¼ì‹œëŠ” ìƒí’ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”" class="search__input">
                 </div>
                 <ul class="member_info">
                     <li>
                         <a href="./mypage.kj">
                             <span class="material-icons">perm_identity</span>
-                            <span>¸¶ÀÌ ÆäÀÌÁö</span>
+                            <span>ë§ˆì´ í˜ì´ì§€</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span class="material-icons">turned_in_not</span>
-                            <span>Âò ¸ñ·Ï</span>
+                            <span>ì°œ ëª©ë¡</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <span class="material-icons">access_time</span>
-                            <span>Âü¿© °æ¸Å</span>
+                            <span>ì°¸ì—¬ ê²½ë§¤</span>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <!-- È¸¿ø Á¤º¸ ¼öÁ¤ -->
+    <!-- íšŒì› ì •ë³´ ìˆ˜ì • -->
         <div class="member_update--form">
-            <h3>È¸¿ø Á¤º¸ ¼öÁ¤</h3>
+            <h3>íšŒì› ì •ë³´ ìˆ˜ì •</h3>
             <div class="member_update--content">
                 <ul class="update_form list">
                     <li>
                         <div class="update_form__list title">
-                            <span>¾ÆÀÌµğ</span>
+                            <span>ì•„ì´ë””</span>
                         </div>
                         <div class="update_form__list content">
                             <span><%=membervo.getMember_id() %></span>
@@ -210,7 +286,7 @@ function checkpassword() {
                     </li>
                     <li>
                         <div class="update_form__list title">
-                            <span>ÀÌ¸§</span>
+                            <span>ì´ë¦„</span>
                         </div>
                         <div class="update_form__list content">
                             <span><%=membervo.getMember_name() %></span>
@@ -220,14 +296,14 @@ function checkpassword() {
                     <ul>
                     <li>
                         <div class="update_form__list title">
-                            <span>ºñ¹Ğ¹øÈ£ º¯°æ</span>
+                            <span>ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</span>
                         </div>
                         <div class="update_form__list content">
                             <input type="password" id="member_password" name = "member_password" class= "int"><br>
                             <input type="password" id="member_password2"  name = "member_password2" class = "int" onchange="checkpassword()">
-                            <span id="alert-success1" style="display: none; color: #1ec700;">ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÕ´Ï´Ù.</span>
-    						<span id="alert-danger1" style="display: none; color: #d92742; font-weight: bold; ">ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.</span>
-                            <button type = "submit" class="update_btn pw" >º¯°æÇÏ±â</button>
+                            <span id="alert-success1" style="display: none; color: #1ec700;">ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤.</span>
+    						<span id="alert-danger1" style="display: none; color: #d92742; font-weight: bold; ">ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</span>
+                           
                         </div>
                     </li>  
                     </ul>
@@ -236,21 +312,21 @@ function checkpassword() {
                     <ul>
                     <li>
                         <div class="update_form__list title">
-                            <span>ÀÌ¸ŞÀÏ</span>
+                            <span>ì´ë©”ì¼</span>
                         </div>
                         <div class="update_form__list content">
                             <span><%=membervo.getEmail() %></span>&nbsp;&nbsp;&nbsp;
-                            	<input type ="button" onclick = "modal_display()"  value = "ÀÌ¸ŞÀÏ º¯°æ">                         
-                            		<div id="member_update_modal" class="modal_email">
+                            	<input type ="button" onclick = "modal_display_email()"  value = "ì´ë©”ì¼ ë³€ê²½">                         
+                            		<div id="member_update_modal_email" class="modal">
                                		 <div class="modal-content">
                                    		 <span class="close">&times;</span>
                                     		<fieldset id="member_update">
-                                       		 <legend>ÀÌ¸ŞÀÏ º¯°æ</legend>
+                                       		 <legend>ì´ë©”ì¼ ë³€ê²½</legend>
                                         		<ul>
                                             		<li>
-                                                	 <label>ÀÌ¸ŞÀÏ&nbsp;&nbsp;:&nbsp;</label>
-                                                  <input type="text"  id="email"  name ="email" style="ime-mode:inactive; width:356px;" placeholder="º¯°æÇÒ ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä." >     
-				                                  <a href="javascript:updateEmail.submit()">ÀÌ¸ŞÀÏ º¯°æ</a>&nbsp;&nbsp;
+                                                	 <label>ì´ë©”ì¼&nbsp;&nbsp;:&nbsp;</label>
+                                                  <input type="text"  id="email"  name ="email" style="ime-mode:inactive; width:356px;" placeholder="ë³€ê²½í•  ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”." required >     
+				                                  <a href="javascript:updateEmail.submit()" class="update_btn__submit">ì´ë©”ì¼ ë³€ê²½</a>&nbsp;&nbsp;
                                             </li>   
                                         </ul>
                                    </fieldset>
@@ -264,98 +340,116 @@ function checkpassword() {
                     	<ul>
                     	<li>                   	
                         <div class="update_form__list title">
-                            <span>ÈŞ´ë ÀüÈ­ ¹øÈ£</span>
+                            <span>íœ´ëŒ€ ì „í™” ë²ˆí˜¸</span>
                         </div>
                         <div class="update_form__list content">
-                           <span><%=membervo.getMember_phone() %></span>&nbsp;&nbsp;&nbsp;                
-                           <span>'-' ¾øÀÌ ÀÔ·ÂÇØ ÁÖ¼¼¿ä"</span>&nbsp;&nbsp;&nbsp;
-                           <input type ="button" onclick = "modal_display()" value = "ÈŞ´ëÀüÈ­ º¯°æ"> 
-                           <div id="member_update_modal" class="modal_phone">
-                           	<div class="modal-content1">
+                           <span><%=membervo.getMember_phone().substring(0,3) %>-<%=membervo.getMember_phone().substring(3,7) %>-<%=membervo.getMember_phone().substring(7) %></span>&nbsp;&nbsp;&nbsp;                
+                           <span>'-' ì—†ì´ ì…ë ¥í•´ ì£¼ì„¸ìš”"</span>&nbsp;&nbsp;&nbsp;
+                           <input type ="button" onclick = "modal_display_phone()" value = "íœ´ëŒ€ì „í™” ë³€ê²½"> 
+                           <div id="member_update_modal_phone" class="modal">
+                           	<div class="modal-content">
                                    		 <span class="close">&times;</span>
                                     		<fieldset id="member_update">
-                                       		 <legend>ÈŞ´ëÀüÈ­ º¯°æ</legend>
+                                       		 <legend>íœ´ëŒ€ì „í™” ë³€ê²½</legend>
                                         		<ul>
                                             		<li>
-                                                	 <label>ÈŞ´ëÀüÈ­&nbsp;&nbsp;:&nbsp;</label>
-                                                  <input type="text"  id="member_phone"  name ="member_phone"  placeholder="ÈŞ´ëÀüÈ­¸¦ ÀÔ·ÂÇÏ¼¼¿ä." >     
-				                                  <a href="javascript:updatePhone.submit()">ÈŞ´ëÀüÈ­ º¯°æ</a>&nbsp;&nbsp;
+                                                	 <label>íœ´ëŒ€ì „í™”&nbsp;&nbsp;:&nbsp;</label>
+                                                  <input type="text"  id="member_phone"  name ="member_phone"  placeholder="íœ´ëŒ€ì „í™”ë¥¼ ì…ë ¥í•˜ì„¸ìš”." maxlength = "11" >     
+				                                  <a href="javascript:updatePhone.submit()" class="update_btn__submit">íœ´ëŒ€ì „í™” ë³€ê²½</a>&nbsp;&nbsp;
                                             </li>   
                                         </ul>
                                    </fieldset>
                                 </div>
-                        </div>                        
+                       		 </div>         
+                        </div>               
                     </li>
                     </ul>
                     </form>
+                    <form name = "updateAddress" action = "./updateAddress.kj" method = "post">
+                    <ul>
                     <li>
                         <div class="update_form__list title">
-                            <p class = "join_title" text-align = "left">ÁÖ¼Ò</span>
+                            <p class = "join_title" text-align = "left">ì£¼ì†Œ</span>
                         </div>
                         <div class="update_form__list content">
-                            <span><%=membervo.getSample4_postcode() %></span><br>
+                            <span><%=membervo.getSample4_postcode() %></span>
                             <span><%=membervo.getSample4_roadAddress() %>&nbsp;
 								  <%=membervo.getSample4_jibunAddress() %>&nbsp;                            
 	                              <%=membervo.getSample4_detailAddress() %>&nbsp;&nbsp;
                             </span>
                             
-                            <button class="update_btn">º¯°æÇÏ±â</button>
-                            <!--  
-                            <div>
-                                <input type="text" id="sample4_postcode" class = "int" name="sample4_postcode" placeholder="¿ìÆí¹øÈ£">
-                                <input type="button" class = "base_btn address" onclick="sample4_execDaumPostcode()" value="°Ë»ö"><br>
-                                <input type="text" class="int" id="sample4_roadAddress" name = "sample4_roadAddress" placeholder="µµ·Î¸í ÁÖ¼Ò">
-                                <input type="text" class="int" id="sample4_jibunAddress" name = "sample4_jibunAddress" placeholder="Áö¹ø ÁÖ¼Ò"><br>
-                                <span id="guide" style="color:#999;display:none;"></span><br>
-                                <input type="text" class="int" id="sample4_detailAddress" name = "sample4_detailAddress" placeholder="»ó¼¼ ÁÖ¼Ò¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä">
-                            </div>
-                            -->
-                        </div>
+                            <input type ="button" onclick = "modal_display_address()" value = "ì£¼ì†Œ ë³€ê²½"> 
+                            <div id="member_update_modal_address" class="modal">
+                            	<div class="modal-content">
+                                <span class="close">&times;</span>
+                                <fieldset id="member_update">
+                                <legend>ì£¼ì†Œ ë³€ê²½</legend>
+                                
+                                <li>
+                                <label>ìš°í¸ ë²ˆí˜¸</label>
+                                <input type="text" id="sample4_postcode" class = "int" name="sample4_postcode" placeholder="ìš°í¸ë²ˆí˜¸">                             
+                                <label>ë„ë¡œëª… ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_roadAddress" name = "sample4_roadAddress" placeholder="ë„ë¡œëª… ì£¼ì†Œ">                                
+                                <label>ì§€ë²ˆ ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_jibunAddress" name = "sample4_jibunAddress" placeholder="ì§€ë²ˆ ì£¼ì†Œ">                               
+                                <label>ìƒì„¸ ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_detailAddress" name = "sample4_detailAddress" placeholder="ìƒì„¸ ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”">				                                
+                                <input type="button" class = "base_btn address" onclick="sample4_execDaumPostcode()" value="ê²€ìƒ‰">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span id="guide" style="color:#999;display:none;"></span>
+                                <a href="javascript:updateAddress.submit()" class="update_btn__submit" >ì£¼ì†Œ ë³€ê²½</a>&nbsp;&nbsp;
+                                </li>
+                                          
+                                        
+                                   </fieldset>
+                                </div>
+                       		 </div>         
+                        </div>               
                     </li>
-                </ul>
-            </div>
-            <div class="member_update--btn">
-               	 <button class="update_btn__submit" onclick="history.back()">µÚ·Î °¡±â</button>
-            </div>
+                    </ul>
+                    </form>
+            	<div class="member_update--btn">
+               	 <button class="update_btn__submit" onclick="history.back()">ë’¤ë¡œ ê°€ê¸°</button>
+            	</div>
         </div>
-    
-    <!-- ÇªÅÍ ¿µ¿ª -->
+    		
+            	
+    <!-- í‘¸í„° ì˜ì—­ -->
     <div class="footer">
         <div class="upper_footer">
             <ul class="upper_footer--list">
                 <li>
                     <a href="#">
-                        ¿Ã¼Ç¼Ò°³
+                        ì˜¬ì…˜ì†Œê°œ
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        Ã¤¿ëÁ¤º¸
+                        ì±„ìš©ì •ë³´
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        °øÁö»çÇ×
+                        ê³µì§€ì‚¬í•­
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        ÀÌ¿ë¾à°ü
+                        ì´ìš©ì•½ê´€
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        °³ÀÎÁ¤º¸Ã³¸®¹æÄ§
+                        ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        ÀüÀÚ±İÀ¶°Å·¡¾à°ü
+                        ì „ìê¸ˆìœµê±°ë˜ì•½ê´€
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        Á¦ÈŞ¼­ºñ½º
+                        ì œíœ´ì„œë¹„ìŠ¤
                     </a>
                 </li>
             </ul>
@@ -363,10 +457,317 @@ function checkpassword() {
         <div class="lower_footer">
         </div>        
     </div>
+</div>
     
-    <!--  ½ºÅ©¸³Æ® ¿µ¿ª  -->
+    <!--  ìŠ¤í¬ë¦½íŠ¸ ì˜ì—­  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
     <script src="./resources/js/update.js"></script>
+</c:when>
+<c:otherwise>
+    <div id="topKey" class="topKey_btn" >
+        <p class="material-icons">
+            keyboard_arrow_up
+    </div>
+    <!-- í—¤ë” -->
+    <div class="header">
+        <div class="upper_header">
+             <div class="upper_header--nav">
+                <span>
+                    <a href="" id="clock"></a>
+                </span>
+                <ul>
+                     <li>
+                        <a href="./mypage.kj">${userId}</a>
+                    </li>
+                     <li>
+                        <a href="./logout.kj">ë¡œê·¸ì•„ì›ƒ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="lower_header">
+            <div class="lower_header--nav">
+                <h1 class="logo">
+                    <a href="/alltion/">ALL-TION</a>
+                </h1>
+                <div class="category">
+                    <a class="category--drop">
+                        <img src="./resources/img/header/category_tab.png">
+                    </a>
+                </div>
+                <div class="search">
+                    <select class="search--select">
+                        <option value="">ì „ì²´</option>
+                        <option value="íŒ¨ì…˜">íŒ¨ì…˜</option>
+                        <option value="ë·°í‹°">ë·°í‹°</option>
+                        <option value="ì¶œì‚°/ìœ ì•„ë™">ì¶œì‚°/ìœ ì•„ë™</option>
+                        <option value="ì „ìê¸°ê¸°">ì „ìê¸°ê¸°</option>
+                        <option value="ê°€ì „ì œí’ˆ">ê°€ì „ì œí’ˆ</option>
+                        <option value="ê°€êµ¬/ì¸í…Œë¦¬ì–´">ê°€êµ¬/ì¸í…Œë¦¬ì–´</option>
+                        <option value="ë°˜ë ¤ë™ë¬¼/ì·¨ë¯¸">ë°˜ë ¤ë™ë¬¼/ì·¨ë¯¸</option>
+                        <option value="ë„ì„œ/ìŒë°˜/ë¬¸êµ¬">ë„ì„œ/ìŒë°˜/ë¬¸êµ¬</option>
+                        <option value="í‹°ì¼“/ì¿ í°">í‹°ì¼“/ì¿ í°</option>
+                        <option value="ìŠ¤í¬ì¸ ">ìŠ¤í¬ì¸ </option>
+                        <option value="ê³µêµ¬/ì‚°ì—…ìš©í’ˆ">ê³µêµ¬/ì‚°ì—…ìš©í’ˆ</option>
+                        <option value="ê¸°íƒ€ì¡í™”">ê¸°íƒ€ì¡í™”</option>
+                    </select>
+                    <input type="text" placeholder="ì°¾ìœ¼ì‹œëŠ” ìƒí’ˆì„ ì…ë ¥í•´ ì£¼ì„¸ìš”" class="search__input">
+                </div>
+                <ul class="member_info">
+                    <li>
+                        <a href="./mypage.kj">
+                            <span class="material-icons">perm_identity</span>
+                            <span>ë§ˆì´ í˜ì´ì§€</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-icons">turned_in_not</span>
+                            <span>ì°œ ëª©ë¡</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-icons">access_time</span>
+                            <span>ì°¸ì—¬ ê²½ë§¤</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- íšŒì› ì •ë³´ ìˆ˜ì • -->
+        <div class="member_update--form">
+            <h3>íšŒì› ì •ë³´ ìˆ˜ì •</h3>
+            <div class="member_update--content">
+                <ul class="update_form list">
+                    <li>
+                        <div class="update_form__list title">
+                            <span>ì•„ì´ë””</span>
+                        </div>
+                        <div class="update_form__list content">
+                            <span><%=membervo.getMember_id() %></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="update_form__list title">
+                            <span>ì´ë¦„</span>
+                        </div>
+                        <div class="update_form__list content">
+                            <span><%=membervo.getMember_name() %></span>
+                        </div>
+                    </li>
+                    <form name = "updatePassword" action="./updatePassword.kj" method="post">
+                    <ul>
+                    <li>
+                        <div class="update_form__list title">
+                            <span>ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</span>
+                        </div>
+                        <div class="update_form__list content">
+                            <input type="password" id="member_password" name = "member_password" class= "int" required><br>
+                            <input type="password" id="member_password2"  name = "member_password2" class = "int" onchange="checkpassword()" required>
+                            <span id="alert-success1" style="display: none; color: #1ec700;">ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤.</span>
+    						<span id="alert-danger1" style="display: none; color: #d92742; font-weight: bold; ">ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</span>
+                            <button type = "submit" class="update_btn__submit" >ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</button>
+                        </div>
+                    </li>  
+                    </ul>
+                    </form>                  
+                    <form name="updateEmail" action="./updateEmail.kj" method="post">
+                    <ul>
+                    <li>
+                        <div class="update_form__list title">
+                            <span>ì´ë©”ì¼</span>
+                        </div>
+                        <div class="update_form__list content">
+                            <span><%=membervo.getEmail() %></span>&nbsp;&nbsp;&nbsp;
+                            	<input type ="button" onclick = "modal_display_email()"  value = "ì´ë©”ì¼ ë³€ê²½">                         
+                            		<div id="member_update_modal_email" class="modal">
+                               		 <div class="modal-content">
+                                   		 <span class="close">&times;</span>
+                                    		<fieldset id="member_update">
+                                       		 <legend>ì´ë©”ì¼ ë³€ê²½</legend>
+                                        		<ul>
+                                            		<li>
+                                                	 <label>ì´ë©”ì¼&nbsp;&nbsp;:&nbsp;</label>
+                                                  <input type="email"  id="email"  name ="email" style="ime-mode:inactive; width:356px;" placeholder="ë³€ê²½í•  ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”." required>     
+				                                  <input type = "submit"  value = "ì´ë©”ì¼ ë³€ê²½">
+                                            </li>   
+                                        </ul>
+                                   </fieldset>
+                                </div>
+                            </div>	
+            				</div> 
+            			</li>
+            			</ul>
+            			</form>	
+            			<form name = "updatePhone" action = "./updatePhone.kj" method = "post">
+                    	<ul>
+                    	<li>                   	
+                        <div class="update_form__list title">
+                            <span>íœ´ëŒ€ ì „í™” ë²ˆí˜¸</span>
+                        </div>
+                        <div class="update_form__list content">
+                           <span><%=membervo.getMember_phone().substring(0,3) %>-<%=membervo.getMember_phone().substring(3,7) %>-<%=membervo.getMember_phone().substring(7) %></span>&nbsp;&nbsp;&nbsp;                
+                           <span>'-' ì—†ì´ ì…ë ¥í•´ ì£¼ì„¸ìš”"</span>&nbsp;&nbsp;&nbsp;
+                           <input type ="button" onclick = "modal_display_phone()" value = "íœ´ëŒ€ì „í™” ë³€ê²½"> 
+                           <div id="member_update_modal_phone" class="modal">
+                           	<div class="modal-content">
+                                   		 <span class="close">&times;</span>
+                                    		<fieldset id="member_update">
+                                       		 <legend>íœ´ëŒ€ì „í™” ë³€ê²½</legend>
+                                        		<ul>
+                                            		<li>
+                                                	 <label>íœ´ëŒ€ì „í™”&nbsp;&nbsp;:&nbsp;</label>
+                                                  <input type="text"  id="member_phone"  name ="member_phone"  placeholder="íœ´ëŒ€ì „í™”ë¥¼ ì…ë ¥í•˜ì„¸ìš”." maxlength = "11" >     
+				                                  <a href="javascript:updatePhone.submit()" class="update_btn__submit">íœ´ëŒ€ì „í™” ë³€ê²½</a>&nbsp;&nbsp;
+                                            </li>   
+                                        </ul>
+                                   </fieldset>
+                                </div>
+                       		 </div>         
+                        </div>               
+                    </li>
+                    </ul>
+                    </form>
+                    <form name = "updateAddress" action = "./updateAddress.kj" method = "post">
+                    <ul>
+                    <li>
+                        <div class="update_form__list title">
+                            <p class = "join_title" text-align = "left">ì£¼ì†Œ</span>
+                        </div>
+                        <div class="update_form__list content">
+                            <span><%=membervo.getSample4_postcode() %></span>
+                            <span><%=membervo.getSample4_roadAddress() %>&nbsp;
+								  <%=membervo.getSample4_jibunAddress() %>&nbsp;                            
+	                              <%=membervo.getSample4_detailAddress() %>&nbsp;&nbsp;
+                            </span>
+                            
+                            <input type ="button" onclick = "modal_display_address()" value = "ì£¼ì†Œ ë³€ê²½"> 
+                            <div id="member_update_modal_address" class="modal">
+                            	<div class="modal-content">
+                                <span class="close">&times;</span>
+                                <fieldset id="member_update">
+                                <legend>ì£¼ì†Œ ë³€ê²½</legend>
+                                
+                                <li>
+                                <label>ìš°í¸ ë²ˆí˜¸</label>
+                                <input type="text" id="sample4_postcode" class = "int" name="sample4_postcode" placeholder="ìš°í¸ë²ˆí˜¸">                             
+                                <label>ë„ë¡œëª… ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_roadAddress" name = "sample4_roadAddress" placeholder="ë„ë¡œëª… ì£¼ì†Œ">                                
+                                <label>ì§€ë²ˆ ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_jibunAddress" name = "sample4_jibunAddress" placeholder="ì§€ë²ˆ ì£¼ì†Œ">                               
+                                <label>ìƒì„¸ ì£¼ì†Œ</label>
+                                <input type="text" class="int" id="sample4_detailAddress" name = "sample4_detailAddress" placeholder="ìƒì„¸ ì£¼ì†Œë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”">				                                
+                                <input type="button" class = "base_btn address" onclick="sample4_execDaumPostcode()" value="ê²€ìƒ‰">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span id="guide" style="color:#999;display:none;"></span>
+                                <a href="javascript:updateAddress.submit()" class="update_btn__submit" >ì£¼ì†Œ ë³€ê²½</a>&nbsp;&nbsp;
+                                </li>
+                                          
+                                        
+                                   </fieldset>
+                                </div>
+                       		 </div>         
+                        </div>               
+                    </li>
+                    </ul>
+                    </form>            	
+        </div>
+ <!--íšŒì› ì •ë³´ ì‚­ì œ  -->  
+        <form name = "member_delete" action = "./delete.kj" method = "post">
+        <div class="member_update--form">
+            <h3>íšŒì› ì •ë³´ íƒˆí‡´</h3>
+            <div class="member_update--content">
+                <ul class="update_form list">
+                    <li>
+                        <div class="update_form__list title">
+                            <span>íšŒì› ì •ë³´ íƒˆí‡´</span>
+                        </div>
+                        <div class="update_form__list content">
+                        <h4>íšŒì› ì •ë³´ ì‚­ì œì‹œ ë‹¤ì‹œëŠ” íšŒì›ì •ë³´ë¥¼ ë¶ˆëŸ¬ì˜¬ìˆ˜ ì—†ìŠµë‹ˆë‹¤</h4>
+                            <span><input type ="button" onclick = "modal_display_delete_member()" value = "íšŒì›ì •ë³´ ì‚­ì œ">
+                            <div id="member_update_modal_delete_member" class="modal">
+                            	<div class="modal-content">
+                                <span class="close">&times;</span>
+                                <fieldset id="member_update">
+                                <legend>íšŒì› íƒˆí‡´</legend>
+                                <ul>
+                                <li>
+                                <label>íšŒì› íƒˆí‡´ : &nbsp;</label>
+                                
+                                <span>íšŒì› íƒˆí‡´ì‹œ ë¬´ìŠ¨ ë¶ˆì´í–‰ì´ ìˆì–´ë„ ì±…ì„ì§ˆìˆ˜ ì—†ìŠµë‹ˆë‹¤.</span>&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <button type = "submit">íšŒì› ì‚­ì œ</button>
+                                </li>
+                                </ul>                                
+                                </fieldset>
+                                </div>
+                                </div>
+                            </span>
+                        </div>
+                    </li>
+                    </ul>
+                    </div>
+                    </div>
+            	</form>
+ 
+            	
+            	<div class="member_update--btn">
+               	 <button class="update_btn__submit" onclick="history.back()">ë’¤ë¡œ ê°€ê¸°</button>
+            	</div>
+           	
+    <!-- í‘¸í„° ì˜ì—­ -->
+    <div class="footer">
+        <div class="upper_footer">
+            <ul class="upper_footer--list">
+                <li>
+                    <a href="#">
+                        ì˜¬ì…˜ì†Œê°œ
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ì±„ìš©ì •ë³´
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ê³µì§€ì‚¬í•­
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ì´ìš©ì•½ê´€
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ì „ìê¸ˆìœµê±°ë˜ì•½ê´€
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        ì œíœ´ì„œë¹„ìŠ¤
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="lower_footer">
+        </div>        
+    </div>
+</div>
+    
+    <!--  ìŠ¤í¬ë¦½íŠ¸ ì˜ì—­  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    <script src="./resources/js/update.js"></script>
+</c:otherwise>
+</c:choose>
 </body>
 </html>
