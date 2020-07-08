@@ -1,14 +1,3 @@
-// 헤더 고정
-var header = $('.lower_header');
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 0) {
-
-        header.addClass('sticky');
-    } else {
-        header.removeClass('sticky');
-    }
-})
-
 /* 1차 카테고리 선택 시작 by.유빈 */
 function changeCategory(item) {
     let name = item.name; // 카테고리1, 카테고리2
@@ -527,3 +516,5 @@ $('document').ready(() => {
     });
 
 })
+
+/* 1차 카테고리 선택 시작 by.유빈 */
