@@ -115,8 +115,9 @@ function changeCategory_2(value) {
             // 함수의 0번쨰 파라미터를 제외한 나머지 갯수만큼 option태그 생성
             selectOutput += `<option value="${value}${categoryNumber}">
             	${arguments[i]}</option>`;
+            
         }
-        
+        console.log(selectOutput);
     selectOutput += `</select>`;
     /* 2차 카테고리 태그 작성 끝 */
 
@@ -420,6 +421,8 @@ function formCheck() {
 	let bidding_unit = $('select[name=product_bidding_unit]'); // 입찰단위
 	let transaction_area = $('input[name=product_transaction_area]'); // 거래가능지역
 	let purchase_price = $('input[name=product_purchase_price]'); // 즉시구매가
+	let delivery = $('input[name=product_delivery]:checked'); // 택배거래
+	let direct = $('input[name=direct]:checked'); // 택배거래
 	
 	/* 유효성 검사 */
 	// 2차카테고리
@@ -462,6 +465,11 @@ function formCheck() {
 	else if (purchase_price.attr('disabled') == undefined
 		&& purchase_price.val() < Number(starting_price.val()) + Number(bidding_unit.val())) {
 		alert("최소 즉시구매가는 '경매 시작가 + 입찰단위가' 입니다");
+		return true;
+	}
+	// 택배, 직거래 중 최소 1개 선택 여부
+	else if (delivery.val() == 'none' && direct.val() == 0) {
+		alert("택배거래와 직거래 중 최소 1개의 방법을 선택해주세요");
 		return true;
 	}
 	

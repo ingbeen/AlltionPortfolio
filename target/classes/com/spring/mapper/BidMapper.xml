@@ -6,10 +6,13 @@
 	<!-- root-context에서 아래와 같이 typeAliasesPackage를 설정하면 패키지 경로 생략 가능. -->
 <mapper namespace="com.spring.mapper.BidMapper">
 	<select id="bidList" parameterType="int" resultType="BidVO">
+		<![CDATA[
 		select 
-		bid_number,bid_product_number,bid_id,bid_price,to_char(bid_date,'MM-dd HH:mm') as bid_date,bid_no
+		bid_number,bid_product_number,bid_id,bid_price,to_char(bid_date,'MM-dd HH:mm:ss') as bid_date,bid_no
 		from bid_list 
-		where bid_product_number=#{bno} order by bid_no desc
+		where bid_product_number=#{bno} and bid_no>=#{bid_startrow} and bid_no<=#{bid_endrow} 
+		order by bid_no desc
+		]]>
 	</select>
 	
 	<insert id="bidInsert" parameterType="BidVO">
@@ -25,6 +28,15 @@
 		select count(*)+1 from bid_list where bid_product_number=#{bid_product_number}
 	</select>
 	
+	<select id="getTop_bidder_id" parameterType="int" resultType="String">
+		select bid_id 
+      	from bid_list 
+      	where bid_price = (select 
+                  nvl(max(bid_price),0) as max_bid_price 
+                  from bid_list 
+                  where bid_product_number = #{bid_product_number}) and 
+                  bid_product_number = #{bid_product_number}
+	</select>
 	
 	<select id="selectNowPrice" parameterType="int" resultType="int">
 		select nvl(max(bid_price),0) from bid_list where bid_product_number=#{bid_product_number}

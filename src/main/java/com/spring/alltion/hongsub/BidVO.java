@@ -1,11 +1,11 @@
 /*
 create table bid_list(
-    bid_number number primary key,
-    bid_product_number number references product(product_number),
-    bid_id varchar2(15) references member(member_id),
-    bid_price number,
-    bid_date date default sysdate,
-    bid_no number
+    bid_number number primary key, -- 응찰번호
+    bid_product_number number references product(product_number), -- 응찰한 상품번호
+    bid_id varchar2(15) references member(member_id), -- 응찰자 아이디
+    bid_price number, -- 응찰 가격
+    bid_date date default sysdate, -- 응찰한 시간
+    bid_no number -- 응찰 순서 넘버링, rnum 과 같은 효과
 );
 */
 

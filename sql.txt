@@ -1,47 +1,29 @@
 // by.Hong
 /*
+-- 응찰하기 기능 관련 테이블
 create table bid_list(
-    bid_number number primary key,
-    bid_product_number number references product(product_number),
-    bid_id varchar2(15) references member(member_id),
-    bid_price number,
-    bid_date date default sysdate,
-    bid_no number
+    bid_number number primary key, -- 응찰번호
+    bid_product_number number references product(product_number), -- 응찰한 상품번호
+    bid_id varchar2(15) references member(member_id), -- 응찰자 아이디
+    bid_price number, -- 응찰 가격
+    bid_date date default sysdate, -- 응찰한 시간
+    bid_no number -- 응찰 순서 넘버링, rnum 과 같은 효과
 );
     
-create table member(
-    member_id varchar2(15) primary key,
-    member_password varchar2(20)
-);
-
-create table product(
-    product_number number primary key,
-    product_id varchar2(15) references member(member_id),
-    product_subject varchar2(30),
-    product_img1 varchar2(50),
-    product_img2 varchar2(50),
-    product_img3 varchar2(50),
-    product_img4 varchar2(50),
-    product_img5 varchar2(50),
-    product_starting_price number,
-    product_now_price number,  --bid_list의 마지막 bid_price와 동일 
-    product_purchase_price number
-);
-
+-- 상품 상세 페이지의 댓글 관련 테이블
 create table comment_list(
-    comment_number number primary key,
-    comment_group_number number,
-    comment_product_number number references product(product_number),
-    comment_id varchar2(15) references member(member_id),
-    comment_reply_id varchar2(15) default 'no' references member(member_id),
-    comment_content varchar2(1000),
-    comment_lev varchar2(1) default '0' check(comment_lev in('0','1')),
-    comment_secret varchar2(1) default '0' check(comment_secret in('0','1')),
-    comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')),
-    comment_date date default sysdate,
-    comment_list_no number
-);   
-    
+    comment_number number primary key, -- 댓글 번호
+    comment_group_number number, -- 댓글 그룹 번호 원본과 답글을 묶는 역할
+    comment_product_number number references product(product_number), -- 댓글 달린 상품번호
+    comment_id varchar2(15) references member(member_id), -- 댓글 작성한 아이디
+    comment_original_id varchar2(15), -- 답글달때 원래 댓글의 아이디
+    comment_content varchar2(1000), -- 댓글 내용
+    comment_lev varchar2(1) default '0' check(comment_lev in('0','1')), -- 0: 원글 ,1: 답글
+    comment_secret varchar2(1) default '0' check(comment_secret in('0','1')), -- 0: 비밀x , 1: 비밀o
+    comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')), -- 0: 삭제x , 1: 삭제o
+    comment_date date default sysdate, -- 댓글 작성한 날짜
+    comment_list_no number -- 댓글 순서 넘버링, rnum과 같은효과
+);  
 */
 
 create table member(
@@ -79,7 +61,7 @@ CREATE TABLE product (
         product_bidding_unit number not null, -- 입찰단위
         product_end_date date not null, -- 경매종료일
         
-        product_delivery varchar2(1000) not null, -- 택배거래(비용) : before = 착불, after = 착불, none = 불가능
+        product_delivery varchar2(1000) not null, -- 택배거래(비용) : before = 선불, after = 착불, none = 불가능
 		product_transaction_area varchar2(1000) not null, -- 거래가능지역 : none = 불가능, 사용자입력값
         
         product_purchase_price number not null, -- 즉시구매가격

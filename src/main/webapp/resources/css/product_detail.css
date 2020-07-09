@@ -9,7 +9,7 @@
     padding: 20px;
     height: 630px;
     display: flex;
-    margin-bottom: 72px;
+    margin-bottom: 110px;
     /*border-left: 1px solid #F9A825;
     border-right: 1px solid #F9A825;*/
 }
@@ -18,8 +18,8 @@
 
 /* 돋보기 */
 .magnifier {
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     position: absolute;
     border-radius: 100%;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 3px 3px rgba(0, 0, 0, 0.25);
@@ -29,10 +29,13 @@
 .mag_btn img{
     width:40px;
     height: 30px;
+    cursor: pointer;
 }
 .mag_close img{
     width:40px;
     height: 30px;
+    
+    cursor: pointer;
 }
 
 .summary_slideshow {
@@ -103,6 +106,7 @@
 
 /* The dots/bullets/indicators */
 .dot {
+	/*
     cursor: pointer;
     height: 12px;
     width: 12px;
@@ -111,6 +115,13 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
+    */
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin: 0 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: inline-block;
 }
 
 .dot_group {
@@ -258,6 +269,7 @@
 .bid_list {
     margin: 20px 0;
     width: 1200px;
+    height: 500px;
 }
 
 .bid_list_column div {
@@ -318,11 +330,7 @@
     height: 800px;
 }
 
-.information_detail {
-    padding-left: 20px;
-    margin-top: 30px;
-    height: 400px;
-}
+
 
 .img_1 img,
 .img_2 img,
@@ -332,7 +340,31 @@
     margin-top: 20px;
 }
 
-.information_detail p {
+.exchange_rule {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 30px;
+    height: 500px;
+}
+.exchange_rule ul{
+	border-top: thin solid black;	
+	font-size: 17px;
+}
+.exchange_rule label{
+	padding: 13px 80px;
+	border-right: thin solid darkgray;
+	text-align: center;
+	background-color: #DDDDDD;
+}
+.exchange_rule li{
+	line-height: 50px;
+	border-bottom: thin solid darkgray;
+	vertical-align:middle;
+}
+.exchange_rule font{
+	padding-left: 20px;
+}
+.exchange_rule p {
     padding: 20px;
 }
 
@@ -351,6 +383,7 @@
 .comment_title input{
 	color: cornflowerblue;
 }
+
 .comment_div textarea{
 	padding: 5px;
 	width:1150px;
@@ -376,22 +409,30 @@
 	color:white;
 }
 
-.comment_content{
-	width:1150px;
-	height: 100px;
-	border-top: thin solid darkgray;
-}
 
 .comment_list1{
-	border-bottom: thin solid darkgray;
 	width: 100%;
 	margin-bottom:20px;
+	border-bottom: thin solid darkgray;
+}
+.reply{
+	margin-left: 30px;
+	max-width: 1140px;
+}
+.comment_list1 span{
+	margin-right: 10px;
+}
+
+.comment_list1 a,
+.comment_update a{
+	font-size: 13px;
+	margin-right:10px;
 	
 }
 
 .comment_id{
-	margin-right:10px;
 	width: 300px;
+	font-size: 15px;
 }
 
 .comment_date{
@@ -399,6 +440,25 @@
 	width: 500px;
 	
 }
+.comment_content{
+	width:1150px;
+	height: 100px;
+	padding: 10px;
+	font-size: 13px;
+	color: #222222;
+	
+}
+
+.comment_update{
+	border-bottom: thin solid darkgray;
+	width: 1180px;
+	height: 143px;
+	margin-bottom: 20px;
+}
+
+/*댓글의 답글용 css*/
+
+
 /*여기까지 product_information*/
 /*네비게이션바 요약내용 아래*/
 .detail_page_nav li {

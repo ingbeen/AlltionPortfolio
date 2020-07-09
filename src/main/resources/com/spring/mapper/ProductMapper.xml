@@ -37,6 +37,30 @@
 		)
 	</insert>
 	
+	<select id="searchForDeadline" resultType="ProductVO">
+		select
+			product_number, <!-- 상품번호 -->
+			product_starting_price,  <!-- 경매시작가 -->
+			product_starting_price, <!-- 경매현재가 -->
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, <!-- 경매종료일 -->
+			product_re_auction, <!-- 재경매 -->
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date <!-- 등록일 -->
+		from product
+		where
+		<![CDATA[
+			product_end_date < sysdate and
+    		product_progress = 0
+   		]]>
+	</select>
+	
+	<select id="changePoductProgressToEnd" parameterType="int">
+		update product
+		set product_progress = 1
+		where product_number = #{product_number}
+	</select>
+	
+
+	
 	<!-- test -->
 	<select id="productSelectTest" resultType="ProductVO">
 		select
@@ -53,7 +77,7 @@
 			product_img_5, <!-- 이미지(썸네일)_5 -->
 			product_starting_price,  <!-- 경매시작가 -->
 			product_bidding_unit, <!-- 입찰단위 -->
-			to_char(product_end_date, 'yyyy-mm-dd hh24:mi'), <!-- 경매종료일 -->
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, <!-- 경매종료일 -->
 			product_delivery, <!-- 택배거래(비용) -->
 			product_transaction_area, <!-- 거래가능지역 -->
 			product_purchase_price, <!-- 즉시구매가격 -->
@@ -63,7 +87,7 @@
 			product_participants, <!-- 참가자수 -->
 			product_credit_score, <!-- 신용도 -->
 			product_views, <!-- 조회수 -->
-			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi'), <!-- 등록일 -->
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, <!-- 등록일 -->
 			product_progress <!-- 진행상태 -->
 		from product
 		where product_number = 1

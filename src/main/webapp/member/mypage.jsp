@@ -128,7 +128,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="wishList.yb">
                     <span class="material-icons">bookmarks</span><br>
                     <span class="myPage__menu">찜 목록</span>
                 </a>

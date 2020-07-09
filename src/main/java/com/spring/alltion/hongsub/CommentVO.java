@@ -1,17 +1,17 @@
 /*
 create table comment_list(
-    comment_number number primary key,
-    comment_group_number number,
-    comment_product_number number references product(product_number),
-    comment_id varchar2(15) references member(member_id),
-    comment_reply_id varchar2(15) default 'no' references member(member_id),
-    comment_content varchar2(1000),
-    comment_lev varchar2(1) default '0' check(comment_lev in('0','1')),
-    comment_secret varchar2(1) default '0' check(comment_secret in('0','1')),
-    comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')),
-    comment_date date default sysdate,
-    comment_list_no number
-);   
+    comment_number number primary key, -- 댓글 번호
+    comment_group_number number, -- 댓글 그룹 번호 원본과 답글을 묶는 역할
+    comment_product_number number references product(product_number), -- 댓글 달린 상품번호
+    comment_id varchar2(15) references member(member_id), -- 댓글 작성한 아이디
+    comment_original_id varchar2(15), -- 답글달때 원래 댓글의 아이디
+    comment_content varchar2(1000), -- 댓글 내용
+    comment_lev varchar2(1) default '0' check(comment_lev in('0','1')), -- 0: 원글 ,1: 답글
+    comment_secret varchar2(1) default '0' check(comment_secret in('0','1')), -- 0: 비밀x , 1: 비밀o
+    comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')), -- 0: 삭제x , 1: 삭제o
+    comment_date date default sysdate, -- 댓글 작성한 날짜
+    comment_list_no number -- 댓글 순서 넘버링, rnum과 같은효과
+);      
 */
 
 package com.spring.alltion.hongsub;
@@ -21,7 +21,7 @@ public class CommentVO {
 	private int comment_group_number;
 	private int comment_product_number;
 	private String comment_id;
-	private String comment_reply_id;
+	private String comment_original_id;
 	private String comment_content;
 	private String comment_lev;
 	private String comment_secret;
@@ -82,17 +82,18 @@ public class CommentVO {
 	public void setComment_list_no(int comment_list_no) {
 		this.comment_list_no = comment_list_no;
 	}
-	public String getComment_reply_id() {
-		return comment_reply_id;
-	}
-	public void setComment_reply_id(String comment_reply_id) {
-		this.comment_reply_id = comment_reply_id;
-	}
+	
 	public String getComment_lev() {
 		return comment_lev;
 	}
 	public void setComment_lev(String comment_lev) {
 		this.comment_lev = comment_lev;
+	}
+	public String getComment_original_id() {
+		return comment_original_id;
+	}
+	public void setComment_original_id(String comment_original_id) {
+		this.comment_original_id = comment_original_id;
 	}
 	
 }

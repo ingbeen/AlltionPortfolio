@@ -6,14 +6,17 @@
 	<!-- root-context에서 아래와 같이 typeAliasesPackage를 설정하면 패키지 경로 생략 가능. -->
 <mapper namespace="com.spring.mapper.CommentMapper">
 	<select id="commentlist" parameterType="int" resultType="CommentVO">
+		<![CDATA[	
 		select * 
 		from comment_list 
-		where comment_product_number = #{comment_product_number} order by comment_list_no desc
+		where comment_product_number = #{comment_product_number} and comment_list_no >= #{comment_startrow} and comment_list_no <= #{comment_endrow}
+		order by comment_list_no desc
+		]]>
 	</select>
 	
 	<insert id="commentinsert" parameterType="CommentVO">
-		<selectKey keyProperty="comment_number" order="BEFORE" resultType="int">
-			select nvl(max(comment_number),0)+1 as comment_number from comment_list
+		<selectKey keyProperty="comment_number,comment_group_number" order="BEFORE" resultType="CommentVO">
+			select nvl(max(comment_number),0)+1 as comment_number,nvl(max(comment_group_number),0)+1 as comment_group_number from comment_list
 		</selectKey>
 		
 		insert into comment_list(comment_number,comment_group_number,comment_product_number,
@@ -27,4 +30,35 @@
 		from comment_list 
 		where comment_product_number = #{comment_product_number}
 	</select>
+	
+	<update id="commentdelete" parameterType="CommentVO">
+		update comment_list set comment_is_deleted = '1' where comment_number = #{comment_number} and comment_product_number=#{comment_product_number}
+	</update>
+	
+	<update id="commentupdate" parameterType="CommentVO">
+		update comment_list set comment_content = #{comment_content},comment_date = sysdate where comment_number = #{comment_number}
+	</update>
+	
+	<select id="getOriginalInfo" parameterType="int" resultType="CommentVO">
+		select * from comment_list where comment_number = #{comment_original_number}
+	</select>
+	
+	<update id="makereplylistno" parameterType="int">
+		<![CDATA[
+		update 
+		comment_list 
+		set comment_list_no = comment_list_no+1 
+		where comment_list_no >= #{comment_list_no}
+		]]>
+	</update>
+	
+	<insert id="commentreply" parameterType="CommentVO">
+		<selectKey keyProperty="comment_number" order="BEFORE" resultType="int">
+			select nvl(max(comment_number),0)+1 as comment_number from comment_list
+		</selectKey>
+		insert into comment_list(comment_number,comment_group_number,comment_product_number,
+		comment_id,comment_original_id,comment_content,comment_lev,comment_secret,comment_list_no) 
+		values(#{comment_number},#{comment_group_number},#{comment_product_number},#{comment_id},#{comment_original_id},#{comment_content},'1',#{comment_secret},#{comment_list_no})
+	</insert>
+	
 </mapper>
