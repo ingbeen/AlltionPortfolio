@@ -32,11 +32,12 @@ public class ProductController {
 
 	/* test */
 	@RequestMapping(value = "productSelectTest.yb")
-	public String productSelectTest(Model model) {
+	public String productSelectTest(int product_number, Model model) {
 		
+		/* 마감된 상품 test */
 		tradingService.seachEndOfProduct();
 		
-		ProductVO productVO = productService.productSelectTest();
+		ProductVO productVO = productService.productSelectTest(product_number);
 		
 		model.addAttribute("productVO", productVO);
 		

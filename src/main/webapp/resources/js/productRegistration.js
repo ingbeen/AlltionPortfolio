@@ -450,6 +450,11 @@ function formCheck() {
 		alert("경매 시작가는 최소 1,000원부터 입니다");
 		return true;
 	} 
+	// 경매 시작가 100원 단위
+	else if (starting_price.val().substr(-2) != '00') {
+		alert("경매 시작가의 최소 단위는 100원입니다");
+		return true;
+	} 
 	// 입찰 단위
 	else if (bidding_unit.val() < 100) {
 		alert("입찰 단위는 최소 100원부터 입니다");
@@ -466,13 +471,18 @@ function formCheck() {
 		&& purchase_price.val() < Number(starting_price.val()) + Number(bidding_unit.val())) {
 		alert("최소 즉시구매가는 '경매 시작가 + 입찰단위가' 입니다");
 		return true;
+	} 
+	// 즉시구매가 100원 단위
+	else if (purchase_price.val().substr(-2) != '00') {
+		alert("즉시구매가의 최소 단위는 100원입니다");
+		return true;
 	}
 	// 택배, 직거래 중 최소 1개 선택 여부
 	else if (delivery.val() == 'none' && direct.val() == 0) {
 		alert("택배거래와 직거래 중 최소 1개의 방법을 선택해주세요");
 		return true;
 	}
-	
+		
 	// 유효성 검사 완료
 	return false;
 }

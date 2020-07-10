@@ -13,7 +13,7 @@ public class ProductService {
 	private SqlSession sqlSession;
 	
 	public int ProductInsert(ProductVO productVO) {
-		ProductMapper productMapper; // 상품 맵퍼
+		ProductMapper productMapper; // 마이바티스 상품맵퍼
 		String end_date; // 경매종료일
 		int res; // insert 결과값
 		
@@ -39,6 +39,7 @@ public class ProductService {
 			
 			return res;
 		} catch(Exception e) {
+			System.out.println("ProductInsert 에러");
 			e.printStackTrace();
 		}
 		
@@ -47,10 +48,10 @@ public class ProductService {
 	}
 	
 	/* test */
-	public ProductVO productSelectTest() {
+	public ProductVO productSelectTest(int product_number) {
 		ProductMapper productMapper = sqlSession.getMapper(ProductMapper.class);
 		
-		ProductVO productVO = productMapper.productSelectTest();
+		ProductVO productVO = productMapper.getProduct(product_number);
 		
 		return productVO;
 	}

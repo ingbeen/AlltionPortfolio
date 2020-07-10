@@ -101,6 +101,7 @@ public class ProductDAOController {
 			out.println("/alltion/AlltionUpload/" + savedFilename);
 			
 		} catch (Exception e) {
+			System.out.println("editorImgUpload 에러");
 			e.printStackTrace();
 		} finally {
 			out.close();
@@ -109,7 +110,7 @@ public class ProductDAOController {
 	
 	// 썸네일 이미지 업로드
 	@RequestMapping(value = "thumbnailsUpload.yb", produces="application/json;charset=UTF-8")
-	public List<String> profileUpload(MultipartHttpServletRequest mtfRequest, HttpSession session) throws Exception {
+	public List<String> thumbnailsUpload(MultipartHttpServletRequest mtfRequest, HttpSession session) throws Exception {
 		List<MultipartFile> fileList; // 이미지들을 받을 리스트
 		
 		String realFolder; // 이미지가 저장될 실제 경로
@@ -159,6 +160,7 @@ public class ProductDAOController {
 				imgSrcList.add(imgSrc);
 	        }
 		} catch (Exception e) {
+			System.out.println("thumbnailsUpload 에러");
 			e.printStackTrace();
 		}
 		
@@ -169,37 +171,11 @@ public class ProductDAOController {
 	// 상품(경매) 등록
 	@RequestMapping(value = "productInsert.yb", produces="application/json;charset=UTF-8")
 	public void productInsert(ProductVO productVO) {
-		
-		try {
-			/* 테스트
-			System.out.println(productVO.getProduct_id());
-			System.out.println(productVO.getProduct_category_1());
-			System.out.println(productVO.getProduct_category_2());
-			System.out.println(productVO.getProduct_subject());
-			System.out.println(productVO.getProduct_content());
-			System.out.println(productVO.getProduct_img_1());
-			System.out.println(productVO.getProduct_img_2());
-			System.out.println(productVO.getProduct_img_3());
-			System.out.println(productVO.getProduct_img_4());
-			System.out.println(productVO.getProduct_img_5());
-			System.out.println(productVO.getProduct_starting_price());
-			System.out.println(productVO.getProduct_bidding_unit());
-			System.out.println(productVO.getProduct_end_date());
-			System.out.println(productVO.getProduct_delivery());
-			System.out.println(productVO.getProduct_transaction_area());
-			System.out.println(productVO.getProduct_purchase_price());
-			System.out.println(productVO.getProduct_re_auction());
-			*/
-			
-			productService.ProductInsert(productVO);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		productService.ProductInsert(productVO);
 	}
 	
 	// 이미지 리사이즈
-	public String imageResize(String filepath, Image image, String savedFilename) {
+	private String imageResize(String filepath, Image image, String savedFilename) {
 		// resize 경로  + 파일명
         String resizeSavedFilename = 
         		new StringBuffer(filepath).insert(filepath.lastIndexOf("."), "_resize").toString();
@@ -243,6 +219,7 @@ public class ProductDAOController {
             		.insert(savedFilename.lastIndexOf("."), "_resize").toString();
             
         } catch (Exception e){
+        	System.out.println("imageResize 에러");
             e.printStackTrace();
         }
         
