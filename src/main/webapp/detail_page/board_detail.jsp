@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.spring.alltion.hongsub.*" %>
+<%@ page import="com.spring.alltion.detailpage.*" %>
 <%@ page import="com.spring.alltion.productRegistration.*" %>
 <%@ page import="com.spring.alltion.login.*" %>
 <%
@@ -12,6 +12,8 @@
 	String writerId = productvo.getProduct_id();
 	// 판매자 정보
 	MemberVO membervo = (MemberVO)request.getAttribute("membervo");
+	Seller_Credit_Score_TestVO scstvo = (Seller_Credit_Score_TestVO)request.getAttribute("scstvo");
+	String sale_credit = (String)request.getAttribute("sale_credit");
 	
 	String top_bidder_id = (String)request.getAttribute("top_bidder_id");
 	int bid_listcount = (int)request.getAttribute("bid_listcount");
@@ -213,7 +215,7 @@
                                             </li>
                                             <li>
                                                 <label>정상거래</label>
-                                                <font>20 건</font>
+                                                <font><%=scstvo.getSale_normal() %> 건</font>
                                             </li>
                                             <li>
                                                 <label>신고횟수</label>
@@ -221,11 +223,11 @@
                                             </li>
                                             <li>
                                                 <label>판매자 등급</label>
-                                                <font><%=productvo.getProduct_credit_score() %></font>
+                                                <font><%=sale_credit %></font>
                                             </li>
                                             <li>
-                                                <label>현재 판매중 경매</label>
-                                                <font>56건</font>
+                                                <label>판매 성사율</label>
+                                                <font><%=scstvo.getSale_success_rate() %>%</font>
                                             </li>
                                         </ul>
                                     </fieldset>
@@ -241,20 +243,20 @@
                             <p><%=productvo.getProduct_starting_price() %>원</p>
                         </li>
                         <li>
-                            <label for="end_price">즉시 구매가</label>
+                            <label for="purchase_price">즉시 구매가</label>
                             <p style="color:#F9A825;font-weight:bold;font-size:18px;"><%=productvo.getProduct_purchase_price() %>원</p>
                         </li>
                         <li>
-                            <label for="boarddate">최고 응찰자</label>
+                            <label for="top_bidder_id">최고 응찰자</label>
                             <p><%=top_bidder_id %><br></p>
                         </li>
                         <li>
-                            <label for="boarddate">판매자 등급</label>
-                            <p><%=productvo.getProduct_credit_score() %></p>
+                            <label for="sale_credit">판매자 등급</label>
+                            <p id="sale_credit"><%=sale_credit %></p>
                         </li>
                         <li>
-                            <label for="boarddate">거래방법</label>
-                            <p>직거래 / 택배</p>
+                            <label for="howtotransaction">거래방법</label>
+                            <p>택배: <%=productvo.getProduct_delivery() %>/ 직거래:<%=productvo.getProduct_transaction_area() %> </p>
                         </li>
 
                         <li>
@@ -313,9 +315,15 @@
                     </ul>
                 </div>
                 <div class="btns" align="center">
+                <%if(productvo.getProduct_progress()==1) {%>
+                	<font style="color: red;">마감 종료된 경매입니다.</font>
+                <%}else if(id!=null){ %>
                     <button type="button" id="bid_btn" onclick="bidInsert()">응찰하기</button>
                     <button type="button" id="bid_btn2" onclick="nowpurchase()">즉시구매</button>
 <!--                            <button type="button" id="bid_btn3">문의하기</button>-->
+				<%}else {%>
+					<font><a href="" style="color:cornflowerblue;">로그인</a> 후 이용가능 합니다.</font>
+				<%} %>
                 </div>
 
             </div>
@@ -465,10 +473,12 @@
         <!-- ↓↓댓 글 항목.↓↓-->
         <div class="comment_div">
             <div class="comment_title">댓 글 <font size="2"> |악의적인 비방글이나 욕설글은 무통보 삭제 되오니 이점 유의바랍니다</font>&nbsp;&nbsp;<input type="checkbox" id="secret"><font size="3" style="color:cornflowerblue;"> 비밀글</font></div>
-            <textarea id="comment_content_input" placeholder="  *댓글을 작성해주세요..
-  *비밀글 입력시 판매자와 관리자만 볼 수 있습니다."></textarea>
+            <textarea id="comment_content_input" placeholder="<%if(id!=null){ %>  *댓글을 작성해주세요..
+  *비밀글 입력시 판매자와 관리자만 볼 수 있습니다.<%}else{%>댓글은 로그인후 이용 가능합니다<%}%>"></textarea>
             <br>
+            <%if(id!=null){ %>
             <button type="button" id="comment_btn" onclick="commentInsert()">작 성</button>
+            <%} %>
             <div class="comment_list">
             
             </div>
@@ -774,6 +784,7 @@
         $(document).ready(function(){
 			bidList(1); //페이지 로딩시 응찰 목록 출력 
 			commentList(1); //페이지 로딩시 댓글 목록 출력
+			classcolor(); //페이지로딩시 등급제 색깔주기
 		});
         
         //경매 번호
@@ -1075,6 +1086,23 @@
 			});
 		}
 		
+		// 등급에 따라 색깔다르게 하기.
+		function classcolor(){
+			let sale_credit = '<%=sale_credit%>';
+			if(sale_credit === "다이아몬드"){
+				$('#sale_credit').css("color"," #ffd149");
+			}else if(sale_credit === "플레티넘"){
+				$('#sale_credit').css("color","cornflowerblue");
+			}else if(sale_credit === "골드"){
+				$('#sale_credit').css("color","gold");
+			}else if(sale_credit === "실버"){
+				$('#sale_credit').css("color","silver");
+			}else if(sale_credit === "브론즈"){
+				$('#sale_credit').css("color","#A47c6D");
+			}else{
+				$('#sale_credit').css("color","black");
+			}
+		}
 		
     </script>
 </body>

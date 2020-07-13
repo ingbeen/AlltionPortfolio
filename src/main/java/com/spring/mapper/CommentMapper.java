@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.alltion.hongsub.CommentVO;
+import com.spring.alltion.detailpage.CommentVO;
 
 public interface CommentMapper {
 

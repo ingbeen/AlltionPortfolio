@@ -54,9 +54,9 @@ public class ProductVO {
 	int product_starting_price; // 경매시작가
 	int product_bidding_unit; // 입찰단위
 	String product_end_date; // 경매종료일
-
+    
 	String product_delivery; // 택배거래(비용)
-	String product_transaction_area; // 거래가능지역
+	String product_transaction_area; // 거래가능지역 
 
 	int product_purchase_price; // 즉시구매가격
 	int product_re_auction; // 재경매
@@ -219,5 +219,4 @@ public class ProductVO {
 	public void setProduct_progress(int product_progress) {
 		this.product_progress = product_progress;
 	}
-	
 }

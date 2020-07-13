@@ -5,97 +5,12 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
 	<link rel="stylesheet" href="./resources/css/style.css">
+	<link rel="stylesheet" href="./resources/css/member_login.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>All-tion</title>
-    
 
-   <style >
-.login {
-    margin: 160px auto;
-    width: 490px;
-    border: 1px solid #FEE7C5;
-    border-radius: 4px;
-    }
-       
-    .login-screen {
-        width: 356px;
-        margin: 0 auto;
-    }
-       
-    .app-title {text-align: center;}
-       
-    .app-title h2 {
-        margin-top: 24px;
-        margin-bottom: 70px;
-        font-size: 28px;
-    }
-        
-    .login-form {
-    text-align: center;
-    }
-       
-    .control-group {
-        margin: 0 auto;
-        margin-bottom: 42px;
-        text-align: left;
-    }
-
-    .control-group input {
-        margin-top: 14px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-        font-size: 16px;
-        width: 100%;
-        padding: 4px;
-        transition: border .2s;
-    }
-
-    input:focus {
-    border: 2px solid  #F9A825;
-    box-shadow: none;
-    }
-       
-    .btn {
-        background: #F8C436;
-        color: #ffffff;
-        font-size: 16px;
-        line-height: 25px;
-        padding: 12px 0;
-        text-decoration: none;
-        text-shadow: none;
-        border-radius: 3px;
-        box-shadow: none;
-        transition: 0.25s;
-        display: block;
-        width: 100%;
-        margin-top: 76px;
-        margin-bottom: 16px;
-        height: auto;
-    }
-
-    .btn:hover {
-      background-color:  #F9A825;
-    }
-    
-    .login-form p {
-       font-size: 14px; 
-       margin-bottom:  18px;
-    }
-       
-    .login-link {color: #A77731}
-    
-    .login-link:hover {font-weight: bold;}
-    </style>
-<script>
-function enterkey() {
-        if (window.event.keyCode == 13) {
- 
-             // 엔터키가 눌렸을 때 실행할 내용
-             login();
-        }
-}
-</script>
 </head>
 <body>
 
@@ -202,59 +117,7 @@ function enterkey() {
     </div>
 	
  <script>
-function check_input()
-{
-	var str, i, ch;
-	// 아이디 체크 ---->
-	if (document.login.member_id.value == "")
-	{
-		alert("아이디를 입력하세요!!!");
-		document.login.member_id.focus();
-		return;
-	}
-	else
-	{
-		str = document.login.member_id.value;
-		
-		for (i=0; i<str.length; i++)
-		{
-			ch = str.substring(i, i+1);
-			if (!((ch >= "0" && ch <= "9") || (ch >= "a" && ch <= "z") 
-					|| (ch >= "A" && ch <= "Z")))
-			{
-				alert("특수문자가 포함, 다시 입력!!!");
-				document.login.member_id.focus();
-				return;
-			}
-		}
-	} // 아이디 체크 <------
-	
-	// 패스워드 체크 ------>
-	if (document.login.member_password.value == "")
-	{
-		alert("패스워드를 입력하세요!!!");
-		document.login.member_password.focus();
-		return;
-	}
-	else
-	{
-		str = document.login.member_password.value;
-		
-		for (i=0; i<str.length; i++)
-		{
-			ch = str.substring(i, i+1);
-			if (!((ch >= "0" && ch <= "9") || (ch >= "a" && ch <= "z") 
-					|| (ch >= "A" && ch <= "Z")))
-			{
-				alert("특수문자가 포함, 다시 입력!!!");
-				document.login.member_password.focus();
-				return;
-			}
-		}
-	} // 패스워드 체크 <------
-	
-	login.submit();
-}
+
 </script>   
 </form>    
     
@@ -306,35 +169,9 @@ function check_input()
     
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            // 광고 없애기
-            $(".ad__banner--closeBtn").click(function(){
-                $(".ad__banner").hide();
-			})
-            
-            // 헤더 고정
-            var header = $('.lower_header');
-            $(window).scroll(function(){
-                if($(this).scrollTop() > 0){
-                        header.addClass('sticky');
-                   }else{
-                        header.removeClass('sticky');
-                   }
-            })
-            
-            // 카테고리 누를 때마다 이동
-            $("ul.deadline-items__category a").click(function(){
-//                
-//                var activeTab = $(this).attr('id');
-//                
-//				$('ul.deadline-items__category a').removeClass('active');
-//				$('.menu-box').removeClass('active');
-//				$(this).prop('checked', true);
-//				$('div#' + activeTab).addClass('active');
-            })
-        });
-    </script>
+    <script type="text/javascript"></script>
+    <script src="./resources/js/login.js"></script>
+      
 
 
 </body>

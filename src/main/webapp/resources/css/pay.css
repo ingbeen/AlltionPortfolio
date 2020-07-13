@@ -1,0 +1,487 @@
+@charset "UTF-8";
+/* CSS RESET */
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #000000;
+    font-family: 'Noto Sans', 'Nanum Gothic', sans-serif;
+    letter-spacing: -1px;
+    /*    border: 1px solid;*/
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+
+/* 모든 페이지 공통 영역 */
+
+/* desktop-size(min:1280) */
+/* 광고 배너 및 헤더 by 하나 */
+/* -- 광고 배너 */
+.ad__banner {
+    width: 100%;
+    height: 70px;
+    background-color: #C2C2C2;
+    position: relative;
+}
+
+.ad__banner--img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 임의의 값 */
+
+.ad__banner--closeBtn {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: url(img/header/close_btn.png);
+}
+
+/* -- 헤더 > 위 */
+.upper_header {
+    width: 100%;
+    height: 32px;
+    background-color: #BDBDBD;
+}
+
+.upper_header--nav {
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 32px;
+}
+
+.upper_header--nav a {
+    color: #ffffff;
+}
+
+.upper_header--nav ul,
+.upper_header--nav li,
+.upper_header--nav p {
+    display: inline-block;
+}
+
+/* 200619 pm12:55 수정됨 -- 이유: 클래스 명 생략해서 전체 li, p 태그에 적용됨 */
+
+.upper_header--nav ul {
+    float: right;
+}
+
+.upper_header--nav ul::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.upper_header--nav li:first-child {
+    padding-right: 16px;
+}
+
+
+/* -- 헤더 > 아래 */
+.lower_header {
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(112, 112, 112, 0.1);
+}
+
+/* 스크롤 작동할 때 --*/
+.lower_header.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999998;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+    transition: 0.8s;
+}
+
+.lower_header--nav {
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+}
+
+
+.logo a {
+    color: #F9A825;
+    font-size: 36px;
+}
+
+.category {
+    display: inline-block;
+    padding-left: 50px;
+    vertical-align: middle;
+}
+
+.category img {
+    width: 44px;
+    height: 40px;
+}
+
+.search {
+    height: 40px;
+    display: inline-block;
+    margin-left: -4px;
+    padding-top: 20px;
+}
+
+.search--select {
+    height: 40px;
+    border-top: 2px solid #F9A825;
+    border-bottom: 2px solid #F9A825;
+    border-left: 2px solid #F9A825;
+    padding-left: 8px;
+    padding-right: 4px;
+}
+
+.search--select option {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search__input {
+    width: 590px;
+    height: 40px;
+    border-top: 2px solid #F9A825;
+    border-bottom: 2px solid #F9A825;
+    border-right: 2px solid #F9A825;
+    margin-left: -4px;
+    padding-left: 12px;
+}
+
+.member_info {
+    float: right;
+    margin-top: 10px;
+    display: inline-block;
+    /* 2020-06-19 pm12:58 수정됨 */
+}
+
+.member_info li {
+    text-align: center;
+    margin-left: 14px;
+    width: 48px;
+    display: inline-block;
+    /* 2020-06-19 pm12:57 수정됨 */
+}
+
+.member_info li a {
+    display: inline-block;
+}
+
+/*
+.member_info li a img {
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+}
+*/
+
+.member_info .material-icons {
+    color: #575757;
+    font-size: 40px;
+}
+
+
+.member_info li a span {
+    font-size: 10px;
+    color: #575757;
+}
+
+/* desktop-size(min:1280) */
+/* 푸터 영역 by 하나 */
+.upper_footer {
+    width: 100%;
+    height: 52px;
+    border-top: 1px solid rgba(112, 112, 112, 0.2);
+}
+
+.upper_footer--list {
+    width: 1200px;
+    height: inherit;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.upper_footer--list li {
+    font-size: 16px;
+    line-height: 52px;
+    display: inline-block;
+    /* 2020-06-19 pm 01:10 수정됨 */
+}
+
+.upper_footer--list li a {
+    border-right: 1px solid rgba(112, 112, 112, 0.5);
+    padding: 0 46px;
+}
+
+.upper_footer--list li:last-child a {
+    border-right: none;
+}
+
+.lower_footer {
+    width: 100%;
+    height: 280px;
+    background-color: #F5F5F5;
+}
+
+/*--------------------------------------------------------*/
+.Main {
+    margin-top: 50px;
+    min-height: 300px;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid #d2d2d2;
+}
+
+.chargePageBox {
+    /*float: left;*/
+    display: inline;
+    width: 100%;
+    padding: 20px;
+    background: no-repeat 643px 19px;
+}
+
+.charge_intro {
+    margin: 0 0 25px 3px;
+}
+
+.charge_intro h4 {
+    font-weight: bold;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.charge_intro p {
+    font-size: 11px;
+    color: #555;
+    line-height: 150%;
+}
+
+.charge_intro p .bold {
+    font-weight: bold;
+    color: #c00;
+}
+
+
+.chargePageBox .menuBar {
+    width: 266px;
+    float: left;
+    display: inline;
+    overflow: hidden;
+    background: repeat-x left bottom;
+    margin-bottom: 10px;
+}
+
+.chargePageBox .menuBar li {
+    float: left;
+    display: inline;
+}
+
+.chargePageBox .menuBar button {
+    float: left;
+    display: inline;
+    padding-top: 9px;
+    height: 39px;
+    width: 133px;
+    text-align: center;
+    color: #666;
+    background: #ffd149;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgba(225, 217, 90, 0.16);
+    border-bottom: 1px solid #c00;
+    border-left: none;
+}
+
+.chargePageBox .menuBar .on {
+    border-left: 1px solid rgba(225, 217, 90, 0.16);
+}
+
+.chargePageBox .menuBar button.Tab_menu1 {
+    color: #c00;
+    border: 1px solid #c00;
+    border-bottom: 1px solid #fff;
+    background: none;
+    background: #F9A825;
+}
+
+.chargePageBox .menuBar button.Tab_menu2 {
+    color: #c00;
+    border: 1px solid #c00;
+    border-bottom: 1px solid #fff;
+    background: none;
+    background: #F9A825;
+}
+
+.XenoTabLayer .on {
+	display:block;
+}
+
+.chargePageBox .menuBar .noborder {
+    border-right: none;
+}
+
+.chargePageBox {
+    border-right: none;
+}
+
+
+.chargePageBox{
+    width: 1200px;
+    border-top: solid 1px rgba(225, 217, 90, 0.16);
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.tbl_money {
+    width: 100%;
+    border-top: solid 1px rgba(225, 217, 90, 0.16);
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+
+.tbl_money th {
+    background: #f0f0f0;
+    text-align: center;
+    color: #666;
+    border-bottom: solid 1px rgba(225, 217, 90, 0.16);
+    font-weight: normal;
+}
+
+.tbl_money td {
+    border-bottom: solid 1px #e0e0e0;
+    color: #666;
+    padding: 8px 0 8px 10px;
+    vertical-align: middle;
+    height: 19px;
+}
+
+.chargePageBox th {
+    background: rgba(225, 217, 90, 0.16);
+    text-align: center;
+    color: #666;
+    border-bottom: solid 1px #e0e0e0;
+    font-weight: normal;
+}
+
+.chargePageBox td {
+    border-bottom: solid 1px #e0e0e0;
+    color: #666;
+    padding: 8px 0 8px 10px;
+    vertical-align: middle;
+    height: 19px;
+}
+
+.chargePageBox .tbl_money .won img {
+    float: none;
+    margin-top: 0px;
+    vertical-align: top;
+    margin-left: 1px;
+}
+/*
+.chargePageBox .tbl_money input.text {
+    border: 1px solid #ccc;
+    padding: 1px 5px;
+    width: 140px;
+    height: 15px;
+}*/
+
+input.text1{
+    border: 1px solid #ccc;
+    padding: 1px 5px;
+    width: 300px;
+    height: 15px;
+}
+
+.text2 {
+    border: 1px solid #ccc;
+    padding: 1px 5px;
+    width: 300px;
+    height: 15px;
+}
+
+.text3 {
+    border: 1px solid #ccc;
+    padding: 1px 5px;
+    width: 300px;
+    height: 15px;
+}
+
+.chargePageBox .tbl_money label {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.chargePageBox .tbl_money .checkbox,
+.chargePageBox .tbl_money .radio {
+    margin: 0 2px 3px 0;
+}
+
+.chargePageBox .tbl_money select {
+    border: 1px solid #7f9db9;
+}
+
+.chargePageBox .submit {
+    width: 100%;
+    margin: 10px 0 10px;
+    text-align: center;
+}
+
+.XenoTabLayer {
+	display:none;
+}
+.XenoTabLayer.on {
+	dispaly:block;
+}
+#charge_1,
+#charge_2 {
+    clear: both;
+    border: px solid #ccc;
+}
+
+#charge, #back {
+   display: none;
+}
+.menuControl:checked + label {
+    display: inline;
+}
+input[id="charge"]:checked ~ #charge_1 {display: block;}
+input[id="back"]:checked ~ #charge_2 {display: block;}
+
+/*--------------------------------------------------------*/
+
+
+/* desktop-size(min:1280) */
+/* -- 프리미엄관 */
+
+/* desktop-size(min:1280) */
+/* -- 경매 규칙 및 회원 등급 제도 설명 */
+/*
+.rules {
+    width: 100%;
+    height: 400px;
+    background-color: gainsboro;
+}
+*/

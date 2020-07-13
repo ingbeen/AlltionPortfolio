@@ -1,3 +1,60 @@
+-- by 하나
+-- 1. 구매 등급 테이블
+CREATE TABLE purchase_credit_score_list (
+    purchase_id VARCHAR2(20),
+    purchase_credit_score number not null,
+    purchase_normal number not null,
+    purchase_denial number not null,
+    purchase_undelivered number not null,
+    purchase_return number not null,
+    purchase_success_rate number not null
+); -- 생성
+
+DROP TABLE purchase_credit_score_list; -- 삭제
+
+ALTER TABLE purchase_credit_score_list
+ADD CONSTRAINT FK_purchase_id
+FOREIGN KEY (purchase_id)
+REFERENCES member(member_id); -- 외래키 부여
+
+ALTER TABLE purchase_credit_score_list
+ADD CONSTRAINT PK_purchase_id PRIMARY KEY (purchase_id); -- 기본키 부여
+
+-- 2. 회원 테이블
+create table member(
+    member_name varchar2(10),
+    member_id varchar2(20) primary key,
+    member_password varchar2(20) not null,
+    email varchar2(50) not null,
+    member_phone varchar2(11) not null,
+    sample4_postcode varchar2(30),
+    sample4_roadAddress varchar2(50),
+    sample4_jibunAddress varchar2(50),
+    sample4_detailAddress varchar2(50),
+    member_delete varchar2(2) default '0'   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
+);
+
+-- 3. 판매 등급 테이블
+CREATE TABLE sale_credit_score_list (
+    sale_id VARCHAR2(20),
+    sale_credit_score number not null,
+    sale_normal number not null,
+    sale_denial number not null,
+    sale_undelivered number not null,
+    sale_return number not null,
+    sale_success_rate number not null
+);
+
+DROP TABLE sale_credit_score_list; -- 삭제
+
+ALTER TABLE sale_credit_score_list
+ADD CONSTRAINT FK_sale_id
+FOREIGN KEY (sale_id)
+REFERENCES member(member_id); -- 외래키 부여
+
+ALTER TABLE sale_credit_score_list
+ADD CONSTRAINT PK_sale_id PRIMARY KEY (sale_id); -- 기본키 부여
+
 // by.Hong
 /*
 -- 응찰하기 기능 관련 테이블
@@ -27,7 +84,7 @@ create table comment_list(
 */
 
 create table member(
-member_name varchar2(10),
+member_name varchar2(15),
 member_id varchar2(20) primary key,
 member_password varchar2(20) not null,
 email varchar2(50) not null,
@@ -36,7 +93,7 @@ sample4_postcode varchar2(30),
 sample4_roadAddress varchar2(50),
 sample4_jibunAddress varchar2(50),
 sample4_detailAddress varchar2(50),
-member_delete varchar2(2) default '0' --회원탈퇴시 값이 1로 바쒸면서 로그인불가
+member_delete number default 0   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
 );
 
 
@@ -74,5 +131,29 @@ CREATE TABLE product (
 		product_views number not null, -- 조회수
 		product_issue_date date not null, -- 등록일
 		product_progress number not null -- 진행상태 : 진행중 = 0, 낙찰 = 1
+);
+
+-- 거래중
+CREATE TABLE trading (
+    trading_product_number number primary key, -- 상품번호
+    trading_buyer_id varchar2(1000) not null, -- 구매자아이디
+    trading_price number not null, -- 거래가격
+    
+    trading_deposit_deadline date not null, -- 입금기한
+    trading_waybill_deadline date, -- 운송장번호입력기한
+    trading_purchase_deadline date, -- 구매확정기한
+    trading_purchase_date date, -- 구매확정일
+    
+    trading_transaction_method varchar2(1000), -- 거래방식
+    
+    sample4_postcode varchar2(1000), -- 우편번호
+    sample4_roadaddress varchar2(1000), -- 도로명주소
+    sample4_jibunaddress varchar2(1000), -- 지번주소
+    sample4_detailaddress varchar2(1000), -- 상세주소
+    trading_phone varchar2(1000), -- 연락처
+    trading_waybill_number varchar2(1000), -- 운송장번호
+    
+    trading_progress varchar2(1000) not null, -- 진행상태
+    trading_date date not null -- 등록일
 );
 */

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.spring.alltion.hongsub.BidVO;
+import com.spring.alltion.detailpage.BidVO;
 
 public interface BidMapper {
 
@@ -18,5 +18,6 @@ public interface BidMapper {
 
 	String getTop_bidder_id(int bid_product_number);
 
+	int getProduct_bidding_unit(int bid_product_number);
 
 }

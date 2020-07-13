@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CreditScoreMapper">
+	<resultMap type="SaleCreditScoreVO" id="SaleCreditScore">
+		<result property="sale_id" column="sale_id" />
+		<result property="sale_credit_score" column="sale_credit_score" />
+		<result property="sale_normal" column="sale_normal" />
+		<result property="sale_denial" column="sale_denial" />
+		<result property="sale_undelivered" column="sale_undelivered" />
+		<result property="sale_return" column="sale_return" />
+		<result property="sale_success_rate" column="sale_success_rate" />
+	</resultMap>
+	
+	<resultMap type="PurchaseCreditScoreVO" id="purchaseCreditScore">
+		<result property="purchase_id" column="purchase_id" />
+		<result property="purchase_credit_score" column="purchase_credit_score" />
+		<result property="purchase_normal" column="purchase_normal" />
+		<result property="purchase_denial" column="purchase_denial" />
+		<result property="purchase_undelivered" column="purchase_undelivered" />
+		<result property="purchase_return" column="purchase_return" />
+		<result property="purchase_success_rate" column="purchase_success_rate" />
+	</resultMap>
+	
+	<select id="getSaleCreditScore" parameterType="String">
+		SELECT * FROM sale_credit_score_list WHERE sale_id=#{sale_id}
+	</select>
+	
+	<select id="getPurchaseCreditScore" parameterType="String">
+		SELECT * FROM purchase_credit_score_list WHERE purchase_id=#{purchase_id}
+	</select>
+</mapper>

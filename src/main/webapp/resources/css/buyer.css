@@ -1,0 +1,63 @@
+/*구매 페이지 css*/
+.buyer--form {
+    width: 960px;
+    margin: 32px auto;
+    }
+    .buyer--content {
+    width: 100%;
+    margin-top: 24px;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    }
+    .buyer.list h3 {font-size: 32px;}
+    .buyer_form.list li {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #dddddd;
+    height: 30px;
+    
+    }
+    .buyer_form__list.title {
+    flex-basis: 20%;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #dddddd;
+    font-size: 15;
+    font-weight: bold;
+    }
+
+    .buyer_form__list.content {
+        margin: 10px 0 10px 14px;
+        font-size: 14px;
+    }
+
+    .buyer_form__list.content input {
+        display: none;
+    }
+
+    .buyer_form__list.content input {
+        display: inline-block;
+        border: 1px border;
+    }
+    .buyer_btn{
+          
+    }
+body a.base_btn {
+    margin-top: 10px;
+    display: inline-block;
+    height: 44px;
+    padding: 0 40px;
+    min-width: 118px;
+    line-height: 43px;
+    background: #dddddd;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "맑은 고딕","Malgun Gothic";
+    border-radius: 7px;
+    float: right;
+}

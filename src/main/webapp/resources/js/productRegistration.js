@@ -505,7 +505,7 @@ function productInsert(imgSrcList) {
         url: 'productInsert.yb',
         type: 'post',
         data: formData,
-        success: () => alert("성공"), 
+        success: () => alert("성공(alert창 삭제예정 : 마이페이지 - 판매관리로 이동)"), 
         error: () => alert("경매 등록을 실패하였습니다")
     });
 }

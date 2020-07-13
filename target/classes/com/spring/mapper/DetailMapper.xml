@@ -24,4 +24,9 @@
 	<select id="selectPurchasePrice" parameterType="int" resultType="int">
 		select nvl(product_purchase_price,0) from product where product_number=#{bid_product_number}
 	</select>
+	
+	<select id="sellerTest" parameterType="String" resultType="Seller_Credit_Score_TestVO">
+		select * from sale_credit_score_list where sale_id = #{sale_id}
+	</select>
+	
 </mapper>

@@ -8,16 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.alltion.login.MemberVO;
-import com.spring.alltion.trading.TradingService;
+import com.spring.alltion.trading.TradingServiceImpl;
 
 @Controller
 public class ProductController {
 	
 	@Autowired
-	private ProductService productService;
+	private ProductServiceImpl productService;
 	
 	@Autowired
-	private TradingService tradingService;
+	private TradingServiceImpl tradingService;
 	
 	@RequestMapping(value = "/registration.yb")
 	public String home(HttpSession session, MemberVO membervo) {
@@ -35,7 +35,8 @@ public class ProductController {
 	public String productSelectTest(int product_number, Model model) {
 		
 		/* 마감된 상품 test */
-		tradingService.seachEndOfProduct();
+//		tradingService.seachEndOfProduct();
+		tradingService.endOfAuction(product_number);
 		
 		ProductVO productVO = productService.productSelectTest(product_number);
 		

@@ -5,99 +5,12 @@
 <head>
  <meta charset="UTF-8">
     <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="./resources/css/member_join.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>All-tion</title>
-     
-    <style>
-.joinWrap {
-    padding: 100px;
-    text-align: center;
-    font-family: "맑은 고딕","Malgun Gothic";
-}
-.joinWrap h3 {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #393939;
-    margin-bottom: 30px;
-}
-.joinWrap p {
-    font-size: 18px;
-    text-align: center;
-    color: #666;
-}
-.joinWrap ul {
-    overflow: hidden;
-    width: 660px;
-    margin: 40px auto 0;
-    border: 3px solid #e8e8e8;
-    box-sizing: border-box;
-}
-.joinWrap ul li:first-child {
-    border-right: 1px solid #e8e8e8;
-    box-sizing: border-box;
-}
-.joinWrap ul li dl dt {
-    padding-bottom: 20px;
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    line-height: 16px;
-}
-.joinWrap ul li dl dd {
-    display: table;
-    width: 100%;
-    height: 44px;
-    vertical-align: top;
-}
-.joinWrap ul li {
-    float: left;
-    width: 327px;
-    padding: 40px 0;
-    text-align: center;
-}
-.joinWrap .sns_joinbtn {
-    display: table-cell;
-    vertical-align: middle;
-    height: 175px;
-}
-.joinWrap .sns_joinbtn a.naver {
-    background: #1ec700;
-}
-body a.base_btn {
-    display: inline-block;
-    height: 44px;
-    padding: 0 60px;
-    min-width: 118px;
-    line-height: 43px;
-    background: #FFAE36;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    font-family: "맑은 고딕","Malgun Gothic";
-    border-radius: 7px;
-}
-body a.base_btn1 {
-    display: inline-block;
-    height: 44px;
-    padding: 0 20px;
-    min-width: 118px;
-    line-height: 43px;
-    background: #1ec700;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    font-family: "맑은 고딕","Malgun Gothic";
-    border-radius: 7px;
-}
-        
-    </style>
+
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
@@ -255,34 +168,7 @@ body a.base_btn1 {
     
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            // 광고 없애기
-            $(".ad__banner--closeBtn").click(function(){
-                $(".ad__banner").hide();
-			})
-            
-            // 헤더 고정
-            var header = $('.lower_header');
-            $(window).scroll(function(){
-                if($(this).scrollTop() > 0){
-                        header.addClass('sticky');
-                   }else{
-                        header.removeClass('sticky');
-                   }
-            })
-            
-            // 카테고리 누를 때마다 이동
-            $("ul.deadline-items__category a").click(function(){
-//                
-//                var activeTab = $(this).attr('id');
-//                
-//				$('ul.deadline-items__category a').removeClass('active');
-//				$('.menu-box').removeClass('active');
-//				$(this).prop('checked', true);
-//				$('div#' + activeTab).addClass('active');
-            })
-        });
-    </script>
+    <script type="text/javascript"></script>
+    <script src="./resources/js/join.js"></script>
 </body>
 </html>

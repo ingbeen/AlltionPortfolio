@@ -1,7 +1,7 @@
 package com.spring.alltion.login;
 /*
 create table member(
-member_name varchar2(10),
+member_name varchar2(15),
 member_id varchar2(20) primary key,
 member_password varchar2(20) not null,
 email varchar2(50) not null,
@@ -10,12 +10,11 @@ sample4_postcode varchar2(30),
 sample4_roadAddress varchar2(50),
 sample4_jibunAddress varchar2(50),
 sample4_detailAddress varchar2(50),
-member_delete varchar2(2) default '0'   --회원탈퇴시 0이 1로 변경되며 로그인 불가
+member_delete number default 0   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
 );
  */
 public class MemberVO {
 	String member_name;
-
 	String member_id;
 	String member_password;
 	String email;

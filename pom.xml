@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd"> 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.spring</groupId>
 	<artifactId>alltion</artifactId>
@@ -242,6 +242,7 @@
 		</dependency>
 		
 		<!-- HttpCore : HTTP 프로토콜을 이용해서 데이터를 전송할 수 있는 로우 레벨의 기능을 제공 -->
+
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -257,6 +258,22 @@
             <version>4.5.2</version>
         </dependency>
 		<!-- 아임포트 결제를 위해 필요한 설정 끝 -->
+		
+		<!-- Quartz 시작 by.유빈-->
+		<!-- 스프링 Quartz 도우미 라이브러리 -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-context-support</artifactId>
+    		<version>5.1.5.RELEASE</version>
+		</dependency>
+		
+		<!-- Quartz 라이브러리 -->
+		<dependency>  
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId> 
+			<version>2.3.0</version> 
+		</dependency>  
+		<!-- Quartz 끝 by.유빈-->
 		
 	</dependencies>
 	<build>

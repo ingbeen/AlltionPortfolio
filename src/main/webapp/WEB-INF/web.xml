@@ -34,6 +34,7 @@
 		<url-pattern>*.kj</url-pattern>
 		<url-pattern>*.hn</url-pattern>
 		<url-pattern>*.hs</url-pattern>
+		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
 
 	<!-- Korean Filter by.유빈 -->

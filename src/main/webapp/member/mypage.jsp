@@ -104,7 +104,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="./buyer.kj">
                     <span class="material-icons">receipt</span><br>
                     <span class="myPage__menu">구매 정보</span>
                 </a>
@@ -139,13 +139,13 @@
                     <span class="myPage__menu">신용 등급</span>
                 </a>
             </li>
-            
-             <li>
+            <li>
                 <a href="">
                     <span class="material-icons">forum</span><br>
                     <span class="myPage__menu">활동 내역</span>
                 </a>
             </li>
+
         </ul>
     </div>
     <!-- 푸터 영역 -->

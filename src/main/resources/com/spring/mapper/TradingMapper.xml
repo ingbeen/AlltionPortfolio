@@ -9,7 +9,7 @@
 			#{trading_product_number}, <!-- 상품번호 -->
 			#{trading_buyer_id}, <!-- 구매자아이디 -->
 			#{trading_price}, <!-- 거래가격 -->
-			to_date(#{trading_deposit_deadline}, 'yyyy-mm-dd hh24:mi') + 1, <!-- 입금기한 -->
+			to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi'), 'yyyy-mm-dd hh24:mi') + 1, <!-- 입금기한 -->
 			#{trading_waybill_deadline, jdbcType=DATE}, <!-- 운송장번호입력기한 -->
 			#{trading_purchase_deadline, jdbcType=DATE}, <!-- 구매확정기한 -->
 			#{trading_purchase_date, jdbcType=DATE}, <!-- 구매확정일 -->

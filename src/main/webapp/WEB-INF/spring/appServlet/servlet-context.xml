@@ -17,7 +17,7 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/" />
+		<beans:property name="prefix" value="/"/>
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
@@ -30,7 +30,7 @@
 	DispatcherServlet은 이름이 "MultipartResolver"인 빈을  사용하기 때문에 따른 이름(아이디)을
 	지정할 경우 MultipartResolver로 사용되지 않음
 	-->
-     <beans:bean id="multipartResolver"
+     <beans:bean id="multipartResolver" 
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
            <!-- 한번 업로드시의 용량(한개의 파일 아님) -->
            <beans:property name="maxUploadSize"  value="10000000"></beans:property>

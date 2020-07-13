@@ -6,37 +6,65 @@
 	<resultMap type="ProductVO" id="productResultMap">
 		<result property="product_number" column="product_number" />
 		<result property="product_id" column="product_id" />
-		<result property="product_subject" column="product_subject" />
+		
 		<result property="product_category_1" column="product_category_1" />
 		<result property="product_category_2" column="product_category_2" />
+		
+		<result property="product_subject" column="product_subject" />
 		<result property="product_content" column="product_content" />
-		<result property="product_end_date" column="product_end_date" />
+		<result property="product_img_1" column="product_img_1" />
+		<result property="product_img_2" column="product_img_2" />
+		<result property="product_img_3" column="product_img_3" />
+		<result property="product_img_4" column="product_img_4" />
+		<result property="product_img_5" column="product_img_5" />
+		
 		<result property="product_starting_price" column="product_starting_price" />
-		<result property="product_re_auction" column="product_re_auction" />
-		<result property="product_purchase_price" column="product_purchase_price" />
 		<result property="product_bidding_unit" column="product_bidding_unit" />
-		<result property="product_transaction_area" column="product_transaction_area" />
+		<result property="product_end_date" column="product_end_date" />
+		
 		<result property="product_delivery" column="product_delivery" />
+		<result property="product_transaction_area" column="product_transaction_area" />
+		
+		<result property="product_purchase_price" column="product_purchase_price" />
+		<result property="product_re_auction" column="product_re_auction" />
+		
 		<result property="product_current_price" column="product_current_price" />
 		<result property="product_bids" column="product_bids" />
 		<result property="product_participants" column="product_participants" />
 		<result property="product_credit_score" column="product_credit_score" />
 		<result property="product_views" column="product_views" />
-		<result property="product_date" column="product_date" />
+		<result property="product_issue_date" column="product_issue_date" />
 		<result property="product_progress" column="product_progress" />
-		<result property="product_img_1" column="product_img_1" />
 	</resultMap>
+	
+	<select id="getMainlist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1, 
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		order by product_issue_date desc
+
+	</select>
 	<select id="getProductList" parameterType="HashMap" resultMap="productResultMap">
 		<![CDATA[
-		select product_number,product_id,product_subject,product_category_1,product_category_2,product_starting_price,product_re_auction,product_progress,product_img_1,product_date 
-        from (select rownum rnum,product_number,product_id,product_subject,product_category_1,product_category_2,product_starting_price,product_re_auction,product_progress,product_img_1,product_date 
+		select product_number,product_id,product_subject,product_category_1,product_category_2,product_starting_price,product_re_auction,product_progress,product_img_1,product_issue_date 
+        from (select rownum rnum,product_number,product_id,product_subject,product_category_1,product_category_2,product_starting_price,product_re_auction,product_progress,product_img_1,product_issue_date 
               from (select * from product order by product_number asc)) 
-        where rnum>=#{startrow} and rnum<=#{endrow} and product_category_2 = #{product_category_2, jdbcType=VARCHAR} and product_progress = #{product_progress, jdbcType=VARCHAR}
+        where rnum>=#{startrow} and rnum<=#{endrow}
      	]]>
-	
 	</select>
+	<select id="list" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select * from product where product_category_2 = #{product_category_2} and product_category_1 = #{product_category_1}
+	</select>
+
 	
 	<select id="getListCount" parameterType="int" resultType="int">
 		SELECT count(*) FROM product where product_category_2 = #{product_category_2, jdbcType=VARCHAR}
 	</select>
+	
+	
 </mapper>

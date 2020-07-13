@@ -1,8 +1,8 @@
 package com.spring.alltion.trading;
 
 /*
--- 상품정보
-CREATE TABLE product (
+-- 거래중
+CREATE TABLE trading (
     trading_product_number number primary key, -- 상품번호
     trading_buyer_id varchar2(1000) not null, -- 구매자아이디
     trading_price number not null, -- 거래가격
@@ -12,16 +12,16 @@ CREATE TABLE product (
     trading_purchase_deadline date, -- 구매확정기한
     trading_purchase_date date, -- 구매확정일
     
-    trading_transaction_method varchar2(1000) null, -- 거래방식
+    trading_transaction_method varchar2(1000), -- 거래방식
     
-    sample4_postcode varchar2(1000) null, -- 우편번호
-    sample4_roadaddress varchar2(1000) null, -- 도로명주소
-    sample4_jibunaddress varchar2(1000) null, -- 지번주소
-    sample4_detailaddress varchar2(1000) null, -- 상세주소
-    trading_phone varchar2(1000) not null, -- 연락처
-    trading_waybill_number varchar2(1000) not null, -- 운송장번호
+    sample4_postcode varchar2(1000), -- 우편번호
+    sample4_roadaddress varchar2(1000), -- 도로명주소
+    sample4_jibunaddress varchar2(1000), -- 지번주소
+    sample4_detailaddress varchar2(1000), -- 상세주소
+    trading_phone varchar2(1000), -- 연락처
+    trading_waybill_number varchar2(1000), -- 운송장번호
     
-    trading_progress varchar2(1000), -- 진행상태
+    trading_progress varchar2(1000) not null, -- 진행상태
     trading_date date not null -- 등록일
 );
 */

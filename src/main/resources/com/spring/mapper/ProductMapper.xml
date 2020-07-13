@@ -57,7 +57,7 @@
 			product_transaction_area, <!-- 거래가능지역 -->
 			product_purchase_price, <!-- 즉시구매가격 -->
 			product_re_auction, <!-- 재경매 -->
-			product_starting_price, <!-- 경매현재가 -->
+			product_current_price, <!-- 경매현재가 -->
 			product_bids, <!-- 입찰수 -->
 			product_participants, <!-- 참가자수 -->
 			product_credit_score, <!-- 신용도 -->
@@ -98,7 +98,7 @@
 			product_transaction_area, <!-- 거래가능지역 -->
 			product_purchase_price, <!-- 즉시구매가격 -->
 			product_re_auction, <!-- 재경매 -->
-			product_starting_price, <!-- 경매현재가 -->
+			product_current_price, <!-- 경매현재가 -->
 			product_bids, <!-- 입찰수 -->
 			product_participants, <!-- 참가자수 -->
 			product_credit_score, <!-- 신용도 -->

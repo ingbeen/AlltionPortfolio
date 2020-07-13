@@ -33,7 +33,7 @@
 	 </select>
 	 
 	 <select id="selectMember"  parameterType="String" resultType="MemberVO">
-	 	select * from member where member_id = #{member_id} 
+	 	select * from member where member_id = #{member_id}
 	 </select>
 	 
 	 <update id="updateEmail" parameterType="MemberVO" >

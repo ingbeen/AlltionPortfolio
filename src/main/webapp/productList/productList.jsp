@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.alltion.productList.*" %>
+<%@ page import="com.spring.alltion.productRegistration.ProductVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
  <% 
- 	/*
+ 	
 	List<ProductVO> productList=(List<ProductVO>)request.getAttribute("productlist");
- 	*/
+ 	
 	int listcount=((Integer)request.getAttribute("listcount")).intValue();
 	int nowpage=((Integer)request.getAttribute("page")).intValue();
 	int maxpage=((Integer)request.getAttribute("maxpage")).intValue();
@@ -431,6 +432,11 @@
                     <option value="sort3">낮은 가격 순</option>
                     <option value="sort4">높은 가격 순</option>
                 </select>
+            <%
+            	for(int i=0; i<productList.size();i++){
+                            ProductVO vo = (ProductVO)productList.get(i);
+                }
+            %>
                 <ul class="items__list product">
                     <li>
                         <a href="#">
