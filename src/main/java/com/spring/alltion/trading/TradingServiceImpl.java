@@ -100,27 +100,27 @@ public class TradingServiceImpl implements TradingService {
 	@Override
 	public void tradingInsert(ProductVO productVO, ProductMapper producMapper, 
 			TradingMapper tradingMapper, BidMapper bidMapper) throws Exception {
-		int product_number; // 상품번호
-		String trading_buyer_id; // 구매자
+		int productNumber; // 상품번호
+		String tradingBuyerId; // 구매자
 		TradingVO tradingVO; // DB에 삽입될 트레이딩(거래중) 객체 
 		
 		// 기존의 상품 객체에서 상품번호를 가져온다
-		product_number = productVO.getProduct_number();
+		productNumber = productVO.getProduct_number();
 		
 		// 해당 상품의 최고 응찰자(구매자) 아이디를 가져온다
-		trading_buyer_id = bidMapper.getTop_bidder_id(product_number);
+		tradingBuyerId = bidMapper.getTop_bidder_id(productNumber);
 		
 		// 기존 상품 객체에서 가져온 데이터 중 필수 데이터를 트레이딩 객체에 할당한다
 		tradingVO = new TradingVO();
-		tradingVO.setTrading_product_number(product_number);
-		tradingVO.setTrading_buyer_id(trading_buyer_id);
+		tradingVO.setTrading_product_number(productNumber);
+		tradingVO.setTrading_buyer_id(tradingBuyerId);
 		tradingVO.setTrading_price(productVO.getProduct_current_price());
 		
 		// 트레이딩(거래중) 테이블에 객체 데이터 삽입(insert)
 		tradingMapper.tradingInsertTheProductEnd(tradingVO);
 		
 		// 해당 상품을 마감처리(0 -> 1)
-		producMapper.changePoductProgressToEnd(product_number);
+		producMapper.changePoductProgressToEnd(productNumber);
 	}
 	
 	/* 오버로딩 */
@@ -128,7 +128,7 @@ public class TradingServiceImpl implements TradingService {
 	@Override
 	public void tradingInsert(int product_number, ProductMapper producMapper, 
 			TradingMapper tradingMapper, BidMapper bidMapper) throws Exception {
-		String trading_buyer_id; // 구매자
+		String tradingBuyerId; // 구매자
 		
 		ProductVO productVO; // 기존 상품(경매) 객체
 		TradingVO tradingVO; // DB에 삽입될 트레이딩(거래중) 객체 
@@ -137,12 +137,12 @@ public class TradingServiceImpl implements TradingService {
 		productVO = producMapper.getProduct(product_number);
 		
 		// 해당 상품의 최고 응찰자(구매자) 아이디를 가져온다
-		trading_buyer_id = bidMapper.getTop_bidder_id(product_number);
+		tradingBuyerId = bidMapper.getTop_bidder_id(product_number);
 		
 		// 기존 상품 객체에서 가져온 데이터 중 필수 데이터를 트레이딩 객체에 할당한다
 		tradingVO = new TradingVO();
 		tradingVO.setTrading_product_number(product_number);
-		tradingVO.setTrading_buyer_id(trading_buyer_id);
+		tradingVO.setTrading_buyer_id(tradingBuyerId);
 		tradingVO.setTrading_price(productVO.getProduct_current_price());
 		
 		// 트레이딩(거래중) 테이블에 객체 데이터 삽입(insert)
@@ -156,10 +156,10 @@ public class TradingServiceImpl implements TradingService {
 	@Override
 	public void finishProduct(ProductVO productVO, ProductMapper producMapper) {
 		// 마감처리 될 상품번호를 가져온다
-		int product_number = productVO.getProduct_number();
+		int productNumber = productVO.getProduct_number();
 		
 		// 해당 상품을 마감처리(0 -> 1)
-		producMapper.changePoductProgressToEnd(product_number);
+		producMapper.changePoductProgressToEnd(productNumber);
 	}
 	
 	// 재경매 등록

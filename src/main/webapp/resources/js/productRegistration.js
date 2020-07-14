@@ -117,7 +117,6 @@ function changeCategory_2(value) {
             	${arguments[i]}</option>`;
             
         }
-        console.log(selectOutput);
     selectOutput += `</select>`;
     /* 2차 카테고리 태그 작성 끝 */
 
@@ -405,9 +404,9 @@ function productSubmit() {
         type: 'post',
         contentType: false,
         processData: false,
-        success: (imgSrcList) => { // 이미지경로를 담은 배열을 파라미터로 넘기고 상품등록 진행
-        	productInsert(imgSrcList);
-    	}, error: () => alert("이미지 업로드를 실패하였습니다")
+        // 이미지경로를 담은 배열을 파라미터로 넘기고 상품등록 진행
+        success: (imgSrcList) => productInsert(imgSrcList),
+        error: () => alert("이미지 업로드를 실패하였습니다")
     });
 };
 
@@ -473,7 +472,8 @@ function formCheck() {
 		return true;
 	} 
 	// 즉시구매가 100원 단위
-	else if (purchase_price.val().substr(-2) != '00') {
+	else if (purchase_price.attr('disabled') == undefined
+			&& purchase_price.val().substr(-2) != '00') {
 		alert("즉시구매가의 최소 단위는 100원입니다");
 		return true;
 	}

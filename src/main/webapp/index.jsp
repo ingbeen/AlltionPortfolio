@@ -12,32 +12,6 @@ pageEncoding="UTF-8"%>
     family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
-    <style>
-    .ad__banner {
-    width: 100%;
-    height: 90px;
-    background-color: #FFC300;
-    position: relative;
-    text-align: center;
-/*    opacity: 0.5;*/
-	}
-
-	.ad__banner--img {
-    width: 728px;
-    height: 90px;
-	/*    opacity: 0.5;*/
-	} /* 임의의 값 */
-
-	.ad__banner--closeBtn {
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: url(./resources/img/header/close_btn.png);
-}
-    </style>
 </head>
 <body>
 <a href="Mainlist.ms">리스트Test</a>

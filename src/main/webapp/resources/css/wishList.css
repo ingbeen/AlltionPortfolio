@@ -39,7 +39,7 @@
 /* 알림창 */
 .wishList--noticeList {
     padding: 16px 18px;
-    margin-bottom: 22px;
+    margin-bottom: 30px;
     border: 1px solid #ebeff2;
     background: #fafbfc;
 }
@@ -87,7 +87,7 @@
     color: #114da5;
 }
 
-.wishList--TimeOuptBtn {
+.wishList--ChangeEndDateFormBtn {
     box-sizing: border-box;
     color: #eeeeee;
     padding: 9px 12px;
@@ -106,9 +106,6 @@
 
 .wishList--deletCheck {
     flex: 0 0 4%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .wishList--deletCheck > input {
@@ -117,31 +114,23 @@
 
 .wishList--info {
     flex: 0 0 51%;
-    display: flex;
-    align-items: center;
 }
+
+
+
 
 .wishList--currentPrice {
     flex: 0 0 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     border-left: 1px solid #ececef;
 }
 
 .wishList--delivery {
     flex: 0 0 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     border-left: 1px solid #ececef;
 }
 
 .wishList--endDate {
     flex: 0 0 15%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-left: 1px solid #ececef;
 }
 
@@ -177,15 +166,30 @@
     border-bottom: 1px solid #9ca0aa;
 }
 
+.wishList--contentsWarp .wishList--deletCheck {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .wishList--contents {
     display: flex;
     align-items: center;
-    height: 150px;
+    min-height: 150px;
     border-top: 1px solid #cacbd4;
 }
 
 .wishList--contents > div{
-    height: 100%;
+    min-height: 150px;
+}
+
+.wishList--contents p {
+    margin: 0 10px;
+}
+
+.wishList--contentsWarp .wishList--info {
+    display: flex;
+    align-items: center;
 }
 
 .wishList--thumbnail > img {
@@ -195,13 +199,7 @@
     vertical-align: middle;
 }
 
-.wishList--contents p,
-.wishList--contents a {
-    margin: 0 10px;
-}
-
-.wishList--description > p,
-.wishList--description > a {
+.wishList--description > p {
     padding: 3px 0;
 }
 
@@ -219,27 +217,132 @@
     font-size: 14px;
 }
 
+.wishList--contentsWarp .wishList--currentPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wishList--contentsWarp .wishList--delivery {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .wishList--currentPrice__currentPrice,
 .wishList--delivery__delivery {
     text-align: center;
     font-size: 15px;
     font-weight: 700;
     border-bottom: 1px solid #e9ecef;
-    padding-bottom: 10px;
+    line-height: 75px;
 }
 
-.wishList--currentPrice__purchase_price,
-.wishList--currentPrice__bids,
+.wishList--purchase_priceWarp__purchase_price,
+.wishList--purchase_priceWarp__bids,
 .wishList--delivery__transactionArea {
     font-size: 12px;
     color: #444;
 }
 
-.wishList--currentPrice__purchase_price,
+.wishList--purchase_priceWarp,
 .wishList--delivery__transactionArea {
     padding-top: 10px;
+    flex: 1 0 0;
 }
 
+.wishList--contentsWarp .wishList--endDate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.wishList--endDate > p {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wishList--bidBtn {
+    box-sizing: border-box;
+    color: #fff;
+    padding: 9px 12px;
+    background-color: #ffa30e;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 8px;
+}
+
+.wishList--delete {
+    margin-top: 14px;
+    box-sizing: border-box;
+    color: #444;
+    padding: 9px 12px;
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #d5dade;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* 페이지 */
+.wishList--pageWarp {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.wishList--page {
+    display: inline-block;
+    margin: 15px 0;
+}
+
+.wishList--page > li{
+    display: inline;
+}
+
+.wishList--page > li > a {
+    padding: 4px 17px;
+    border: 1px solid #ddd;
+    margin: 0 3px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.wishList--page > li:not(.active) > a:hover {
+    background-color: #eee;
+}
+
+.wishList--page > li .material-icons {
+    font-size: 30px;
+    color: #333;
+    top: 0;
+    left: 2px;
+    position: absolute;
+}
+
+.wishList--page > li span:not(.material-icons) {
+    font-size: 15px;
+    color: #333;
+    top: 5px;
+    left: 13px;
+    position: absolute;
+}
+
+.wishList--page > .active > a {
+    cursor: default;
+    background-color: #222;
+    border-color: #222;
+}
+
+.wishList--page > .active > a > span {
+    color: #fff;
+}
 
 /* container 끝 */
 
