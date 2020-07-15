@@ -228,10 +228,12 @@
 .summary_info label {
     float: left;
     font-size: 16px;
-    width: 100px;
+    width: 110px;
     color: #000000;
 }
-
+.auction_countdown{
+	color: orangered;
+}
 .btns {margin-top: 30px;}
 
 .btns button {
@@ -244,6 +246,7 @@
     cursor: pointer;
     background-color: #ffffff;
     padding: 4px 0;
+    margin-top: 10px;
 }
 
 .btns button:hover,
@@ -253,7 +256,8 @@
     color: #ffffff;
 }
 
-.btns1 {
+.btns1,
+.review_viewer {
     font-size: 12px;
     width: 78px;
     border-radius: 2px;
@@ -262,6 +266,7 @@
     cursor: pointer;
     padding: 2px 0;
 }
+
 
 /*여기까지 summary */
 
@@ -325,18 +330,17 @@
 
 .img_1,
 .img_2,
-.img_3 {
+.img_3,
+.product_information_text {
     margin-top: 30px;
     height: 800px;
 }
 
 
 
-.img_1 img,
-.img_2 img,
-.img_3 img {
+.product_information_text {
     width: 1000px;
-    height: 800px;
+    height: 100%;
     margin-top: 20px;
 }
 
@@ -390,6 +394,14 @@
 	height: 100px;
 	border: thin solid darkgray;
 	resize: none;
+}
+.comment_div textarea::-webkit-input-placeholder{
+	color: cornflowerblue;
+	font-style: italic;
+}
+.coment_div textarea::-ms-input-placeholder{
+	color: cornflowerblue;
+	font-style:italic;
 }
 
 #comment_btn{
@@ -542,4 +554,52 @@
 #bid_notify legend{
     font-size: 20px;
     color: cornflowerblue;
+}
+
+/* 판매자 구매후기 */
+.modal_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 10px 20px 30px 20px;
+    border: 1px solid #888;
+    width: 1200px;
+}
+.modal_content span:first-child{
+	font-weight:bold;
+	font-style:italic;
+	font-size: 20px;
+}
+.review_top{
+	display: flex;
+	justify-content: space-between;
+}
+.review_title{border-top:1px solid darkgray;background-color:darkgray;}
+.review_titie,.review_list{border-bottom: 1px solid darkgray;}
+
+.review_title div,
+.review_list div,
+.review_list1 div{
+	display:inline-block;
+	padding: 5px 15px;
+	height: 60px;
+}
+.review_no,.review_evaluate{width:100px;}
+.review_image,.review_writer,.review_date{width: 150px;}
+.review_subject{width:200px;}
+.review_content{width:300px;}
+.review_image img{width:50px; height:50px;}
+.review_list{
+	padding-left: 70px;
+}
+/* 여기까지 판매자 구매후기 */
+
+table{
+	text-align: center;
+	border: thin solid darkgray;
+	border-collapse: collapse;
+}
+td{
+	border-bottom:thin solid darkgray;
+	padding-top: 10px;
+	veritical-align: middle;
 }

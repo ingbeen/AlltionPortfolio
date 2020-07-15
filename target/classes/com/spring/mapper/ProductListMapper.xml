@@ -57,14 +57,126 @@
         where rnum>=#{startrow} and rnum<=#{endrow}
      	]]>
 	</select>
-	<select id="list" resultType="com.spring.alltion.productRegistration.ProductVO">
-		select * from product where product_category_2 = #{product_category_2} and product_category_1 = #{product_category_1}
+	<select id="getCategorylist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		where product_category_2 = #{product_category_2}
+		order by product_issue_date desc
 	</select>
-
-	
+		
+	<select id="getOrderbylist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		where product_category_2 = #{product_category_2}
+		order by #{sort_list} desc
+	</select>
 	<select id="getListCount" parameterType="int" resultType="int">
 		SELECT count(*) FROM product where product_category_2 = #{product_category_2, jdbcType=VARCHAR}
 	</select>
+	
+	<select id="getfamousPricelist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		where product_category_2 = #{product_category_2}
+		order by product_current_price desc
+	</select>
+	
+	<select id="getfamousParticipantslist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		where product_category_2 = #{product_category_2}
+		order by product_participants desc
+	</select>
+	
+	<select id="getfamousViewslist" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		where product_category_2 = #{product_category_2}
+		order by product_views desc
+	</select>
+	
+	<select id="getfamousPricelist2" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		order by product_current_price desc
+	</select>
+	
+	<select id="getfamousParticipantslist2" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		order by product_participants desc
+	</select>
+	
+	<select id="getfamousViewslist2" resultType="com.spring.alltion.productRegistration.ProductVO">
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			product_current_price, 
+			product_purchase_price 
+		from product 
+		order by product_views desc
+	</select>
+	
 	
 	
 </mapper>

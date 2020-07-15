@@ -49,17 +49,12 @@ public class ProductlistServiceImpl implements ProductlistService {
 	}
 */
 	@Override
-	public List<ProductVO> list(String product_category_2, String product_category_1) throws Exception {
+	public List<ProductVO> getCategorylist(String product_category_2) {
 		// TODO Auto-generated method stub
 		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("product_category_2", product_category_2);
-		map.put("product_category_1", product_category_1);
-		List<ProductVO> productlist = productListMapper.list(product_category_2, product_category_1);
+		List<ProductVO> productlist = productListMapper.getCategorylist(product_category_2);
 		
 		return productlist;
-		
 	}
 
 	@Override
@@ -74,8 +69,56 @@ public class ProductlistServiceImpl implements ProductlistService {
 		// TODO Auto-generated method stub
 		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
 		List<ProductVO> productlist = productListMapper.getMainlist();
-		System.out.println(productlist.get(0).getProduct_number());
 		return productlist;
 	}
-
+	
+	@Override
+	public List<ProductVO> getOrderbylist(String product_category_2, String sort_list) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getOrderbylist(product_category_2, sort_list);
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousPricelist(String product_category_2) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousPricelist(product_category_2);
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousParticipantslist(String product_category_2) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousParticipantslist(product_category_2);
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousViewslist(String product_category_2) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousViewslist(product_category_2);
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousPricelist2() {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousPricelist2();
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousParticipantslist2() {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousParticipantslist2();
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getfamousViewslist2() {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getfamousViewslist2();
+		return productlist;
+	}
 }

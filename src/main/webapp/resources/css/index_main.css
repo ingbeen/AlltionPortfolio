@@ -1,3 +1,9 @@
+/* 메인 카테고리 css 깨짐 방지 */
+/*
+.lower_header .category .category--drop img {margin-top: -3px;}
+.lower_header.sticky .category .category--drop img {margin-top: -4px;}
+*/
+
 /* 메인 페이지 - index.html */
 /* desktop-size(min:1280) */
 /* -- 광고 배너 */
@@ -23,7 +29,7 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    background: url(img/header/close_btn.png);
+    z-index: 999;
 }
 
 /* -- 배너 영역 */

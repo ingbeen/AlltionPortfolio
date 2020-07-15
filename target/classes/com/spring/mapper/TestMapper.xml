@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.spring.mapper.TestMapper">
+
+<resultMap type="Product_kjVO" id = "Product_KjResultMap">
+	<result property="product_number" column="product_number"/>
+	<result property="product_subject" column="product_subject"/>
+	<result property="product_purchase_price" column="product_purchase_price"/>
+	<result property="trading_deposit_deadline" column="trading_deposit_deadline"/>
+	<result property="trading_transaction_method" column="trading_transaction_method"/>
+	<result property="product_id" column="product_id"/>
+</resultMap>
+
+	<select id = "getProductlist"  resultMap="Product_KjResultMap">
+		
+		select
+		product_number,
+		product_subject,
+		product_purchase_price,
+		to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
+		trading_transaction_method,
+		product_id
+		from product_kj natural join product_kj_trading
+		where product_kj.product_number = product_kj_trading.trading_product_number and trading_buyer_id = #{userId}
+		order by trading_deposit_deadline
+		
+	</select>
+</mapper>

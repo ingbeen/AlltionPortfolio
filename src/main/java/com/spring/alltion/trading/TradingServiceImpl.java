@@ -80,7 +80,7 @@ public class TradingServiceImpl implements TradingService {
 	
 	// 경매현재가격이 즉시구매가에 도달했을때 실행될 함수(마감처리)
 	@Override
-	public void endOfAuction(int product_number) {
+	public void endOfAuction(int productNumber) {
 		try {
 			// 맵퍼연결
 			producMapper = sqlSession.getMapper(ProductMapper.class);
@@ -88,7 +88,7 @@ public class TradingServiceImpl implements TradingService {
 			bidMapper = sqlSession.getMapper(BidMapper.class);
 			
 			// 트레이딩(거래중) 테이블에 객체 데이터 삽입(insert)
-			tradingInsert(product_number, producMapper, tradingMapper, bidMapper);
+			tradingInsert(productNumber, producMapper, tradingMapper, bidMapper);
 		} catch(Exception e) {
 			System.out.println("seachEndOfProduct 에러");
 			e.printStackTrace();

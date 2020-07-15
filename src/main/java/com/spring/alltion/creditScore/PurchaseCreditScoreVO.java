@@ -7,7 +7,7 @@ public class PurchaseCreditScoreVO {
 	private int purchase_denial;
 	private int purchase_undelivered;
 	private int purchase_return;
-	private int purchase_success_rate;
+	private double purchase_success_rate;
 	
 	public String getPurchase_id() {
 		return purchase_id;
@@ -57,11 +57,28 @@ public class PurchaseCreditScoreVO {
 		this.purchase_return = purchase_return;
 	}
 	
-	public int getPurchase_success_rate() {
+	public double getPurchase_success_rate() {
 		return purchase_success_rate;
 	}
 	
 	public void setPurchase_success_rate(int purchase_success_rate) {
 		this.purchase_success_rate = purchase_success_rate;
+	}
+	
+	public void purchaseScoreRate() {
+		if(purchase_normal != 0 && purchase_denial == 0 && purchase_undelivered == 0 && purchase_return == 0) {
+			purchase_success_rate = 100;
+		} else {
+			int baseCount = purchase_normal * 100;
+			purchase_normal = 1;
+			
+			purchase_success_rate = baseCount / (purchase_normal + purchase_undelivered + purchase_return + purchase_denial);
+		}
+		
+		saleScoreProcess(purchase_success_rate);
+	}
+	
+	public void saleScoreProcess(double purchase_success_rate) {
+		purchase_credit_score = Integer.parseInt(String.valueOf(Math.round(purchase_success_rate * 2)));
 	}
 }

@@ -1,9 +1,10 @@
 /*
+-- 상품 상세 페이지의 댓글 관련 테이블
 create table comment_list(
     comment_number number primary key, -- 댓글 번호
     comment_group_number number, -- 댓글 그룹 번호 원본과 답글을 묶는 역할
     comment_product_number number references product(product_number), -- 댓글 달린 상품번호
-    comment_id varchar2(15) references member(member_id), -- 댓글 작성한 아이디
+    comment_id varchar2(20) references member(member_id), -- 댓글 작성한 아이디
     comment_original_id varchar2(15), -- 답글달때 원래 댓글의 아이디
     comment_content varchar2(1000), -- 댓글 내용
     comment_lev varchar2(1) default '0' check(comment_lev in('0','1')), -- 0: 원글 ,1: 답글
@@ -11,7 +12,7 @@ create table comment_list(
     comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')), -- 0: 삭제x , 1: 삭제o
     comment_date date default sysdate, -- 댓글 작성한 날짜
     comment_list_no number -- 댓글 순서 넘버링, rnum과 같은효과
-);      
+);  
 */
 
 package com.spring.alltion.detailpage;

@@ -1,8 +1,7 @@
 package com.spring.alltion.detailpage;
 
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,7 @@ public class DetailServiceImpl {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void getBoardList(HttpServletRequest request, Model model) {
-		ArrayList<ProductVO> boardlist = new ArrayList<ProductVO>();
-		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
-		boardlist = detailmapper.getBoardList();
-		model.addAttribute("boardlist",boardlist);
-		
-	}
-
+	//경매 상품 정보 불러오기
 	public ProductVO getDetail(int product_number) {
 		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
 		ProductVO productvo = detailmapper.getDetail(product_number);
@@ -59,6 +51,7 @@ public class DetailServiceImpl {
 		return productvo;
 	}
 	
+	// 판매자 신용정보 불러오기
 	public Seller_Credit_Score_TestVO seller_credit_score_test(String sale_id) {
 		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
 		Seller_Credit_Score_TestVO scstvo = detailmapper.sellerTest(sale_id);
@@ -66,6 +59,16 @@ public class DetailServiceImpl {
 		return scstvo;
 	}
 	
+	/*
+	// 남은 시간이 완료되었을때 경매가 종료되고
+	// product테이블의 product_progress 가 1로바뀜 (경매진행중일때는 0임)
+	public int update_product_progress(int product_number) {
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		
+		return detailmapper.update_product_progress(product_number);
+	}
+	*/
+	// 1차 카테고리 한글 변환 (저장은 영어로되어있음)
 	public String TranslateCate_1(String product_category_1) {
 		
 		switch(product_category_1) {
@@ -113,6 +116,7 @@ public class DetailServiceImpl {
 		return product_category_1;
 	}
 	
+	// 2차 카테고리 한글 변환 (저장은 영어로되어있음)
 	public String TranslateCate_2(String product_category_2) {
 		// 2차 카테고리 (출산/유아동) 까지만 만들었음.
 		
@@ -193,5 +197,38 @@ public class DetailServiceImpl {
 		
 		return product_category_2;
 	}
-
+	
+	public List<ReviewVO> reviewListService(String review_id, int page, Model model) {
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		
+		int review_page = 1;
+		int review_limit = 5;
+		if(page!=0) {
+			review_page = page;
+		}
+		int review_listcount = 0;
+		review_listcount = reviewListCount(review_id);
+		int review_endrow = review_listcount - (review_page-1)*5;
+		int review_startrow = review_endrow - review_limit +1;
+		
+		int review_maxpage = (int)((double)review_listcount/review_limit+0.9);
+		int review_startpage = (((int)((double)review_page/10+0.9))-1)*10+1;
+		int review_endpage = review_maxpage;
+		if(review_endpage>review_startpage+10-1) {
+			review_endpage = review_startpage+10-1;
+		}
+		model.addAttribute("review_page",review_page);
+		model.addAttribute("review_maxpage",review_maxpage);
+		model.addAttribute("review_startpage",review_startpage);
+		model.addAttribute("review_endpage",review_endpage);
+		model.addAttribute("review_listcount",review_listcount);
+		
+		return detailmapper.reviewList(review_id,review_startrow,review_endrow);
+	}
+	
+	public int reviewListCount(String review_id) {
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		
+		return detailmapper.getReviewCount(review_id);
+	}
 }

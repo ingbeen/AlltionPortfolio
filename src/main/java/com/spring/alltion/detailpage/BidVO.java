@@ -1,8 +1,9 @@
 /*
+-- 응찰하기 기능 관련 테이블
 create table bid_list(
     bid_number number primary key, -- 응찰번호
     bid_product_number number references product(product_number), -- 응찰한 상품번호
-    bid_id varchar2(15) references member(member_id), -- 응찰자 아이디
+    bid_id varchar2(20) references member(member_id), -- 응찰자 아이디
     bid_price number, -- 응찰 가격
     bid_date date default sysdate, -- 응찰한 시간
     bid_no number -- 응찰 순서 넘버링, rnum 과 같은 효과
@@ -10,6 +11,7 @@ create table bid_list(
 */
 
 package com.spring.alltion.detailpage;
+
 
 public class BidVO {
 	private int bid_number;

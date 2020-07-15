@@ -1,3 +1,6 @@
+.lower_header .category .category--drop img {margin-top: -4px;}
+.lower_header.sticky .category .category--drop img {margin-top: -5px;}
+
 .login {
     margin: 160px auto;
     width: 490px;

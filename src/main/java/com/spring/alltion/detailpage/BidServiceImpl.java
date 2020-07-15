@@ -16,18 +16,18 @@ public class BidServiceImpl {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//응찰 리스트 구하는 서비스.
+	// 응찰 리스트 구하는 서비스.
 	public List<BidVO> bidListService(int bno, int page,Model model) {
 		BidMapper bidmapper = sqlSession.getMapper(BidMapper.class);
 		
 		int bid_page = 1; // 응찰리스트 첫 페이지 = 1
-		int bid_limit = 10; //한 페이지에 뿌려줄 응찰 리스트 갯수
+		int bid_limit = 10; // 한 페이지에 뿌려줄 응찰 리스트 갯수
 		if(page!=0) {
 			bid_page = page;
 		}
 		int bid_listcount = 0;
-		bid_listcount = bidmapper.countBidList(bno)-1; // 상품번호에 대한 응찰리스트 갯수
-		int bid_endrow = bid_listcount - (page-1)*10;  // 읽을 마지막 응찰리스트 마지막 row번호
+		bid_listcount = bidmapper.countBidList(bno) - 1; // 상품번호에 대한 응찰리스트 갯수
+		int bid_endrow = bid_listcount - (bid_page-1)*10;  // 읽을 마지막 응찰리스트 마지막 row번호
 		int bid_startrow = bid_endrow - bid_limit + 1; // 읽기 시작할 응찰리스트 시작할 row번호
 		
 		int bid_maxpage = (int)((double)bid_listcount/bid_limit+0.9); // 총 페이지 수
@@ -45,56 +45,69 @@ public class BidServiceImpl {
 		return bidmapper.bidList(bno,bid_startrow,bid_endrow);
 	}
 
-	//응찰 하기 서비스.
+	// 응찰 하기 서비스.
 	public int bidInsertService(BidVO bidvo) {
 		BidMapper bidmapper = sqlSession.getMapper(BidMapper.class);
 		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		
 		int bid_product_number = bidvo.getBid_product_number();
 		int price = 0;
 		String product_top_bidder = " ";
-		System.out.println("bid_product_number = "+bid_product_number);
-		//응찰리스트의 수를 구함 =>응찰리스트 순서 정렬용.
+		// 응찰리스트의 수를 구함 =>응찰리스트 순서 정렬용.
 		int res = bidmapper.countBidList(bid_product_number);
 		bidvo.setBid_no(res);
 		
 		if(res==1) {
-			//첫 응찰시 현재가로 바로 응찰.
+			// 첫 응찰시 현재가로 바로 응찰.
 			price = detailmapper.selectNowPrice(bid_product_number);
 			bidvo.setBid_price(price);
 		}else {
-			//응찰하기 클릭시 +1000원된 가격으로 응찰이 된다.
-			//두번째 응찰부터
+			// 응찰하기 클릭시 +응찰단위 가격으로 응찰이 된다.
+			// 두번째 응찰부터
 			price = bidmapper.selectNowPrice(bid_product_number);
 			price += bidmapper.getProduct_bidding_unit(bid_product_number);
+			if(detailmapper.selectPurchasePrice(bid_product_number)!=0 && price >= detailmapper.selectPurchasePrice(bid_product_number)) {
+				price = detailmapper.selectPurchasePrice(bid_product_number);
+			}
 			
 			bidvo.setBid_price(price);
 		}
-		//상세보기의 현재가 갱신
 		product_top_bidder = bidvo.getBid_id();
-		System.out.println("product_top_bidder = "+product_top_bidder);
+		
+		// 낙찰되었을 때 product테이블의 product_progress 수정하기  (0: 진행중 , 1: 낙찰됨)
+		int product_purchase_price = detailmapper.selectPurchasePrice(bid_product_number);
+		if(price == product_purchase_price) {
+			detailmapper.updateProductProgress(bid_product_number);
+			
+		}
+		
+		// 상세보기의 현재가 갱신
 		detailmapper.updateBoard(price,bid_product_number);
 		
 		return bidmapper.bidInsert(bidvo);
 	}
 
-	//즉시 구매하기 서비스.
+	// 즉시 구매하기 서비스.
 	public int bidpurchaseService(BidVO bidvo) {
 		BidMapper bidmapper = sqlSession.getMapper(BidMapper.class);
-		DetailMapper boardmapper = sqlSession.getMapper(DetailMapper.class);
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		
 		int bid_product_number = bidvo.getBid_product_number();
 		int price = 0;
-		price = boardmapper.selectPurchasePrice(bid_product_number);
+		price = detailmapper.selectPurchasePrice(bid_product_number);
 		
 		int res = bidmapper.countBidList(bid_product_number);
 		bidvo.setBid_no(res);
 		bidvo.setBid_price(price);
 		
-		boardmapper.updateBoard(price, bid_product_number);
+		detailmapper.updateBoard(price, bid_product_number);
+		detailmapper.updateProductProgress(bid_product_number);
+		
 		
 		return bidmapper.bidInsert(bidvo);
 	}
 
-	//응찰 리스트 갯수
+	// 응찰 리스트 갯수
 	public int getBid_listcountService(int product_number) {
 		BidMapper bidmapper = sqlSession.getMapper(BidMapper.class);
 		int bno = product_number;
@@ -104,6 +117,7 @@ public class BidServiceImpl {
 		return bid_listcount;
 	}
 
+	// 최고응찰자 구하기
 	public String getTop_bidderService(int product_number) {
 		BidMapper bidmapper = sqlSession.getMapper(BidMapper.class);
 		String top_bidder_id;
@@ -118,5 +132,5 @@ public class BidServiceImpl {
 		
 		return top_bidder_id;
 	}
-
+	
 }

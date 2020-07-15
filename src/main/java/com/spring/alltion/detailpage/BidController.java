@@ -1,5 +1,6 @@
 package com.spring.alltion.detailpage;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class BidController {
 	
 	@RequestMapping(value="/bid_insert.hs",produces="application/json;charset=UTF-8")
 	private int mbidInsert(BidVO bidvo)throws Exception{
-		
 		int res = bidService.bidInsertService(bidvo);
 		
 		return res;

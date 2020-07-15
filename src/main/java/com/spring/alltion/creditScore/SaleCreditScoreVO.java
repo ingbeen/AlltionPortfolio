@@ -7,7 +7,7 @@ public class SaleCreditScoreVO {
 	private int sale_denial;
 	private int sale_undelivered;
 	private int sale_return;
-	private int sale_success_rate;
+	private double sale_success_rate;
 	
 	public String getSale_id() {
 		return sale_id;
@@ -57,11 +57,29 @@ public class SaleCreditScoreVO {
 		this.sale_return = sale_return;
 	}
 	
-	public int getSale_success_rate() {
+	public double getSale_success_rate() {
 		return sale_success_rate;
 	}
 	
 	public void setSale_success_rate(int sale_success_rate) {
 		this.sale_success_rate = sale_success_rate;
+	}
+
+	// 로직 다시 짜기	
+	public void saleScoreRate() {
+		if(sale_normal != 0 && sale_denial == 0 && sale_undelivered == 0 && sale_return == 0) {
+			sale_success_rate = 100;
+		} else {
+			int baseCount = sale_normal * 100;
+			sale_normal = 1;
+			
+			sale_success_rate = baseCount / (sale_normal + sale_undelivered + sale_return + sale_denial);
+		}
+		
+		saleScoreProcess(sale_success_rate);
+	}
+	
+	public void saleScoreProcess(double sale_success_rate) {
+		sale_credit_score = Integer.parseInt(String.valueOf(Math.round(sale_success_rate * 2)));
 	}
 }

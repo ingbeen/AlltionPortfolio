@@ -61,7 +61,7 @@ ADD CONSTRAINT PK_sale_id PRIMARY KEY (sale_id); -- 기본키 부여
 create table bid_list(
     bid_number number primary key, -- 응찰번호
     bid_product_number number references product(product_number), -- 응찰한 상품번호
-    bid_id varchar2(15) references member(member_id), -- 응찰자 아이디
+    bid_id varchar2(20) references member(member_id), -- 응찰자 아이디
     bid_price number, -- 응찰 가격
     bid_date date default sysdate, -- 응찰한 시간
     bid_no number -- 응찰 순서 넘버링, rnum 과 같은 효과
@@ -72,7 +72,7 @@ create table comment_list(
     comment_number number primary key, -- 댓글 번호
     comment_group_number number, -- 댓글 그룹 번호 원본과 답글을 묶는 역할
     comment_product_number number references product(product_number), -- 댓글 달린 상품번호
-    comment_id varchar2(15) references member(member_id), -- 댓글 작성한 아이디
+    comment_id varchar2(20) references member(member_id), -- 댓글 작성한 아이디
     comment_original_id varchar2(15), -- 답글달때 원래 댓글의 아이디
     comment_content varchar2(1000), -- 댓글 내용
     comment_lev varchar2(1) default '0' check(comment_lev in('0','1')), -- 0: 원글 ,1: 답글
@@ -80,8 +80,24 @@ create table comment_list(
     comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')), -- 0: 삭제x , 1: 삭제o
     comment_date date default sysdate, -- 댓글 작성한 날짜
     comment_list_no number -- 댓글 순서 넘버링, rnum과 같은효과
-);  
+); 
+
+-- 판매자 등급 테이블
+CREATE TABLE sale_credit_score_list (
+    sale_id varchar2(20) constraint FK_sale_id references member(member_id), --판매자 아이디
+    sale_credit_score number default 0 not null, --판매 신용도
+    sale_normal number default 0 not null, --정상 거래
+    sale_denial number default 0 not null, --판매 거부
+    sale_undelivered number default 0 not null, --미배송
+    sale_return number default 0 not null, --반품
+    sale_success_rate number(5,2) default 0 not null, --판매성사율
+    constraint PK_sale_id primary key(sale_id)
+);
+
+
 */
+
+
 
 create table member(
 member_name varchar2(15),
@@ -155,5 +171,12 @@ CREATE TABLE trading (
     
     trading_progress varchar2(1000) not null, -- 진행상태
     trading_date date not null -- 등록일
+);
+
+-- 찜목록
+create table wish_list (
+    wish_product_number number, -- 상품번호
+    wish_id varchar2(1000), -- 아이디
+    wish_date Date -- 등록일
 );
 */

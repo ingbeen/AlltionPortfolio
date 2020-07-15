@@ -107,16 +107,20 @@ function changeCategory_2(value) {
     selectOutput = `<select class="category--select__02" 
     	name="product_category_2" size="7" onchange="changeCategory(this)">
             <option value="">- 선택해주세요 -</option>`;
-    
-        for(var i = 1; i < arguments.length; i ++){ // 2차 카테고리 갯수만큼 루프
-            if (i < 10) { // 2차 카테고리 넘버가 한자리 수이면 앞에 0 붙이기. 예) 0 + 1 = 01
-                categoryNumber = 0 + String(i);
+    	
+    	// arguments는 해당 함수를 호출할때의 파라미터 데이터를 의미한다
+    	// js에서는 호출할때 지정된 것 외의 파라미터를 받을 수 있다
+        $.each(arguments, (idx, argument) => { // 2차 카테고리 갯수만큼 루프
+        	if(idx == 0) {
+        		return true;
+        	}
+        	if (idx < 10) { // 2차 카테고리 넘버가 한자리 수이면 앞에 0 붙이기. 예) 0 + 1 = 01
+                categoryNumber = 0 + String(idx);
             }
             // 함수의 0번쨰 파라미터를 제외한 나머지 갯수만큼 option태그 생성
             selectOutput += `<option value="${value}${categoryNumber}">
-            	${arguments[i]}</option>`;
-            
-        }
+            	${argument}</option>`;
+        });
     selectOutput += `</select>`;
     /* 2차 카테고리 태그 작성 끝 */
 
@@ -388,7 +392,15 @@ $("#thumbnails").on("click", ".close", (e) => {
 // 상품(경매) 등록 - 버튼눌렀을때(썸네일이미지 등록부터)
 function productSubmit() {
 	
+	// 시작가, 즉사거래가 쉼표 없애기
+	let purchase_price = $(".product--form [name='product_purchase_price']");
+	let starting_price = $(".product--form [name='product_starting_price']");
+	purchase_price.val(removeCommas(purchase_price.val()));
+	starting_price.val(removeCommas(starting_price.val()));
+	
 	if (formCheck()) { // 양식에 대한 유효성 검사
+		purchase_price.val(addCommas(purchase_price.val()));
+		starting_price.val(addCommas(starting_price.val()));
 		return;
 	}
 	
@@ -489,13 +501,6 @@ function formCheck() {
 
 // 상품(경매) 등록 - DB저장
 function productInsert(imgSrcList) {
-	
-	// 시작가, 즉사거래가 쉼표 없애기
-	let purchase_price = $(".product--form [name='product_purchase_price']");
-	let starting_price = $(".product--form [name='product_starting_price']");
-	purchase_price.val(removeCommas(purchase_price.val()));
-	starting_price.val(removeCommas(starting_price.val()));
-	
 	let formData = $('.product--form').serialize(); // 사용자가 입력한 내용
 	$.each(imgSrcList, (idx, imgSrc) => { // 이미지등록(썸네일)에 있는 이미지
 		formData += `&product_img_${idx + 1}=${imgSrc}`;

@@ -30,7 +30,7 @@ public class MypageController {
 		}
 		else
 		
-		return "member/mypage";
+		return "mypage/mypage";
 	}
 	@RequestMapping(value = "/memberinfo.kj")
 	public String updateForm(Model model,HttpSession session)throws Exception
@@ -45,7 +45,7 @@ public class MypageController {
 		System.out.println(vo.getMember_id());
 		model.addAttribute("membervo",vo);
 		
-		return "member/update";
+		return "mypage/update";
 		}
 	}
 	//회원 수정 이메일
@@ -170,7 +170,7 @@ public class MypageController {
 		return null;
 		
 	}
-	
+	/*
 	@RequestMapping(value = "/buyer.kj")
 	public String buyer(Model model,HttpSession session)throws Exception
 	{	
@@ -184,10 +184,10 @@ public class MypageController {
 		MemberVO vo = memberService.selectMember(userId);
 		model.addAttribute("membervo",vo);
 		
-		return "member/buyer";
+		return "mypage/buyer";
 		}
 	}	
-
+	
 	@RequestMapping(value = "/buyer_deal.kj")
 	public String deal(Model model,HttpSession session)throws Exception
 	{
@@ -201,24 +201,10 @@ public class MypageController {
 			MemberVO vo = memberService.selectMember(userId);
 			model.addAttribute("membervo",vo);
 			
-		    return "member/buyer_deal";
+		    return "mypage/buyer_deal";
 		}
 	}	
-
-	/*
-	@RequestMapping(value = "/buyer_deal.kj")
-	public String paying(Model model, HttpSession session)throws Exception
-	{
-		String userId = (String)session.getAttribute("userId");
-		if(userId ==null)
-		{
-			return "member/login";
-		}
-		else 
-		{
-			return "pay/pay";
-		}
-	}
-	*/
+*/
+	
 	
 }

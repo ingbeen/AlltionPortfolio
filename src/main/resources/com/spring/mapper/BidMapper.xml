@@ -5,6 +5,9 @@
 	<!-- namespace="com.spring.mapper.SungjukMapper는 SungjukMapper인터페이스(SungjukMapper.class)의 이름을 사용한다. -->
 	<!-- root-context에서 아래와 같이 typeAliasesPackage를 설정하면 패키지 경로 생략 가능. -->
 <mapper namespace="com.spring.mapper.BidMapper">
+	
+	<!-- 응찰리스트 구하기(시간처리 to_char), bid_no 역순기준출력 -->
+	<!-- 상품번호를 통해서 구함(bid_product_number),bid_no: 페이징처리를 위해 추가한 컬럼 -->
 	<select id="bidList" parameterType="int" resultType="BidVO">
 		<![CDATA[
 		select 
@@ -15,6 +18,7 @@
 		]]>
 	</select>
 	
+	<!-- 응찰하기 -->
 	<insert id="bidInsert" parameterType="BidVO">
 		<selectKey keyProperty="bid_number" order="BEFORE" resultType="int">
 			select nvl(max(bid_number),0)+1 as bid_number from bid_list
@@ -24,10 +28,12 @@
 		values(#{bid_number},#{bid_product_number},#{bid_id},#{bid_price},sysdate,#{bid_no})
 	</insert>
 	
+	<!-- 응찰테이블의 갯수구하기(상품번호를 통해서) -->
 	<select id="countBidList" parameterType="int" resultType="int">
 		select count(*)+1 from bid_list where bid_product_number=#{bid_product_number}
 	</select>
 	
+	<!-- 최고응찰자를 구함(상품번호를 통해서) -->
 	<select id="getTop_bidder_id" parameterType="int" resultType="String">
 		select bid_id 
       	from bid_list 
@@ -38,10 +44,12 @@
                   bid_product_number = #{bid_product_number}
 	</select>
 	
+	<!-- 현재가를 구함(응찰하기에서 사용) -->
 	<select id="selectNowPrice" parameterType="int" resultType="int">
 		select nvl(max(bid_price),0) from bid_list where bid_product_number=#{bid_product_number}
 	</select>
 	
+	<!-- 응찰 단위를 구한다(응찰하기에서 사용) -->
 	<select id="getProduct_bidding_unit" parameterType="int" resultType="int">
 		select product_bidding_unit from product where product_number = #{product_number}
 	</select>

@@ -79,6 +79,7 @@ public class MemberController {
 			}
 			return null;
 		}
+
 		//로그아웃
 		@RequestMapping(value = "/logout.kj", method = { RequestMethod.GET, RequestMethod.POST })
 		public String logout(HttpSession session) throws IOException {

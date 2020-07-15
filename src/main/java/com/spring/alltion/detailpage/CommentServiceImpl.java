@@ -1,5 +1,4 @@
 package com.spring.alltion.detailpage;
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +14,8 @@ public class CommentServiceImpl {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 댓글 리스트 불러오기
+	// 댓글 리스트 페이징 처리하기
 	public List<CommentVO> commentListService(int comment_product_number, int page, Model model) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		
@@ -24,7 +25,7 @@ public class CommentServiceImpl {
 			comment_page = page;
 		}
 		int comment_listcount = 0;
-		comment_listcount = getCount_comment(comment_product_number);
+		comment_listcount = getCount_comment(comment_product_number) - 1;
 		int comment_endrow = comment_listcount - (page-1)*10;
 		int comment_startrow = comment_endrow - comment_limit + 1;
 		
@@ -34,6 +35,7 @@ public class CommentServiceImpl {
 		if(comment_endpage > comment_startpage+10-1) {
 			comment_endpage = comment_startpage + 10 - 1;
 		}
+		
 		model.addAttribute("comment_page",comment_page);
 		model.addAttribute("comment_maxpage",comment_maxpage);
 		model.addAttribute("comment_startpage",comment_startpage);
@@ -42,7 +44,8 @@ public class CommentServiceImpl {
 		
 		return commentmapper.commentlist(comment_product_number,comment_startrow,comment_endrow);
 	}
-
+	
+	// 댓글 입력하기.
 	public int commentInsertService(CommentVO commentvo) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		int comment_product_number = commentvo.getComment_product_number();
@@ -52,7 +55,8 @@ public class CommentServiceImpl {
 		
 		return commentmapper.commentinsert(commentvo);
 	}
-
+	
+	// 댓글 갯수 구하기
 	public int getCount_comment(int product_number) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		int count = commentmapper.countcommentList(product_number);
@@ -60,18 +64,21 @@ public class CommentServiceImpl {
 		return count;
 	}
 
+	// 댓글 삭제하기
 	public int commentDeleteService(CommentVO commentvo) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		
 		return commentmapper.commentdelete(commentvo);
 	}
 
+	// 댓글 수정하기
 	public int commentupdateService(CommentVO commentvo) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		
 		return commentmapper.commentupdate(commentvo);
 	}
 
+	// 댓글 답변하기
 	public int commentReplyService(CommentVO commentvo,int comment_original_number) {
 		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
 		// 댓글(원글)의 정보를 얻기

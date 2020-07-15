@@ -4,6 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.alltion.creditScore.SaleCreditScoreVO;
+import com.spring.mapper.CreditScoreMapper;
 import com.spring.mapper.ProductMapper;
 
 @Service
@@ -14,13 +16,18 @@ public class ProductServiceImpl implements ProductService {
 	
 	// 상품객체 추가
 	@Override
-	public int ProductInsert(ProductVO productVO) {
+	public void ProductInsert(ProductVO productVO) {
 		ProductMapper productMapper; // 마이바티스 상품맵퍼
+		CreditScoreMapper creditScoreMapper; // 마이바티스 신용도맵퍼
+		
 		String end_date; // 경매종료일
-		int res; // insert 결과값
+		String saleId;
+		int saleCreditScore;
+		SaleCreditScoreVO saleCreditScoreVO;
 		
 		try {
 			productMapper = sqlSession.getMapper(ProductMapper.class);
+			creditScoreMapper = sqlSession.getMapper(CreditScoreMapper.class);
 			
 			// 경매종료일을 sql문의 to_date에 맞는 형식으로 변환한다
 			end_date = productVO.getProduct_end_date();
@@ -36,17 +43,18 @@ public class ProductServiceImpl implements ProductService {
 				productVO.setProduct_transaction_area("none");
 			}
 			
-			// 정상적으로  insert가 되면 1을 반화한다
-			res = productMapper.productInsert(productVO);
+			// 판매자의 신용정보에서 신용점수를 가져와 set 해준다
+			saleId = productVO.getProduct_id();
+			saleCreditScoreVO = creditScoreMapper.getSaleCreditScore(saleId);
+			saleCreditScore = saleCreditScoreVO.getSale_credit_score();
+			productVO.setProduct_credit_score(saleCreditScore);
 			
-			return res;
+			// 상품데이터를 insert한다
+			productMapper.productInsert(productVO);
 		} catch(Exception e) {
 			System.out.println("ProductInsert 에러");
 			e.printStackTrace();
 		}
-		
-		// insert가 정상적으로 안되었으면 0을 반환한다
-		return 0;
 	}
 	
 	
