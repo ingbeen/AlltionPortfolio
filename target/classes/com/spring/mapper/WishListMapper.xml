@@ -2,10 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.mapper.WishListMapper">
-	<select id="getWishList" parameterType="String" resultType="int">
-		select wish_product_number <!-- 상품번호 -->
-		from wish_list
-		where wish_id = #{userId}
+	<select id="getWishListCount" parameterType="String" resultType="int">
+		select count(*)
+    	from wish_list
+    	where wish_id = #{userId}
 	</select>
+	
+	<delete id="deleteWishList" parameterType="hashmap">
+		delete from wish_list
+		where wish_product_number in (
+		<foreach collection="deleteWishList" item="item" separator=",">
+			#{item}
+		</foreach>
+		) and wish_id = #{userId}
+	</delete>
 	
 </mapper>

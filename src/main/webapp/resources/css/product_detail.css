@@ -274,7 +274,7 @@
 .bid_list {
     margin: 20px 0;
     width: 1200px;
-    height: 500px;
+    height: 100%;
 }
 
 .bid_list_column div {
@@ -327,16 +327,7 @@
 .product_information img {
     height: 800px;
 }
-
-.img_1,
-.img_2,
-.img_3,
-.product_information_text {
-    margin-top: 30px;
-    height: 800px;
-}
-
-
+ 
 
 .product_information_text {
     width: 1000px;

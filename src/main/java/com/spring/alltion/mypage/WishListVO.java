@@ -10,7 +10,6 @@ create table wish_list (
 */
 
 public class WishListVO {
-	
     int wish_product_number; // 상품번호
     String wish_id; // 아이디
     String trading_date; // 등록일

@@ -389,8 +389,16 @@ $("#thumbnails").on("click", ".close", (e) => {
 
 /* 상품정보 - 이미지 등록 끝 */
 
+let clickCheck = false; // 중복클릭 방지
+
 // 상품(경매) 등록 - 버튼눌렀을때(썸네일이미지 등록부터)
 function productSubmit() {
+	// 중복클릭이라면 함수 중지
+	if(clickCheck) {
+		console.log("중복클릭");
+		return;
+	}
+	clickCheck = true; // 중복클릭 방지설정
 	
 	// 시작가, 즉사거래가 쉼표 없애기
 	let purchase_price = $(".product--form [name='product_purchase_price']");
@@ -401,6 +409,7 @@ function productSubmit() {
 	if (formCheck()) { // 양식에 대한 유효성 검사
 		purchase_price.val(addCommas(purchase_price.val()));
 		starting_price.val(addCommas(starting_price.val()));
+		clickCheck = false; // 중복클릭 방지해제
 		return;
 	}
 	
@@ -418,7 +427,7 @@ function productSubmit() {
         processData: false,
         // 이미지경로를 담은 배열을 파라미터로 넘기고 상품등록 진행
         success: (imgSrcList) => productInsert(imgSrcList),
-        error: () => alert("이미지 업로드를 실패하였습니다")
+        error: () => clickCheck = false // 중복클릭 방지해제
     });
 };
 
@@ -510,8 +519,11 @@ function productInsert(imgSrcList) {
         url: 'productInsert.yb',
         type: 'post',
         data: formData,
-        success: () => alert("성공(alert창 삭제예정 : 마이페이지 - 판매관리로 이동)"), 
-        error: () => alert("경매 등록을 실패하였습니다")
+        success: () => {
+        	alert("성공(alert창 삭제예정 : 마이페이지 - 판매관리로 이동)");
+        	clickCheck = false; // 중복클릭 방지해제
+        },
+        error: () => clickCheck = false // 중복클릭 방지해제
     });
 }
 

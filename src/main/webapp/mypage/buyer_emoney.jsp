@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.spring.alltion.test.Product_kjVO" %>
+<%@ page import = "com.spring.alltion.test.Test_emoneyVO" %>
+<%@ page import = "java.util.*" %>
+<%
+	Test_emoneyVO emoneyvo = (Test_emoneyVO)request.getAttribute("emoneyvo");
+	Product_kjVO Product_kjvo = (Product_kjVO)request.getAttribute("Product_kjvo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./resources/css/style.css">
-    <link rel="stylesheet" href="./resources/css/buyer_deal.css">
+    <link rel="stylesheet" href="./resources/css/buyer_emoney.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
@@ -84,63 +91,34 @@
         </div>
     </div>
     <!--  -->
-    <div class="deal_update--form">
-            <h3>택배 거래</h3>
-            <div class="deal_update--content">
+    <div class="eomney_update--form">
+            <h3>이머니 입금</h3>
+            <div class="eomney_update--content">
                 <ul class="update_form list">
                     <li>
                         <div class="update_form__list title">
-                            <span>택배 방법</span>
+                            <span>이머니</span>
                         </div>
-                        <div class="update_form__list content">                  
-                            <span>##</span>      
-                        </div>               
-                    </li>
-                    <li>
-                        <div class="update_form__list title">
-                            <span>주소</span>
+                        <div class="update_form__list content">
+                            <span>현재 이머니 : <%=emoneyvo.getTest_emoney() %></span>
+                            <br>
+                            <br>           
+                            <span>구매 가격 : <%=Product_kjvo.getTrading_price() %></span>
+                            <br>     
+                            <br>                     
+                            <h5>이머니가 부족할 경우 밑에있는 이머니 충전버튼을 눌러주세요</h5>    
+                            <h5>이머니의 최종 결재는 마지막 구매완료시 입금됩니다.</h5>                                        
                         </div>
-                        <div class="update_form__list content">   
-                        	<span>##</span>               
-                            <input type ="button" value = "주소 변경">         
-                        </div>               
-                    </li>
-                    <li>
-                    	<div class="update_form__list title">
-                    		<span>운송장 번호</span>
-                    	</div>
-                    	<div class="update_form__list content">
-                    		<span>##</span>		
-                    	</div>
-					</li>    
-                </ul>
-                <a href = ""  class = "base_btn">구매 완료</a>     
-        	</div>    	    
-    	</div>
-    	<div class="deal_update--form">
-            <h3>직거래</h3>
-            <div class="deal_update--content">
-                <ul class="update_form list">
-                <li>
-                        <div class="update_form__list title">
-                        	<span>거래 가능 지역</span>
-                        </div>
-                        <div class="update_form__list content">   
-                        <span>##</span>
-                        </div>
-                </li>
-                <li>
-                		<div class="update_form__list title">
-                        	<span>판매자 번호</span>
-                        </div>
-                        <div class="update_form__list content">   
-                        <span>##</span>
-                        </div>
-                </li>
-                </ul>
-                <a href = ""  class = "base_btn">구매 완료</a> 
-            </div>
-        </div>
+                    </li>  
+                    </ul>                   
+                    </div>  
+                     <div class="buyer_update--btn">
+						<a href = "./buyer_deal.kj" class = "base_btn">결제 진행</a>
+       					<a href = "./pay.ms"  class = "base_btn">이머니 충전</a>    
+					</div>                
+     			 </div>
+      				
+   
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">

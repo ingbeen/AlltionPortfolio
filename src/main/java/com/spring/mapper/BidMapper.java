@@ -20,4 +20,8 @@ public interface BidMapper {
 
 	int getProduct_bidding_unit(int bid_product_number);
 
+	void updateProduct_bids(@Param(value="bno") int bno);
+
+	void updateProduct_participants(@Param(value="bno") int bno);
+
 }

@@ -231,4 +231,19 @@ public class DetailServiceImpl {
 		
 		return detailmapper.getReviewCount(review_id);
 	}
+
+	public void ViewCountService(int product_number) {
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		detailmapper.viewcount(product_number);
+	}
+
+	public int insertWishListService(int wish_product_number, String wish_id) {
+		DetailMapper detailmapper = sqlSession.getMapper(DetailMapper.class);
+		int wishList_count = detailmapper.getWishlistCount(wish_product_number,wish_id);
+		if(wishList_count == 0) {
+			detailmapper.insertWishList(wish_product_number,wish_id);
+		}
+		
+		return wishList_count;
+	}
 }

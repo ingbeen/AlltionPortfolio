@@ -15,22 +15,6 @@ public class ProductlistServiceImpl implements ProductlistService {
 
 	@Autowired(required=false)
 	private SqlSession sqlSession;
-
-	/*
-	@Override
-	public List<ProductVO> getproductList(int page, int limit) {
-		// TODO Auto-generated method stub
-		int startrow=(page-1)*5+1; 
-		int endrow=startrow+limit-1; 
-		HashMap<String, Integer> params = new HashMap<String, Integer>();
-		params.put("start", startrow);
-		params.put("end", endrow);
-		
-		List<ProductVO> productlist = sqlSession.selectList("com.spring.mapper.ProductListMapper.getProductList",params);
-		
-		return productlist;
-	}
-*/
 	
 	@Override
 	public int getListCount() {
@@ -38,23 +22,6 @@ public class ProductlistServiceImpl implements ProductlistService {
 		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
 		int res = productListMapper.getListCount();
 		return res;
-	}
-/*
-	@Override
-	public List<ProductVO> getproductList(HashMap<String, Integer> hashmap, ProductVO vo) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getProductList(hashmap, vo);
-		return productlist;
-	}
-*/
-	@Override
-	public List<ProductVO> getCategorylist(String product_category_2) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getCategorylist(product_category_2);
-		
-		return productlist;
 	}
 
 	@Override
@@ -64,14 +31,6 @@ public class ProductlistServiceImpl implements ProductlistService {
 		List<ProductVO> productlist = productListMapper.getProductList(hashmap);
 		return productlist;
 	}
-	@Override
-	public List<ProductVO> getMainlist() {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getMainlist();
-		return productlist;
-	}
-	
 	@Override
 	public List<ProductVO> getOrderbylist(String product_category_2, String sort_list) {
 		// TODO Auto-generated method stub
@@ -120,5 +79,29 @@ public class ProductlistServiceImpl implements ProductlistService {
 		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
 		List<ProductVO> productlist = productListMapper.getfamousViewslist2();
 		return productlist;
+	}
+	@Override
+	public List<ProductVO> getMainlist(HashMap<String, Integer> hashmap) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		List<ProductVO> productlist = productListMapper.getMainlist(hashmap);
+		return productlist;
+	}
+	@Override
+	public List<ProductVO> getCategorylist(String product_category_2, int startrow, int endrow) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		System.out.println("product_category_2 = " + product_category_2);
+		System.out.println("startrow = " + startrow);
+		System.out.println("endrow = " + endrow);
+		List<ProductVO> productlist = productListMapper.getCategorylist(product_category_2, startrow, endrow);
+		return productlist;
+	}
+	@Override
+	public int getCategorylistCount(String product_category_2) {
+		// TODO Auto-generated method stub
+		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
+		int res = productListMapper.getCategorylistCount(product_category_2);
+		return res;
 	}
 }

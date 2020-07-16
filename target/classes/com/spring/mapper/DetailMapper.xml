@@ -88,4 +88,18 @@
 		update product set product_progress = 1 where product_number = #{product_number}
 	</update>
 	-->
+	<!-- 조회수 업데이트 -->
+	<update id="viewcount" parameterType = "int">
+		update product set product_views = product_views +1 where product_number = #{product_number}
+	</update>
+	
+	<!-- 위시리스트 체크(중복체크) -->
+	<select id="getWishlistCount" resultType="int">
+		select nvl(count(*),0) from wish_list where wish_product_number = #{wish_product_number} and wish_id = #{wish_id}
+	</select>
+	
+	<!-- 위시 리스트에 추가하기 (중복체크 이후) -->
+	<insert id="insertWishList">
+		insert into wish_list values(#{wish_product_number},#{wish_id},sysdate+2)
+	</insert>
 </mapper>

@@ -76,6 +76,9 @@ public class DetailController {
 		int review_page = 1;
 		detailService.reviewListService(review_id, review_page, model);
 		
+		// 상세 페이지 클릭시 조회수 +1
+		detailService.ViewCountService(product_number);
+		
 		return "detail_page/board_detail";
 	}
 	
@@ -105,6 +108,15 @@ public class DetailController {
 		
 		return review_list;
 	}
+	
+	@RequestMapping(value="/wish_list.hs",produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public int wishList(@RequestParam int wish_product_number,@RequestParam String wish_id)throws Exception{
+		int res = detailService.insertWishListService(wish_product_number,wish_id);
+		
+		return res;
+	}
+	
 	/*
 	@RequestMapping(value="/update_product_progress.hs",produces="application/json;charset=UTF-8")
 	@ResponseBody

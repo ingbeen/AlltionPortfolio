@@ -54,4 +54,20 @@
 		select product_bidding_unit from product where product_number = #{product_number}
 	</select>
 	
+	<!-- 응찰수 업데이트 -->
+	<update id="updateProduct_bids">
+		<selectKey keyProperty="product_bids" order="BEFORE" resultType="int">
+		select count(*) as product_bids from bid_list where bid_product_number = #{bno} order by bid_no
+		</selectKey>
+		update product set product_bids = #{product_bids} where product_number = #{bno}
+	</update>
+	
+	<!-- 참가자수 업데이트 -->
+	<update id="updateProduct_participants">
+		<selectKey keyProperty="product_participants" order="BEFORE" resultType="int">
+		select count(*) as product_participants from (select bid_id from bid_list where bid_product_number = #{bno} group by bid_id)
+		</selectKey>
+		update product set product_participants = #{product_participants} where product_number = #{bno}
+	</update>
+	
 </mapper>

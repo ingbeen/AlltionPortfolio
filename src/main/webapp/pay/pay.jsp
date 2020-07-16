@@ -292,6 +292,7 @@ date = getFormatDate(date);
 	<!--  스크립트 영역  -->
 	<script src="<c:url value="https://code.jquery.com/jquery-3.5.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/pay.js" />"></script>
+	<script src="<c:url value="/resources/js/common.js" />"></script>
 	<script type="text/javascript">
 		$(function() {
 			// 광고 없애기

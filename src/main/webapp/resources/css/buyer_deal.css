@@ -1,22 +1,25 @@
-/*구매 페이지 css*/
-	.buyer--form {
+.deal_update--form {
+    /* width: 1200px; */
     width: 960px;
     margin: 50px auto;
-    }
-    .buyer--content {
+}
+
+.deal_update--content {
     width: 100%;
     margin-top: 40px;
     border-top: 1px solid #000000;
     border-bottom: 1px solid #000000;
-    }
-    .buyer.list h3 {font-size: 32px;}
-    .buyer_form.list li {
+}
+
+.update_form.list h3 {font-size: 32px;}
+
+.update_form.list li {
     display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid #dddddd;
-    
-    }
-    .buyer_form__list.title {
+}
+
+.update_form__list.title {
     flex-basis: 20%;
     background-color: #f8f8f8;
     display: flex;
@@ -25,23 +28,23 @@
     border-right: 1px solid #dddddd;
     font-size: 14px;
     font-weight: bold;
-    }
+}
 
-    .buyer_form__list.content {
-        margin: 10px 0 10px 20px;
-        font-size: 14px;
-    }
+.update_form__list.content {
+    margin: 10px 0 10px 20px;
+    font-size: 14px;
+}
 
-    .buyer_form__list.content input {
-        display: none;
-    }
+.update_form__list.content input {
+    display: none;
+}
 
-    .buyer_form__list.content input {
-        display: inline-block;
-        border: 1px border;
-    }
+.update_form__list.content input {
+    display: inline-block;
+    border: 1px border;
+}
 
-    body a.base_btn {
+body a.base_btn {
 	margin-top : 5px;
 	margin-bottom : 10px;
     height: 30px;

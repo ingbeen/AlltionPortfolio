@@ -3,11 +3,13 @@
 .wishList {
     max-width: 1200px;
     margin: auto;
+    min-height: 600px;
 /*    padding: 0 10px;*/
 }
 
 .wishList * {
     letter-spacing: 0.1px;
+    
 }
 
 /* 타이틀 */
@@ -353,5 +355,10 @@
 
 /* container 끝 */
 
+/* 로딩화면 */
+.hidden {
+	overflow: hidden;
+	height: 100%;
+}
 
 /* 찜목록 끝 by.유빈 */

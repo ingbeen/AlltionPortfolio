@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	MemberVO membervo = (MemberVO)request.getAttribute("membervo");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -132,7 +131,7 @@
                             <input type="password" id="member_password2"  name = "member_password2" class = "int" onchange="checkpassword()">
                             <span id="alert-success1" style="display: none; color: #1ec700;">비밀번호가 일치합니다.</span>
     						<span id="alert-danger1" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
-                           
+                            <a href = "javascript:updatePassword.submit()" class="update_btn__submit">비밀번호 변경</a>
                         </div>
                     </li>  
                     </ul>
@@ -290,7 +289,7 @@
  
             	
             	<div class="member_update--btn">
-               	 <button class="update_btn__submit" onclick="history.back()">뒤로 가기</button>
+               	 <button class="update_btn__back" onclick="history.back()">뒤로 가기</button>
             	</div>
            	
     <!-- 푸터 영역 -->

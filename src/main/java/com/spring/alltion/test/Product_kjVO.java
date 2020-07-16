@@ -9,6 +9,30 @@ package com.spring.alltion.test;
         product_purchase_price_kj number not null, -- 즉시구매가격  
 		product_current_price_kj number not null -- 경매현재가
 );
+
+CREATE TABLE product_kj_trading (
+    trading_product_number number primary key references product_kj(product_number) not null, -- 상품번호
+    trading_buyer_id varchar2(1000) references member(member_id) not null, -- 구매자아이디
+    trading_price number not null, -- 거래가격
+    
+    trading_deposit_deadline date not null, -- 입금기한
+    trading_waybill_deadline date, -- 운송장번호입력기한
+    trading_purchase_deadline date, -- 구매확정기한
+    trading_purchase_date date, -- 구매확정일
+    
+    trading_transaction_method varchar2(1000) null, -- 거래방식
+    
+    sample4_postcode varchar2(1000) null, -- 우편번호
+    sample4_roadaddress varchar2(1000) null, -- 도로명주소
+    sample4_jibunaddress varchar2(1000) null, -- 지번주소
+    sample4_detailaddress varchar2(1000) null, -- 상세주소
+    trading_phone varchar2(1000) not null, -- 연락처
+    trading_waybill_number varchar2(1000) not null, -- 운송장번호
+    
+    trading_progress varchar2(1000), -- 진행상태
+    trading_date date not null -- 등록일
+    );
+    
  */
 public class Product_kjVO {
 
@@ -19,7 +43,14 @@ public class Product_kjVO {
 	 String product_transaction_area;
 	 int product_purchase_price;
 	 int product_current_price;
-	 String trading_deposit_deadline;
+	 int trading_price;
+	 public int getTrading_price() {
+		return trading_price;
+	}
+	public void setTrading_price(int trading_price) {
+		this.trading_price = trading_price;
+	}
+	String trading_deposit_deadline;
 	 String trading_transaction_method;
 	
 	 public String getTrading_deposit_deadline() {

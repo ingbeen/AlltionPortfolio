@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.alltion.trading.TradingServiceImpl;
 import com.spring.mapper.BidMapper;
 import com.spring.mapper.DetailMapper;
 
@@ -15,6 +16,9 @@ public class BidServiceImpl {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Autowired
+	private TradingServiceImpl tradingServiceImpl;
 	
 	// 응찰 리스트 구하는 서비스.
 	public List<BidVO> bidListService(int bno, int page,Model model) {
@@ -42,6 +46,10 @@ public class BidServiceImpl {
 		model.addAttribute("bid_endpage",bid_endpage);
 		model.addAttribute("bid_listcount",bid_listcount);
 		
+		//응찰자수와 참가자수를 갱신해준다.
+		bidmapper.updateProduct_bids(bno);
+		bidmapper.updateProduct_participants(bno);
+		
 		return bidmapper.bidList(bno,bid_startrow,bid_endrow);
 	}
 
@@ -68,6 +76,7 @@ public class BidServiceImpl {
 			price += bidmapper.getProduct_bidding_unit(bid_product_number);
 			if(detailmapper.selectPurchasePrice(bid_product_number)!=0 && price >= detailmapper.selectPurchasePrice(bid_product_number)) {
 				price = detailmapper.selectPurchasePrice(bid_product_number);
+				
 			}
 			
 			bidvo.setBid_price(price);
@@ -76,15 +85,21 @@ public class BidServiceImpl {
 		
 		// 낙찰되었을 때 product테이블의 product_progress 수정하기  (0: 진행중 , 1: 낙찰됨)
 		int product_purchase_price = detailmapper.selectPurchasePrice(bid_product_number);
-		if(price == product_purchase_price) {
-			detailmapper.updateProductProgress(bid_product_number);
-			
-		}
+		
+//		if(price == product_purchase_price) {
+//			detailmapper.updateProductProgress(bid_product_number);
+//			
+//		}
 		
 		// 상세보기의 현재가 갱신
 		detailmapper.updateBoard(price,bid_product_number);
+		// 응찰 테이블에 입력.
+		int rest = bidmapper.bidInsert(bidvo);
+		if(price == product_purchase_price) {
+			tradingServiceImpl.endOfAuction(bid_product_number);
+		}
 		
-		return bidmapper.bidInsert(bidvo);
+		return rest;
 	}
 
 	// 즉시 구매하기 서비스.
@@ -101,10 +116,12 @@ public class BidServiceImpl {
 		bidvo.setBid_price(price);
 		
 		detailmapper.updateBoard(price, bid_product_number);
-		detailmapper.updateProductProgress(bid_product_number);
 		
+//		detailmapper.updateProductProgress(bid_product_number);
+		int rest = bidmapper.bidInsert(bidvo);
+		tradingServiceImpl.endOfAuction(bid_product_number);
 		
-		return bidmapper.bidInsert(bidvo);
+		return rest;
 	}
 
 	// 응찰 리스트 갯수

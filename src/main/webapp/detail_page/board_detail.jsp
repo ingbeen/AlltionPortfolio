@@ -132,240 +132,264 @@
 	</div>
 
 
-	<!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
-	<!--  !! 여기에 내용 넣기 !!  by.Hong  -->
-	<div align="center">
-		<div class="main_body" align="left">
-			<div class="product_summary">
-				<!-- ↓↓경매 정보//사진,대략적인 정보↓↓-->
-				<div class="summary_slideshow" align="center">
-					<div class="slideshow-container">
-						<div class="mySlides fade">
-							<img class="target1" src="<%=productvo.getProduct_img_1() %>"
-								data-zoom="2">
-						</div>
-						<%if(productvo.getProduct_img_2()!=null){ %>
-						<div class="mySlides fade">
-							<img class="target2" src="<%=productvo.getProduct_img_2() %>"
-								data-zoom="2">
-						</div>
-						<%} %>
-						<%if(productvo.getProduct_img_3()!=null){ %>
-						<div class="mySlides fade">
-							<img class="target3" src="<%=productvo.getProduct_img_3() %>"
-								data-zoom="2">
-						</div>
-						<%} %>
-						<%if(productvo.getProduct_img_4()!=null){ %>
-						<div class="mySlides fade">
-							<img class="target4" src="<%=productvo.getProduct_img_4() %>"
-								data-zoom="2">
-						</div>
-						<%} %>
-						<%if(productvo.getProduct_img_5()!=null){ %>
-						<div class="mySlides fade">
-							<img class="target5" src="<%=productvo.getProduct_img_5() %>"
-								data-zoom="2">
-						</div>
-						<%} %>
-						<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
-							class="next" onclick="plusSlides(1)">&#10095;</a>
-					</div>
-					<br>
-					<div class="dot_group">
-						<span class="dot" onclick="currentSlide(1)"><img
-							src="<%=productvo.getProduct_img_1() %>"
-							style="width: 100px; height: 100px;"></span>
-						<%if(productvo.getProduct_img_2()!=null){ %>
-						<span class="dot" onclick="currentSlide(2)"><img
-							src="<%=productvo.getProduct_img_2() %>"
-							style="width: 100px; height: 100px;"></span>
-						<%} %>
-						<%if(productvo.getProduct_img_3()!=null){ %>
-						<span class="dot" onclick="currentSlide(3)"><img
-							src="<%=productvo.getProduct_img_3() %>"
-							style="width: 100px; height: 100px;"></span>
-						<%} %>
-						<%if(productvo.getProduct_img_4()!=null){ %>
-						<span class="dot" onclick="currentSlide(4)"><img
-							src="<%=productvo.getProduct_img_4() %>"
-							style="width: 100px; height: 100px;"></span>
-						<%} %>
-						<%if(productvo.getProduct_img_5()!=null){ %>
-						<span class="dot" onclick="currentSlide(5)"><img
-							src="<%=productvo.getProduct_img_5() %>"
-							style="width: 100px; height: 100px;"></span>
-						<%} %>
-
-					</div>
-					<button type="button" class="mag_btn">
-						<img src="./resources/img/product/magicon.png">
-					</button>
-					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="mag_close">
-						<img src="./resources/img/product/mag_close.png">
-					</button>
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
+    <!--  !! 여기에 내용 넣기 !!  by.Hong  -->
+    <div align="center">
+    <div class="main_body" align="left">
+        <div class="product_summary">
+            <!-- ↓↓경매 정보//사진,대략적인 정보↓↓-->
+            <div class="summary_slideshow" align="center">
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                        <img class="target1" src="<%=productvo.getProduct_img_1() %>" data-zoom="2">
+                    </div>
+                    <%if(productvo.getProduct_img_2()!=null){ %>
+                    <div class="mySlides fade">
+                        <img class="target2" src="<%=productvo.getProduct_img_2() %>" data-zoom="2">
+                    </div>
+                    <%} %>
+                    <%if(productvo.getProduct_img_3()!=null){ %>
+                    <div class="mySlides fade">
+                        <img class="target3" src="<%=productvo.getProduct_img_3() %>" data-zoom="2">
+                    </div>
+                    <%} %>
+                    <%if(productvo.getProduct_img_4()!=null){ %>
+                    <div class="mySlides fade">
+                        <img class="target4" src="<%=productvo.getProduct_img_4() %>" data-zoom="2">
+                    </div>
+                    <%} %>
+                    <%if(productvo.getProduct_img_5()!=null){ %>
+                    <div class="mySlides fade">
+                        <img class="target5" src="<%=productvo.getProduct_img_5() %>" data-zoom="2">
+                    </div>
+                    <%} %>
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                <br>
+                <div class="dot_group">
+                    <span class="dot" onclick="currentSlide(1)"><img src="<%=productvo.getProduct_img_1() %>" style="width:100px; height:100px;"></span>
+                    <%if(productvo.getProduct_img_2()!=null){ %>
+                    <span class="dot" onclick="currentSlide(2)"><img src="<%=productvo.getProduct_img_2() %>" style="width:100px; height:100px;"></span>
+                    <%} %>
+                    <%if(productvo.getProduct_img_3()!=null){ %>
+                    <span class="dot" onclick="currentSlide(3)"><img src="<%=productvo.getProduct_img_3() %>" style="width:100px; height:100px;"></span>
+                    <%} %>
+                    <%if(productvo.getProduct_img_4()!=null){ %>
+                    <span class="dot" onclick="currentSlide(4)"><img src="<%=productvo.getProduct_img_4() %>" style="width:100px; height:100px;"></span>
+                    <%} %>
+                    <%if(productvo.getProduct_img_5()!=null){ %>
+                    <span class="dot" onclick="currentSlide(5)"><img src="<%=productvo.getProduct_img_5() %>" style="width:100px; height:100px;"></span>
+                 	<%} %>
+                 
+                </div>
+                <button type="button" class="mag_btn"><img src="./resources/img/product/magicon.png"></button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="mag_close"><img src="./resources/img/product/mag_close.png"></button>
+            </div>
+            <!-- ↓↓경매 요약 정보에서 텍스트 부분↓↓ -->
+            <div class="summary_information">
+                <div class="summary_info_nowPrice">
+                    <div class="summary_info_category" style="display: inline-block;">
+                        <span><font><%=productvo.getProduct_category_1() %></font></span>
+                        <span>&nbsp;&nbsp;&#10095;&nbsp;&nbsp;</span>
+                        <span><font><%=productvo.getProduct_category_2() %></font></span>
+                    </div>
+                    <ul>
+                        <li>
+                            <p class="product_detail name" style="font-size: 28px;"><%=productvo.getProduct_subject() %></p>
+                        </li>
+                        <li>
+                            <label for="now_price">현재가</label>
+                            <p id="now_price"><%=productvo.getProduct_current_price() %>원</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="summary_info">
+                    <ul>
+                       <li>
+                            <label for="product_number">상품 번호</label>
+                            <p>NO <%=productvo.getProduct_number() %></p>
+                        </li>
+                        <li>
+                            <label for="id">판매자</label>
+                            <font><%=productvo.getProduct_id().substring(0,3) %>****&nbsp;님</font>&nbsp;&nbsp; 
+                            <button id="seller_check_btn" onclick="modal_display(1)" style="background-color: #616161; color:white;">
+                                	판매자 정보 확인하기
+                            </button>
+                            <!-- ↓↓판매자 정보확인하기 눌렀을때↓↓ Modal by.HONG-->
+                            <div id="seller_info_modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <fieldset id="seller_info">
+                                        <legend>판매자 정보</legend>
+                                        <ul>
+                                            <li>
+                                                <label>아이디</label>
+                                                <font><%=productvo.getProduct_id().substring(0,3) %>****</font>
+                                            </li>
+                                            <li>
+                                                <label>이메일</label>
+                                                <font><%=membervo.getEmail() %></font>
+                                            </li>
+                                            <li>
+                                                <label>정상거래</label>
+                                                <font><%=scstvo.getSale_normal() %> 건</font>
+                                            </li>
+                                            <li>
+                                                <label>신고횟수</label>
+                                                <font>0 건</font>
+                                            </li>
+                                            <li>
+                                                <label>판매자 등급</label>
+                                                <font><%=sale_credit %></font>
+                                            </li>
+                                            <li>
+                                                <label>판매 성사율</label>
+                                                <font><%=scstvo.getSale_success_rate() %>%</font>
+                                            </li>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="boarddate">경매기간</label>
+                            <p><%=productvo.getProduct_issue_date().substring(0,16) %>&nbsp;&nbsp; ~ &nbsp;&nbsp;<%=productvo.getProduct_end_date().substring(0,16) %></p>
+                        </li>
+                        <li>
+                            <label for="start_price">시작가</label>
+                            <p><%=productvo.getProduct_starting_price() %>원</p>
+                        </li>
+                        <li>
+                            <label for="purchase_price">즉시 구매가</label>
+                            <p style="color:#F9A825;font-weight:bold;font-size:18px;"><%if(productvo.getProduct_purchase_price()!=0){%><%=productvo.getProduct_purchase_price() %>원<%} %>&nbsp;</p>
+                        </li>
+                        <li>
+                            <label for="top_bidder_id">최고 응찰자</label>
+                            <p><%=top_bidder_id %><br></p>
+                        </li>
+                        <li>
+                            <label for="sale_credit">판매자 등급</label>
+                            <p id="sale_credit"><%=sale_credit %> </p>
+                        </li>
+                        <li>
+                            <label for="howtotransaction">거래방법</label>
+                            <p>택배: <%=productvo.getProduct_delivery() %>/ 직거래:<%=productvo.getProduct_transaction_area() %> </p>
+                        </li>
+                        <li>
+                            <label for="boarddate">남은시간</label>
+                            <p style="font-weight:bold;font-size:18px;">
+                            	<span class="auction_countdown"
+									data-endTime="<%=productvo.getProduct_end_date() %>"
+									data-complete="<%=productvo.getProduct_progress() %>">&nbsp;
+								</span>
+							</p>
+                        </li>
+                        <li>
+                            <label for="boarddate">응찰단위</label>
+                            <font><%=productvo.getProduct_bidding_unit() %>원</font>&nbsp;&nbsp; 
+                            <button class="btns1" type="button" id="bid_notify_btn" onclick="modal_display(2)">응찰 유의사항</button>
+                            <!-- ↓↓응찰 유의사항을 눌렀을때↓↓-->
+                            <div id="bid_notify_modal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <fieldset id="bid_notify">
+                                        <legend>응찰시 유의사항!</legend>
+                                        <ul>
+                                            <li>
+                                                <label>1조1항</label>
+                                                <font>응찰시 취소 불가능.</font>
+                                            </li>
+                                            <li>
+                                                <label>2조1항</label>
+                                                <font>즉시구매가에 도달할 시 즉시 구매진행됨.</font>
+                                            </li>
+                                            <li>
+                                                <label>2조3항</label>
+                                                <font>택배 배송시 손상은 판매자에게 없음.</font>
+                                            </li>
+                                            <li>
+                                                <label>3조1항</label>
+                                                <font>시간이 종료시 최고응찰자가 낙찰됨.</font>
+                                            </li>
+                                            <li>
+                                                <label>3조2항</label>
+                                                <font>판매자나 관리자가 임의로 응찰을 취소할 수 없음.</font>
+                                            </li>
+                                            <li>
+                                                <label>3조3항</label>
+                                                <font>아무거나아무거나 아무거나 응찰해라~</font>
+                                            </li>
+                                            <li>
+                                                <label>3조5항</label>
+                                                <font>거지같은 물품올리지 마라~</font>
+                                            </li>
+                                            <li>
+                                                <label>4조1항</label>
+                                                <font>모달모달모달 모달모달모달</font>
+                                            </li>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                        	<label>판매자 구매후기</label>
+                        	<%=review_listcount %> 건 &nbsp;&nbsp; <button class="review_viewer" onclick="modal_display(3)">더보기 ></button>
+                        	<!-- 판매자 구매후기 더보기 클릭시 -->
+                        	<div id="seller_review_modal" class="modal">
+                        		
+                        		<div class="modal_content">
+                        			<div class="review_top">	
+                        				<span>구매 후기</span>
+                        				<span class="close">&times;</span>
+                        			</div>
+                        			<table class="review_list">
+                        			<thead>
+	                        			<tr class="review_title" align="center">
+	                        				<th class="review_no">번호</th>
+	                       					<th class="review_evaluate">평가</th>
+	                       					<th class="review_image">이미지</th>
+	                       					<th class="review_subject">물품명</th>
+	                       					<th class="review_content">구매후기</th>
+	                       					<th class="review_writer">작성자</th>
+	                       					<th class="review_date">작성일</th>
+	                       				</tr>
+                       				</thead>
+                       				<tbody id="review_list_content">
+                       					
+                       				</tbody>	
+                       				</table>
+                       				<div align="center">
+	                       				<%for(int i=review_startpage;i<=review_endpage;i++){%>
+											<a type="button" onclick="reviewList(<%=i%>)">[<%=i %>]</a>
+										<%}%>
+                       				</div>
+                        		</div>
+                        	</div>
+                        </li>
+						
+                    </ul>
+                </div>
+                <div class="btns" align="center">
+                <%if(productvo.getProduct_progress()==1) {%>
+                	<font style="color: red;">마감 종료된 경매입니다.</font><br>
+                <%}else if(id!=null&&!id.equals(productvo.getProduct_id())){ %>
+                    <button type="button" id="bid_btn" onclick="bidInsert()">응찰하기</button>
+                    <%if(productvo.getProduct_purchase_price()!=0) {%>
+                    	<button type="button" id="bid_btn2" onclick="nowpurchase()">즉시구매</button>
+                    <%} %>
+                    <button type="button" id="bid_btn4" onclick="insertWishList()">찜하기</button>
+                    <a href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로 돌아가기</button></a>
+				<%}else if(id==null){%>
+					<font><a href="./loginForm.kj" style="color:cornflowerblue;">로그인</a> 후 이용가능 합니다.</font><br>
+				<%}else if(id.equals(productvo.getProduct_id())){ %>
+					<a href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로 돌아가기</button></a>
+				<%} %>
 				</div>
-				<!-- ↓↓경매 요약 정보에서 텍스트 부분↓↓ -->
-				<div class="summary_information">
-					<div class="summary_info_nowPrice">
-						<div class="summary_info_category" style="display: inline-block;">
-							<span><font><%=productvo.getProduct_category_1() %></font></span>
-							<span>&nbsp;&nbsp;&#10095;&nbsp;&nbsp;</span> <span><font><%=productvo.getProduct_category_2() %></font></span>
-						</div>
-						<ul>
-							<li>
-								<p class="product_detail name" style="font-size: 28px;"><%=productvo.getProduct_subject() %></p>
-							</li>
-							<li><label for="now_price">현재가</label>
-								<p id="now_price"><%=productvo.getProduct_current_price() %>원
-								</p></li>
-						</ul>
-					</div>
-					<div class="summary_info">
-						<ul>
-							<li><label for="product_number">상품 번호</label>
-								<p>
-									NO
-									<%=productvo.getProduct_number() %></p></li>
-							<li><label for="id">판매자</label> <font><%=productvo.getProduct_id().substring(0,3) %>****&nbsp;님</font>&nbsp;&nbsp;
-								<button id="seller_check_btn" onclick="modal_display(1)"
-									style="background-color: #616161; color: white;">판매자
-									정보 확인하기</button> <!-- ↓↓판매자 정보확인하기 눌렀을때↓↓ Modal by.HONG-->
-								<div id="seller_info_modal" class="modal">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<fieldset id="seller_info">
-											<legend>판매자 정보</legend>
-											<ul>
-												<li><label>아이디</label> <font><%=productvo.getProduct_id().substring(0,3) %>****</font>
-												</li>
-												<li><label>이메일</label> <font><%=membervo.getEmail() %></font>
-												</li>
-												<li><label>정상거래</label> <font><%=scstvo.getSale_normal() %>
-														건</font></li>
-												<li><label>신고횟수</label> <font>0 건</font></li>
-												<li><label>판매자 등급</label> <font><%=sale_credit %></font>
-												</li>
-												<li><label>판매 성사율</label> <font><%=scstvo.getSale_success_rate() %>%</font>
-												</li>
-											</ul>
-										</fieldset>
-									</div>
-								</div></li>
-							<li><label for="boarddate">경매기간</label>
-								<p><%=productvo.getProduct_issue_date().substring(0,16) %>&nbsp;&nbsp;
-									~ &nbsp;&nbsp;<%=productvo.getProduct_end_date().substring(0,16) %></p>
-							</li>
-							<li><label for="start_price">시작가</label>
-								<p><%=productvo.getProduct_starting_price() %>원
-								</p></li>
-							<li><label for="purchase_price">즉시 구매가</label>
-								<p style="color: #F9A825; font-weight: bold; font-size: 18px;">
-									<%if(productvo.getProduct_purchase_price()!=0){%><%=productvo.getProduct_purchase_price() %>원<%} %>&nbsp;
-								</p></li>
-							<li><label for="top_bidder_id">최고 응찰자</label>
-								<p><%=top_bidder_id %><br>
-								</p></li>
-							<li><label for="sale_credit">판매자 등급</label>
-								<p id="sale_credit"><%=sale_credit %>
-								</p></li>
-							<li><label for="howtotransaction">거래방법</label>
-								<p>
-									택배:
-									<%=productvo.getProduct_delivery() %>/ 직거래:<%=productvo.getProduct_transaction_area() %>
-								</p></li>
-							<li><label for="boarddate">남은시간</label>
-								<p style="font-weight: bold; font-size: 18px;">
-									<span class="auction_countdown"
-										data-endTime="<%=productvo.getProduct_end_date() %>"
-										data-complete="<%=productvo.getProduct_progress() %>">&nbsp;
-									</span>
-								</p></li>
-							<li><label for="boarddate">응찰단위</label> <font><%=productvo.getProduct_bidding_unit() %>원</font>&nbsp;&nbsp;
-								<button class="btns1" type="button" id="bid_notify_btn"
-									onclick="modal_display(2)">응찰 유의사항</button> <!-- ↓↓응찰 유의사항을 눌렀을때↓↓-->
-								<div id="bid_notify_modal" class="modal">
-									<div class="modal-content">
-										<span class="close">&times;</span>
-										<fieldset id="bid_notify">
-											<legend>응찰시 유의사항!</legend>
-											<ul>
-												<li><label>1조1항</label> <font>응찰시 취소 불가능.</font></li>
-												<li><label>2조1항</label> <font>즉시구매가에 도달할 시 즉시
-														구매진행됨.</font></li>
-												<li><label>2조3항</label> <font>택배 배송시 손상은 판매자에게
-														없음.</font></li>
-												<li><label>3조1항</label> <font>시간이 종료시 최고응찰자가
-														낙찰됨.</font></li>
-												<li><label>3조2항</label> <font>판매자나 관리자가 임의로 응찰을
-														취소할 수 없음.</font></li>
-												<li><label>3조3항</label> <font>아무거나아무거나 아무거나
-														응찰해라~</font></li>
-												<li><label>3조5항</label> <font>거지같은 물품올리지 마라~</font></li>
-												<li><label>4조1항</label> <font>모달모달모달 모달모달모달</font></li>
-											</ul>
-										</fieldset>
-									</div>
-								</div></li>
-							<li><label>판매자 구매후기</label> <%=review_listcount %> 건
-								&nbsp;&nbsp;
-								<button class="review_viewer" onclick="modal_display(3)">더보기
-									></button> <!-- 판매자 구매후기 더보기 클릭시 -->
-								<div id="seller_review_modal" class="modal">
+				
 
-									<div class="modal_content">
-										<div class="review_top">
-											<span>구매 후기</span> <span class="close">&times;</span>
-										</div>
-										<table class="review_list">
-											<thead>
-												<tr class="review_title" align="center">
-													<th class="review_no">번호</th>
-													<th class="review_evaluate">평가</th>
-													<th class="review_image">이미지</th>
-													<th class="review_subject">물품명</th>
-													<th class="review_content">구매후기</th>
-													<th class="review_writer">작성자</th>
-													<th class="review_date">작성일</th>
-												</tr>
-											</thead>
-											<tbody id="review_list_content">
-
-											</tbody>
-										</table>
-										<div align="center">
-											<%for(int i=review_startpage;i<=review_endpage;i++){%>
-											<a type="button" onclick="reviewList(<%=i%>)">[<%=i %>]
-											</a>
-											<%}%>
-										</div>
-									</div>
-								</div></li>
-
-						</ul>
-					</div>
-					<div class="btns" align="center">
-						<%if(productvo.getProduct_progress()==1) {%>
-						<font style="color: red;">마감 종료된 경매입니다.</font><br>
-						<%}else if(id!=null&&!id.equals(productvo.getProduct_id())){ %>
-						<button type="button" id="bid_btn" onclick="bidInsert()">응찰하기</button>
-						<%if(productvo.getProduct_purchase_price()!=0) {%>
-						<button type="button" id="bid_btn2" onclick="nowpurchase()">즉시구매</button>
-						<%} %>
-						<a href=""><button type="button" id="bid_btn4">찜하기</button></a> <a
-							href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로
-								돌아가기</button></a>
-						<%}else if(id==null){%>
-						<font><a href="./loginForm.kj"
-							style="color: cornflowerblue;">로그인</a> 후 이용가능 합니다.</font><br>
-						<%}else if(id.equals(productvo.getProduct_id())){ %>
-						<a href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로
-								돌아가기</button></a>
-						<%} %>
-					</div>
-
-				</div>
+				</div> 
 			</div>
 			<!-- ↓↓상세정보페이지 네비게이션바↓↓ -->
 			<ul class="detail_page_nav">
@@ -418,6 +442,7 @@
             <div class="product_information_text">
 				<%=productvo.getProduct_content()%>
             </div>
+
 
 				<ul class="detail_page_nav">
 					<li><a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)
@@ -758,7 +783,6 @@
 				success : function(data){
 					if(data==1){
 						bidList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
 					}
 					
 				},
@@ -1154,6 +1178,28 @@
 			});
 		}
 		
+		// 찜버튼 클릭시 wish리스트에 해당항목 추가
+		function insertWishList(){
+			$.ajax({
+				url : '/alltion/wish_list.hs',
+				type : 'post',
+				data : {'wish_product_number':bno,'wish_id':sessionid},
+				dataType : 'json',
+				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+				success : function(data){
+					if(data==0){
+						alert('찜목록에 추가 되었습니다.');
+					}else{
+						alert('이미 찜목록에 등록되어있는 경매 입니다.');
+					}
+					
+					
+				},
+				error:function(){
+					alert("ajax통신 실패(insertWishList)!!!");		
+				}
+			});
+		}
 		
     </script>
 </body>

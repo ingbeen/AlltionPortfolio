@@ -80,9 +80,10 @@
 }
 .product-box img{
 	width: 100%;
-	max-width: 100%;
+	max-width: 258px;
 	height: 300px;
-	max-height: 300px;	
+	max-height: 300px;
+	min-width: 258px;	
 }
 
 .hot_item {

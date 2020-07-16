@@ -42,7 +42,6 @@ public class MypageController {
 		}else 
 		{
 		MemberVO vo = memberService.selectMember(userId);
-		System.out.println(vo.getMember_id());
 		model.addAttribute("membervo",vo);
 		
 		return "mypage/update";
@@ -170,41 +169,5 @@ public class MypageController {
 		return null;
 		
 	}
-	/*
-	@RequestMapping(value = "/buyer.kj")
-	public String buyer(Model model,HttpSession session)throws Exception
-	{	
-		String userId = (String)session.getAttribute("userId");
-		if(userId ==null)
-		{
-			return "member/login";
-		}
-		else 
-		{
-		MemberVO vo = memberService.selectMember(userId);
-		model.addAttribute("membervo",vo);
 		
-		return "mypage/buyer";
-		}
-	}	
-	
-	@RequestMapping(value = "/buyer_deal.kj")
-	public String deal(Model model,HttpSession session)throws Exception
-	{
-		String userId = (String)session.getAttribute("userId");
-		if(userId == null)
-		{
-			return "member/login";
-		}
-		else
-		{
-			MemberVO vo = memberService.selectMember(userId);
-			model.addAttribute("membervo",vo);
-			
-		    return "mypage/buyer_deal";
-		}
-	}	
-*/
-	
-	
 }

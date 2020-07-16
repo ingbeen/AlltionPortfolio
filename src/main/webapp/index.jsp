@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
         <a href="https://coupa.ng/bEUWFN" target="_blank">
             <img src="https://ads-partners.coupang.com/banners/263827?subId=&traceId=V0-301-969b06e95b87326d-I263827&w=728&h=90" >
         </a>
-        <button class="ad__banner--closeBtn"></button>
+        <button style="background:url(./resources/img/header/close_btn.png);" class="ad__banner--closeBtn"></button>
 <!--
         <a href="#" class="ad__banner--link">
             <img src="img/header/adEx.png" class="ad__banner--img">

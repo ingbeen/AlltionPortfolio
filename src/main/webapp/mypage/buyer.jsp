@@ -24,9 +24,9 @@
     <div class="header">
         <div class="upper_header">
             <div class="upper_header--nav">
-                <p>
-                    <a href="">고객 센터</a>
-                </p>
+                <span>
+                    <a href="" id="clock"></a>
+                </span>
                 <ul>
                     <li>
                         <a href="./mypage.kj">${userId}</a>
@@ -133,7 +133,7 @@
                             <span>구매 가격</span>
                         </div>
                         <div class="buyer_form__list content">
-                        <span><%=vo.getProduct_purchase_price() %></span>
+                        <span><%=vo.getTrading_price() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -169,7 +169,7 @@
                 </ul>
                
         </div>
-        <a href = "./buyer_deal.kj"  class = "base_btn">거래 하기</a>
+         <a href = "./buyer_emoney.kj"  class = "base_btn" >입금 하기</a>	
     </div>
     <%
         	}}
@@ -289,8 +289,11 @@
     </div>
     
     <!--  스크립트 영역  -->
+    <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script type="text/javascript">
+    <script src="./resources/js/common.js"></script>
+    
+    <script>
         $(function(){
             // 광고 없애기
             $(".ad__banner--closeBtn").click(function(){

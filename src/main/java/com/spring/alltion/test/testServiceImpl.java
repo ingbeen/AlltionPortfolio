@@ -20,5 +20,19 @@ public class testServiceImpl implements testService{
 		ArrayList<Product_kjVO>list = testMapper.getProductlist(userId);
 		return list;
 	}
+
+	@Override
+	public Test_emoneyVO selectEmoney(String userId) {
+		TestMapper testMapper = sqlSession.getMapper(TestMapper.class);
+		Test_emoneyVO emoneyvo = testMapper.selectEmoney(userId);
+		return emoneyvo;
+	}
+
+	@Override
+	public Product_kjVO selectProduct(String userId) {
+		TestMapper testMapper = sqlSession.getMapper(TestMapper.class);
+		Product_kjVO Product_kjvo = testMapper.selectProduct(userId);
+		return Product_kjvo;
+	}
 	
 }

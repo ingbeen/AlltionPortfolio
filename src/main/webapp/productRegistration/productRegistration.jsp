@@ -13,13 +13,15 @@
     <link rel="stylesheet" href="resources/css/summernote/summernote-lite.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script defer src="resources/js/productRegistration.js"></script>
 
     <title>All-tion</title>
 </head>
 
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-    <!-- top 키 -->
+	<!-- top 키 -->
     <div id="topKey" class="topKey_btn" >
         <span class="material-icons">
             keyboard_arrow_up
@@ -473,7 +475,6 @@
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="resources/js/common.js"></script>
-    <script src="resources/js/productRegistration.js"></script>
     <script src="resources/js/summernote/summernote-lite.js"></script>
     <script src="resources/js/summernote/summernote-ko-KR.js"></script>
 </body>

@@ -6,7 +6,7 @@
 <resultMap type="Product_kjVO" id = "Product_KjResultMap">
 	<result property="product_number" column="product_number"/>
 	<result property="product_subject" column="product_subject"/>
-	<result property="product_purchase_price" column="product_purchase_price"/>
+	<result property="trading_price" column="trading_price"/>
 	<result property="trading_deposit_deadline" column="trading_deposit_deadline"/>
 	<result property="trading_transaction_method" column="trading_transaction_method"/>
 	<result property="product_id" column="product_id"/>
@@ -17,7 +17,7 @@
 		select
 		product_number,
 		product_subject,
-		product_purchase_price,
+		trading_price,
 		to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
 		trading_transaction_method,
 		product_id
@@ -25,5 +25,22 @@
 		where product_kj.product_number = product_kj_trading.trading_product_number and trading_buyer_id = #{userId}
 		order by trading_deposit_deadline
 		
+	</select>
+	
+	<select id = "selectEmoney" resultType = "com.spring.alltion.test.Test_emoneyVO">
+	
+	select 
+	member_id, 
+	test_emoney 
+	from member natural join test_emoney
+	where member.member_id = test_emoney.emoney_id and emoney_id = #{userId}
+	
+	</select>
+	
+	<select id = "selectProduct" resultType = "com.spring.alltion.test.Product_kjVO">
+	select
+	trading_price
+	from product_kj_trading
+	where trading_buyer_id = #{userId}
 	</select>
 </mapper>

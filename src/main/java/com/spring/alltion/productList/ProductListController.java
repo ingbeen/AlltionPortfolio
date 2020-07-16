@@ -27,8 +27,30 @@ public class ProductListController {
 		return "productList/productList";
 	}
 	@RequestMapping(value = "/Mainlist.ms", method = RequestMethod.GET)
-	public String getMainlist(Model model) {
-		model.addAttribute("mainlist", productlistService.getMainlist());
+	public String getMainlist(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		int limit = 6;
+		int listcount = productlistService.getListCount();
+		int startrow = (page - 1) * 6 + 1; // 1 7  13 19
+		int endrow = startrow + limit - 1; // 6 12 18 24
+		
+		HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+		hashmap.put("startrow", startrow);
+		hashmap.put("endrow", endrow);
+		List<ProductVO> mainlist = productlistService.getMainlist(hashmap);
+		
+		int maxpage = (int) ((double) listcount / limit + 0.95);
+		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 5 + 1;
+		int endpage = maxpage;
+		if (endpage > startpage + 5 - 1)
+			endpage = startpage + 5 - 1;
+		
+		//model.addAttribute("mainlist", productlistService.getMainlist());
+		model.addAttribute("page", page);
+		model.addAttribute("listcount", listcount);
+		model.addAttribute("mainlist", mainlist);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
 		model.addAttribute("pricelist", productlistService.getfamousPricelist2());
 		model.addAttribute("participantslist", productlistService.getfamousParticipantslist2());
 		model.addAttribute("viewslist", productlistService.getfamousViewslist2());
@@ -44,7 +66,7 @@ public class ProductListController {
 
 	@RequestMapping(value = "/productList.ms", method = RequestMethod.GET)
 	public String getProductList(Model model, @RequestParam(value="page" , required=false, defaultValue="1") int page) throws Exception {
-		int limit = 9;
+		int limit = 6;
 		int listcount = productlistService.getListCount();
 		int startrow = (page - 1) * 5 + 1;
 		int endrow = startrow + limit - 1;
@@ -55,9 +77,9 @@ public class ProductListController {
 		
 		// 총 페이지 수
 		int maxpage=(int)((double)listcount/limit+0.95);
-		// 페이지 첫 시작 숫자(1, 6, 11 ��...)
+		// 페이지 첫 시작 숫자
    		int startpage = (((int) ((double)page / 10 + 0.9)) - 1) * 5 + 1;
-   		// 페이지 마지막 숫자(5, 10, 15 ��...)
+   		// 페이지 마지막 숫자
    		int endpage = maxpage;
    		
    		if (endpage>startpage+5-1) endpage=startpage+5-1;
@@ -73,15 +95,25 @@ public class ProductListController {
 	}
 	
 	@RequestMapping(value = "/getCategorylist.ms", method = RequestMethod.GET)
-	public String getCategorylist(HttpServletRequest res,@RequestParam(value = "product_category_2") String product_category_2, @RequestParam(value = "sortD", defaultValue="sort1") String sortD, Model model) {
-		String category = res.getParameter("product_category_2");
-		String sort = res.getParameter("sortD");
+	public String getCategorylist(@RequestParam(value="page" , required=false, defaultValue="1") int page, @RequestParam(value = "product_category_2") String product_category_2, Model model) {
 		List<ProductVO> categorylist = null;
 		List<ProductVO> pricelist = null;
 		List<ProductVO> participantslist = null;
 		List<ProductVO> viewslist = null;
-		if(sortD.equals("sort1")) {
-		categorylist = productlistService.getCategorylist(product_category_2);
+		
+		int limit = 6;
+		int listcount = productlistService.getCategorylistCount(product_category_2);
+		int startrow = (page - 1) * 6 + 1; // 1 7  13 19
+		int endrow = startrow + limit - 1; // 6 12 18 24
+		
+		categorylist = productlistService.getCategorylist(product_category_2, startrow, endrow);
+		
+		int maxpage = (int) ((double) listcount / limit + 0.95);
+		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 5 + 1;
+		int endpage = maxpage;
+		if (endpage > startpage + 5 - 1)
+			endpage = startpage + 5 - 1;
+		
 		pricelist = productlistService.getfamousPricelist(product_category_2);
 		participantslist = productlistService.getfamousPricelist(product_category_2);
 		viewslist = productlistService.getfamousPricelist(product_category_2);
@@ -90,26 +122,20 @@ public class ProductListController {
 		model.addAttribute("pricelist", pricelist);
 		model.addAttribute("participantslist", participantslist);
 		model.addAttribute("viewslist", viewslist);
-		}else {
-			categorylist = productlistService.getOrderbylist(category, sort);
-			pricelist = productlistService.getfamousPricelist(product_category_2);
-			participantslist = productlistService.getfamousPricelist(product_category_2);
-			viewslist = productlistService.getfamousPricelist(product_category_2);
-			model.addAttribute("categorylist", categorylist);
-			model.addAttribute("pricelist", pricelist);
-			model.addAttribute("participantslist", participantslist);
-			model.addAttribute("viewslist", viewslist);
-		}
+		
+		model.addAttribute("page", page);
+		model.addAttribute("listcount", listcount);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		
 		String category1 = TranslateCate_1(product_category_2.substring(0, 6));
 		String category2 = TranslateCate_2(product_category_2);
+		
 		model.addAttribute("category1", category1);
 		model.addAttribute("category2", category2);
-		/*
-		if(product_category_2.equals("cate0104")) {
-			product_category_2 = "패션 -> 남성신발";
-		}
-		model.addAttribute("category", product_category_2);
-		*/
+		model.addAttribute("product_category_2", product_category_2);
+
 		return "productList/productList";
 	}
 	
