@@ -72,7 +72,7 @@ pageEncoding="UTF-8"%>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="wishList.yb?page=1&endDateFormat=0">
                             <span class="material-icons">turned_in_not</span>
                             <span>찜 목록</span>
                         </a>

@@ -1,11 +1,12 @@
 /* 찜목록 시작 by.유빈 */
 
+let page;
+let endDateFormat;
+
 // 찜목록을 가져온다
-function getWishList() {
+function getWishList(page) {
 	scrollDisable(); // 스크롤 고정
 	LoadingWithMask(); // 로딩화면 실행
-	
-	let page = $('.active > a > span').html();
 	
 	// DB에서 찜목록 가져오기
     $.ajax({
@@ -15,8 +16,9 @@ function getWishList() {
         },
         dataType :"json",
         success : (contentsData) => {
-        	wishListOutput(contentsData.wishList); // 찜목록을 출력하는 함수실행
-        	console.log(contentsData.listcount);
+        	wishListOutput(contentsData.wishList); // 찜목록 내용 출력
+        	wishListCountOutput(contentsData.listcount); // 찜몰록 갯수 출력
+        	pageInfoOutput(contentsData.pagination); // 페이지 정보 출력
         	closeLoadingWithMask(); // 로딩화면 종료
         	scrollAble(); // 스크롤 고정해제
         },
@@ -29,14 +31,11 @@ function getWishList() {
 }
 
 // 찜목록이 1개 이상일시에 실행
-function wishListOutput (wishList) {
+function wishListOutput(wishList) {
 	let wishListContents = ""; // 찜목록 데이터 내역
-	let wishListCount = 0; // 찜목록 갯수
 	
 	// 찜목록 객체(list) 만큼 반복실행
 	$.each(wishList, (idx, vo) => {
-		wishListCount += 1; // 찜목록 갯수를 1 증가
-		
 		// 찜목록에 저장된 데이터를 대입하여 태그를 작성
 		wishListContents += `
 			<div class="wishList--contents">
@@ -73,8 +72,61 @@ function wishListOutput (wishList) {
 	
 	// 위 each문에서 설정된 내용을 출력한다
 	$('.wishList--contentsWarp').html(wishListContents);
-	$('.wishList--conut').last().html(wishListCount)
-	chageEndDate(); // 사용자가 지정한 마감시간form으로 변환
+	chageEndDateFormat(); // 사용자가 지정한 마감시간Format으로 변환
+}
+
+// 찜목록 갯수 출력
+function wishListCountOutput (listcount) {
+	$('.wishList--conut').last().html(listcount)
+}
+
+// 페이지정보 출력
+function pageInfoOutput (pagination) {
+	let allPageContent = ""; // veiw에 출력될 페이지 전체 내용
+	let prevContent = "";
+	let nextContent = "";
+	let pageContent = "";
+	
+	let nowPage = pagination.page;
+	let startpage = pagination.startpage;
+	let endpage = pagination.endpage;
+	
+	if (pagination.prev != 0) {
+		prevContent = `
+			<li class="nonActive" data-page="${pagination.prev}">
+		        <span class="material-icons">keyboard_arrow_left</span>
+		    </li>`;
+	}
+	
+	if (pagination.next != 0) {
+		nextContent = `
+			<li class="nonActive" data-page="${pagination.next}">
+		        <span class="material-icons">keyboard_arrow_right</span>
+		    </li>`;
+	}
+	
+	for (let i = startpage; i <= endpage; i++) {
+		if (i == nowPage) {
+			pageContent += `
+			    <li id="active" data-page="${i}">
+			        <span>${i}</span>
+			    </li>`;
+		} else {
+			pageContent += `
+			    <li class="nonActive" data-page="${i}">
+			        <span>${i}</span>
+			    </li>`;
+		}
+	}
+	
+	allPageContent = `
+		<ul class="wishList--page">` +
+			prevContent +
+			pageContent +
+			nextContent + `
+		</ul>`;
+	
+	$('.wishList--pageWarp').html(allPageContent);
 }
 
 // 찜목록이 없을시에 실행
@@ -164,7 +216,7 @@ function wishListDelete() {
         type : "POST",
         data : { "deleteWishList" : deleteWishList },
         success : () => {
-        	getWishList(); // 성공시 리스트 재갱신
+        	getWishList(page); // 성공시 리스트 재갱신
         	clickCheck = false; // 중복클릭 방지해제
         },
         error : () => clickCheck = false // 중복클릭 방지해제
@@ -172,41 +224,49 @@ function wishListDelete() {
 	
 }
 
-let endDateFormStatus = true; // form의 현재상태
-const _second = 1000; // 1초
-const _minute = _second * 60; // 1분
-const _hour = _minute * 60; // 1시간
-const _day = _hour * 24; // 1일
-
-// 종료시간(남은시간)버튼 클릭시 실행
-$('.wishList--ChangeEndDateFormBtn').on('click', chageEndDate)
-
-// 종료시간(남은시간)버튼 클릭시 실행
-function chageEndDate() {
-	// 'wishList--endDate__endDate'의 클래스를 가진 태그 갯수만큼 반복실행한다
-    $('.wishList--endDate__endDate').each(function () {
+function chageEndDateFormat() {
+	console.log(endDateFormat);
+	$('.wishList--endDate__endDate').each(function () {
     	// 버튼의 상태에 따라 마감시간의 양식을 바꿔준다
-        if (!endDateFormStatus) {
+        if (endDateFormat) {
             chanageEndDateToTimeLeft($(this)); // 종료시간 -> 남은시간
         } else {
             chanageTimeLeftToEndDate($(this)); // 남은시간 -> 종료시간
         }
     })
-
-    // 버튼의 상태를 바꿔준다
-    if (!endDateFormStatus) {
-        $('.wishList--ChangeEndDateFormBtn').html("종료시간 표기");
-    } else {
-        $('.wishList--ChangeEndDateFormBtn').html("남은시간 표기");
+    if (0) {
+    	console.log("yyy");
     }
-
-    // form의 현재상태를 바꿔준다
-    endDateFormStatus = !endDateFormStatus;
+	
+	if (1) {
+    	console.log("www");
+    }
+	console.log(typeof(endDateFormat));
+    if (endDateFormat) {
+    	console.log("dd");
+        $('.wishList--changeEndDateFormBtn').html("종료시간 표기");
+    } else {
+    	console.log("ff");
+        $('.wishList--changeEndDateFormBtn').html("남은시간 표기");
+    }
 }
 
+function sendChageEndDateBtn() {
+    if (endDateFormat) {
+    	endDateFormat = 0;
+    	udpateURL();
+    } else {
+    	endDateFormat = 1;
+    	udpateURL();
+    }
+}
 
+const _second = 1000; // 1초
+const _minute = _second * 60; // 1분
+const _hour = _minute * 60; // 1시간
+const _day = _hour * 24; // 1일
 
-//종료시간 -> 남은시간
+// 종료시간 -> 남은시간
 function chanageEndDateToTimeLeft(element) {
 	let now = new Date(); // 현재시간
 	let endDate = new Date(element.attr("data-endDate")); // 마감시간
@@ -267,8 +327,48 @@ function chanageTimeLeftToEndDate(element) {
 	element.html(dataEndDate);
 }
 
+function udpateURL() {
+	let renewURL = "?page=" + page;
+	renewURL += "&endDateFormat=" + endDateFormat;
+	
+	//페이지 갱신 실행!
+	history.pushState(null, null, renewURL);
+}
+
+function getParam(key) {
+    let params = location.search.substr(location.search.indexOf("?") + 1);
+    let sval = "";
+    params = params.split("&");
+    for (let i = 0; i < params.length; i++) {
+        temp = params[i].split("=");
+        if ([temp[0]] == key) { sval = temp[1]; }
+    }
+
+    return sval;
+}
+
+// 페이지 이동시 실행
+$(document).on('click', '.nonActive', (e) => {
+	page = e.currentTarget.getAttribute('data-page');
+	
+	getWishList(page); // 찜목록을 가져온다
+	
+	udpateURL();
+});
+
+// 종료시간(남은시간)버튼 클릭시 실행
+$(document).on('click', '.wishList--changeEndDateFormBtn', () => {
+	sendChageEndDateBtn();
+	chageEndDateFormat();
+});
+
+// 페이지 로딩이 끝난 후 실행
 $('document').ready(() => {
-	getWishList(); // 찜목록을 가져온다
+	page = Number(getParam("page"));
+	endDateFormat = Number(getParam("endDateFormat"));
+	
+	// 앤드데이트 포맷부터
+	getWishList(page); // 찜목록을 가져온다
 })
 
 /* 찜목록 끝 by.유빈 */

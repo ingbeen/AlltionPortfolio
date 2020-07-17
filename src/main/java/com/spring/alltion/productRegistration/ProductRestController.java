@@ -25,6 +25,12 @@ public class ProductRestController {
 	@Autowired
 	private ProductServiceImpl productService;
 	
+	// 상품(경매) 등록
+	@RequestMapping(value = "productInsert.yb", produces="application/json;charset=UTF-8")
+	public void productInsert(ProductVO productVO) {
+		productService.ProductInsert(productVO);
+	}
+	
 	// 에디터 이미지 업로드
 	@RequestMapping(value = "editorImgUpload.yb", produces="application/json;charset=UTF-8")
 	public void editorImgUpload(MultipartFile file, HttpServletResponse response, 
@@ -166,12 +172,6 @@ public class ProductRestController {
 		
 		// 이미지 경로 리스트 반환
 		return imgSrcList;
-	}
-	
-	// 상품(경매) 등록
-	@RequestMapping(value = "productInsert.yb", produces="application/json;charset=UTF-8")
-	public void productInsert(ProductVO productVO) {
-		productService.ProductInsert(productVO);
 	}
 	
 	// 이미지 리사이즈

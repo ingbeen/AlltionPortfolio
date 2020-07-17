@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <script defer src="resources/js/wishList.js"></script>
+    
     
     <title>All-tion</title>
 </head>
@@ -98,7 +98,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="wishList.yb">
+                        <a href="wishList.yb?page=1&endDateFormat=0">
                             <span class="material-icons">turned_in_not</span>
                             <span>찜 목록</span>
                         </a>
@@ -144,7 +144,7 @@
 
             <div class="wishList--caption">
                 <p><span class="wishList--conut">찜목록</span>에 대해서 모두 <span class="wishList--conut"></span>개가 검색되었습니다</p>
-                <button class="wishList--ChangeEndDateFormBtn" type="button">남은시간 표기</button>
+                <button class="wishList--changeEndDateFormBtn" type="button">남은시간 표기</button>
             </div>
 
             <div class="wishList--tableWarp">
@@ -169,31 +169,11 @@
                 <div class="wishList--contentsWarp"></div>
                 
                 <button class="wishList--delete" type="button" onclick="wishListDelete()">선택상품 삭제</button>
-                <div class="wishList--pageWarp">
-                    <ul class="wishList--page">
-                        <li>
-                            <a><span class="material-icons">keyboard_arrow_left</span></a>
-                        </li>
-                        <li class="active">
-                            <a><span>1</span></a>
-                        </li>
-                        <!-- 
-                        <li>
-                            <a><span>2</span></a>
-                        </li>
-                        <li>
-                            <a><span>3</span></a>
-                        </li>
-                         -->
-                        <li>
-                            <a><span class="material-icons">keyboard_arrow_right</span></a>
-                        </li>
-                    </ul>
-                </div>
+                
+                <div class="wishList--pageWarp"></div>
             </div>
             
         </div>
-            
 
     </section>
 
@@ -259,6 +239,7 @@
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="resources/js/common.js"></script>
+    <script src="resources/js/wishList.js"></script>
 </body>
 
 </html>

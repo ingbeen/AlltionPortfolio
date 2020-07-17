@@ -2,7 +2,6 @@ package com.spring.alltion.mypage;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,25 +20,38 @@ public class WishListServiceImpl implements WishListService {
 	
 	@Autowired
 	private DetailServiceImpl detailServiceImpl;
-
+	
+	// wishList페이지에 필요한 정보를 HashMap에 할당하여 리턴한다
 	@Override
-	public HashMap<String, Object> getContentsData(String userId, int page) {
+	public HashMap<String, Object> getContentData(String userId, int page) {
 		WishListMapper wishListMapper; // 마이바티스 찜목록맵퍼
 		ProductMapper productMapper; // 마이바티스 상품맵퍼
+		
+		int listcount; // 찜몰록 갯수
+		Pagination pagination; // 페이징처리 객체
 		List<ProductVO> wishList = null; // 상품정보 리스트
-		HashMap<String, Object> contentsData = null;
+		
+		int startrow; // 화면에 나올 첫번째 글번호
+		int endrow; // 화면에 나올 마지막 글번호
+		
+		HashMap<String, Object> contentsData = null; // veiw로 보낼 데이터를 담을 객체
 		
 		try {
 			wishListMapper = sqlSession.getMapper(WishListMapper.class);
 			productMapper = sqlSession.getMapper(ProductMapper.class);
-			// 총 리스트 수를 받아옴
-			int listcount = wishListMapper.getWishListCount(userId);
 			
-			Map<String, Integer> pagesAndRows = getPagesAndRows(userId, page, listcount);
+			// 찜몰록 리스트 수를 받아옴
+			listcount = wishListMapper.getWishListCount(userId);
 			
-			int startrow = pagesAndRows.get("startrow");
-			int endrow = pagesAndRows.get("endrow");
+			// 페이징 처리 실행
+			pagination = new Pagination(page, listcount);
+			pagination.setPageInfo();
 			
+			// 화면에 나올 첫번째 글번호와 마지막 글번호를 할당한다 
+			startrow = pagination.getStartrow();
+			endrow = pagination.getEndrow();
+			
+			// 글번호에 따른 상품리스트를 가져온다
 			wishList = productMapper.getProductForWishList(userId, startrow, endrow);
 			
 			// 찜목록이 한개 이상이라면 실행
@@ -51,79 +63,41 @@ public class WishListServiceImpl implements WishListService {
 					translateTransactionArea(productVO); // 직거래 한글로 다듬기
 				}
 			}
-
-			contentsData = new HashMap<String, Object>();
 			
-			contentsData.put("pagesAndRows", pagesAndRows);
+			// veiw로 보낼 데이터를 할당한다
+			contentsData = new HashMap<String, Object>();
+			contentsData.put("pagination", pagination);
 			contentsData.put("listcount", listcount);
 			contentsData.put("wishList", wishList);
 			
-			
 		} catch(Exception e) {
+			System.out.println("getContentData에러");
 			e.printStackTrace();
 		}
 		
 		return contentsData;
 	}
-
+	
+	// 찜목록 삭제
 	@Override
 	public void deleteWishList(List<String> deleteWishList, String userId) {
 		WishListMapper wishListMapper; // 마이바티스 찜목록맵퍼
-		wishListMapper = sqlSession.getMapper(WishListMapper.class);
+		HashMap<String, Object> paramList; // sql문에 들어갈 파라미터List 객체
 		
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		hm.put("userId", userId);
-		hm.put("deleteWishList", deleteWishList);
-		
-		wishListMapper.deleteWishList(hm);
-		
-	}
-	
-	// 현재 페이지번호에 따른 row번호와 
-	public Map<String, Integer> getPagesAndRows(String userId, int page, int listcount) {
-		// 한 화면에 보이는 글의 갯수
-		int rowlimit = 5;
-		
-		int pagelimit = 5;
-		
-		// 읽기 시작할 row 번호
-		int startrow = (page - 1) * rowlimit + 1;
-
-		// 읽을 마지막 row 번호
-		int endrow = startrow + rowlimit - 1;
-
-		// 0.9를 더해서 페이지를 총페이지수를 구함(글이 1개이면 1페이지, 11개면 2페이지, 101개면 11페이지)
-		int maxpage = (int) ((double) listcount / rowlimit + 0.9);
-
-		// 하단 페이지링크 갯수[이전] [1] ... [10] [다음]의 [1]에 해당
-		int startpage = (((int) ((double) page / pagelimit + 0.9)) - 1) * pagelimit + 1;
-
-		// 하단 페이지링크 갯수[이전] [1] ... [10] [다음]의 [10]에 해당
-		int endpage = maxpage;
-
-		// 글이 1개이면 startpage는 1이 되고 maxpage는 1이 된다
-		// 글이 11개이면 startpage는 1이 되고 maxpage는 2이 된다
-		// 글이 101개이면 startpage는 1이 되고 maxpage는 11이 된다
-		// 글이 101인 상태에서는 하단에 page링크는 1~10까지만 떠야되며 11은 뜨지 말아야 된다
-		// 그걸 위해 startpage가 1일때는 10까지만 11일때는 20까지만 뜨게 한다
-		if (endpage > startpage + pagelimit - 1) {
-			endpage = startpage + pagelimit - 1;
+		try {
+			wishListMapper = sqlSession.getMapper(WishListMapper.class);
+			
+			// 로그인아이디와 삭제할 상품번호(복수가능)를 파라미터로 설정후 sql문을 실행한다
+			paramList = new HashMap<String, Object>();
+			paramList.put("userId", userId);
+			paramList.put("deleteWishList", deleteWishList);
+			wishListMapper.deleteWishList(paramList);
+			
+		} catch(Exception e) {
+			System.out.println("deleteWishList에러");
+			e.printStackTrace();
 		}
 		
-		// getBoardList에서 실행되는 sql문을 위한 파라미터 할당
-		Map<String, Integer> pagesAndRows = new HashMap<String, Integer>();
-		pagesAndRows.put("startrow", startrow);
-		pagesAndRows.put("endrow", endrow);
-		pagesAndRows.put("page", page);
-		pagesAndRows.put("maxpage", maxpage);
-		pagesAndRows.put("startpage", startpage);
-		pagesAndRows.put("endpage", endpage);
-		
-		System.out.println("maxpage = " + maxpage);
-		System.out.println("startpage = " + startpage);
-		System.out.println("endpage = " + endpage);
-		
-		return pagesAndRows;
 	}
 	
 	// 카테고리 한글로 다듬기
