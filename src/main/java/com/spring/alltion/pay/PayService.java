@@ -1,5 +1,6 @@
 package com.spring.alltion.pay;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface PayService {
@@ -7,4 +8,14 @@ public interface PayService {
 	void deletePay(String buyer_email);
 	PayVO getPayList(String merchant_uid);
 	PayVO charge(PayVO payVO);
+	void cancelPay(String convertChargeMoney, String pay_id);
+	void chargePay(String convertChargeMoney, String pay_id);
+	void insertPaylist(String pay_id);
+	String findCurrentMoney(String pay_id);
+	String findPayid(String pay_id);
+	//List<PayVO> findChargelist(String pay_id, String pay_status);
+	//List<PayVO> findCancellist(String pay_id, String pay_status);
+	int getPaycount(String pay_status);
+	List<PayVO> findChargelist(String userId, String paid, int startrow1, int endrow1);
+	List<PayVO> findCancellist(String userId, String paid, int startrow2, int endrow2);
 }

@@ -16,24 +16,16 @@ public interface TradingService {
 	/* 오버로딩 */
 	// 트레이딩(거래중) 테이블 삽입 - seachEndOfProduct에 의한 삽입
 	void tradingInsert(ProductVO productVO, ProductMapper producMapper, 
-			TradingMapper tradingMapper, BidMapper bidMapper) throws Exception;
+			TradingMapper tradingMapper, BidMapper bidMapper);
 	
 	/* 오버로딩 */
 	// 트레이딩(거래중) 테이블 삽입 - 즉시구매 혹은 즉시구매가가 경매현재가와 같아졌을때
 	void tradingInsert(int product_number, ProductMapper producMapper, 
-			TradingMapper tradingMapper, BidMapper bidMapper) throws Exception;
+			TradingMapper tradingMapper, BidMapper bidMapper);
 	
 	// 상품 마감
 	void finishProduct(ProductVO productVO, ProductMapper producMapper);
 	
 	// 재경매 등록
-	void reAuction(ProductVO productVO, 
-				ProductMapper producMapper) throws Exception;
-	
-	// 재경매시  기존 경매시작가를 파라미터로 받아 차감된 경매시작가를 구한다
-	int calcStartingPrice(int oldStartingPrice);
-	
-	// 파라미터로 넘어온 날짜들을 차이(경매기간)을 구해 마감시간에 더하여 리턴한다(입금기한 구하기)
-	String getNewEndDate(String productEndDate, 
-						String productIssueDate) throws Exception;
+	void reAuction(ProductVO productVO, ProductMapper producMapper);
 }

@@ -1,5 +1,10 @@
 package com.spring.alltion.productRegistration;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /*
 -- 상품정보
 CREATE TABLE product (
@@ -68,6 +73,234 @@ public class ProductVO {
 	int product_views; // 조회수
 	String product_issue_date; // 등록일
 	int product_progress; // 진행상태
+	
+	// 기존 경매종료일과 등록일을 비교하여 경매기간을 구한 다음 새로운 경매종료일을 적용시간시킨다
+	public void newEndDate() throws Exception {
+		DateFormat format; // 날짜형식
+		Date endDate; // 포맷 지정된 마감일
+		Date issueDate; // 포맷 지정된 등록일
+		
+		double auctionPeriod; // 경매기간(마감일 - 등록일)
+		int auctionPeriodForDay; // 경매기간(일단위)
+
+		Calendar cal; // 캘린더객체
+		
+		// 포맷형식을 지정하고 마감일과 등록일에 적용한다
+		format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		endDate = format.parse(product_end_date);
+		issueDate = format.parse(product_issue_date);
+		
+		// 마감시간에서 등록일을 차감 -> 일단위 -> 올림처리 -> int로 형변환
+		// 경매기간(일단위)를 구하는 작업
+		auctionPeriod = endDate.getTime() - issueDate.getTime();
+		auctionPeriodForDay = (int) Math.ceil(auctionPeriod / (24*60*60*1000));
+		
+		// 기존 상품의 마감일에  + 경매기간(일단위)하여 새로운 마감일을 할당한다
+		cal = Calendar.getInstance();
+		cal.setTime(endDate);
+		cal.add(Calendar.DATE, auctionPeriodForDay);
+		product_end_date = format.format(cal.getTime());
+	}
+    
+    // 재경매시 기존 경매시작가에서 차감된 경매시작가로 변경한다
+ 	public void newStartingPrice() {
+ 		if (product_starting_price <= 10000) {
+ 			product_starting_price -= 1000;
+ 		} else if (product_starting_price <= 30000) {
+ 			product_starting_price -= 3000;
+ 		} else if (product_starting_price <= 50000) {
+ 			product_starting_price -= 5000;
+ 		} else if (product_starting_price <= 100000) {
+ 			product_starting_price -= 10000;
+ 		} else if (product_starting_price <= 300000) {
+ 			product_starting_price -= 20000;
+ 		} else if (product_starting_price <= 500000) {
+ 			product_starting_price -= 30000;
+ 		} else {
+ 			product_starting_price -= 40000;
+ 		}
+ 		
+ 		// 최저 시작가는 1,000원이다
+ 		if (product_starting_price < 1000) {
+ 			product_starting_price = 1000;
+ 		}
+ 	}
+
+	// 경매종료일을 sql문의 to_date에 맞는 형식으로 변환한다
+	public void transformEndDate() {
+		product_end_date = product_end_date.replace("년 ", "/");
+		product_end_date = product_end_date.replace("월 ", "/");
+		product_end_date = product_end_date.replace("일", "");
+		product_end_date = product_end_date.replace("시 ", ":");
+		product_end_date = product_end_date.replace("분", "");
+	}
+	
+	// 직거래가 없으면 "none"으로 변환한다
+	public void changeTransactionAreaToNone() {
+		if (product_transaction_area.equals("")) {
+			product_transaction_area = "none";
+		}
+	}
+	
+	// 카테고리, 택배, 직거래 한글로 다듬기
+	public void changeToKorean() {
+		changeTranslateCategoryToKorean();
+		changeDeliveryToKorean();
+		changeTransactionAreaToKorean();
+	}
+	
+	// 카테고리 한글로 다듬기
+	public void changeTranslateCategoryToKorean() {
+		// 1차 카테고리 다듬기
+		changeTranslateCate_1ToKorean();
+		
+		// 2차 카테고리 다듬기
+		changeTranslateCate_2ToKorean();
+	}
+	
+	// 택배 한글로 다듬기
+	public void changeDeliveryToKorean() {
+		// 아래 조건에 맞게 변형시킨다(한글로)
+		if (product_delivery.equals("before")) {
+			product_delivery = "선불";
+		} else if (product_delivery.equals("after")) {
+			product_delivery = "착불";
+		} else {
+			product_delivery = "불가능";
+		}
+	}
+	
+	// 직거래 한글로 다듬기
+	public void changeTransactionAreaToKorean() {
+		// 아래 조건에 맞게 변형시킨다(한글로)
+		if (product_transaction_area.equals("none")) {
+			product_transaction_area = "불가능";
+		}
+	}
+	
+	// 1차 카테고리 한글 변환 (저장은 영어로되어있음)
+	private void changeTranslateCate_1ToKorean() {
+		switch(product_category_1) {
+			case "cate01":
+				product_category_1 = "패션";
+				break;
+			case "cate02":
+				product_category_1 = "뷰티";
+				break;
+			case "cate03":
+				product_category_1 = "출산/유아동";
+				break;
+			case "cate04":
+				product_category_1 = "전자기기";
+				break;
+			case "cate05":
+				product_category_1 = "가전제품";
+				break;
+			case "cate06":
+				product_category_1 = "가구/인테리어";
+				break;
+			case "cate07":
+				product_category_1 = "반려동물/취미";
+				break;
+			case "cate08":
+				product_category_1 = "도서/음반/문구";
+				break;
+			case "cate09":
+				product_category_1 = "티켓/쿠폰";
+				break;
+			case "cate10":
+				product_category_1 = "스포츠";
+				break;
+			case "cate11":
+				product_category_1 = "공구/산업";
+				break;
+			case "cate12":
+				product_category_1 = "기타잡화";
+				break;
+			default:
+				product_category_1 = "기타잡화";
+				break;
+		}
+	}
+	
+	// 2차 카테고리 한글 변환 (저장은 영어로되어있음)
+	private void changeTranslateCate_2ToKorean() {
+		// 2차 카테고리 (출산/유아동) 까지만 만들었음.
+		switch(product_category_2) {
+		case "cate0101":
+			product_category_2 = "여성의류";
+			break;
+		case "cate0102":
+			product_category_2 = "남성의류";
+			break;
+		case "cate0103":
+			product_category_2 = "여성신발";
+			break;
+		case "cate0104":
+			product_category_2 = "남성신발";
+			break;
+		case "cate0105":
+			product_category_2 = "액세서리";
+			break;
+		case "cate0106":
+			product_category_2 = "귀금속";
+			break;
+		case "cate0107":
+			product_category_2 = "모자";
+			break;
+		case "cate0108":
+			product_category_2 = "기타잡화/관련용품";
+			break;
+		case "cate0109":
+			product_category_2 = "수입명품";
+			break;
+			
+		case "cate0201":
+			product_category_2 = "스킨케어";
+			break;
+		case "cate0202":
+			product_category_2 = "메이크업";
+			break;
+		case "cate0203":
+			product_category_2 = "헤어/바디";
+			break;
+		case "cate0204":
+			product_category_2 = "향수";
+			break;
+		case "cate0205":
+			product_category_2 = "네일케어";
+			break;
+		case "cate0206":
+			product_category_2 = "남성 화장품";
+			break;
+		case "cate0207":
+			product_category_2 = "가발/기타용품";
+			break;
+		
+		case "cate0301":
+			product_category_2 = "출산/육아용품";
+			break;
+		case "cate0302":
+			product_category_2 = "유아동안전/실내용품";
+			break;
+		case "cate0303":
+			product_category_2 = "유아동의류";
+			break;
+		case "cate0304":
+			product_category_2 = "유아동잡화";
+			break;
+		case "cate0305":
+			product_category_2 = "유아동가구";
+			break;
+		case "cate0306":
+			product_category_2 = "기타 유아동용품";
+			break;
+		
+		default:
+			product_category_2 = "기타잡화";
+			break;
+		}
+	}
 	
 	public int getProduct_number() {
 		return product_number;

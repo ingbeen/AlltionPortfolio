@@ -39,10 +39,10 @@
 	
 	<!-- Quartz 시작 by.유빈-->
 	<!-- bean 객체 -->
-	<!-- <bean id="tradingServiceImpl" class="com.spring.alltion.trading.TradingServiceImpl"/> -->
+	<!-- 1.주석 <bean id="tradingServiceImpl" class="com.spring.alltion.trading.TradingServiceImpl"/> -->
 	
 	<!-- 잡디테일  -->
-	<!-- <bean id="seachEndOfProduct" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<!-- 2.주석 <bean id="seachEndOfProduct" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 	    서비스 구현 객체의 빈 이름을 인자로 줍니다.
 	    <property name="targetObject" ref="tradingServiceImpl" />
 	    서비스 객체에서 주기적으로 실행될 메소드른 지정합니다.
@@ -52,7 +52,7 @@
 	</bean> -->
 	
 	<!-- 트리거-->
-	<!-- <bean id="seachEndOfProductTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	<!-- 3.주석 <bean id="seachEndOfProductTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 	    <property name="jobDetail" ref="seachEndOfProduct" />
 	    5분마다 : 0 0/5 * * * ?
 	    5초마다 : 0/5 * * * * ?
@@ -60,7 +60,7 @@
 	</bean> -->
 	
 	<!-- 스케줄러 -->
-	<!-- <bean id="seachEndOfProductScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	<!-- 4.주석 <bean id="seachEndOfProductScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 	    <property name="triggers">
 	        앞에서 설정한 트리거를 등록합니다. 필요하면 여러개 만들어서 등록하면 됩니다.
 	        <list><ref bean="seachEndOfProductTrigger" /></list>

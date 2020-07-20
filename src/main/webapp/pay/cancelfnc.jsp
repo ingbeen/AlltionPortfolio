@@ -28,7 +28,7 @@ $(function() {
       	//datatype: "json",
       	contentType : 'application/x-www-form-urlencoded; charset=utf-8',
       	data: {
-            "merchant_uid": "<%=uid%>" // 주문번호
+            "pay_merchant_uid": "<%=uid%>" // 주문번호
             //"cancel_request_amount": 2000, // 환불금액
             //"reason": "테스트 결제 환불", // 환불사유
             //"refund_holder": "홍길동", // [가상계좌 환불시 필수입력] 환불 가상계좌 예금주
@@ -47,7 +47,7 @@ $(function() {
     	$.ajax({
         	url : '/alltion/cancelData.bo',
         	type : 'POST',
-        	data : {"merchant_uid" : "<%=uid%>"},
+        	data : {"pay_merchant_uid" : "<%=uid%>"},
         	contentType : 'application/x-www-form-urlencoded; charset=utf-8'
     	});
           	alert("환불 성공 : " + result);

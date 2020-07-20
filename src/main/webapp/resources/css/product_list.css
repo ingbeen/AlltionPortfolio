@@ -155,3 +155,8 @@
 }
 
 .page_number li:hover {font-weight: bold;}
+
+.page_number a.active {
+	cursor: default;
+	font-weight: bold;
+}

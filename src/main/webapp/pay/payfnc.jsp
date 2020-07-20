@@ -87,14 +87,11 @@ function makeid() {
                 msg += '결제주문번호는 ' + rsp.merchant_uid +'입니다. 해당 주문번호는 환불요청 시에 필요하니 기억해주시기 바랍니다.';
                 
                 var payVO = { 
-                //dfkek : rsp.imp_uid,
-                merchant_uid : rsp.merchant_uid, //주문번호...상품번호로 대체
+                pay_merchant_uid : rsp.merchant_uid, //주문번호...상품번호로 대체
                 //name : rsp.name,  //결제상품명
-                amount : rsp.paid_amount,   //금액
-                status : rsp.status, // 결제상태
-     	   		//buyer_email : rsp.buyer_email,
-     	  		buyer_name: rsp.buyer_name,   //아이디
-     	 	    //buyer_tel : rsp.buyer_tel
+                pay_amount : rsp.paid_amount,   //금액
+                pay_status : rsp.status, // 결제상태
+     	  		pay_id: rsp.buyer_name,   //아이디
                 }
 
                 //post로 payVO객체의 내용을 전달해야한다............

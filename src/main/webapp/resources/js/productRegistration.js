@@ -1,4 +1,6 @@
-/* 1차 카테고리 선택 시작 by.유빈 */
+/* 상품등록 시작 by.유빈 */
+
+/* 카테고리 선택 시작 */
 function changeCategory(item) {
     let name = item.name; // 카테고리1, 카테고리2
     let value = item.value; // 선택한 카테고리
@@ -19,7 +21,6 @@ function changeCategory(item) {
         }
 
         // 선택한 1차 카테고리에 대한 세부적인 2차 카테고리를 띄운다
-        /* 2차 카테고리 추가 시작 */
         if (value == 'cate01') { // 패션
             changeCategory_2(value, "여성의류", "남성의류", "여성신발", "남성신발", 
                 "액세서리", "귀금속", "모자", "기타잡화/관련용품", "수입명품");
@@ -76,7 +77,6 @@ function changeCategory(item) {
 
             $('.category--select__01').after(selectOutput);
         }
-        /* 2차 카테고리 추가 끝 */
     }
     // 2차 카테고리를 선택했을시에는 경로를 추가하여 표시해준다
     else if (name == 'product_category_2') {
@@ -94,9 +94,8 @@ function changeCategory(item) {
         }
     }
 }
-/* 1차 카테고리 선택 끝 by.유빈 */
 
-// 2차 카테고리 체인지
+// 1차 카테고리를 선택했을때 선택할수 있는 2차 카테고리 콤보박스를 바꿔준다
 function changeCategory_2(value) {
     let selectOutput; // 2차 카테고리 생성 태그가 담길 객체
     let categoryNumber; // 2차카테고리 넘버
@@ -126,8 +125,9 @@ function changeCategory_2(value) {
 
     $('.category--select__01').after(selectOutput);
 }
+/* 카테고리 선택 끝 by.유빈 */
 
-// 직거래, 가능지역 input태그 Open, Close 하기 by.유빈
+// 직거래, 가능지역 input태그 Open, Close 하기
 function changeInput(item) {
     let name = item.name; // 직거래, 즉시구매
     let value = item.value; // 불가능, 가능
@@ -161,7 +161,7 @@ function changeInput(item) {
     
 }
 
-/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 시작 by.유빈 */
+/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 시작  */
 $(".product--form [name$='price']")
 	.on("focus", function () {
 		let value = $(this).val(); // 입력값
@@ -195,9 +195,9 @@ function removeCommas(value) {
     	return value.split(",").join("");
     }
 }
-/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 끝 by.유빈 */
+/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 끝 */
 
-// 경매기간에 따른 마감시간 계산 후 input태그에 삽입 by.유빈
+// 경매기간에 따른 마감시간 계산 후 input태그에 삽입
 function changeEndDate(value) {
     let now = new Date(); // 현재
     value = Number(value); // Number로 타입변환
@@ -278,13 +278,13 @@ function editorImgUpload(file, editor) {
 let uploadFiles = []; // 업로드 할 이미지가 할당 될 배열
 let thumbnailCount = 0;
 
-$('#drop')
-    .on("dragover", dragOver) // 드래그 요소가 들어왔을때
-    .on("dragleave", dragOver) // 드래그 요소가 나갔을때
-    .on('drop', uploadFile); // 드래그 요소를 떨어트렸을때
+$(document)
+    .on("dragover", '#drop', dragOver) // 드래그 요소가 들어왔을때
+    .on("dragleave", '#drop', dragOver) // 드래그 요소가 나갔을때
+    .on('drop', '#drop', uploadFile); // 드래그 요소를 떨어트렸을때
 
-$('#fileUpload')
-    .on("change", uploadFile) // input으로 파일첨부가 되었을때
+$(document)
+    .on("change", '#fileUpload', uploadFile) // input으로 파일첨부가 되었을때
 
 function dragOver(e) {
     e.stopPropagation();
@@ -392,10 +392,10 @@ $("#thumbnails").on("click", ".close", (e) => {
 let clickCheck = false; // 중복클릭 방지
 
 // 상품(경매) 등록 - 버튼눌렀을때(썸네일이미지 등록부터)
+// 썸네일 이미지 등록을 완료하면 success에 있는 함수를 실행하여 DB등록을 한다
 function productSubmit() {
 	// 중복클릭이라면 함수 중지
 	if(clickCheck) {
-		console.log("중복클릭");
 		return;
 	}
 	clickCheck = true; // 중복클릭 방지설정
@@ -533,7 +533,6 @@ $('document').ready(() => {
 
     // 썸머노트 가본설정
     $('#summernote').summernote({
-        height: 300,	// 에디터 높이
         minHeight: 400,	// 최소 높이
         maxHeight: 800,	// 최대 높이
         lang: "ko-KR",	// 한글 설정
@@ -549,7 +548,5 @@ $('document').ready(() => {
             }
         }
     });
-
 })
-
-/* 1차 카테고리 선택 시작 by.유빈 */
+/* 상품등록 끝 by.유빈 */

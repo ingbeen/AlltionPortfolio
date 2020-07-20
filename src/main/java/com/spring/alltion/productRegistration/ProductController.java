@@ -2,23 +2,15 @@ package com.spring.alltion.productRegistration;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.alltion.login.MemberVO;
-import com.spring.alltion.trading.TradingServiceImpl;
 
 @Controller
 public class ProductController {
 	
-	@Autowired
-	private ProductServiceImpl productService;
-	
-	@Autowired
-	private TradingServiceImpl tradingService;
-	
+	// 상품(경매) 등록 페이지로 이동
 	@RequestMapping(value = "/registration.yb")
 	public String home(HttpSession session, MemberVO membervo) {
 		String userId = (String)session.getAttribute("userId");
@@ -29,20 +21,4 @@ public class ProductController {
         
 		return "productRegistration/productRegistration";
 	}
-
-	/* test */
-	@RequestMapping(value = "productSelectTest.yb")
-	public String productSelectTest(int product_number, Model model) {
-		
-		/* 마감된 상품 test */
-//		tradingService.seachEndOfProduct();
-		tradingService.endOfAuction(product_number);
-		
-		ProductVO productVO = productService.productSelectTest(product_number);
-		
-		model.addAttribute("productVO", productVO);
-		
-		return "productRegistration/productListTest";
-	}
-	
 }

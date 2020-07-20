@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.pay{
+    display:inline-block;
+    padding: 2% 0 0 23%;
+    width: 1190px;
+    min-height: 500px;
+    margin:0 auto;
+}
+.chargehistory{
+    min-width: 362px;
+    min-height: 300px;
+    float: left;
+    align-content: center;
+}
+
+.chargehistory h3, .cancelhistory h3 {
+    padding: 0 0 15px 0;
+}
+
+.cancelhistory{
+    float:right;
+    min-width: 362px;
+    min-height: 300px;
+    align-content: center;
+}
+.charge li{
+    display:inline;
+    border-left: 1px solid #999; 
+    float:left;
+    min-width: 100px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+.firstcharge li{
+    display:inline; 
+    float:left;
+    min-width: 100px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.cancel li{
+    display:inline;
+    border-left: 1px solid #999; 
+    float:left;
+    min-width: 100px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+.firstcancel li{
+    display:inline; 
+    float:left;
+    min-width: 100px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.pay_list ul li:first-child{border-left:none;}
+
+.firstcharge li, .firstcancel li{
+    background-color: #BDBDBD;
+}
+
+
+.chargepage ul li, .cancelpage ul li{
+	display:inline-block;
+	margin: 0 12px;
+}
+.chargepage, .cancelpage {
+	margin:0 auto;
+}
+
+.page_number{
+	text-align: center;
+}
+
+.page_number a.active {
+	cursor: default;
+	font-weight: bold;
+}
+
+.paging .num:hover {
+	font-weight: bold;
+}
+
+.page_number li:hover {font-weight: bold;}

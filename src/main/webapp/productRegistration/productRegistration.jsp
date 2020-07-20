@@ -408,7 +408,6 @@
             <div class="form--button">
                 <a class="form-button__submit" onclick="productSubmit()">등록</a>
                 <a class="form-button__cancel" onclick="product_form.reset()">다시 작성</a>
-                <a href="productSelectTest.yb?product_number=1">리스트test</a>
             </div>
 
         </form>

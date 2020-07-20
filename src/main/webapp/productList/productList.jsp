@@ -1,4 +1,4 @@
-ㅉ<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.spring.alltion.productList.*" %>
@@ -387,32 +387,32 @@
                 </ul>
                 <%}
 				} %>
+			</div>
+			<div class="paging">
 			<ul class="page_number">
-                    <li>
+					<li>
                     <%if(nowpage<=1){ %>
-                    &#60;
+                    <!-- &#60; -->
                     <%}else{ %>
                         <a href="./getCategorylist.ms?product_category_2=<%=category2 %>&page=<%=nowpage-1 %>">&#60;</a>
-                    <%} %>
                     </li>
+                    <%} %>
+                    
                     <%for(int a=startpage;a<=endpage;a++){
 						if(a==nowpage){%>
 						<li>
-						<%=a %>
+						<a href="" class="active num"><%=a %></a>
 						</li>
 						<%}else{ %>
 						<li>
-						<a href="./getCategorylist.ms?product_category_2=<%=product_category_2 %>&page=<%=a %>"><%=a %></a>
+						<a href="./getCategorylist.ms?product_category_2=<%=product_category_2 %>&page=<%=a %>" class="num"><%=a %></a>
 						</li>
 						<%} %>
 					<%} %>
-                    
+					<li>
                     <%if(nowpage>=maxpage){ %>
-                    <li>
-                    &#62;
-                    </li>
+                    <!-- &#62; -->
                     <%}else{ %>
-                    <li>
                         <a href="./getCategorylist.ms?product_category_2=<%=product_category_2 %>&page=<%=nowpage+1 %>">&#62;</a>
                     </li>
                     <%} %>

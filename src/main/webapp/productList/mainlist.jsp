@@ -159,10 +159,10 @@
                         <a href="./getCategorylist.ms?product_category_2=cate0107">모자</a>
                     </li>
                     <li>
-                        <a href="./getCategory.ms?product_category_2=cate0108">기타잡화/관련용품</a>
+                        <a href="./getCategorylist.ms?product_category_2=cate0108">기타잡화/관련용품</a>
                     </li>
                     <li>
-                        <a href="./getCategory.ms?product_category_2=cate0109">수입명품</a>
+                        <a href="./getCategorylist.ms?product_category_2=cate0109">수입명품</a>
                     </li>
                 </ul>
                 </form>
@@ -175,7 +175,7 @@
                         <a href="./getCategorylist.ms?product_category_2=cate0202">메이크업</a>
                     </li>
                     <li>
-                        <a href="./getCategory.ms?product_category_2=cate0203">헤어/바디</a>
+                        <a href="./getCategorylist.ms?product_category_2=cate0203">헤어/바디</a>
                     </li>
                     <li>
                         <a href="./getCategorylist.ms?product_category_2=cate0204">향수</a>
@@ -384,10 +384,12 @@
                     }%>
                 </ul>
               <%} %>
+              </div>
+              <div class="paging">
               <ul class="page_number">
                     <li>
                     <%if(nowpage<=1){ %>
-                    &#60;
+                    <!-- &#60; -->
                     <%}else{ %>
                         <a href="./Mainlist.ms?page=<%=nowpage-1 %>">&#60;</a>
                     <%} %>
@@ -395,21 +397,18 @@
                     <%for(int a=startpage;a<=endpage;a++){
 						if(a==nowpage){%>
 						<li>
-						<%=a %>
+						<a href="" class="active num"><%=a %></a>
 						</li>
 						<%}else{ %>
 						<li>
-						<a href="./Mainlist.ms?page=<%=a %>"><%=a %></a>
+						<a href="./Mainlist.ms?page=<%=a %>" class="num"><%=a %></a>
 						</li>
 						<%} %>
 					<%} %>
-                    
+                    <li>
                     <%if(nowpage>=maxpage){ %>
-                    <li>
-                    &#62;
-                    </li>
+                    <!-- &#62; -->
                     <%}else{ %>
-                    <li>
                         <a href="./Mainlist.ms?page=<%=nowpage+1 %>">&#62;</a>
                     </li>
                     <%} %>

@@ -3,6 +3,7 @@
 
 <mapper namespace="com.spring.mapper.TradingMapper">
 
+	<!-- 경매마감된 상품을 거래중테이블에 삽입한다 -->
 	<insert id="tradingInsertTheProductEnd" parameterType="TradingVO">
 		insert into trading
 		values(

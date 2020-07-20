@@ -175,9 +175,9 @@ date = getFormatDate(date);
 								<tr>
 									<th>아이디</th>
 									<td><input class="text1" type="text" name="buyer_name"
-										title="입금인" size="20"></td>
+										title="입금인" size="20" value="${userId}"></td>
 									<th>현재 사이버 머니</th>
-									<td>￦ 0000</td>
+									<td>￦ ${currentMoney}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="paylist" href="goPaylist.ms">충전내역 조회</a></td>
 								</tr>
 								<tr>
 									<th>충전할 금액(원)</th>
@@ -236,7 +236,7 @@ date = getFormatDate(date);
 										title="결제 주문번호"></td>
 
 									<th>현재 사이버머니</th>
-									<td>￦ 0000</td>
+									<td>￦ ${currentMoney}</td>
 								</tr>
 								<tr>
 									
