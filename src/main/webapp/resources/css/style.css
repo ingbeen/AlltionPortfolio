@@ -23,7 +23,7 @@ li {list-style: none;}
 #topKey {
     position: fixed;
     right: 24px;
-    bottom: 24px;
+    bottom: 75px; /* 24 */
     font-weight: bold;
     background: rgba(0, 0, 0, 0.2);
     color: #fff;

@@ -166,7 +166,7 @@ function LoadingWithMask() {
     
     // 화면에 출력할 로딩이미지를 설정
     let loadingImg = ' \
-    	<img id="loadingImg" src="resources/img/Spinner-1s-200px.gif" \
+    	<img id="loadingImg" src="resources/img/loading/Spinner-1s-200px.gif" \
     	style=" \
 	    	position: relative; \
 	    	display: block; \

@@ -10,12 +10,11 @@
 	
 	<link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/productRegistration.css">
+    <link rel="stylesheet" href="resources/css/kakaoTalk.css">
     <link rel="stylesheet" href="resources/css/summernote/summernote-lite.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <script defer src="resources/js/productRegistration.js"></script>
-
     <title>All-tion</title>
 </head>
 
@@ -118,6 +117,8 @@
     <!-- 배너 영역 -->
     <div class="banner">
     </div>
+    
+    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
     
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
 
@@ -474,8 +475,11 @@
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="resources/js/common.js"></script>
+    <script src="resources/js/productRegistration.js"></script>
     <script src="resources/js/summernote/summernote-lite.js"></script>
     <script src="resources/js/summernote/summernote-ko-KR.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script src="resources/js/kakaoTalk.js"></script>
 </body>
 
 </html>
