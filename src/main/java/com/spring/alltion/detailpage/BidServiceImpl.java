@@ -97,6 +97,7 @@ public class BidServiceImpl {
 		int rest = bidmapper.bidInsert(bidvo);
 		if(price == product_purchase_price) {
 			tradingServiceImpl.endOfAuction(bid_product_number);
+			rest=2;
 		}
 		
 		return rest;
@@ -144,7 +145,7 @@ public class BidServiceImpl {
 		if(top_bidder_id==null) {
 			top_bidder_id = "";
 		}else {
-			top_bidder_id = top_bidder_id.substring(0,3) + "****";
+			top_bidder_id = top_bidder_id.substring(0,3) + "***";
 		}
 		
 		return top_bidder_id;

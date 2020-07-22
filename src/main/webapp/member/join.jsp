@@ -4,13 +4,16 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+    <link rel="stylesheet" href="./resources/css/style.css?after">
     <link rel="stylesheet" href="./resources/css/member_join.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>All-tion</title>
-
+	<link rel="stylesheet" href="resources/css/kakaoTalk.css">
+	<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+	<link rel="stylesheet" href="./resources/css/style.css?after">
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
@@ -65,19 +68,19 @@
                 <ul class="member_info">
                     <li>
                         <a href="./loginForm.kj">
-                            <span class="material-icons">perm_identity</span>
+                            <span class="material-icons">perm_identity</span><br>
                             <span>마이 페이지</span>
                         </a>
                     </li>
                     <li>
                         <a href="wishList.yb?page=1&endDateFormat=0">
-                            <span class="material-icons">turned_in_not</span>
+                            <span class="material-icons">turned_in_not</span><br>
                             <span>찜 목록</span>
                         </a>
                     </li>
                     <li>
                         <a href="./loginForm.kj">
-                            <span class="material-icons">access_time</span>
+                            <span class="material-icons">access_time</span><br>
                             <span>참여 경매</span>
                         </a>
                     </li>
@@ -85,7 +88,7 @@
             </div>
         </div>
     </div>
-    
+    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
     <!-- 회원 가입 폼 -->
     <div class = "joinWrap">
         <h3>All-tion 통합회원가입</h3>
@@ -180,5 +183,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"></script>
     <script src="./resources/js/join.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="resources/js/kakaoTalk.js"></script>
 </body>
 </html>

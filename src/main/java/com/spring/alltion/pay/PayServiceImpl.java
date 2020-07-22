@@ -65,9 +65,9 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public void cancelPay(String convertChargeMoney, String pay_id) {
+	public void cancelPay(String convertCancelMoney, String pay_id) {
 		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
-		payMapper.cancelPay(convertChargeMoney, pay_id);
+		payMapper.cancelPay(convertCancelMoney, pay_id);
 	}
 
 	@Override
@@ -110,10 +110,40 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public int getPaycount(String pay_status) {
+	public int getPaycount(String pay_status, String pay_id) {
 		// TODO Auto-generated method stub
 		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
-		int res = payMapper.getPaycount(pay_status);
+		int res = payMapper.getPaycount(pay_status, pay_id);
+		return res;
+	}
+
+	@Override
+	public void changeMoney(String pay_id, String amount) {
+		// TODO Auto-generated method stub
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		payMapper.changeMoney(pay_id, amount);
+	}
+
+	@Override
+	public void insertPayment(PaymentVO vo) {
+		// TODO Auto-generated method stub
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		payMapper.insertPayment(vo);
+	}
+
+	@Override
+	public List<PaymentVO> getPaymentlist(String userId, int startrow3, int endrow3) {
+		// TODO Auto-generated method stub
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		List<PaymentVO> vo = payMapper.getPaymentlist(userId, startrow3, endrow3);
+		return vo;
+	}
+
+	@Override
+	public int getPaymentcount(String payment_userId) {
+		// TODO Auto-generated method stub
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		int res = payMapper.getPaymentcount(payment_userId);
 		return res;
 	}
 }

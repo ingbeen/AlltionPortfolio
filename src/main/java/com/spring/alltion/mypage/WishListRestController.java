@@ -33,5 +33,4 @@ public class WishListRestController {
 		String userId = (String)session.getAttribute("userId");
 		wishListServiceImpl.deleteWishList(deleteWishList, userId);
 	}
-	
 }

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="com.spring.alltion.detailpage.*"%>
-<%@ page import="com.spring.alltion.productRegistration.*"%>
-<%@ page import="com.spring.alltion.login.*"%>
-<%@ page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="com.spring.alltion.detailpage.*" %>
+<%@ page import="com.spring.alltion.productRegistration.*" %>
+<%@ page import="com.spring.alltion.login.*" %>
+<%@ page import="java.util.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	// 로그인한 세션 아이디
 	String id = (String)session.getAttribute("userId");
@@ -41,98 +41,121 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="./resources/css/style.css">
-<link rel="stylesheet" href="./resources/css/product_detail.css?after">
-<!-- 상세페이지 스타일시트 참조 (by.HONG)-->
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<title>All-tion</title>
-<style>
-</style>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+    <link rel="stylesheet" href="./resources/css/style.css?after">
+    <link rel="stylesheet" href="./resources/css/product_detail.css?after"> <!-- 상세페이지 스타일시트 참조 (by.HONG)-->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/kakaoTalk.css">
+	<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+	<link rel="stylesheet" href="./resources/css/style.css?after">
+    
+    <title>All-tion</title>
+    <style>
+    </style>
 </head>
 
 <body>
-	<!-- 모든 페이지 공통 영역 by 하나  -->
-	<!-- top 키 -->
-	<div id="topKey" class="topKey_btn">
-		<span class="material-icons"> keyboard_arrow_up </span>
-	</div>
-	<div class="header">
-		<div class="upper_header">
-			<div class="upper_header--nav">
-				<p>
-					<a id="clock"></a>
-				</p>
-				<ul>
-					<!-- jstl 바뀐 구문 로그인, 비 로그인 -by계정-->
-					<c:choose>
+    <!-- 모든 페이지 공통 영역 by 하나  -->
+    <!-- top 키 -->
+    <div id="topKey" class="topKey_btn" >
+        <span class="material-icons">
+            keyboard_arrow_up
+        </span>
+    </div>
+    <div class="header">
+        <div class="upper_header">
+            <div class="upper_header--nav">
+                <p>
+                    <a id="clock"></a>
+                </p>
+                <ul>
+                	<!-- jstl 바뀐 구문 로그인, 비 로그인 -by계정-->
+                	<c:choose>
 
-						<c:when test="${userId != null}">
-							<!-- 메인페이지 로그인시 -->
-							<li><a href="./mypage.kj">${userId}</a></li>
-							<li><a href="./logout.kj">로그아웃</a></li>
-						</c:when>
-						<c:otherwise>
-							<!-- 로그인 하지 않았을때 메인페이지 -->
-							<li><a href="./loginForm.kj">로그인</a></li>
-							<li><a href="./naverjoin.kj">회원 가입</a></li>
-						</c:otherwise>
-					</c:choose>
-					<li><a href="./registration.yb">판매하기</a></li>
-					<li><a href="#">고객 센터</a></li>
-
-				</ul>
-			</div>
-		</div>
-		<div class="lower_header">
-			<div class="lower_header--nav">
-				<h1 class="logo">
-					<a href="/alltion/">ALL-TION</a>
-				</h1>
-				<div class="category">
-					<a class="category--drop"> <img
-						src="./resources/img/header/category_tab.png">
-					</a>
-				</div>
-				<div class="search">
-					<select class="search--select">
-						<option value="">전체</option>
-						<option value="cate01">패션</option>
-						<option value="cate02">뷰티</option>
-						<option value="cate03">출산/유아동</option>
-						<option value="cate04">전자기기</option>
-						<option value="cate05">가전제품</option>
-						<option value="cate06">가구/인테리어</option>
-						<option value="cate07">반려동물/취미</option>
-						<option value="cate08">도서/음반/문구</option>
-						<option value="cate09">티켓/쿠폰</option>
-						<option value="cate10">스포츠</option>
-						<option value="cate11">공구/산업용품</option>
-						<option value="cate12">기타잡화</option>
-					</select> <input type="text" placeholder="찾으시는 상품을 입력해 주세요"
-						class="search__input">
-				</div>
-				<ul class="member_info">
-					<li><a href="mypage.kj"> <span class="material-icons">perm_identity</span>
-							<span>마이 페이지</span>
-					</a></li>
-					<li><a href="wishList.yb?page=1&endDateFormat=0"> <span class="material-icons">turned_in_not</span>
-							<span>찜 목록</span>
-					</a></li>
-					<li><a href="#"> <span class="material-icons">access_time</span>
-							<span>참여 경매</span>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+					<c:when test="${userId != null}"><!-- 메인페이지 로그인시 -->         
+                    <li>
+                        <a href="./mypage.kj">${userId}</a>
+                    </li>
+                    <li>
+                        <a href="./logout.kj">로그아웃</a>
+                    </li>
+                    </c:when>
+                    <c:otherwise><!-- 로그인 하지 않았을때 메인페이지 -->
+                    <li>
+                        <a href="./loginForm.kj">로그인</a>
+                    </li>
+                    <li>
+                        <a href="./naverjoin.kj">회원 가입</a>
+                    </li>
+                    </c:otherwise>
+                    </c:choose>
+                    <li>
+                    	<a href="./registration.yb">판매하기</a>
+                    </li>
+                    <li>
+                        <a href="#">고객 센터</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="lower_header">
+            <div class="lower_header--nav">
+                <h1 class="logo">
+                    <a href="/alltion/">ALL-TION</a>
+                </h1>
+                <div class="category">
+                    <a class="category--drop">
+                        <img src="./resources/img/header/category_tab.png">
+                    </a>
+                </div>
+                <div class="search">
+                    <select class="search--select">
+                        <option value="">전체</option>
+                        <option value="cate01">패션</option>
+                        <option value="cate02">뷰티</option>
+                        <option value="cate03">출산/유아동</option>
+                        <option value="cate04">전자기기</option>
+                        <option value="cate05">가전제품</option>
+                        <option value="cate06">가구/인테리어</option>
+                        <option value="cate07">반려동물/취미</option>
+                        <option value="cate08">도서/음반/문구</option>
+                        <option value="cate09">티켓/쿠폰</option>
+                        <option value="cate10">스포츠</option>
+                        <option value="cate11">공구/산업용품</option>
+                        <option value="cate12">기타잡화</option>
+                    </select>
+                    <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
+                </div>
+                <ul class="member_info">
+                    <li>
+                        <a href="mypage.kj">
+                            <span class="material-icons">perm_identity</span><br>
+                            <span>마이 페이지</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="wishList.yb">
+                            <span class="material-icons">turned_in_not</span><br>
+                            <span>찜 목록</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="material-icons">access_time</span><br>
+                            <span>참여 경매</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
+    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
     <!--  !! 여기에 내용 넣기 !!  by.Hong  -->
     <div align="center">
     <div class="main_body" align="left">
@@ -375,11 +398,11 @@
                 <%if(productvo.getProduct_progress()==1) {%>
                 	<font style="color: red;">마감 종료된 경매입니다.</font><br>
                 <%}else if(id!=null&&!id.equals(productvo.getProduct_id())){ %>
-                    <button type="button" id="bid_btn" onclick="bidInsert()">응찰하기</button>
+                    <button type="button" id="bid_btn">응찰하기</button>
                     <%if(productvo.getProduct_purchase_price()!=0) {%>
-                    	<button type="button" id="bid_btn2" onclick="nowpurchase()">즉시구매</button>
+                    	<button type="button" id="bid_btn2">즉시구매</button>
                     <%} %>
-                    <button type="button" id="bid_btn4" onclick="insertWishList()">찜하기</button>
+                    <button type="button" id="bid_btn4">찜하기</button>
                     <a href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로 돌아가기</button></a>
 				<%}else if(id==null){%>
 					<font><a href="./loginForm.kj" style="color:cornflowerblue;">로그인</a> 후 이용가능 합니다.</font><br>
@@ -387,180 +410,223 @@
 					<a href="./Mainlist.ms"><button type="button" id="bid_btn3">목록으로 돌아가기</button></a>
 				<%} %>
 				</div>
-				
 
-				</div> 
-			</div>
-			<!-- ↓↓상세정보페이지 네비게이션바↓↓ -->
-			<ul class="detail_page_nav">
-				<li
-					style="border-radius: 4px 4px 0 0; background-color: #BBBBBB; font-weight: bold;">
-					<a style="color: white;">응찰 현황 (<%=bid_listcount %>)
-				</a>
-				</li>
-				<li><a type="button" onclick="move(2)">상품 정보</a></li>
-				<li><a type="button" onclick="move(3)">교환 / 반품</a></li>
-				<li><a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)
-				</a></li>
-			</ul>
+            </div>
+        </div>
+        <!-- ↓↓상세정보페이지 네비게이션바↓↓ -->
+        <ul class="detail_page_nav">
+            <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
+                <a style="color:white;">응찰 현황 (<%=bid_listcount %>)</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(2)">상품 정보</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
+            </li>
+        </ul>
 
-			<!-- ↓↓응찰자 리스트↓↓ -->
-			<div class="bid_list" align="center">
-				<div class="bid_list_column">
-					<div class="bid_list_no">응찰 번호</div>
-					<div class="bid_price">응찰 가격</div>
-					<div class="bidder_id">응찰자</div>
-					<div class="bid_time">응찰 시간</div>
-				</div>
+        <!-- ↓↓응찰자 리스트↓↓ -->
+        <div class="bid_list" align="center">
+			<div class="bid_list_column">
+                <div class="bid_list_no">응찰 번호</div>
+                <div class="bid_price">응찰 가격</div>
+                <div class="bidder_id">응찰자</div>
+                <div class="bid_time">응찰 시간</div>
+            </div>
+            
+            <div class="bidder">
+               
+            </div>
+           	
+			
+        </div>
+		<!-- 응찰리스트 페이징 -->
+		<div align="center">
+			<%for(int i=bid_startpage;i<=bid_endpage;i++){%>
+				<a type="button" onclick="bidList(<%=i%>)">[<%=i %>]</a>
+			<%}%>
+		</div>
+		
+        <ul class="detail_page_nav">
+            <li>
+                <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
+            </li>
+            <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
+                <a style="color:white;">상품 정보</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
+            </li>
+        </ul>
 
-				<div class="bidder"></div>
-
-
-			</div>
-			<!-- 응찰리스트 페이징 -->
-			<div align="center">
-				<%for(int i=bid_startpage;i<=bid_endpage;i++){%>
-				<a type="button" onclick="bidList(<%=i%>)">[<%=i %>]
-				</a>
-				<%}%>
-			</div>
-
-			<ul class="detail_page_nav">
-				<li><a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)
-				</a></li>
-				<li
-					style="border-radius: 4px 4px 0 0; background-color: #BBBBBB; font-weight: bold;">
-					<a style="color: white;">상품 정보</a>
-				</li>
-				<li><a type="button" onclick="move(3)">교환 / 반품</a></li>
-				<li><a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)
-				</a></li>
-			</ul>
-
-			<!-- ↓↓경매의 사진들 펼쳐놓음.↓↓ -->
-			<div class="product_information">
+        <!-- ↓↓경매의 사진들 펼쳐놓음.↓↓ -->
+        <div class="product_information">
+			
             <div class="product_information_text">
 				<%=productvo.getProduct_content()%>
             </div>
+            
 
+            <ul class="detail_page_nav">
+                <li>
+                    <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
+                </li>
+                <li>
+                    <a type="button" onclick="move(2)">상품 정보</a>
+                </li>
+                <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
+                    <a style="color:white;">교환 / 반품</a>
+                </li>
+                <li>
+                    <a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)</a>
+                </li>
+            </ul>
+        </div>
 
-				<ul class="detail_page_nav">
-					<li><a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)
-					</a></li>
-					<li><a type="button" onclick="move(2)">상품 정보</a></li>
-					<li
-						style="border-radius: 4px 4px 0 0; background-color: #BBBBBB; font-weight: bold;">
-						<a style="color: white;">교환 / 반품</a>
-					</li>
-					<li><a type="button" onclick="move(4)">댓 글 (<%=comment_listcount %>)
-					</a></li>
-				</ul>
-			</div>
+        <!-- ↓↓경매물품의 상세정보↓↓ -->
+        <div class="exchange_rule">
+            <ul>
+            	<li>
+            		<label>배송지역</label>
+            		<font>전국※제주권 및 도서산간 지역은 배송비가 추가될 수 있습니다.</font>
+            	</li>
+            	<li>
+            		<label>배송방법</label>
+            		<font>택배, 선불/착불 [선/착불 4,000원]</font>
+            	</li>
+            	<li>
+            		<label>반품기간</label>
+            		<font>수령일로 부터 7일 이내에 반품을 신청 하실 수 있습니다.</font>
+            	</li>
+            	<li>
+            		<label>반품비용</label>
+            		<font>원인제공자 부담을 원칙으로 합니다.</font>
+            	</li>
+            </ul>
+            <br>
+            <div>● 반품시 주의사항</div>
+            <p>
+            	1) 소비자의 책임 있는 사유로 상품 등이 멸실 / 훼손된 경우(단지 확인을 위한 포장 훼손 제외) <br>
+            	2) 소비자의 사용 / 소비에 의해 상품 등의 가치가 현저히 감소한 경우 <br>
+            	3) 시간의 경과에 의해 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우 <br>
+            	4) 복제가 가능한 상품 등의 포장을 훼손한 경우 <br>
+            	5) 판매 / 생산방식의 특성상, 반품 시 판매자 에게 회복할 수 없는 손해가 발생하는 경우(주문 접수 후 개별생산, 맞춤 제작 등)
+            </p>
+            <div>● 파손물품 반품시 주의사항</div>
+            <p>
+            	물품 수령시 택배기사와 함께 물품의 파손여부를 확인하신 후, <br>
+            	반품 신청시 파손 이미지를 등록해 주시면 안전하고 신속하게 반품 / 교환 처리를 해드리고 있습니다.
+            </p>
+        </div>
 
-			<!-- ↓↓경매물품의 상세정보↓↓ -->
-			<div class="exchange_rule">
-				<ul>
-					<li><label>배송지역</label> <font>전국※제주권 및 도서산간 지역은 배송비가
-							추가될 수 있습니다.</font></li>
-					<li><label>배송방법</label> <font>택배, 선불/착불 [선/착불 4,000원]</font></li>
-					<li><label>반품기간</label> <font>수령일로 부터 7일 이내에 반품을 신청 하실
-							수 있습니다.</font></li>
-					<li><label>반품비용</label> <font>원인제공자 부담을 원칙으로 합니다.</font></li>
-				</ul>
-				<br>
-				<div>● 반품시 주의사항</div>
-				<p>
-					1) 소비자의 책임 있는 사유로 상품 등이 멸실 / 훼손된 경우(단지 확인을 위한 포장 훼손 제외) <br>
-					2) 소비자의 사용 / 소비에 의해 상품 등의 가치가 현저히 감소한 경우 <br> 3) 시간의 경과에 의해
-					재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우 <br> 4) 복제가 가능한 상품 등의 포장을
-					훼손한 경우 <br> 5) 판매 / 생산방식의 특성상, 반품 시 판매자 에게 회복할 수 없는 손해가 발생하는
-					경우(주문 접수 후 개별생산, 맞춤 제작 등)
-				</p>
-				<div>● 파손물품 반품시 주의사항</div>
-				<p>
-					물품 수령시 택배기사와 함께 물품의 파손여부를 확인하신 후, <br> 반품 신청시 파손 이미지를 등록해 주시면
-					안전하고 신속하게 반품 / 교환 처리를 해드리고 있습니다.
-				</p>
-			</div>
+        <ul class="detail_page_nav">
+            <li>
+                <a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(2)">상품 정보</a>
+            </li>
+            <li>
+                <a type="button" onclick="move(3)">교환 / 반품</a>
+            </li>
+            <li style="border-radius: 4px 4px 0 0;background-color:#BBBBBB;font-weight: bold;">
+                <a style="color:white;">댓 글 (<%=comment_listcount %>)</a>
+            </li>
+        </ul>
 
-			<ul class="detail_page_nav">
-				<li><a type="button" onclick="move(1)">응찰 현황 (<%=bid_listcount %>)
-				</a></li>
-				<li><a type="button" onclick="move(2)">상품 정보</a></li>
-				<li><a type="button" onclick="move(3)">교환 / 반품</a></li>
-				<li
-					style="border-radius: 4px 4px 0 0; background-color: #BBBBBB; font-weight: bold;">
-					<a style="color: white;">댓 글 (<%=comment_listcount %>)
-				</a>
-				</li>
-			</ul>
-
-			<!-- ↓↓댓 글 항목.↓↓-->
-			<div class="comment_div">
-				<div class="comment_title">
-					댓 글 <font size="2"> |악의적인 비방글이나 욕설글은 무통보 삭제 되오니 이점 유의바랍니다</font>&nbsp;&nbsp;<input
-						type="checkbox" id="secret"><font size="3"
-						style="color: cornflowerblue;"> 비밀글</font>
-				</div>
-				<textarea id="comment_content_input"
-					placeholder="<%if(id!=null){ %>  *댓글을 작성해주세요..
-  *비밀글 입력시 판매자와 관리자만 볼 수 있습니다.<%}else{%>댓글은 로그인 후 이용 가능합니다<%}%>"
-					<%if(id==null){ %> onclick="togologin()" style="cursor: pointer;"
-					<%} %>></textarea>
-				<br>
-				<%if(id!=null){ %>
-				<button type="button" id="comment_btn" onclick="commentInsert()">작
-					성</button>
-				<%} %>
-				<div class="comment_list"></div>
-			</div>
-			<div align="center">
-				<%for(int j=comment_startpage;j<=comment_endpage;j++){%>
-				<a type="button" onclick="commentList(<%=j%>)">[<%=j %>]
-				</a>
-				<%}%>
-			</div>
-
+        <!-- ↓↓댓 글 항목.↓↓-->
+        <div class="comment_div">
+            <div class="comment_title">댓 글 <font size="2"> |악의적인 비방글이나 욕설글은 무통보 삭제 되오니 이점 유의바랍니다</font>&nbsp;&nbsp;<input type="checkbox" id="secret"><font size="3" style="color:cornflowerblue;"> 비밀글</font></div>
+            <textarea id="comment_content_input" placeholder="<%if(id!=null){ %>  *댓글을 작성해주세요..
+  *비밀글 입력시 판매자와 관리자만 볼 수 있습니다.<%}else{%>댓글은 로그인 후 이용 가능합니다<%}%>" <%if(id==null){ %>onclick="togologin()" style="cursor:pointer;"<%} %>></textarea>
+            <br>
+            <%if(id!=null){ %>
+            <button type="button" id="comment_btn">작 성</button>
+            <%} %>
+            <div class="comment_list">
+            
+            </div>
+        </div>
+        <div align="center" style="margin-bottom:100px; margin-top:50px;">
+			<%for(int j=comment_startpage;j<=comment_endpage;j++){%>
+				<a type="button" onclick="commentList(<%=j%>)">[<%=j %>]</a>
+			<%}%>
 		</div>
-	</div>
 
-	<!-- !! 메인 페이지 내용(지워서 사용함) !! end -->
+    </div>
+    </div>
 
-	<!-- 푸터 영역 -->
-	<div class="footer">
-		<div class="upper_footer">
-			<ul class="upper_footer--list">
-				<li><a href="#"> 올션소개 </a></li>
-				<li><a href="#"> 채용정보 </a></li>
-				<li><a href="#"> 공지사항 </a></li>
-				<li><a href="#"> 이용약관 </a></li>
-				<li><a href="#"> 개인정보처리방침 </a></li>
-				<li><a href="#"> 전자금융거래약관 </a></li>
-				<li><a href="#"> 제휴서비스 </a></li>
-			</ul>
-		</div>
-		<div class="lower_footer">
-			<ul class="lower_footer__content">
-				<li>
-					<p>상호명 : (주)올션 / 짜면된다 / 주소: 서울특별시 종로구 삼일대로 서울특별시 서초구 서초4동 강남대로</p>
-					<p>Tel: 02-000-0000 Fax : 02-000-0000 메일 : master@alltion.co.kr</p>
-					<p>사업자등록번호 : ###-##-##### 통신판매업 신고번호 : 제##–###호</p>
-				</li>
-				<li>
-					<p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여
-						책임을 지지 않습니다.</p>
-					<p>Copyright © eBay Korea LLC All rights reserved.</p>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! end -->
+
+    <!-- 푸터 영역 -->
+    <div class="footer">
+        <div class="upper_footer">
+            <ul class="upper_footer--list">
+                <li>
+                    <a href="#">
+                        올션소개
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        채용정보
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        공지사항
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        이용약관
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        개인정보처리방침
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        전자금융거래약관
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        제휴서비스
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="lower_footer">
+            <ul class="lower_footer__content">
+                <li>
+                    <p>상호명 : (주)올션 / 짜면된다 / 주소: 서울특별시 종로구 삼일대로 서울특별시 서초구 서초4동 강남대로</p>
+                    <p>Tel: 02-000-0000 Fax : 02-000-0000 메일 : master@alltion.co.kr</p>
+                    <p>사업자등록번호 : ###-##-##### 통신판매업 신고번호 : 제##–###호</p>
+                </li>
+                <li>
+                    <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
+                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 
 
-	<!--  스크립트 영역  -->
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="./resources/js/common.js"></script>
-	<script type="text/javascript">
+    <!--  스크립트 영역  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./resources/js/common.js"></script>
+    <script type="text/javascript">
         var check = false;
 
         // ↓↓ 이미지 슬라이드. ↓↓ by.HONG
@@ -742,6 +808,8 @@
         let limit_price = <%=productvo.getProduct_purchase_price()%>;
         //로그인한 아이디(세션아이디)
         let sessionid = '<%=id%>';
+        //중복 클릭 방지
+        var click = true;
         
         // ↓↓응찰하기 버튼 클릭시
       	function bidList(bid_nowpage){
@@ -753,7 +821,6 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success : function(data){
 					var a = '';
-					var i = 0;
 					$.each(data,function(key,value){
 						a += '<div class="bidder1">';
 						a += '<div class="bid_list_no">'+value.bid_no+'</div>';
@@ -761,10 +828,6 @@
 						a += '<div class="bidder_id">'+value.bid_id.substring(0,3)+'****</div>';
 						a += '<div class="bid_time">'+value.bid_date+'</div>';
 						a += '</div>';
-						if(key>=5 * (bid_nowpage - 1) && key<=4){
-							console.log(value);
-							
-						}
 					});
 					
 					$(".bidder").html(a);
@@ -775,41 +838,63 @@
 			});
 		}
       	
-		function bidInsert(){
-			$.ajax({
-				url: '/alltion/bid_insert.hs',
-				type : 'POST',
-				data : {'bid_product_number':bno,'bid_id':sessionid},
-				success : function(data){
-					if(data==1){
-						bidList(1); //페이지 로딩시 응찰 목록 갱신
+      	$("#bid_btn").off("click").on('click',function(){
+			if(click){
+				click = !click;
+				$.ajax({
+					url: '/alltion/bid_insert.hs',
+					type : 'POST',
+					data : {'bid_product_number':bno,'bid_id':sessionid},
+					success : function(data){
+						if(data==1){
+							alert('성공적으로 응찰되었습니다.');
+							bidList(1); //페이지 로딩시 응찰 목록 갱신
+						}else if(data==2){
+							bidList(1);
+							$(".btns").html('<font style="color: red;">마감 종료된 경매입니다.</font><br>');
+						}
+					},
+					error:function(){
+						alert("ajax통신 실패(insert)");
 					}
-					
-				},
-				error:function(){
-					alert("ajax통신 실패(insert)");
-				}
-			});
-		}
+				});
+	      		//타이밍 추가
+	      		setTimeout(function(){
+	      			click=true;
+	      		},2000);
+			}else{
+				console.log("중복됨");
+			}
+		});
 		
-		function nowpurchase(){
-			$.ajax({
-				url: '/alltion/now_purchase.hs',
-				type : 'POST',
-				data : {'bid_product_number':bno,'bid_id':sessionid},
-				dataType : 'json',
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				success:function(data){
-					if(data==1){
-						bidList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
+      	$("#bid_btn2").off("click").on('click',function(){
+			if(click){	
+				click = !click;
+      			$.ajax({
+					url: '/alltion/now_purchase.hs',
+					type : 'POST',
+					data : {'bid_product_number':bno,'bid_id':sessionid},
+					dataType : 'json',
+					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+					success:function(data){
+						if(data==1){
+							alert('성공적으로 응찰되었습니다.');
+							bidList(1); //페이지 로딩시 응찰 목록 갱신
+							$(".btns").html('<font style="color: red;">마감 종료된 경매입니다.</font><br>');
+						}
+					},
+					error:function(){
+						alert("ajax통신 실패(nowpurchase)");
 					}
-				},
-				error:function(){
-					alert("ajax통신 실패(nowpurchase)");
-				}
-			});
-		}
+				});
+      			//타이밍 추가
+	      		setTimeout(function(){
+	      			click=true;
+	      		},2000);
+			}else{
+				console.log("중복됨");
+			}
+		});
 		
 		//경매등록자 아이디
 		let writerId = '<%=writerId%>'; 
@@ -900,33 +985,43 @@
 		let comment_secret = document.getElementById('secret');
 		let comment_secret_value="";
 		
-		function commentInsert(){
-			if(comment_secret.checked==true){
-				comment_secret_value = "1";
-			}else{
-				comment_secret_value = "0";
-			}
-			if(comment_content_input.value==""){
-				alert('내용을 입력해 주세요.');
-				return false;
-			}
-			$.ajax({
-				url: '/alltion/commentinsert.hs',
-				type : 'POST',
-				data : {'comment_product_number':bno,'comment_id':sessionid,'comment_content':comment_content_input.value,'comment_secret':comment_secret_value},
-				dataType : 'json',
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				success:function(data){
-					if(data==1){
-						commentList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
-					}
-				},
-				error:function(){
-					alert("ajax통신 실패(commentinsert)");
+		$("#comment_btn").off("click").on('click',function(){
+			if(click){	
+				click = !click;
+				if(comment_secret.checked==true){
+					comment_secret_value = "1";
+				}else{
+					comment_secret_value = "0";
 				}
-			});
-		}
+				if(comment_content_input.value==""){
+					alert('내용을 입력해 주세요.');
+					return false;
+				}
+				$.ajax({
+					url: '/alltion/commentinsert.hs',
+					type : 'POST',
+					data : {'comment_product_number':bno,'comment_id':sessionid,'comment_content':comment_content_input.value,'comment_secret':comment_secret_value},
+					dataType : 'json',
+					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+					success:function(data){
+						if(data==1){
+							comment_content_input.value='';
+							commentList(1); //페이지 로딩시 응찰 목록 갱신
+							
+						}
+					},
+					error:function(){
+						alert("ajax통신 실패(commentinsert)");
+					}
+				});
+				//타이밍 추가
+	      		setTimeout(function(){
+	      			click=true;
+	      		},2000);
+			}else{
+				console.log("중복됨");
+			}
+		});
 		
 		// ↓↓댓글 수정
 		let number_for_update = 0;
@@ -951,6 +1046,11 @@
 		
 		function commentUpdate(n){
 			let comment_content_update = document.getElementsByClassName('comment_content_update')[number_for_update];
+			if(comment_content_update.value==""){
+				alert('내용을 입력해 주세요.');
+				return false;
+			}
+			
 			$.ajax({
 				url: '/alltion/commentupdate.hs',
 				type : 'POST',
@@ -960,7 +1060,7 @@
 				success:function(data){
 					if(data==1){
 						commentList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
+						
 					}
 				},
 				error:function(){
@@ -981,7 +1081,7 @@
 				success:function(data){
 					if(data==1){
 						commentList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
+						
 					}
 				},
 				error:function(){
@@ -1009,7 +1109,10 @@
 		
 		function commentReply(n){
 			let comment_content_reply = document.getElementsByClassName('comment_content_reply')[number_for_reply];
-			
+			if(comment_content_reply.value==""){
+				alert('내용을 입력해 주세요.');
+				return false;
+			}
 			$.ajax({
 				
 				url: '/alltion/commentreply.hs',
@@ -1019,8 +1122,9 @@
 				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
 				success:function(data){
 					if(data==1){
+						
 						commentList(1); //페이지 로딩시 응찰 목록 갱신
-						window.location.reload(true);
+						
 					}
 				},
 				error:function(){
@@ -1179,28 +1283,39 @@
 		}
 		
 		// 찜버튼 클릭시 wish리스트에 해당항목 추가
-		function insertWishList(){
-			$.ajax({
-				url : '/alltion/wish_list.hs',
-				type : 'post',
-				data : {'wish_product_number':bno,'wish_id':sessionid},
-				dataType : 'json',
-				contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-				success : function(data){
-					if(data==0){
-						alert('찜목록에 추가 되었습니다.');
-					}else{
-						alert('이미 찜목록에 등록되어있는 경매 입니다.');
+		$("#bid_btn4").off("click").on('click',function(){
+			if(click){
+				click = !click;
+				$.ajax({
+					url : '/alltion/wish_list.hs',
+					type : 'post',
+					data : {'wish_product_number':bno,'wish_id':sessionid},
+					dataType : 'json',
+					contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+					success : function(data){
+						if(data==0){
+							alert('찜목록에 추가 되었습니다.');
+						}else{
+							alert('이미 찜목록에 등록되어있는 경매 입니다.');
+						}
+						
+						
+					},
+					error:function(){
+						alert("ajax통신 실패(insertWishList)!!!");		
 					}
-					
-					
-				},
-				error:function(){
-					alert("ajax통신 실패(insertWishList)!!!");		
-				}
-			});
-		}
+				});
+				//타이밍 추가
+	      		setTimeout(function(){
+	      			click=true;
+	      		},2000);
+			}else{
+				console.log("중복됨");
+			}
+		});
 		
     </script>
+   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <script src="resources/js/kakaoTalk.js"></script>
 </body>
 </html>

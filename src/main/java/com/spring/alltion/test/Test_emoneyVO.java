@@ -8,7 +8,7 @@ test_emoney number default 0
 public class Test_emoneyVO {
 
 		String emoney_id;
-		String test_emoney;
+		int test_emoney;
 		String member_id;
 		
 		public String getMember_id() {
@@ -17,16 +17,16 @@ public class Test_emoneyVO {
 		public void setMember_id(String member_id) {
 			this.member_id = member_id;
 		}
-		public String getEmoney_id() {
+		public 		String getEmoney_id() {
 			return emoney_id;
 		}
-		public void setEmoney_id(String emoney_id) {
+		public void setEmoney_id(		String emoney_id) {
 			this.emoney_id = emoney_id;
 		}
-		public String getTest_emoney() {
+		public int getTest_emoney() {
 			return test_emoney;
 		}
-		public void setTest_emoney(String test_emoney) {
+		public void setTest_emoney(int test_emoney) {
 			this.test_emoney = test_emoney;
 		}
 		

@@ -37,11 +37,9 @@ $(function() {
       	},
       	success: function(retVal){
       		console.log('성공');
-      		alert('성공');
       	},
       	error: function(){
       		console.log('실패');
-      		alert('실패');
       	}
     }).done(function(result) { // 환불 성공시 로직 
     	$.ajax({
@@ -59,6 +57,5 @@ $(function() {
 </script>
 </head>
 <body>
-
 </body>
 </html>

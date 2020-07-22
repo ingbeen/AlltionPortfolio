@@ -14,32 +14,7 @@
 %>
 
 <!doctype html>
-<!-- 
-create table pay(
-    merchant_uid VARCHAR2(60),
- 	name VARCHAR2(60),
- 	amount VARCHAR2(100),
- 	status VARCHAR2(20),
-    buyer_email VARCHAR2(60),
-    buyer_name VARCHAR2(60),
-    buyer_tel VARCHAR2(60)
-);
-create table paymember(
-    id VARCHAR2(20),
-    pw VARCHAR2(20),
-    email VARCHAR2(20),
-    tel VARCHAR2(20),
-    signdate date,
-    ad number(2)
-);
 
-create table payobject(
-    merchant_uid VARCHAR2(60),
-    selid VARCHAR2(20),
-    objname VARCHAR2(20),
-    aucinsbuymoney number(30) 
-);
- -->
 <html>
 <head>
 <meta charset="utf-8" />

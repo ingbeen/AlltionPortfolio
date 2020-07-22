@@ -37,7 +37,7 @@
 		<result property="product_progress" column="product_progress" />
 	</resultMap>
 	
-	<select id="getMainlist" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
+	<select id="getMainlist1" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
 		<![CDATA[
 		select 
 			product_number, 
@@ -62,9 +62,97 @@
 			product_purchase_price,
 			product_progress 
         from (select * from product order by product_issue_date desc)) 
-        where rnum>=#{startrow} and rnum<=#{endrow}
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
 		]]>
 	</select>
+	
+	<select id="getMainlist2" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
+		<![CDATA[
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_views desc)) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+		]]>
+	</select>
+	
+	<select id="getMainlist3" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
+		<![CDATA[
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_current_price asc)) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+		]]>
+	</select>
+	
+	<select id="getMainlist4" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
+		<![CDATA[
+		select 
+			product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_current_price desc)) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+		]]>
+	</select>
+	
 	<select id="getProductList" parameterType="HashMap" resultMap="productResultMap">
 		<![CDATA[
 		select product_number,product_id,product_subject,product_category_1,product_category_2,product_starting_price,product_re_auction,product_progress,product_img_1,product_issue_date 
@@ -74,7 +162,7 @@
      	]]>
 	</select>
 
-	<select id="getCategorylist" resultType="com.spring.alltion.productRegistration.ProductVO">
+	<select id="getCategorylist1" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 	select 
 	product_number, 
@@ -99,25 +187,97 @@
 			product_purchase_price,
 			product_progress 
         from (select * from product order by product_issue_date desc) where product_category_2 = #{product_category_2}) 
-        where rnum>=#{startrow} and rnum<=#{endrow}
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
     ]]>
-	</select>	
-	<select id="getOrderbylist" resultType="com.spring.alltion.productRegistration.ProductVO">
-		select 
-			product_number, 
+	</select>
+	
+	<select id="getCategorylist2" resultType="com.spring.alltion.productRegistration.ProductVO">
+	<![CDATA[
+	select 
+	product_number, 
 			product_subject, 
 			product_img_1,
 			product_category_1, 
 			product_category_2,
-			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
 			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
 			product_current_price, 
 			product_purchase_price,
 			product_progress 
-		from product 
-		where product_category_2 = #{product_category_2}
-		order by #{sort_list} desc
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_views desc) where product_category_2 = #{product_category_2}) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+    ]]>
 	</select>
+	
+	<select id="getCategorylist3" resultType="com.spring.alltion.productRegistration.ProductVO">
+	<![CDATA[
+	select 
+	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_current_price asc) where product_category_2 = #{product_category_2}) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+    ]]>
+	</select>
+	
+	<select id="getCategorylist4" resultType="com.spring.alltion.productRegistration.ProductVO">
+	<![CDATA[
+	select 
+	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date, 
+			to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select rownum rnum,
+        	product_number, 
+			product_subject, 
+			product_img_1,
+			product_category_1, 
+			product_category_2,
+			product_issue_date, 
+			product_end_date, 
+			product_current_price, 
+			product_purchase_price,
+			product_progress 
+        from (select * from product order by product_current_price desc) where product_category_2 = #{product_category_2}) 
+        where rnum>=#{startrow} and rnum<=#{endrow} and product_end_date >= sysdate+7
+    ]]>
+	</select>
+	
 	<select id="getCategorylistCount" parameterType="String" resultType="int">
 		SELECT count(*) FROM product where product_category_2 = #{product_category_2, jdbcType=VARCHAR}
 	</select>

@@ -116,15 +116,15 @@
 #member_update ul{
     border-top: thin solid darkgray;
     border-bottom: thin solid darkgray;
-    height : 40px;
+    height: 50px;
 }
 
-.int {
-    margin-top: 4px;
+.input_border  {
+    margin-top: 2px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    font-size: 16px;
+    font-size: 10px;
     width: 100%;
-    padding: 4px;
+    padding: 2px;
     transition: border .2s;
 }
 

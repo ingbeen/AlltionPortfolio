@@ -4,11 +4,15 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" href="./resources/css/style.css">
+	<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+    <link rel="stylesheet" href="./resources/css/style.css?after">
 	<link rel="stylesheet" href="./resources/css/member_login.css">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/kakaoTalk.css">
+	<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+	<link rel="stylesheet" href="./resources/css/style.css?after">
     <title>All-tion</title>
 
 </head>
@@ -67,19 +71,19 @@ pageEncoding="UTF-8"%>
                 <ul class="member_info">
                     <li>
                         <a href="#">
-                            <span class="material-icons">perm_identity</span>
+                            <span class="material-icons">perm_identity</span><br>
                             <span>마이 페이지</span>
                         </a>
                     </li>
                     <li>
                         <a href="wishList.yb?page=1&endDateFormat=0">
-                            <span class="material-icons">turned_in_not</span>
+                            <span class="material-icons">turned_in_not</span><br>
                             <span>찜 목록</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="material-icons">access_time</span>
+                            <span class="material-icons">access_time</span><br>
                             <span>참여 경매</span>
                         </a>
                     </li>
@@ -87,7 +91,7 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </div>
-
+	<div id="kakao-talk-channel-chat-button" style='display: none;'></div>
 	<form name = "login" action = "./login.kj" method = "post">   
 
     <!-- 로그인 영역 by 계정 -->
@@ -180,6 +184,8 @@ pageEncoding="UTF-8"%>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript"></script>
     <script src="./resources/js/login.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="resources/js/kakaoTalk.js"></script>
 
 </body>
 </html>

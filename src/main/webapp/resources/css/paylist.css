@@ -1,25 +1,26 @@
 @charset "UTF-8";
-.pay{
-    display:inline-block;
-    padding: 2% 0 0 23%;
-    width: 1190px;
+.pay, .payment{
+	position: relative;
+	display: inline-block;
+    padding: 2% 0 0 30%;
+    /*width: 1190px;*/
     min-height: 500px;
     margin:0 auto;
 }
 .chargehistory{
-    min-width: 362px;
+    /*min-width: 362px;*/
+    width: 100%;
     min-height: 300px;
-    float: left;
     align-content: center;
 }
 
-.chargehistory h3, .cancelhistory h3 {
+.chargehistory h3, .cancelhistory h3, paymenthistory h3 {
     padding: 0 0 15px 0;
 }
 
-.cancelhistory{
-    float:right;
-    min-width: 362px;
+.cancelhistory, .paymenthistory{
+    /*min-width: 362px;*/
+    width: 100%;
     min-height: 300px;
     align-content: center;
 }
@@ -39,7 +40,7 @@
     padding: 5px 5px 5px 5px;
 }
 
-.cancel li{
+.cancel li, .paymentlist li{
     display:inline;
     border-left: 1px solid #999; 
     float:left;
@@ -47,7 +48,7 @@
     text-align: center;
     padding: 5px 5px 5px 5px;
 }
-.firstcancel li{
+.firstcancel li, .firstline li{
     display:inline; 
     float:left;
     min-width: 100px;
@@ -56,17 +57,18 @@
 }
 
 .pay_list ul li:first-child{border-left:none;}
+.payment_list ul li:first-child{border-left:none;}
 
-.firstcharge li, .firstcancel li{
+.firstcharge li, .firstcancel li, .firstline li{
     background-color: #BDBDBD;
 }
 
 
-.chargepage ul li, .cancelpage ul li{
+.chargepage ul li, .cancelpage ul li, .paymentpage ul li{
 	display:inline-block;
 	margin: 0 12px;
 }
-.chargepage, .cancelpage {
+.chargepage, .cancelpage, .paymentpage {
 	margin:0 auto;
 }
 
@@ -74,7 +76,7 @@
 	text-align: center;
 }
 
-.page_number a.active {
+.page_number a.active{
 	cursor: default;
 	font-weight: bold;
 }

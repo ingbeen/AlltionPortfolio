@@ -65,20 +65,19 @@ public class PurchaseCreditScoreVO {
 		this.purchase_success_rate = purchase_success_rate;
 	}
 	
-	public void purchaseScoreRate() {
-		if(purchase_normal != 0 && purchase_denial == 0 && purchase_undelivered == 0 && purchase_return == 0) {
-			purchase_success_rate = 100;
+	public void purchaseSuccessRateProcess() {
+		if(purchase_normal == 0 && purchase_denial == 0 && purchase_undelivered == 0 && purchase_return == 0) {
+			purchase_success_rate = 0.0;
 		} else {
-			int baseCount = purchase_normal * 100;
-			purchase_normal = 1;
-			
-			purchase_success_rate = baseCount / (purchase_normal + purchase_undelivered + purchase_return + purchase_denial);
+			purchase_success_rate = ((100.0 / (purchase_normal + purchase_denial + purchase_undelivered + purchase_return)) * purchase_normal);
 		}
-		
-		saleScoreProcess(purchase_success_rate);
 	}
 	
-	public void saleScoreProcess(double purchase_success_rate) {
-		purchase_credit_score = Integer.parseInt(String.valueOf(Math.round(purchase_success_rate * 2)));
+	public void purchaseCreditScoreProcess() {
+		if (purchase_normal >= 30) {
+			purchase_credit_score = (int)(purchase_success_rate * 2.0) - ((purchase_denial + purchase_undelivered + purchase_return) * 2);
+		} else {
+			purchase_credit_score = (purchase_normal * 5) - ((purchase_denial + purchase_undelivered + purchase_return) * 2);
+		}
 	}
 }

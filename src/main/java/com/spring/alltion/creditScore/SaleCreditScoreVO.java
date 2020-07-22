@@ -64,22 +64,20 @@ public class SaleCreditScoreVO {
 	public void setSale_success_rate(int sale_success_rate) {
 		this.sale_success_rate = sale_success_rate;
 	}
-
-	// 로직 다시 짜기	
-	public void saleScoreRate() {
-		if(sale_normal != 0 && sale_denial == 0 && sale_undelivered == 0 && sale_return == 0) {
-			sale_success_rate = 100;
+	
+	public void saleSuccessRateProcess() {
+		if(sale_normal == 0 && sale_denial == 0 && sale_undelivered == 0 && sale_return == 0) {
+			sale_success_rate = 0.0;
 		} else {
-			int baseCount = sale_normal * 100;
-			sale_normal = 1;
-			
-			sale_success_rate = baseCount / (sale_normal + sale_undelivered + sale_return + sale_denial);
+			sale_success_rate = ((100.0 / (sale_normal + sale_denial + sale_undelivered + sale_return)) * sale_normal);
 		}
-		
-		saleScoreProcess(sale_success_rate);
 	}
 	
-	public void saleScoreProcess(double sale_success_rate) {
-		sale_credit_score = Integer.parseInt(String.valueOf(Math.round(sale_success_rate * 2)));
+	public void saleCreditScoreProcess() {
+		if (sale_normal >= 30) {
+			sale_credit_score = ((int)(sale_success_rate * 2.0)) - ((sale_denial + sale_undelivered + sale_return) * 2);
+		} else {
+			sale_credit_score = (sale_normal * 5) - ((sale_denial + sale_undelivered + sale_return) * 2);
+		}
 	}
 }

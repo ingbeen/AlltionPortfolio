@@ -35,24 +35,99 @@ CREATE TABLE product_kj_trading (
     
  */
 public class Product_kjVO {
-
-	 int product_number;
-	 String product_id;
+	 
+	 int product_number; 
+	 String product_id;	 
 	 String product_subject;
 	 String product_delivery;
 	 String product_transaction_area;
 	 int product_purchase_price;
 	 int product_current_price;
+	 
 	 int trading_price;
-	 public int getTrading_price() {
-		return trading_price;
+	 int trading_product_number;
+	 String trading_buyer_id;	 
+	 String trading_deposit_deadline;
+	 String trading_transaction_method;
+	 String trading_waybill_deadline;
+	 String trading_progress;
+	
+	 String trading_sample4_postcode;
+	 String trading_sample4_roadAddress;
+	 String trading_sample4_jibunAddress;
+	 String trading_sample4_detailAddress;
+	 
+	 String sample4_postcode;
+	 String sample4_roadAddress;
+	 String sample4_jibunAddress;
+	 String sample4_detailAddress;
+	 
+	 String member_name;
+	 String member_phone;
+	 
+	 String trading_waybill_number;
+
+	
+	 public int getTrading_product_number() {
+		return trading_product_number;
+	}
+	public void setTrading_product_number(int trading_product_number) {
+		this.trading_product_number = trading_product_number;
+	}
+	public int getTrading_price() {
+			return trading_price;
 	}
 	public void setTrading_price(int trading_price) {
 		this.trading_price = trading_price;
 	}
-	String trading_deposit_deadline;
-	 String trading_transaction_method;
-	
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getMember_phone() {
+		return member_phone;
+	}
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}	
+	public String getTrading_sample4_postcode() {
+		return trading_sample4_postcode;
+	}
+	public void setTrading_sample4_postcode(String trading_sample4_postcode) {
+		this.trading_sample4_postcode = trading_sample4_postcode;
+	}
+	public String getTrading_sample4_roadAddress() {
+		return trading_sample4_roadAddress;
+	}
+	public void setTrading_sample4_roadAddress(String trading_sample4_roadAddress) {
+		this.trading_sample4_roadAddress = trading_sample4_roadAddress;
+	}
+	public String getTrading_sample4_jibunAddress() {
+		return trading_sample4_jibunAddress;
+	}
+	public void setTrading_sample4_jibunAddress(String trading_sample4_jibunAddress) {
+		this.trading_sample4_jibunAddress = trading_sample4_jibunAddress;
+	}
+	public String getTrading_sample4_detailAddress() {
+		return trading_sample4_detailAddress;
+	}
+	public void setTrading_sample4_detailAddress(String trading_sample4_detailAddress) {
+		this.trading_sample4_detailAddress = trading_sample4_detailAddress;
+	}
+	public String getTrading_waybill_deadline() {
+		return trading_waybill_deadline;
+	}
+	public void setTrading_waybill_deadline(String trading_waybill_deadline) {
+		this.trading_waybill_deadline = trading_waybill_deadline;
+	}
+	public String getTrading_buyer_id() {
+			return trading_buyer_id;
+	}
+	public void setTrading_buyer_id(String trading_buyer_id) {
+		this.trading_buyer_id = trading_buyer_id;
+	}	 	 	
 	 public String getTrading_deposit_deadline() {
 		return trading_deposit_deadline;
 	}
@@ -106,6 +181,42 @@ public class Product_kjVO {
 	}
 	public void setProduct_current_price(int product_current_price) {
 		this.product_current_price = product_current_price;
+	}
+	public String getSample4_postcode() {
+		return sample4_postcode;
+	}
+	public void setSample4_postcode(String sample4_postcode) {
+		this.sample4_postcode = sample4_postcode;
+	}
+	public String getSample4_roadAddress() {
+		return sample4_roadAddress;
+	}
+	public void setSample4_roadAddress(String sample4_roadAddress) {
+		this.sample4_roadAddress = sample4_roadAddress;
+	}
+	public String getSample4_jibunAddress() {
+		return sample4_jibunAddress;
+	}
+	public void setSample4_jibunAddress(String sample4_jibunAddress) {
+		this.sample4_jibunAddress = sample4_jibunAddress;
+	}
+	public String getSample4_detailAddress() {
+		return sample4_detailAddress;
+	}
+	public void setSample4_detailAddress(String sample4_detailAddress) {
+		this.sample4_detailAddress = sample4_detailAddress;
+	}
+	public String getTrading_waybill_number() {
+		return trading_waybill_number;
+	}
+	public void setTrading_waybill_number(String trading_waybill_number) {
+		this.trading_waybill_number = trading_waybill_number;
+	}
+	public String getTrading_progress() {
+		return trading_progress;
+	}
+	public void setTrading_progress(String trading_progress) {
+		this.trading_progress = trading_progress;
 	}
 	
 }

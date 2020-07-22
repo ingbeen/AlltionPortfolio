@@ -6,12 +6,61 @@
 <resultMap type="Product_kjVO" id = "Product_KjResultMap">
 	<result property="product_number" column="product_number"/>
 	<result property="product_subject" column="product_subject"/>
+	<result property="product_id" column="product_id"/>
+	
 	<result property="trading_price" column="trading_price"/>
 	<result property="trading_deposit_deadline" column="trading_deposit_deadline"/>
 	<result property="trading_transaction_method" column="trading_transaction_method"/>
-	<result property="product_id" column="product_id"/>
-</resultMap>
+	<result property="trading_waybill_number" column = "trading_waybill_number"/>
+	<result property="trading_product_number" column = "trading_product_number"/>
+	<result property="trading_waybill_deadline" column="trading_waybill_deadline"/>
+	<result property="trading_buyer_id" column="trading_buyer_id"/>
+	<result property="trading_progress" column="trading_progress"/>
+	
+	
+	<result property="sample4_postcode" column ="sample4_postcode"/>
+	<result property="sample4_roadAddress" column="sample4_roadaddress"/>
+	<result property="sample4_jibunAddress" column="sample4_jibunaddress"/>
+	<result property="sample4_detailAddress" column="sample4_detailaddress"/>
+	<result property="member_name" column="member_name"/>
+	<result property="member_phone" column = "member_phone"/>
 
+</resultMap>
+	
+	<select id = "getSalelist" resultMap="Product_KjResultMap">		
+		
+		select
+		trading_product_number,
+		product_subject,
+		trading_price,
+		to_char(trading_waybill_deadline, 'yyyy-mm-dd hh24:mi') as trading_waybill_deadline,
+		trading_transaction_method,
+		trading_buyer_id,
+		member_name,
+        member_phone,
+        sample4_postcode,
+        sample4_roadAddress,
+        sample4_jibunAddress,
+        sample4_detailAddress
+		from product_kj 
+		natural join product_kj_trading 
+		natural join member 
+        where product_kj.product_number = product_kj_trading.trading_product_number
+        and product_kj_trading.trading_buyer_id = member.member_id
+        and product_kj_trading.trading_progress = '입금후'
+        and product_id = #{userId}
+        order by trading_waybill_deadline
+					
+	</select>
+	<!--  
+	<update id = "update_emoney" parameterType = "Product_kjVO">
+		update 
+        test_emoney 
+        set
+        test_emoney = test_emoney - #{trading_price}
+        where emoney_id = #{userId}
+	</update>
+	-->
 	<select id = "getProductlist"  resultMap="Product_KjResultMap">
 		
 		select
@@ -22,25 +71,63 @@
 		trading_transaction_method,
 		product_id
 		from product_kj natural join product_kj_trading
-		where product_kj.product_number = product_kj_trading.trading_product_number and trading_buyer_id = #{userId}
+		where product_kj.product_number = product_kj_trading.trading_product_number 
+		and trading_buyer_id = #{userId}
 		order by trading_deposit_deadline
 		
 	</select>
 	
 	<select id = "selectEmoney" resultType = "com.spring.alltion.test.Test_emoneyVO">
 	
-	select 
-	member_id, 
-	test_emoney 
-	from member natural join test_emoney
-	where member.member_id = test_emoney.emoney_id and emoney_id = #{userId}
+		select 
+		member_id, 
+		test_emoney 
+		from member natural join test_emoney
+		where member.member_id = test_emoney.emoney_id and emoney_id = #{userId}
 	
 	</select>
 	
 	<select id = "selectProduct" resultType = "com.spring.alltion.test.Product_kjVO">
-	select
-	trading_price
-	from product_kj_trading
-	where trading_buyer_id = #{userId}
+		
+		select
+		trading_price,
+		trading_sample4_postcode,
+		trading_sample4_roadaddress,
+		trading_sample4_jibunaddress,
+		trading_sample4_detailaddress,	
+		trading_buyer_id,
+		trading_transaction_method
+		from product_kj_trading 
+		where trading_buyer_id = #{userId}
+	
 	</select>
+	
+	
+	<update id = "update_deal_address" parameterType = "MemberVO">
+		 update 
+		 member 
+		 set 
+		 sample4_postcode = #{sample4_postcode}, 
+		 sample4_roadAddress = #{sample4_roadAddress}, 
+		 sample4_jibunAddress = #{sample4_jibunAddress}, 
+		 sample4_detailAddress = #{sample4_detailAddress}  
+		 where member_id = #{member_id} 
+	 </update>
+	 
+	 <update id = "updateWaybill" parameterType ="Product_kjVO">
+	 
+	 update 
+	 product_kj_trading
+	 set
+	 trading_waybill_number = #{trading_waybill_number}
+	 where trading_product_number = #{trading_product_number}
+	 
+	 </update>
+	 
+	 <update id ="after_deposit" parameterType ="Product_kjVO">
+	 update product_kj_trading
+	 set
+	 trading_progress = '입금후' 
+	 where trading_buyer_id = #{trading_buyer_id}
+	 </update>
 </mapper>
