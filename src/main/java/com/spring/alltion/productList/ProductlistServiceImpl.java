@@ -28,13 +28,6 @@ public class ProductlistServiceImpl implements ProductlistService {
 	}
 
 	@Override
-	public List<ProductVO> getproductList(HashMap<String, Integer> hashmap) {
-		// TODO Auto-generated method stub
-		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
-		List<ProductVO> productlist = productListMapper.getProductList(hashmap);
-		return productlist;
-	}
-	@Override
 	public List<ProductVO> getfamousPricelist(String product_category_2) {
 		// TODO Auto-generated method stub
 		ProductListMapper productListMapper = sqlSession.getMapper(ProductListMapper.class);
@@ -140,8 +133,8 @@ public class ProductlistServiceImpl implements ProductlistService {
             key = (String)entry.getKey();
             // value값 확인
             value = (String)entry.getValue();
-            //System.out.println("hashMap Key : " + key);
-            //System.out.println("hashMap Value : " + value);
+//            System.out.println("hashMap Key : " + key);
+//            System.out.println("hashMap Value : " + value);
          // 키가 sort인 value값에 따라 mapping
             if(key.equals("sort") && value.equals("1")) {
             	// 최신 순

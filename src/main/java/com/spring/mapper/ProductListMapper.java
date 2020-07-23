@@ -9,7 +9,6 @@ import com.spring.alltion.productRegistration.ProductVO;
 
 public interface ProductListMapper {
 	public int getCategorylistCount(String product_category_2);
-	public List<ProductVO> getProductList(HashMap<String, Integer> hashmap);
 	public List<ProductVO> getfamousPricelist(String product_category_2);
 	public List<ProductVO> getfamousParticipantslist(String product_category_2);
 	public List<ProductVO> getfamousViewslist(String product_category_2);

@@ -124,8 +124,8 @@ public class ProductListController {
 			endpage = maxpage;
 		}
 		pricelist = productlistService.getfamousPricelist(product_category_2);
-		participantslist = productlistService.getfamousPricelist(product_category_2);
-		viewslist = productlistService.getfamousPricelist(product_category_2);
+		participantslist = productlistService.getfamousParticipantslist(product_category_2);
+		viewslist = productlistService.getfamousViewslist(product_category_2);
 		
 		model.addAttribute("categorylist", categorylist);
 		model.addAttribute("pricelist", pricelist);

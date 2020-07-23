@@ -13,93 +13,23 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="./resources/css/main_style.css">
     <link rel="stylesheet" href="./resources/css/buyer_emoney.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/kakaoTalk.css">
-	<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
-	<link rel="stylesheet" href="./resources/css/style.css?after">
-    
     <title>All-tion</title>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
-  
+    
     <div class="header">
-        <div class="upper_header">
-            <div class="upper_header--nav">
-                <span>
-                    <a href="" id="clock"></a>
-                </span>
-                <ul>
-                    <li>
-                        <a href="./mypage.kj">${userId}</a>
-                    </li>
-                    <li>
-                        <a href="./logout.kj">로그아웃</a>
-                    </li>
-                    <li>
-                    	<a href="./registration.yb">판매하기</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="lower_header">
-            <div class="lower_header--nav">
-                <h1 class="logo">
-                    <a href="/alltion/">ALL-TION</a>
-                </h1>
-                <div class="category">
-                    <a class="category--drop">
-                        <img src="./resources/img/header/category_tab.png">
-                    </a>
-                </div>
-                <div class="search">
-                    <select class="search--select">
-                        <option value="">전체</option>
-                        <option value="cate01">패션</option>
-                        <option value="cate02">뷰티</option>
-                        <option value="cate03">출산/유아동</option>
-                        <option value="cate04">전자기기</option>
-                        <option value="cate05">가전제품</option>
-                        <option value="cate06">가구/인테리어</option>
-                        <option value="cate07">반려동물/취미</option>
-                        <option value="cate08">도서/음반/문구</option>
-                        <option value="cate09">티켓/쿠폰</option>
-                        <option value="cate10">스포츠</option>
-                        <option value="cate11">공구/산업용품</option>
-                        <option value="cate12">기타잡화</option>
-                    </select>
-                    <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
-                </div>
-                <ul class="member_info">
-                    <li>
-                        <a href="./mypage.kj">
-                            <span class="material-icons">perm_identity</span><br>
-                            <span>마이 페이지</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="material-icons">turned_in_not</span><br>
-                            <span>찜 목록</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="material-icons">access_time</span><br>
-                            <span>참여 경매</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
-    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
+
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!-- 이머니 확인 페이지by.계정 -->
     <div class="eomney_update--form">
             <h3>이머니 입금</h3>
@@ -247,7 +177,5 @@
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./resources/js/buyer_emoney.js"></script>
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script src="resources/js/kakaoTalk.js"></script>
 </body>
 </html>

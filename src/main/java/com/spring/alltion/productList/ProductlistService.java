@@ -10,7 +10,6 @@ import com.spring.alltion.productRegistration.ProductVO;
 
 public interface ProductlistService {
 	public int getListCount();
-	public List<ProductVO> getproductList(HashMap<String, Integer> hashmap);
 	public List<ProductVO> getfamousPricelist(String product_category_2);
 	public List<ProductVO> getfamousParticipantslist(String product_category_2);
 	public List<ProductVO> getfamousViewslist(String product_category_2);

@@ -101,7 +101,7 @@ REFERENCES member(member_id); 외래키 부여
 	<select id="getPaymentlist" resultType="PaymentVO">
 	<![CDATA[
 		select * 
-		from(select row_number() over(order by rownum desc) as rnum, p.* 
+		from(select row_number() over(order by payment_date desc) as rnum, p.* 
     		from payment p 
     		where payment_userId = #{payment_userId}) 
 		where rnum>=#{startrow3} and rnum<=#{endrow3}

@@ -196,7 +196,7 @@ public class PayController {
 
 		List<PaymentVO> paymentvo = payService.getPaymentlist(userId, startrow3, endrow3);
 		int maxpage3 = (int) ((double) listcount3 / limit + 0.95);
-		int startpage3 = (((int) ((double) page2 / 10 + 0.9)) - 1) * 10 + 1;
+		int startpage3 = (((int) ((double) page3 / 10 + 0.9)) - 1) * 10 + 1;
 		int endpage3 = maxpage3;
 
 		if (endpage3 > startpage3 + 10 - 1)
@@ -216,14 +216,14 @@ public class PayController {
 	public String plus(HttpSession session, String userId, int amount, String product_subject) {
 		String res = plusMoney(userId, amount, product_subject);
 		session.setAttribute("currentMoney", res); //currentMoney = 해당 유저가 보유 중인 사이버머니
-		return "pay/pay";
+		return "pay/paylist";
 	}
 	
 	@RequestMapping(value = "/minus.ms")
 	public String minus(HttpSession session, String userId, int amount, String product_subject) {
 		String res = minusMoney(userId, amount, product_subject);
 		session.setAttribute("currentMoney", res); //currentMoney = 해당 유저가 보유 중인 사이버머니
-		return "pay/pay";
+		return "pay/paylist";
 	}
 	
 	// 입금될 경우 쓰는 메소드(userId에 amount만큼 입금, product_subject: 상품 이름)

@@ -34,10 +34,81 @@
 
 /* -- 배너 영역 */
 .banner {
-    width: 1200px;
-    height: 540px;
-    background-color: #828282;
-    margin: 0 auto;
+	width: 1200px;
+	height: 540px;
+    margin: 0 auto; 
+	position: relative; 
+    background: rgba(0,0,0,0.2);
+}
+
+.banner > div { 
+	position: absolute;
+	width: 100%;
+}
+
+.banner:hover span, #slideshow:hover .banner-dots{
+	opacity: 1;
+}
+
+.bannerBtn {
+	z-index: 99;
+	background:transparent;
+	-webkit-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.bannerBtn:active,
+.bannerBtn:focus {
+    outline: none;
+    cursor: pointer;    
+}
+        
+.bannerBtn span {
+    color: #BDBDBD;
+    font-size: 52px;
+    opacity: 0.1;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.prev {
+    position: absolute;
+    top: 43%; 
+    left: 20px;
+}
+
+.next {
+    position: absolute; 
+    top: 43%; 
+    right: 10px;
+}
+
+.banner_dots {
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	bottom: 2%;
+	transform: translate(-50%, 0);
+	z-index: 99;
+	-webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    color: #BDBDBD;
+    opacity: 0.2;
+}
+
+.banner_dots .dot {
+	display: inline;
+	font-size: 48px;
+	margin-right: 2px;
+	cursor: pointer;
+}
+
+.banner_dots .dot.active {
+	color: #000000;
+	opacity: 1;
 }
 
 /* desktop-size(min:1280) */

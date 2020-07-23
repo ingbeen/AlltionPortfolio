@@ -30,80 +30,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./resources/css/style.css">
+<link rel="stylesheet" href="./resources/css/main_style.css">
 <link rel="stylesheet" href="./resources/css/paylist.css">
-<link rel="stylesheet" href="resources/css/kakaoTalk.css">
-<link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
-<link rel="stylesheet" href="./resources/css/style.css?after">
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?
+    family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>Alltion 충전내역 조회</title>
 </head>
 <body>
-	<!-- 모든 페이지 공통 영역 by 하나  -->
-	<!-- top 키 -->
-	<div id="topKey" class="topKey_btn">
-		<p class="material-icons">keyboard_arrow_up</p>
-	</div>
-	<!-- 헤더 -->
-	<div class="header">
-		<div class="upper_header">
-			<div class="upper_header--nav">
-				<span> <a href="" id="clock"></a>
-				</span>
-				<ul>
-					<li><a href="./mypage.kj">${userId}</a></li>
-					<li><a href="./logout.kj">로그아웃</a></li>
-					<li><a href="./registration.yb">판매하기</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="lower_header">
-			<div class="lower_header--nav">
-				<h1 class="logo">
-					<a href="/alltion/">ALL-TION</a>
-				</h1>
-				<div class="category">
-					<a class="category--drop"> <img
-						src="./resources/img/header/category_tab.png">
-					</a>
-				</div>
-				<div class="search">
-					<select class="search--select">
-						<option value="">전체</option>
-						<option value="cate01">패션</option>
-						<option value="cate02">뷰티</option>
-						<option value="cate03">출산/유아동</option>
-						<option value="cate04">전자기기</option>
-						<option value="cate05">가전제품</option>
-						<option value="cate06">가구/인테리어</option>
-						<option value="cate07">반려동물/취미</option>
-						<option value="cate08">도서/음반/문구</option>
-						<option value="cate09">티켓/쿠폰</option>
-						<option value="cate10">스포츠</option>
-						<option value="cate11">공구/산업용품</option>
-						<option value="cate12">기타잡화</option>
-					</select> <input type="text" placeholder="찾으시는 상품을 입력해 주세요"
-						class="search__input">
-				</div>
-				<ul class="member_info">
-					<li><a href="./mypage.kj"> <span class="material-icons">perm_identity</span><br>
-							<span>마이 페이지</span>
-					</a></li>
-					<li><a href="#"> <span class="material-icons">turned_in_not</span><br>
-							<span>찜 목록</span>
-					</a></li>
-					<li><a href="#"> <span class="material-icons">access_time</span><br>
-							<span>참여 경매</span>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div id="kakao-talk-channel-chat-button" style='display: none;'></div>
+    <!-- 모든 페이지 공통 영역 by 하나  -->
+    
+    <div class="header">
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
+    </div>
+
+    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
 	<!-- 충전내역 조회 -->
 	<div class="pay">
 		<div class="chargehistory">
@@ -494,7 +435,6 @@
 
 	<!--  스크립트 영역  -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="./resources/js/common.js"></script>
 	<script>
 	var formData = $("form[name=test1]").serialize() ;
 	var click = true;
@@ -526,18 +466,15 @@
             $.ajax({
             	url: "/alltion/minus.ms",
             	data: formData
+            }).done(function(data){
+            	click = true;
+            }).fail(function(data){
+            	click = false;
             })
-            // 타이밍 추가
-            setTimeout(function () {
-                click = true;
-            }, 1000)
-            
          } else {
             console.log("중복됨");
          }
     }
 	</script>
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script src="resources/js/kakaoTalk.js"></script>
 </body>
 </html>
