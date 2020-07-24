@@ -25,7 +25,9 @@ REFERENCES member(member_id); 외래키 부여
 	<select id="getPayList" resultType="PayVO">
 		SELECT * FROM pay where pay_merchant_uid = #{pay_merchant_uid, jdbcType=VARCHAR}
 	</select>
-	
+	<select id="getPayment" resultType="PaymentVO">
+		SELECT * FROM payment where payment_userId = #{payment_userId, jdbcType=VARCHAR}
+	</select>
 	<insert id="insertPay" parameterType="PayVO" >
 		INSERT INTO pay (
 			pay_merchant_uid,

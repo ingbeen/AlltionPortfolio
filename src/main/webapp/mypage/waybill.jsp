@@ -48,6 +48,7 @@
                     </li>
                 </ul>
                 <form name = "insert_waybill" action = "./insert_waybill.kj" method = "post"> 
+                <input type = "hidden" id = "trading_progress" name = "trading_progress" value = "<%=Product_kjvo.getTrading_progress() %>">
                 <input type = "hidden" id = "trading_product_number" name = "trading_product_number" value="<%=Product_kjvo.getTrading_product_number() %>">
                 <ul class="update_form list">
                     <li>

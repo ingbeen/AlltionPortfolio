@@ -497,6 +497,10 @@ pageEncoding="UTF-8"%>
                         <option value="cate12">기타잡화</option>
                     </select>
                     <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
+                	<a href="#" class="searchBtn">
+					    <span class="material-icons">search</span>
+					</a>
+                	
                 </div>
                 </div>
                 <ul class="member_info">

@@ -22,5 +22,5 @@ public interface PayService {
 	void insertPayment(PaymentVO vo);
 	List<PaymentVO> getPaymentlist(String userId, int startrow3, int endrow3);
 	int getPaymentcount(String payment_userId);
-	
+	PaymentVO getPayment(String payment_userId);
 }

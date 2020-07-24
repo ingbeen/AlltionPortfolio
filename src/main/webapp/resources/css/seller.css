@@ -1,4 +1,41 @@
-/*구매 페이지 css*/
+/*판매 페이지 css*/
+.main_body {
+    width: 960px;
+    position: relative;
+    height: 100%;
+    min-height: 10px;
+    margin: 50px auto 20px auto;
+}
+.bidding_title{
+	margin-bottom: 50px;
+    border-bottom: 2px solid #FFA30E;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+.bidding_notify{
+    background-color: rgba(240,240,240,0.5);
+	font-size:15px;
+	margin-bottom:50px;
+    padding: 10px;
+}
+
+.bidding_notify ul li{
+    line-height:30px;
+    padding-left:10px;
+    position: relative;
+    color: #444444;
+}
+
+.bidding_notify ul li::before {
+    position: absolute;
+    top: 13px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #c6c9cb;
+    content: '';
+}
 	.seller--form {
     width: 960px;
     margin: 50px auto;

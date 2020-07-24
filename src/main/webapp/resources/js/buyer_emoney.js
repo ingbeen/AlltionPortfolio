@@ -49,51 +49,7 @@
             }
         }).open();
     }
-    
-    function usercheck(){
-		var member_id = $('#member_id').val();
-
-		$.ajax({
-			url: 'user_check.kj',
-			type: 'POST',
-			data: {'member_id':member_id},
-			dataType : 'json',
-			contentType : 'application/x-www-form-urlencoded; charset=utf-8',
-			success: function(res){
-				if(res==1){
-					 $("#alert-success").css('display', 'inline-block');
-		             $("#alert-danger").css('display', 'none');
-				}else{
-					$("#alert-success").css('display', 'none');
-	                $("#alert-danger").css('display', 'inline-block');
-				}
-				
-			},
-			error: function(){
-				alert('ajax 통신 실패(usercheck)');
-			}
-		});
-	}
-    
-    function checkpassword() {
-    	
-    	var pwd1 = $("#member_password").val();
-        var pwd2 = $("#member_password2").val();
         
-    	if (pwd1 == pwd2) {
-    	    $("#alert-success1").css('display', 'inline-block');
-    	    $("#alert-danger1").css('display', 'none');
-    	} else {
-    	    
-    	    $("#alert-success1").css('display', 'none');
-    	    $("#alert-danger1").css('display', 'inline-block');
-    	    $("#member_password").val('');
-    	    $("#member_password2").val('');
-    	    $("#member_password").focus();
-    	}
-
-    }
-    
     $(function(){
         // 광고 없애기
         $(".ad__banner--closeBtn").click(function(){

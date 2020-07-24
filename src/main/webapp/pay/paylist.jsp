@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.alltion.pay.*"%>
 <%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	List<PayVO> chargevo = (List<PayVO>) request.getAttribute("chargevo");
 	List<PayVO> cancelvo = (List<PayVO>) request.getAttribute("cancelvo");
@@ -445,12 +446,15 @@
             $.ajax({
             	url: "/alltion/plus.ms",
             	data: formData
+            }).done(function(data){
+            	click = true;
+            }).fail(function(data){
+            	click = false;
             })
             // 타이밍 추가
-            setTimeout(function () {
-                click = true;
-            }, 1000)
-            
+            //setTimeout(function () {
+            //    click = true;
+            //}, 1000)
          } else {
             console.log("중복됨");
          }

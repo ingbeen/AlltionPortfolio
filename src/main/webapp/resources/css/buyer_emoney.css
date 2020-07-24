@@ -113,7 +113,7 @@ body a.base_btn {
     cursor: pointer;
 }
 /*member_update 모달창css*/
-#member_update ul{
+#delivery ul{
 	width: 150px
     height: 1000px;
     border-top: thin solid darkgray;

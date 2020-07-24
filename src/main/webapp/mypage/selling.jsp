@@ -47,7 +47,7 @@
                     해당 물품이 낙찰이 되거나 경매시간이 종료될 경우 해당 물품의 정보는 확인하실 수 없습니다.
                 </li>
             </ul>
-        </div>
+        
         <div class="table_title">
             <p>현재 판매중인 경매에 대해서 모두 <%=productvolist.size()%>개가 검색되었습니다.</p>
         </div>
@@ -115,7 +115,7 @@
         	<%} %>
         </div>
     </div>
-
+</div>
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">

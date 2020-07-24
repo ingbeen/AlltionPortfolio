@@ -316,7 +316,7 @@
 	
 	<select id="getListCount" resultType="int">
 	<![CDATA[
-		SELECT count(*) FROM product and sysdate <= product_end_date+1
+		SELECT count(*) FROM product where sysdate <= product_end_date+1
 	]]>
 	</select>
 	

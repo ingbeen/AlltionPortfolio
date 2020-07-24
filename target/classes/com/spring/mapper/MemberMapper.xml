@@ -16,16 +16,23 @@
 	 	<result property="sample4_jibunAddress" column="sample4_jibunAddress"/>
 	 	<result property="sample4_detailAddress" column="sample4_detailAddress"/>
 	 	<result property="member_delete" column="member_delete"/>
-
+		<result property="member_manager" column="member_manager"/>
 	 </resultMap>
 	 
 	 <select id="userCheck" parameterType="MemberVO" resultType="int">
-	 	select count(*) from member where member_id = #{member_id} and member_password = #{member_password} and member_delete = '0'
+	 	select count(*) 
+	 	from member
+	 	where member_id = #{member_id} 
+	 	and member_password = #{member_password} 
+	 	and member_delete = '0'
+	 	and member_manager = '0'
 	 </select>
 	 
 	 <insert id="insertMember" parameterType="MemberVO">
+	 
 	 insert into member values
-	 (#{member_name},#{member_id},#{member_password},#{email},#{member_phone},#{sample4_postcode},#{sample4_roadAddress},#{sample4_jibunAddress},#{sample4_detailAddress},#{member_delete})
+	 (#{member_name},#{member_id},#{member_password},#{email},#{member_phone},#{sample4_postcode},#{sample4_roadAddress},#{sample4_jibunAddress},#{sample4_detailAddress},#{member_delete},#{member_manager}, sysdate)
+	 
 	 </insert>
 	 
 	 <select id="idCheckService" parameterType="String" resultType="int">

@@ -6,6 +6,9 @@
 <%	
 	ArrayList<Product_kjVO> getSale_list = (ArrayList<Product_kjVO>)request.getAttribute("getSale_list");
 %>
+<%
+	ArrayList<Product_kjVO> dealcompleteseller_list = (ArrayList<Product_kjVO>)request.getAttribute("dealcompleteseller_list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +28,25 @@
     </div>
 
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
+
+ 	<div class="main_body">
+    <div class="bidding_title">
+            <h1>판매 경매</h1>
+    </div>
+        <div class="bidding_notify">
+            <ul>
+                <li>
+                    회원님께서 현재 판매 중인 경매 리스트입니다.
+                <li>
+                <li>
+                    문의 사항은 고객센터에 문의해주시기 바랍니다.
+                </li>
+
+            </ul>
+        </div>
+       </div>
+    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
+
     <!--판매 중-->
     	<%if(getSale_list.size()==0) {%>
     	<div class="seller--form">
@@ -142,7 +164,18 @@
         	}}
     %>
     
-    <!--구매 완료 -->
+    <!--판매 완료 -->
+    <%if(dealcompleteseller_list.size()==0) {%>
+    	<div class="seller--form">
+    	<h3>판매 완료된 경매가 없습니다.</h3>
+    	</div>
+    	<%}else{ %>
+    	<%
+        	for(int i = 0; i < dealcompleteseller_list.size(); i++)
+        	{
+        		Product_kjVO dealcompletvo = (Product_kjVO)dealcompleteseller_list.get(i);
+        	
+        %> 
         <div class="seller--form">
             <h3>판매 완료</h3>
             <div class="seller--content">
@@ -152,7 +185,7 @@
                             <span>상품 번호</span>
                         </div>
                         <div class="seller_form__list content">
-                            
+                            <span><%=dealcompletvo.getProduct_number() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -162,42 +195,45 @@
                             <span>상품명</span>
                         </div>
                         <div class="seller_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletvo.getProduct_subject() %></span>
                         </div>    
                     </li>
                 </ul>
                 <ul class="seller_form list">
                     <li>
                         <div class="seller_form__list title">
-                            <span>구매 가격</span>
+                            <span>판매 가격</span>
                         </div>
                         <div class="seller_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletvo.getTrading_price() %></span>
                         </div>    
                     </li>
                 </ul>
                 <ul class="seller_form list">
                     <li>
                         <div class="seller_form__list title">
-                            <span>구매 날짜</span>
+                            <span>판매 날짜</span>
                         </div>
                         <div class="seller_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletvo.getTrading_purchase_date() %></span>
                         </div>    
                     </li>
                 </ul>
                 <ul class="seller_form list">
                     <li>
                         <div class="seller_form__list title">
-                            <span>판매자</span>
+                            <span>구매자</span>
                         </div>
                         <div class="seller_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletvo.getTrading_buyer_id() %></span>
                         </div>    
                     </li>
                 </ul> 
         </div>
     </div>
+    <%
+        	}}
+    %>
     
     <!-- 푸터 영역 -->
     <div class="footer">

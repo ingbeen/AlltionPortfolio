@@ -15,7 +15,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./resources/css/main_style.css?after">
-<link rel="stylesheet" href="<c:url value="/resources/css/style.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/pay.css" />">
     <link href="https://fonts.googleapis.com/css2?
     family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -51,9 +50,9 @@ date = getFormatDate(date);
     <div class="header">
         <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
-
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
 	<!------------------------------------------------------------------------------------------------>
+	<div class="warp" style="min-height: 450px;">
 	<div class="Main">
 		<div class="h3_subBox">
 			<h3>사이버머니 충전/환불</h3>
@@ -131,7 +130,7 @@ date = getFormatDate(date);
 						<div class="submit">
 							<input type="image"
 								src="data:image/gif;base64,R0lGODlheQAlAMQAAPTW1+ioqdxxdNlhZOKPkPnr69M5PtZOUvfh4e7Awd+AgvHLzPz19eWcnuu0tbscIf///9AfJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgwNURBODcxNzM3RDExRTNCODNBQzdEODUzQzZEN0ZFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgwNURBODcyNzM3RDExRTNCODNBQzdEODUzQzZEN0ZFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODA1REE4NkY3MzdEMTFFM0I4M0FDN0Q4NTNDNkQ3RkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODA1REE4NzA3MzdEMTFFM0I4M0FDN0Q4NTNDNkQ3RkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAeQAlAEAF/+AjjmRpnmiqrmzrvmIkz3Rt33iu73zv+7GfUDZgQCAAQWSwODIGMsURQogIBAlIYImYAgxWpA0AUcjIyuEvqBYGClNnAEwE2O93R04g1qHbQA+Ag4SFhjlsh4qLjDqJjTYBWjZxUzKSW5eTMnwAZwGgoWcQaZARj6ZLCmQFBFA0BwFVNJgHEE9LRwadnHAIdKOlkKipxcaBMMnKy8zNKsfQ0TvE0tXH1NbZw4LGBKBNRwigs5qZoGQBZJVavDXtf6nYh+v0cAxmA11VmHwFM3AD+DAAMMsAHDPBisk71GTBgRkGsiyY0Q4HAQAFACBsJwBhDXimFmobWUgkyZNqTNaiXNlDJcuXOFzCnDlDJs2ZNm++zKlzJU9AFxv8EBCg1EVyschZDPAwHrdi6uh5imAHTsapmBqcQwLqSh96CZ1Cw3IkC4QEHmU0mRon0xIBr8JMpdHgbNiQT1MNINB0xgECaepCaGBkTgRMEbosCNAEQZgjbvvNALnNWKitBS4HGOAA2JJyFdFUNNAlAQ3KjX7+OBA1DoK4FWUcEPDQQaUqvAaU9UyVlMK8pmwjAHyFQGmK9I7MtRH7BmpGqofsusK7p5Do1rNhz15tO/do3r9fAy5e54MQADs="
-								value="충전하기" >
+								value="충전하기" style="width: 130px; height: 50px;">
 						</div>
 					</form>
 				</div>
@@ -162,7 +161,7 @@ date = getFormatDate(date);
 						<div class="submit">
 							<input type="image"
 								src="data:image/gif;base64,R0lGODlheQAlAMQAAPTW19xxdNZOUvz19eKPkO7AwdM5Pvnr69lhZPfh4eWcnvHLzOu0td+AguioqbscIf///9AfJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgzMUVDRTk0NzM3RDExRTM4QTAzQkU5RkMyNEFDQzRGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgzMUVDRTk1NzM3RDExRTM4QTAzQkU5RkMyNEFDQzRGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODMxRUNFOTI3MzdEMTFFMzhBMDNCRTlGQzI0QUNDNEYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODMxRUNFOTM3MzdEMTFFMzhBMDNCRTlGQzI0QUNDNEYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAeQAlAEAF/+AjjmRpnmiqrmzrvmIkz3Rt33iu73zv+7GfcDaAOCKCA4QQgDgdgoB0OkXIHJBFrQApzBBOiCKCfQ6FwbOQAWi73dZyeA4YOpTzRED9S/P/gIGCNn6DhoeIOYWJBjJNdREGj1cQAA6Xl1yQkQ5FTgMFjTRYRzOkiTSLiABhA24FBJUyBG9uRaURk5S4jgueEAcFAqipD8THyIEwy8zNzs8sydLTQMbU19jF2dvXqoeSAZhMCLpYBVQBCrIR6gmiMgsQDLlzYXunx97fDgkQAwt7JmG6xMrSwGEGuMwRJqPfgAaRuIzBR0zfIVZ7cGBxVQsAgQj1QjrZw+ojDVa8EupZ5MZS0MqWMNW8jEmzWs2bgGbi3FlDJ8+fPn/uDCr0JlE+AhyYRKLUkYOMX5rWiDLsRjioERo8RXZUSJOQAMqJdALJgEMGDhgoccfUQcFLwyii6iqEwK8u9PQkHbsOZQ1dMjQ59ZvPGjJWCy4VkQJMDl8IAQwUOYDJYVW7EBr0WxDHCFfDxAhkAragjTpItNooOeBmjIykBMhJ2RoBAcMZVRl4LjxNARQausINvKQEF2C5sUBhYjWgakXQx1gl6AigM+XhTal3tKL7gIIpuiF/LhoIHNbx5NP3hK6ePN322d7D78Z+Ps8HIQAAOw=="
-								value="환불요청하기" >
+								value="환불요청하기"  style="width: 130px; height: 50px;">
 						</div>
 					</form>
 				</div>
@@ -170,7 +169,7 @@ date = getFormatDate(date);
 			</div>
 		</div>
 	</div>
-
+	</div>
 
 
 

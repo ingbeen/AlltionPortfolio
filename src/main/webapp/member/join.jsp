@@ -4,7 +4,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link rel="stylesheet" href="./resources/css/style.css?after">
+    <link rel="stylesheet" href="./resources/css/main_style.css?after">
     <link rel="stylesheet" href="./resources/css/member_join.css">
     <link href="https://fonts.googleapis.com/css2?
     family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     <!-- 모든 페이지 공통 영역 by 하나  -->
     
     <div class="header">
-        <jsp:include page="../header/header.jsp"></jsp:include>
+        <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
 
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->

@@ -18,12 +18,19 @@
     padding: 0 0 15px 0;
 }
 
-.cancelhistory, .paymenthistory{
+.cancelhistory{
     /*min-width: 362px;*/
     width: 100%;
     min-height: 300px;
     align-content: center;
 }
+
+.paymenthistory{
+	width: 100%;
+    min-height: 300px;
+    align-content: center;
+}
+
 .charge li{
     display:inline;
     border-left: 1px solid #999; 

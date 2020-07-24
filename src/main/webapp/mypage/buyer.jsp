@@ -8,6 +8,14 @@
 	ArrayList<Product_kjVO> product_list =
 			(ArrayList<Product_kjVO>)request.getAttribute("product_list");
 %>
+<%
+	ArrayList<Product_kjVO> delivery_list =
+			(ArrayList<Product_kjVO>)request.getAttribute("delivery_list");
+%>
+<%
+	ArrayList<Product_kjVO> dealcomplete_list =
+			(ArrayList<Product_kjVO>)request.getAttribute("dealcomplete_list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +33,24 @@
     <div class="header">
         <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
+    <div class="main_body">
+        <div class="bidding_title">
+            <h1>구매 경매</h1>
+        </div>
+        <div class="bidding_notify">
+            <ul>
+                <li>
+                    회원님께서 현재 구매 중인 경매 리스트입니다.
+                <li>
+                <li>
+                    문의 사항은 고객센터에 문의해주시기 바랍니다.
+                </li>
 
-    <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
+            </ul>
+        </div>
+       </div>
+    <div id="kakao-talk-channel-chat-button" style='display: none;'></div>
+
     <!--구매 중-->
     	<%if(product_list.size()==0) {%>
     	<div class="buyer--form">
@@ -110,10 +134,23 @@
     <%
         	}}
     %>
+    <!-- 배송중 상품 -->
+    <%if(delivery_list.size()==0) {%>
+    <div class="buyer--form">
+        <h3>배송중 경매상품이 없습니다</h3>
+    </div>
+    <%}else{ %>
+    <%
+    for(int i = 0; i <delivery_list.size(); i++)
+    {
+    	Product_kjVO deliveryvo = (Product_kjVO)delivery_list.get(i);
     
-    <!--구매 완료 -->
-        <div class="buyer--form">
-            <h3>구매 완료</h3>
+    %>
+    <form name="delivery" action="./delivery.kj" method="post">
+    <div class="buyer--form">
+            <h3>배송중 경매상품</h3>
+            <input type ="hidden" name = "product_id" id = "product_id" value = "<%=deliveryvo.getProduct_id() %>">
+            <input type ="hidden" name = "trading_price" id = "trading_price" value = "<%=deliveryvo.getTrading_price() %>">
             <div class="buyer--content">
                 <ul class="buyer_form list">
                     <li>
@@ -121,7 +158,7 @@
                             <span>상품 번호</span>
                         </div>
                         <div class="buyer_form__list content">
-                            
+                             <span><%=deliveryvo.getProduct_number() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -131,7 +168,74 @@
                             <span>상품명</span>
                         </div>
                         <div class="buyer_form__list content">
-                            <h4></h4>
+                            <span><%=deliveryvo.getProduct_subject() %></span>
+                        </div>    
+                    </li>
+                </ul> 
+                <ul class="buyer_form list">
+                    <li>
+                        <div class="buyer_form__list title">
+                            <span>운송장 번호</span>
+                        </div>
+                        <div class="buyer_form__list content">
+                             <span><%=deliveryvo.getTrading_waybill_number() %></span>
+                        </div>    
+                    </li>
+                </ul>      
+        </div>
+        <a onclick = "modal_display_delivery()"class="base_btn">거래 완료</a>
+    	<div id="delivery" class="modal">
+                            	<div class="modal-content">
+                                <span class="close">&times;</span>
+                                <fieldset id="delivery">
+                                <legend>배송 완료</legend>
+                                <br>
+                                <li>
+                                <label>배송 완료 버튼을 누르시면 입금이 되며</label>
+                                <br>
+                                <label>판매자 한태 입금이 되오니 신중히 눌러주세요</label>
+                                <a href="./delivery.kj" class="base_btn" >배송 완료</a>&nbsp;&nbsp;                          
+                                </li>
+                                </fieldset>
+                                </div>
+                       		</div>       
+	    				</div>
+	    			</form>
+    <%
+    	}}
+    %>
+    <!--구매 완료 -->
+    <%if(dealcomplete_list.size()==0) {%>
+    <div class="buyer--form">
+            <h3>구매 완료된 경매가 없습니다</h3>
+    </div>
+    <%}else{ %>
+    <%
+    	for(int i = 0; i < dealcomplete_list.size(); i++)
+    	{
+    		Product_kjVO dealcompletevo = (Product_kjVO)dealcomplete_list.get(i);
+    	
+    %>
+        <div class="buyer--form">
+            <h3>구매 완료</h3>
+            <div class="buyer--content">
+                <ul class="buyer_form list">
+                    <li>
+                        <div class="buyer_form__list title">
+                            <span>상품 번호</span>
+                        </div>
+                        <div class="buyer_form__list content">
+                           	<span><%=dealcompletevo.getProduct_number() %></span> 
+                        </div>    
+                    </li>
+                </ul>
+                <ul class="buyer_form list">
+                    <li>
+                        <div class="buyer_form__list title">
+                            <span>상품명</span>
+                        </div>
+                        <div class="buyer_form__list content">
+                            <span><%=dealcompletevo.getProduct_subject() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -141,7 +245,7 @@
                             <span>구매 가격</span>
                         </div>
                         <div class="buyer_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletevo.getTrading_price() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -151,7 +255,7 @@
                             <span>구매 날짜</span>
                         </div>
                         <div class="buyer_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletevo.getTrading_purchase_date() %></span>
                         </div>    
                     </li>
                 </ul>
@@ -161,13 +265,15 @@
                             <span>판매자</span>
                         </div>
                         <div class="buyer_form__list content">
-                            <h4></h4>
+                            <span><%=dealcompletevo.getProduct_id() %></span>
                         </div>    
                     </li>
                 </ul> 
         </div>
     </div>
-    
+    <%
+    	}}
+    %>
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">
@@ -257,5 +363,11 @@
             })
         });
     </script>
+
+
+   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <script src="resources/js/kakaoTalk.js"></script>
+   <script src="./resources/js/buyer.js"></script>
+
 </body>
 </html>

@@ -51,7 +51,9 @@ public class Product_kjVO {
 	 String trading_transaction_method;
 	 String trading_waybill_deadline;
 	 String trading_progress;
-	
+	 
+	 String trading_purchase_date;
+	 
 	 String trading_sample4_postcode;
 	 String trading_sample4_roadAddress;
 	 String trading_sample4_jibunAddress;
@@ -66,9 +68,22 @@ public class Product_kjVO {
 	 String member_phone;
 	 
 	 String trading_waybill_number;
-
-	
-	 public int getTrading_product_number() {
+	 
+	 int emoney;
+	 
+	 public String getTrading_purchase_date() {
+		return trading_purchase_date;
+	}
+	public void setTrading_purchase_date(String trading_purchase_date) {
+		this.trading_purchase_date = trading_purchase_date;
+	}
+	public int getEmoney() {
+		return emoney;
+	}
+	public void setEmoney(int emoney) {
+		this.emoney = emoney;
+	}
+	public int getTrading_product_number() {
 		return trading_product_number;
 	}
 	public void setTrading_product_number(int trading_product_number) {

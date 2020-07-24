@@ -146,4 +146,12 @@ public class PayServiceImpl implements PayService {
 		int res = payMapper.getPaymentcount(payment_userId);
 		return res;
 	}
+
+	@Override
+	public PaymentVO getPayment(String payment_userId) {
+		// TODO Auto-generated method stub
+		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
+		PaymentVO vo = payMapper.getPayment(payment_userId);
+		return vo;
+	}
 }

@@ -25,4 +25,5 @@ public interface PayMapper {
 	void insertPayment(PaymentVO vo);
 	List<PaymentVO> getPaymentlist(@Param("payment_userId")String payment_userId, @Param("startrow3")int startrow3, @Param("endrow3")int endrow3);
 	int getPaymentcount(String payment_userId);
+	PaymentVO getPayment(String payment_userId);
 }
