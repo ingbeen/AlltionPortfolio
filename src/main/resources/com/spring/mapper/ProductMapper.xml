@@ -81,6 +81,13 @@
 		where product_number = #{product_number}
 	</select>
 	
+	<!-- 경매마감시간을 현재시간으로 변경한다 -->
+	<select id="changePoductEndDateToNow" parameterType="int">
+		update product
+		set product_end_date = sysdate
+		where product_number = #{product_number}
+	</select>
+	
 	<!-- 상품번호를 파라미터로 하여 상품정보를 가져온다 -->
 	<select id="getProduct" parameterType="int" resultType="ProductVO">
 		select

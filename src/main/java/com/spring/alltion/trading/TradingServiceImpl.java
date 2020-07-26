@@ -151,6 +151,9 @@ public class TradingServiceImpl implements TradingService {
 			
 			// 해당 상품테이블에서 마감처리(0 -> 1)
 			producMapper.changePoductProgressToEnd(product_number);
+			
+			// 경매마감시간을 현재시간으로 변경한다
+			producMapper.changePoductEndDateToNow(product_number);
 		} catch (Exception e) {
 			System.out.println("tradingInsert 에러");
 			e.printStackTrace();

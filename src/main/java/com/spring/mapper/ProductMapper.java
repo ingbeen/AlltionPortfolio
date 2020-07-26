@@ -16,6 +16,9 @@ public interface ProductMapper {
 	// 경매마감처리를 한다 (product_progress : 0 -> 1)
 	void changePoductProgressToEnd(int productNumber);
 	
+	// 경매마감시간을 현재시간으로 변경한다
+	void changePoductEndDateToNow(int productNumber);
+	
 	// 상품번호를 파라미터로 하여 상품정보를 가져온다
 	ProductVO getProduct(int productNumber);
 	
