@@ -30,8 +30,19 @@
 	 
 	 <insert id="insertMember" parameterType="MemberVO">
 	 
-	 insert into member values
-	 (#{member_name},#{member_id},#{member_password},#{email},#{member_phone},#{sample4_postcode},#{sample4_roadAddress},#{sample4_jibunAddress},#{sample4_detailAddress},#{member_delete},#{member_manager}, sysdate)
+	insert into member values
+    (#{member_name},
+    #{member_id},
+    #{member_password},
+    #{email},#{member_phone},
+    #{sample4_postcode},
+    #{sample4_roadAddress},
+    #{sample4_jibunAddress},
+    #{sample4_detailAddress},
+    #{member_delete},
+    #{member_manager},
+    sysdate 
+    )
 	 
 	 </insert>
 	 

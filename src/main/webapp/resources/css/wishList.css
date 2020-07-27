@@ -305,17 +305,26 @@
 }
 
 .wishList--page {
-    display: inline-block;
     margin: 15px 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
 }
 
-.wishList--page > li {
+.wishList--page > li:not(.number) {
     padding: 4px 17px;
     border: 1px solid #ddd;
     margin: 0 3px;
     border-radius: 4px;
     position: relative;
-    display: inline;
+}
+
+.wishList--page > .number {
+    min-width: 36px;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    margin: 0 3px;
+    border-radius: 4px;
 }
 
 .wishList--page > .nonActive:hover {
@@ -334,9 +343,6 @@
 .wishList--page > li > span:not(.material-icons) {
     font-size: 15px;
     color: #333;
-    top: 5px;
-    left: 13px;
-    position: absolute;
 }
 
 .wishList--page > #active {

@@ -115,14 +115,14 @@ function pageInfoOutput(pagination) {
 		// 현재페이지
 		if (i == nowPage) {
 			pageContent += `
-		    <li id="active" data-page="${i}">
+		    <li id="active" class="number" data-page="${i}">
 		        <span>${i}</span>
 		    </li>`;
 		}
 		// 다른페이지
 		else {
 			pageContent += `
-		    <li class="nonActive" data-page="${i}">
+		    <li class="nonActive number" data-page="${i}">
 		        <span>${i}</span>
 		    </li>`;
 		}
