@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.mapper.AdminMapper">
+	
+	<!-- 회원수 -->
+	<select id="getMemberCount" resultType="int">
+		select count(*) 
+		from member
+	</select>
+	
+	<!-- 경매건수 -->
+	<select id="getProductCount" resultType="int">
+		select count(*) 
+		from product
+	</select>
+	
+	<!-- 거래건수 -->
+	<select id="getTradingCount" resultType="int">
+		select count(*) 
+		from trading
+	</select>
+	
+	<!-- 입찰건수 -->
+	<select id="getBidCount" resultType="int">
+		select count(*) 
+		from bid_list
+	</select>
+	
+	<!-- 결제금액 -->
+	<select id="getPaySum" resultType="int">
+		select sum(pay_amount)
+		from pay
+		where pay_status = 'paid'
+	</select>
+	
+	<!-- 최근 일주일 경매등록수 -->
+	<select id="getDailyAuctioCount" parameterType="int" resultType="int">
+		select count(*)
+		from product
+		<![CDATA[
+		where to_date(to_char(sysdate-(#{period}), 'yyyy-mm-dd'), 'yyyy-mm-dd') <= product_issue_date and
+		product_issue_date <= to_date(to_char(sysdate-(#{period}-1), 'yyyy-mm-dd'), 'yyyy-mm-dd')
+		]]>
+	</select>
+	
+	<!-- 최근 일주일 경매등록수 -->
+	<select id="getCateCount" resultType="hashmap">
+		select product_category_1, count(*)
+		from product
+		group by product_category_1
+	</select>
+	
+</mapper>

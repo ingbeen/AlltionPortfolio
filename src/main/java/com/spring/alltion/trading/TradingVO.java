@@ -14,10 +14,10 @@ CREATE TABLE trading (
     
     trading_transaction_method varchar2(1000), -- 거래방식
     
-    sample4_postcode varchar2(1000), -- 우편번호
-    sample4_roadaddress varchar2(1000), -- 도로명주소
-    sample4_jibunaddress varchar2(1000), -- 지번주소
-    sample4_detailaddress varchar2(1000), -- 상세주소
+    trading_sample4_postcode varchar2(1000), -- 우편번호
+    trading_sample4_roadaddress varchar2(1000), -- 도로명주소
+    trading_sample4_jibunaddress varchar2(1000), -- 지번주소
+    trading_sample4_detailaddress varchar2(1000), -- 상세주소
     trading_phone varchar2(1000), -- 연락처
     trading_waybill_number varchar2(1000), -- 운송장번호
     
@@ -39,10 +39,10 @@ public class TradingVO {
     
     String trading_transaction_method; // 거래방식
     
-    String sample4_postcode; // 우편번호
-    String sample4_roadaddress; // 도로명주소
-    String sample4_jibunaddress; // 지번주소
-    String sample4_detailaddress; // 상세주소
+    String trading_sample4_postcode; // 우편번호
+    String trading_sample4_roadaddress; // 도로명주소
+    String trading_sample4_jibunaddress; // 지번주소
+    String trading_sample4_detailaddress; // 상세주소
     String trading_phone; // 연락처
     String trading_waybill_number; // 운송장번호
     
@@ -97,29 +97,29 @@ public class TradingVO {
 	public void setTrading_transaction_method(String trading_transaction_method) {
 		this.trading_transaction_method = trading_transaction_method;
 	}
-	public String getSample4_postcode() {
-		return sample4_postcode;
+	public String getTrading_sample4_postcode() {
+		return trading_sample4_postcode;
 	}
-	public void setSample4_postcode(String sample4_postcode) {
-		this.sample4_postcode = sample4_postcode;
+	public void setTrading_sample4_postcode(String trading_sample4_postcode) {
+		this.trading_sample4_postcode = trading_sample4_postcode;
 	}
-	public String getSample4_roadaddress() {
-		return sample4_roadaddress;
+	public String getTrading_sample4_roadaddress() {
+		return trading_sample4_roadaddress;
 	}
-	public void setSample4_roadaddress(String sample4_roadaddress) {
-		this.sample4_roadaddress = sample4_roadaddress;
+	public void setTrading_sample4_roadaddress(String trading_sample4_roadaddress) {
+		this.trading_sample4_roadaddress = trading_sample4_roadaddress;
 	}
-	public String getSample4_jibunaddress() {
-		return sample4_jibunaddress;
+	public String getTrading_sample4_jibunaddress() {
+		return trading_sample4_jibunaddress;
 	}
-	public void setSample4_jibunaddress(String sample4_jibunaddress) {
-		this.sample4_jibunaddress = sample4_jibunaddress;
+	public void setTrading_sample4_jibunaddress(String trading_sample4_jibunaddress) {
+		this.trading_sample4_jibunaddress = trading_sample4_jibunaddress;
 	}
-	public String getSample4_detailaddress() {
-		return sample4_detailaddress;
+	public String getTrading_sample4_detailaddress() {
+		return trading_sample4_detailaddress;
 	}
-	public void setSample4_detailaddress(String sample4_detailaddress) {
-		this.sample4_detailaddress = sample4_detailaddress;
+	public void setTrading_sample4_detailaddress(String trading_sample4_detailaddress) {
+		this.trading_sample4_detailaddress = trading_sample4_detailaddress;
 	}
 	public String getTrading_phone() {
 		return trading_phone;
@@ -145,5 +145,7 @@ public class TradingVO {
 	public void setTrading_date(String trading_date) {
 		this.trading_date = trading_date;
 	}
+    
+	
 	
 }

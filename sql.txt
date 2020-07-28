@@ -161,10 +161,10 @@ CREATE TABLE trading (
     
     trading_transaction_method varchar2(1000), -- 거래방식
     
-    sample4_postcode varchar2(1000), -- 우편번호
-    sample4_roadaddress varchar2(1000), -- 도로명주소
-    sample4_jibunaddress varchar2(1000), -- 지번주소
-    sample4_detailaddress varchar2(1000), -- 상세주소
+    trading_sample4_postcode varchar2(1000), -- 우편번호
+    trading_sample4_roadaddress varchar2(1000), -- 도로명주소
+    trading_sample4_jibunaddress varchar2(1000), -- 지번주소
+    trading_sample4_detailaddress varchar2(1000), -- 상세주소
     trading_phone varchar2(1000), -- 연락처
     trading_waybill_number varchar2(1000), -- 운송장번호
     
