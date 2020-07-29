@@ -1,4 +1,4 @@
-/* admin_member 시작 by.유빈 */
+/* admin_product 시작 by.유빈 */
 
 let updateFormStatus = false;
 
@@ -18,17 +18,9 @@ $(() => {
     });
 });
 
-$(document).ready(() => {
-	getAdminMemberDate(1);
-})
-
-$(document).on('click','.listSearch--sendSearchBtn', () => {
-    if (searchFormCheck()) {
-        return;
-    }
-    
-    getAdminMemberDate(1);
-});
+//$(document).ready(() => {
+//	getAdminMemberDate(1);
+//})
 
 function getAdminMemberDate(page) {
     let formData = $('#searchForm').serialize();
@@ -48,24 +40,32 @@ function getAdminMemberDate(page) {
     });
 }
 
+$(document).on('click','.listSearch--sendSearchBtn', () => {
+    if (searchFormCheck()) {
+        return;
+    }
+    
+//    getAdminMemberDate(1);
+});
+
 function searchFormCheck() {
     const phoneRegexp = /^[0-9]*$/;
-    let searchPhone = $('input[name="adminMemberPhone"]').val();
+    let searchPhone = $('input[name="adminProductNumber"]').val();
     if(!phoneRegexp.test(searchPhone)) {
-        alert("연락처에는 숫자만 입력해주세요");
+        alert("상품번호는 숫자만 입력해주세요");
         return true;
     }
 
-    let v_startDate = $('input[name="adminMemberStartDate"]').val();
-    let v_endDate = $('input[name="adminMemberEndDate"]').val();
+    let v_startDate = $('input[name="adminProductStartDate"]').val();
+    let v_endDate = $('input[name="adminProductEndDate"]').val();
     
     if (v_startDate.length > 0 ? v_endDate.length == 0 : false) {
-    	alert("가입기간의 날짜를 전부 입력해주세요");
+    	alert("등록기간의 날짜를 전부 입력해주세요");
         return true;
     }
     
     if (v_endDate.length > 0 ? v_startDate.length == 0 : false) {
-    	alert("가입기간의 날짜를 전부 입력해주세요");
+    	alert("등록기간의 날짜를 전부 입력해주세요");
         return true;
     }
     
@@ -73,7 +73,7 @@ function searchFormCheck() {
     let endDate = new Date(v_endDate);
     let subtractDate = endDate - startDate;
     if (subtractDate < 0) {
-        alert("가입기간의 시작하는 날짜는 끝나는날짜보다 빨라야 합니다");
+        alert("등록기간의 시작하는 날짜는 끝나는날짜보다 빨라야 합니다");
         return true;
     }
 
@@ -315,4 +315,4 @@ function updateComplete(updateData, tr) {
 	updateFormStatus = false;
 }
 
-/* admin_member 끝 by.유빈 */
+/* admin_product 끝 by.유빈 */

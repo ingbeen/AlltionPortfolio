@@ -40,7 +40,7 @@ public class WishListServiceImpl implements WishListService {
 			listcount = wishListMapper.getWishListCount(userId);
 			
 			// 페이징 처리 실행
-			pagination = new Pagination(page, listcount);
+			pagination = new Pagination(page, listcount, 5, 5);
 			pagination.setPageInfo();
 			
 			// 화면에 나올 첫번째 글번호와 마지막 글번호를 할당한다 

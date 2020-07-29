@@ -56,7 +56,7 @@ function changeCategory(item) {
         } else if (value == 'cate09') { // 티켓/쿠폰
             changeCategory_2(value, "티켓", "상품권/쿠폰", "여행숙박/이용권", "기타 티켓/쿠폰/이용권");
 
-        } else if (value == 'cate10') { //스포츠
+        } else if (value == 'cate10') { // 스포츠
             changeCategory_2(value, "골프", "자전거", "인라인/스케이트/전동", "축구", "야구", "농구", 
                 "라켓스포츠", "헬스/요가", "수상스포츠", "검도/격투/권투", "기타 스포츠", "레저/여행");
 

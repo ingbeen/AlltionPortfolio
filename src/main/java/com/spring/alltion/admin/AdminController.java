@@ -33,4 +33,16 @@ public class AdminController {
         
 		return "admin/admin_member";
 	}
+	
+	// 관리자페이지 회원관리로 이동
+	@RequestMapping(value = "adminProduct.yb")
+	public String adminProduct(HttpSession session, MemberVO membervo) {
+//		String userId = (String)session.getAttribute("userId");
+//        if(userId ==null)
+//        {
+//           return "member/login";
+//        }
+        
+		return "admin/admin_product";
+	}
 }

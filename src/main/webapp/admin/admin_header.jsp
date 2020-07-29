@@ -30,7 +30,7 @@
                 <i class="fas fa-address-card"></i>
                 <span>회원 관리</span>
             </li>
-            <li>
+            <li onclick="location.href='adminProduct.yb'">
                 <i class="fas fa-folder-open"></i>
                 <span>상품 관리</span>
             </li>

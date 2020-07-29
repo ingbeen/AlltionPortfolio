@@ -14,16 +14,18 @@ public class Pagination {
 	private int prev; // 이전 페이지 번호
 	private int next; // 다음 페이지 번호
 
-	private int rowlimit = 5; // 한 화면에 보이는 글의 갯수
-	private int pagelimit = 5; // 한 화면에 보이는 페이지의 갯수
+	private int rowlimit; // 한 화면에 보이는 글의 갯수
+	private int pagelimit; // 한 화면에 보이는 페이지의 갯수
 	
 	// 객체를 생성할때 현재페이지와 게시물갯수를 받는다
-	public Pagination (int page, int listcount) {
+	public Pagination (int page, int listcount, int rowlimit, int pagelimit) {
 		this.page = page;
 		this.listcount = listcount;
+		this.rowlimit = rowlimit;
+		this.pagelimit = pagelimit;
 	}
 	
-	// 페이징처리 작업
+	// 페이징처리 작업 예시는 rowlimit = 5, pagelimit 5 기준
 	public void setPageInfo() {
 		// 읽기 시작할 row 번호
 		startrow = (page - 1) * rowlimit + 1;
@@ -31,11 +33,11 @@ public class Pagination {
 		// 읽을 마지막 row 번호
 		endrow = startrow + rowlimit - 1;
 		
-		// 0.9를 더해서 페이지를 총페이지수를 구함(글이 1개이면 1페이지, 6개면 2페이지, 26개면 5페이지)
-		maxpage = (int) ((double) listcount / rowlimit + 0.9);
+		// 페이지를 총페이지수를 구함(글이 1개이면 1페이지, 6개면 2페이지, 26개면 6페이지)
+		maxpage = (int) Math.ceil((double) listcount / rowlimit);
 		
 		// 하단 페이지링크 갯수[이전] [1] ... [10] [다음]의 [1]에 해당
-		startpage = (((int) ((double) page / pagelimit + 0.9)) - 1) * pagelimit + 1;
+		startpage = (int) Math.floor(((double) page / pagelimit)) * pagelimit + 1;
 
 		// 글이 1개이면 startpage는 1이 되고 maxpage는 1이 된다
 		// 글이 6개이면 startpage는 1이 되고 maxpage는 2이 된다
@@ -64,6 +66,8 @@ public class Pagination {
 		} else {
 			next = endpage + 1;
 		}
+		
+		System.out.println(toString());
 	}
 
 	public int getPage() {
@@ -152,6 +156,13 @@ public class Pagination {
 
 	public void setPagelimit(int pagelimit) {
 		this.pagelimit = pagelimit;
+	}
+
+	@Override
+	public String toString() {
+		return "Pagination [page=" + page + ", listcount=" + listcount + ", startrow=" + startrow + ", endrow=" + endrow
+				+ ", startpage=" + startpage + ", endpage=" + endpage + ", maxpage=" + maxpage + ", prev=" + prev
+				+ ", next=" + next + ", rowlimit=" + rowlimit + ", pagelimit=" + pagelimit + "]";
 	}
 	
 }

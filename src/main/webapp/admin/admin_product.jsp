@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="resources/css/admin_member.css">
+    <link rel="stylesheet" href="resources/css/admin_product.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -16,55 +16,67 @@
 
     <section class="flex-column">
 
-        <h1 class="title">회원 관리</h1>
+        <h1 class="title">상품 관리</h1>
         
         <div class="card listSearch--cardWarp">
             <p class="listSearch--title"><i class="fas fa-search"></i>검색 조건</p>
             <div class="flex-column">
                 <form id="searchForm">
                     <div class="search-rowWarp">
-                        <div class="search-row listSearch--id">
+                        <div class="search-row listSearch--number">
                             <div class="listSearch--subtitle">
-                                <p>아이디</p>
+                                <p>상품 번호</p>
                             </div>
                             <div class="listSearch--input">
-                                <input name="adminMemberId" type="text" maxlength="20">
+                                <input name="adminProductNumber" type="text" maxlength="20">
                             </div>
                         </div>
-                        <div class="search-row listSearch--name">
+                        <div class="search-row listSearch--subject">
                             <div class="listSearch--subtitle">
-                                <p>이름</p>
+                                <p>상품 제목</p>
                             </div>
                             <div class="listSearch--input">
-                                <input name="adminMemberName" type="text" maxlength="5">
+                                <input name="adminProductSubject" type="text" maxlength="5">
                             </div>
-                        </div><div class="search-row listSearch--email">
+                        </div><div class="search-row listSearch--id">
                             <div class="listSearch--subtitle">
-                                <p>이메일</p>
+                                <p>판매자 아이디</p>
                             </div>
                             <div class="listSearch--input">
-                                <input name="adminMemberEmail" type="text" maxlength="30">
+                                <input name="adminProductId" type="text" maxlength="30">
                             </div>
                         </div>
                     </div>
 
                     <div class="search-rowWarp">
-                        <div class="search-row listSearch--phone">
+                        <div class="search-row listSearch--cate">
                             <div class="listSearch--subtitle">
-                                <p>연락처</p>
+                                <p>상품 분류</p>
                             </div>
-                            <div class="listSearch--input">
-                                <input name="adminMemberPhone" type="text" maxlength="13">
-                            </div>
+                            <select name="adminProductCate">
+                                <option value="all" selected>전체</option>
+                                <option value="cate01">패션</option>
+                                <option value="cate02">뷰티</option>
+                                <option value="cate03">출산/유아동</option>
+                                <option value="cate04">전자기기</option>
+                                <option value="cate05">패션</option>
+                                <option value="cate06">가전제품</option>
+                                <option value="cate07">가구/인테리어</option>
+                                <option value="cate08">반려동물/취미</option>
+                                <option value="cate09">도서/음반/문구</option>
+                                <option value="cate10">티켓/쿠폰</option>
+                                <option value="cate11">스포츠</option>
+                                <option value="cate12">공구/산업용품</option>
+                            </select>
                         </div>
                         <div class="search-row listSearch--date">
                             <div class="listSearch--subtitle">
-                                <p>가입 기간</p>
+                                <p>등록 기간</p>
                             </div>
                             <div class="listSearch--input">
-                                <input id="listSearch--startDate" name="adminMemberStartDate" type="text" readonly>
+                                <input id="listSearch--startDate" name="adminProductStartDate" type="text" readonly>
                                 <span>~</span>
-                                <input id="listSearch--endDate" name="adminMemberEndDate" type="text" readonly>
+                                <input id="listSearch--endDate" name="adminProductEndDate" type="text" readonly>
                             </div>
                         </div>
                     </div>
@@ -72,26 +84,25 @@
                     <div class="search-rowWarp">
                         <div class="search-row listSearch--status">
                             <div class="listSearch--subtitle">
-                                <p>계정 상태</p>
+                                <p>진행 상태</p>
                             </div>
-                            <select name="adminMemberStatus">
-                                <option value="0" selected>정상</option>
-                                <option value="1">탈퇴</option>
-                                <option value="2">정상&amp;탈퇴</option>
-                                <option value="3">관리자</option>
+                            <select name="adminProductStatus">
+                                <option value="0" selected>진행중</option>
+                                <option value="1">마감</option>
+                                <option value="2">전체</option>
                             </select>
                         </div>
                         <div class="search-row listSearch--sort">
                             <div class="listSearch--subtitle">
                                 <p>정렬</p>
                             </div>
-                            <select name="adminMemberSort">
-                                <option value="0" selected>가입일(내림차순)</option>
-                                <option value="1">가입일(올림차순)</option>
-                                <option value="2">아이디(내림차순)</option>
-                                <option value="3">아이디(올림차순)</option>
-                                <option value="4">이름(내림차순)</option>
-                                <option value="5">이름(올림차순)</option>
+                            <select name="adminProductSort">
+                                <option value="0" selected>등록일(내림차순)</option>
+                                <option value="1">등록일(올림차순)</option>
+                                <option value="2">마감일(내림차순)</option>
+                                <option value="3">마감일(올림차순)</option>
+                                <option value="4">입찰수(내림차순)</option>
+                                <option value="5">입찰수(올림차순)</option>
                             </select>
                         </div>
                         <div class="search-row listSearch--btn">
@@ -112,7 +123,7 @@
                         <th style="width:15%">이름</th>
                         <th style="width:20%">이메일</th>
                         <th style="width:15%">연락처</th>
-                        <th style="width:10%">계정 상태</th>
+                        <th style="width:10%">계정상태</th>
                         <th style="width:15%">가입일</th>
                         <th style="width:10%">수정</th>
                     </tr>
@@ -126,7 +137,7 @@
     </section>
 
     <!--  스크립트 영역  -->
-    <script src="resources/js/admin_member.js"></script>
+    <script src="resources/js/admin_product.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="resources/js/datepicker-ko.js"></script>
 </body>

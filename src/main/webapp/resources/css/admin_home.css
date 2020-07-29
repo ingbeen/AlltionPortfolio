@@ -34,6 +34,7 @@ section {
     left: 220px;
     right: 0;
     padding: 30px 40px;
+    min-height: 1000px;
 }
 
 section > .title {

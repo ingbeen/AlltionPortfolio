@@ -28,6 +28,8 @@ public class MemberVO {
 	String email2;
 	int member_delete;
 	int member_manager;
+	String member_date;
+	
 	public String getMember_name() {
 		return member_name;
 	}
@@ -105,6 +107,12 @@ public class MemberVO {
 	}
 	public void setMember_manager(int member_manager) {
 		this.member_manager = member_manager;
+	}
+	public String getMember_date() {
+		return member_date;
+	}
+	public void setMember_date(String member_date) {
+		this.member_date = member_date;
 	}
 	
 }
