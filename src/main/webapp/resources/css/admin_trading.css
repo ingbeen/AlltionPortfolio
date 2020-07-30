@@ -120,9 +120,9 @@ section > .title::before {
 }
 
 .listSearch--number,
-.listSearch--subject,
-.listSearch--id,
-.listSearch--cate,
+.listSearch--buyerId,
+.listSearch--sellerId,
+.listSearch--system,
 .listSearch--status,
 .listSearch--sort,
 .listSearch--btn {
@@ -130,8 +130,8 @@ section > .title::before {
 }
 
 
-.listSearch--subject > .listSearch--subtitle,
-.listSearch--id > .listSearch--subtitle,
+.listSearch--buyerId > .listSearch--subtitle,
+.listSearch--sellerId > .listSearch--subtitle,
 .listSearch--date > .listSearch--subtitle,
 .listSearch--sort > .listSearch--subtitle {
     border-left: 1px solid #ddd;
@@ -183,8 +183,8 @@ select {
     padding: 0 7px;
 }
 
-.listSearch--cate > select {
-    width: 40%;
+.listSearch--system > select {
+    width: 30%;
 }
 
 .listSearch--sort > select {
@@ -192,7 +192,7 @@ select {
 }
 
 .listSearch--status > select {
-    width: 30%;
+    width: 40%;
 }
 
 select:focus {
@@ -246,7 +246,7 @@ select:focus {
 }
 
 .list--table {
-    min-width: 1400px;
+    min-width: 1800px;
     border-spacing: 0px;
     border-collapse: separate;
     border: 1.5px solid #eee;

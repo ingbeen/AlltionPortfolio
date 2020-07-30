@@ -112,7 +112,7 @@
                         <th style="width:15%">이름</th>
                         <th style="width:20%">이메일</th>
                         <th style="width:15%">연락처</th>
-                        <th style="width:10%">계정 상태</th>
+                        <th style="width:10%">계정상태</th>
                         <th style="width:15%">가입일</th>
                         <th style="width:10%">수정</th>
                     </tr>

@@ -75,18 +75,18 @@
 	</select>
 	
 	<!-- 경매마감처리를 한다 (product_progress : 0 -> 1) -->
-	<select id="changePoductProgressToEnd" parameterType="int">
+	<update id="changePoductProgressToEnd" parameterType="int">
 		update product
 		set product_progress = 1
 		where product_number = #{product_number}
-	</select>
+	</update>
 	
 	<!-- 경매마감시간을 현재시간으로 변경한다 -->
-	<select id="changePoductEndDateToNow" parameterType="int">
+	<update id="changePoductEndDateToNow" parameterType="int">
 		update product
 		set product_end_date = sysdate
 		where product_number = #{product_number}
-	</select>
+	</update>
 	
 	<!-- 상품번호를 파라미터로 하여 상품정보를 가져온다 -->
 	<select id="getProduct" parameterType="int" resultType="ProductVO">

@@ -66,8 +66,6 @@ public class Pagination {
 		} else {
 			next = endpage + 1;
 		}
-		
-		System.out.println(toString());
 	}
 
 	public int getPage() {
@@ -157,12 +155,4 @@ public class Pagination {
 	public void setPagelimit(int pagelimit) {
 		this.pagelimit = pagelimit;
 	}
-
-	@Override
-	public String toString() {
-		return "Pagination [page=" + page + ", listcount=" + listcount + ", startrow=" + startrow + ", endrow=" + endrow
-				+ ", startpage=" + startpage + ", endpage=" + endpage + ", maxpage=" + maxpage + ", prev=" + prev
-				+ ", next=" + next + ", rowlimit=" + rowlimit + ", pagelimit=" + pagelimit + "]";
-	}
-	
 }

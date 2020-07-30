@@ -3,7 +3,10 @@ package com.spring.mapper;
 import java.util.List;
 
 import com.spring.alltion.admin.AdminMemberVO;
+import com.spring.alltion.admin.AdminProductVO;
+import com.spring.alltion.admin.AdminTradingVO;
 import com.spring.alltion.login.MemberVO;
+import com.spring.alltion.productRegistration.ProductVO;
 
 public interface AdminMapper {
 	// 회원수
@@ -38,4 +41,19 @@ public interface AdminMapper {
 	
 	// 멤버정보 수정
 	void adminMemberUpdate(AdminMemberVO adminMemberVO);
+	
+	// 상품리스트 검색결과 갯수
+	int getProductListCount(AdminProductVO adminProductVO);
+	
+	// 상품리스트 검색결과
+	List<ProductVO> getProductList(AdminProductVO adminProductVO);
+	
+	// 상품마감처리
+	void adminProductEnd(ProductVO productVO);
+	
+	// 거래리스트 검색결과 갯수
+	int getTradingListCount(AdminTradingVO adminTradingVO);
+	
+	// 거래리스트 검색결과
+	List<ProductVO> getTradingList(AdminProductVO adminProductVO);
 }

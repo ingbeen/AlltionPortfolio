@@ -74,7 +74,7 @@ public class ProductVO {
 	String product_issue_date; // 등록일
 	int product_progress; // 진행상태
 	
-	// 기존 경매종료일과 등록일을 비교하여 경매기간을 구한 다음 새로운 경매종료일을 적용시간시킨다
+	// 기존 경매종료일과 등록일을 비교하여 경매기간을 구한 다음 새로운 경매종료일을 적용시킨다
 	public void newEndDate() throws Exception {
 		DateFormat format; // 날짜형식
 		Date endDate; // 포맷 지정된 마감일
@@ -179,7 +179,7 @@ public class ProductVO {
 	}
 	
 	// 1차 카테고리 한글 변환 (저장은 영어로되어있음)
-	private void changeTranslateCate_1ToKorean() {
+	public void changeTranslateCate_1ToKorean() {
 		switch(product_category_1) {
 			case "cate01":
 				product_category_1 = "패션";
@@ -224,7 +224,7 @@ public class ProductVO {
 	}
 	
 	// 2차 카테고리 한글 변환 (저장은 영어로되어있음)
-	private void changeTranslateCate_2ToKorean() {
+	public void changeTranslateCate_2ToKorean() {
 		// 2차 카테고리 (출산/유아동) 까지만 만들었음.
 		switch(product_category_2) {
 		case "cate0101":

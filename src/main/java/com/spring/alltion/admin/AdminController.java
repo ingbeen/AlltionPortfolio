@@ -34,7 +34,7 @@ public class AdminController {
 		return "admin/admin_member";
 	}
 	
-	// 관리자페이지 회원관리로 이동
+	// 관리자페이지 상품관리로 이동
 	@RequestMapping(value = "adminProduct.yb")
 	public String adminProduct(HttpSession session, MemberVO membervo) {
 //		String userId = (String)session.getAttribute("userId");
@@ -44,5 +44,17 @@ public class AdminController {
 //        }
         
 		return "admin/admin_product";
+	}
+	
+	// 관리자페이지 거래관리로 이동
+	@RequestMapping(value = "adminTrading.yb")
+	public String adminTrading(HttpSession session, MemberVO membervo) {
+//		String userId = (String)session.getAttribute("userId");
+//        if(userId ==null)
+//        {
+//           return "member/login";
+//        }
+        
+		return "admin/admin_trading";
 	}
 }

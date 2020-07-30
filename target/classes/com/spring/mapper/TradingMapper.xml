@@ -21,7 +21,7 @@
 			#{trading_sample4_detailaddress, jdbcType=VARCHAR}, <!-- 상세주소 -->
 			#{trading_phone, jdbcType=VARCHAR}, <!-- 연락처 -->
 			#{trading_waybill_number, jdbcType=VARCHAR}, <!-- 운송장번호 -->
-			'depositWaiting', <!-- 진행상태 -->
+			'입금대기', <!-- 진행상태 -->
 			sysdate <!-- 등록일 -->
 		)
 	</insert>

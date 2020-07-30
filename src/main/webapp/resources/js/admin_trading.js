@@ -17,24 +17,31 @@ $(() => {
 });
 
 $(document).ready(() => {
-	getAdminProductDate(1);
+	getAdminTradingDate(1);
 })
 
-function getAdminProductDate(page) {
+function getAdminTradingDate(page) {
     let formData = $('#searchForm').serialize();
     formData += "&page=" + page;
 	
     $.ajax({
-        url : "getAdminProductDate.yb",
+        url : "getAdminTradingDate.yb",
         data : formData,
-        dataType :"json",
-        success : (adminProductDate) => {
-        	writeProductList(adminProductDate.productList);
-        	writeProductCount(adminProductDate.listcount);
-        	writePageInfo(adminProductDate.pagination);
-    	},
+        success : () => {},
         error : () => {}
     });
+    
+//    $.ajax({
+//        url : "getAdminTradingDate.yb",
+//        data : formData,
+//        dataType :"json",
+//        success : (adminProductDate) => {
+//        	writeProductList(adminProductDate.productList);
+//        	writeProductCount(adminProductDate.listcount);
+//        	writePageInfo(adminProductDate.pagination);
+//    	},
+//        error : () => {}
+//    });
 }
 
 $(document).on('click','.listSearch--sendSearchBtn', () => {
@@ -42,19 +49,19 @@ $(document).on('click','.listSearch--sendSearchBtn', () => {
         return;
     }
     
-    getAdminProductDate(1);
+    getAdminTradingDate(1);
 });
 
 function searchFormCheck() {
     const phoneRegexp = /^[0-9]*$/;
-    let searchPhone = $('input[name="adminProductNumber"]').val();
+    let searchPhone = $('input[name="adminTradingNumber"]').val();
     if(!phoneRegexp.test(searchPhone)) {
         alert("상품번호는 숫자만 입력해주세요");
         return true;
     }
 
-    let v_startDate = $('input[name="adminProductStartDate"]').val();
-    let v_endDate = $('input[name="adminProductEndDate"]').val();
+    let v_startDate = $('input[name="adminTradingStartDate"]').val();
+    let v_endDate = $('input[name="adminTradingEndDate"]').val();
     
     if (v_startDate.length > 0 ? v_endDate.length == 0 : false) {
     	alert("등록기간의 날짜를 전부 입력해주세요");
@@ -190,7 +197,7 @@ $(document).on('click', '.list--nonActive', (e) => {
 	// 클릭한 페이지버튼의 번호를 가져온다
 	page = e.currentTarget.getAttribute('data-page');
 	
-	getAdminProductDate(page);
+	getAdminTradingDate(page);
 });
 
 let originData = [];

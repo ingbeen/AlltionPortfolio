@@ -141,46 +141,46 @@
 				member_delete,
 				member_manager,
 				to_char(member_date, 'yyyy-mm-dd') member_date
-		 		from member
-			 	where 
-			 	<choose>
-			 		<when test="adminMemberStatus == 0">
-			 			member_delete = #{adminMemberStatus} and
-			 			member_manager = 0
-			 		</when>
-			 		<when test="adminMemberStatus == 1">
-			 			member_delete = #{adminMemberStatus} and
-			 			member_manager = 0
-			 		</when>
-			 		<when test="adminMemberStatus == 2">
-			 			member_manager = 0
-			 		</when>
-			 		<when test="adminMemberStatus == 3">
-			 			member_manager = 1
-			 		</when>
-			 	</choose>
-			 	
-			 	<if test="adminMemberId != null and adminMemberId != ''">
-			 		and member_id like '%' || #{adminMemberId} || '%' 
-			 	</if>
-			 	
-			 	<if test="adminMemberName != null and adminMemberName != ''">
-			 		and member_name like '%' || #{adminMemberName} || '%' 
-			 	</if>
-			 	
-			 	<if test="adminMemberEmail != null and adminMemberEmail != ''">
-			 		and email like '%' || #{adminMemberEmail} || '%' 
-			 	</if>
-			 	
-			 	<if test="adminMemberPhone != null and adminMemberPhone != ''">
-			 		and member_phone like '%' || #{adminMemberPhone} || '%' 
-			 	</if>
-			 	
-			 	<if test="adminMemberStartDate != null and adminMemberStartDate != '' and adminMemberEndDate != null and adminMemberEndDate != ''">
-			 		and member_date between 
-			 			to_date(#{adminMemberStartDate}, 'yyyy-mm-dd') and 
-			 			to_date(#{adminMemberEndDate}, 'yyyy-mm-dd') + 1
-			 	</if>
+	 		from member
+		 	where 
+		 	<choose>
+		 		<when test="adminMemberStatus == 0">
+		 			member_delete = #{adminMemberStatus} and
+		 			member_manager = 0
+		 		</when>
+		 		<when test="adminMemberStatus == 1">
+		 			member_delete = #{adminMemberStatus} and
+		 			member_manager = 0
+		 		</when>
+		 		<when test="adminMemberStatus == 2">
+		 			member_manager = 0
+		 		</when>
+		 		<when test="adminMemberStatus == 3">
+		 			member_manager = 1
+		 		</when>
+		 	</choose>
+		 	
+		 	<if test="adminMemberId != null and adminMemberId != ''">
+		 		and member_id like '%' || #{adminMemberId} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminMemberName != null and adminMemberName != ''">
+		 		and member_name like '%' || #{adminMemberName} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminMemberEmail != null and adminMemberEmail != ''">
+		 		and email like '%' || #{adminMemberEmail} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminMemberPhone != null and adminMemberPhone != ''">
+		 		and member_phone like '%' || #{adminMemberPhone} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminMemberStartDate != null and adminMemberStartDate != '' and adminMemberEndDate != null and adminMemberEndDate != ''">
+		 		and member_date between 
+		 			to_date(#{adminMemberStartDate}, 'yyyy-mm-dd') and 
+		 			to_date(#{adminMemberEndDate}, 'yyyy-mm-dd') + 1
+		 	</if>
 		 	)
 	 	<![CDATA[
 		where rnum >= #{startrow} and rnum <= #{endrow}
@@ -206,5 +206,330 @@
 		 	</choose>
 		where member_id = #{adminMemberId}
 	</update>
+	
+	<!-- 멤버리스트 검색결과 갯수 -->
+	<select id="getProductListCount" parameterType="AdminProductVO" resultType="int">
+	 	select count(*)
+	 	from product
+	 	where 
+	 	<choose>
+	 		<when test="adminProductStatus == 0">
+	 			product_progress = #{adminProductStatus}
+	 		</when>
+	 		<when test="adminProductStatus == 1">
+	 			product_progress = #{adminProductStatus}
+	 		</when>
+	 		<when test="adminProductStatus == 2">
+	 			product_progress like '%'
+	 		</when>
+	 	</choose>
+	 	
+	 	<choose>
+	 		<when test='adminProductCate.equals("cate01")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate02")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate03")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate04")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate05")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate06")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate07")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate08")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate09")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate10")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate11")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 		<when test='adminProductCate.equals("cate12")'>
+	 			and product_category_1 = #{adminProductCate}
+	 		</when>
+	 	</choose>
+	 	
+	 	<if test="adminProductNumber != null and adminProductNumber != ''">
+	 		and product_number like '%' || #{adminProductNumber} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminProductSubject != null and adminProductSubject != ''">
+	 		and product_subject like '%' || #{adminProductSubject} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminProductId != null and adminProductId != ''">
+	 		and product_id like '%' || #{adminProductId} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminProductStartDate != null and adminProductStartDate != '' and adminProductEndDate != null and adminProductEndDate != ''">
+	 		and product_issue_date between 
+	 			to_date(#{adminProductStartDate}, 'yyyy-mm-dd') and 
+	 			to_date(#{adminProductEndDate}, 'yyyy-mm-dd') + 1
+	 	</if>
+	</select>
+	
+	<!-- 멤버리스트 검색결과 -->
+	<select id="getProductList" parameterType="AdminProductVO" resultType="ProductVO">
+	 	select *
+	 	from (select 
+ 				row_number() over (order by
+                    <choose>
+                        <when test="adminProductSort == 0">
+                             product_issue_date desc
+                        </when>
+                        <when test="adminProductSort == 1">
+                             product_issue_date asc
+                        </when>
+                        <when test="adminProductSort == 2">
+                             product_end_date desc
+                        </when>
+                        <when test="adminProductSort == 3">
+                             product_end_date asc
+                        </when>
+                        <when test="adminProductSort == 4">
+                             product_bids desc
+                        </when>
+                        <when test="adminProductSort == 5">
+                             product_bids asc
+                        </when>
+                  </choose>
+                  ) rnum,
+                  product_number,
+                  product_subject,
+                  product_id,
+                  product_category_1,
+                  product_current_price,
+                  product_bids,
+                  to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date,
+                  to_char(product_issue_date, 'yyyy-mm-dd hh24:mi') as product_issue_date,
+                  product_progress
+		 		from product
+			 	where 
+			 	<choose>
+			 		<when test="adminProductStatus == 0">
+			 			product_progress = #{adminProductStatus}
+			 		</when>
+			 		<when test="adminProductStatus == 1">
+			 			product_progress = #{adminProductStatus}
+			 		</when>
+			 		<when test="adminProductStatus == 2">
+			 			product_progress like '%'
+			 		</when>
+			 	</choose>
+			 	
+			 	<choose>
+			 		<when test='adminProductCate.equals("cate01")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate02")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate03")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate04")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate05")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate06")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate07")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate08")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate09")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate10")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate11")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 		<when test='adminProductCate.equals("cate12")'>
+			 			and product_category_1 = #{adminProductCate}
+			 		</when>
+			 	</choose>
+			 	
+			 	<if test="adminProductNumber != null and adminProductNumber != ''">
+			 		and product_number like '%' || #{adminProductNumber} || '%' 
+			 	</if>
+			 	
+			 	<if test="adminProductSubject != null and adminProductSubject != ''">
+			 		and product_subject like '%' || #{adminProductSubject} || '%' 
+			 	</if>
+			 	
+			 	<if test="adminProductId != null and adminProductId != ''">
+			 		and product_id like '%' || #{adminProductId} || '%' 
+			 	</if>
+			 	
+			 	<if test="adminProductStartDate != null and adminProductStartDate != '' and adminProductEndDate != null and adminProductEndDate != ''">
+			 		and product_issue_date between 
+			 			to_date(#{adminProductStartDate}, 'yyyy-mm-dd') and 
+			 			to_date(#{adminProductEndDate}, 'yyyy-mm-dd') + 1
+			 	</if>
+		 	)
+		<![CDATA[
+		where rnum >= #{startrow} and rnum <= #{endrow}
+		]]>
+	</select>
+	
+	<!-- 상품마감처리 -->
+	<update id="adminProductEnd" parameterType="ProductVO">
+		<selectKey keyProperty="product_end_date" resultType="String" order="AFTER">
+			select to_char(product_end_date, 'yyyy-mm-dd hh24:mi') as product_end_date 
+			from product
+			where product_number = #{product_number}
+		</selectKey>
+		update product
+		set product_progress = 1,
+			product_end_date = sysdate
+		where product_number = #{product_number}
+	</update>
+	
+	<!-- 거래리스트 검색결과 갯수 -->
+	<select id="getTradingListCount" parameterType="AdminTradingVO" resultType="int">
+	 	select count(*)
+	 	from trading, product
+	 	where product_number = trading_product_number
+	 	<choose>
+	 		<when test='adminTradingSystem.equals("전체")'>
+	 			and (trading_transaction_method like '%' or trading_transaction_method is null)
+	 		</when>
+	 		<when test='adminTradingSystem.equals("택배")'>
+	 			and trading_transaction_method in ('선불', '착불')
+	 		</when>
+	 		<when test='adminTradingSystem.equals("직거래")'>
+	 			and trading_transaction_method not in ('선불', '착불') and trading_transaction_method is not null
+	 		</when>
+	 		<when test='adminTradingSystem.equals("미정")'>
+	 			and trading_transaction_method is null
+	 		</when>
+	 	</choose>
+	 	
+	 	<choose>
+	 		<when test='adminTradingStatus.equals("전체")'></when>
+	 		<otherwise>
+				and trading_progress = #{adminTradingStatus}
+			</otherwise>
+	 	</choose>
+	 	
+	 	<if test="adminTradingNumber != null and adminTradingNumber != ''">
+	 		and trading_product_number like '%' || #{adminTradingNumber} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminTradingBuyerId != null and adminTradingBuyerId != ''">
+	 		and trading_buyer_id like '%' || #{adminTradingBuyerId} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminTradingSellerId != null and adminTradingSellerId != ''">
+	 		and product_id like '%' || #{adminTradingSellerId} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminTradingStartDate != null and adminTradingStartDate != '' and adminTradingEndDate != null and adminTradingEndDate != ''">
+	 		and trading_date between 
+	 			to_date(#{adminTradingStartDate}, 'yyyy-mm-dd') and 
+	 			to_date(#{adminTradingEndDate}, 'yyyy-mm-dd') + 1
+	 	</if>
+	</select>
+	
+	<!-- 거래리스트 검색결과 -->
+	<select id="getTradingList" parameterType="AdminTradingVO" resultType="TradingVO">
+	 	select *
+	 	from (select
+	 		row_number() over (order by
+                    <choose>
+                        <when test="adminTradingSort == 0">
+                             trading_date desc
+                        </when>
+                        <when test="adminTradingSort == 1">
+                             trading_date asc
+                        </when>
+                        <when test="adminTradingSort == 2">
+                             trading_price desc
+                        </when>
+                        <when test="adminTradingSort == 3">
+                             trading_price asc
+                        </when>
+                  </choose>
+                  ) rnum,
+                  trading_product_number,
+                  trading_buyer_id,
+                  product_id,
+                  trading_price,
+                  to_char(trading_deposit_deadline, 'yyyy-mm-dd  hh24:mi') as trading_deposit_deadline,
+                  to_char(trading_waybill_deadline, 'yyyy-mm-dd  hh24:mi') as trading_waybill_deadline,
+                  to_char(trading_purchase_deadline, 'yyyy-mm-dd  hh24:mi') as trading_purchase_deadline,
+                  trading_transaction_method,
+                  trading_waybill_number,
+                  trading_progress,
+                  to_char(trading_date, 'yyyy-mm-dd  hh24:mi') as trading_date
+		 	from trading, product
+		 	where product_number = trading_product_number
+		 	<choose>
+		 		<when test='adminTradingSystem.equals("전체")'>
+		 			and (trading_transaction_method like '%' or trading_transaction_method is null)
+		 		</when>
+		 		<when test='adminTradingSystem.equals("택배")'>
+		 			and trading_transaction_method in ('선불', '착불')
+		 		</when>
+		 		<when test='adminTradingSystem.equals("직거래")'>
+		 			and trading_transaction_method not in ('선불', '착불') and trading_transaction_method is not null
+		 		</when>
+		 		<when test='adminTradingSystem.equals("미정")'>
+		 			and trading_transaction_method is null
+		 		</when>
+		 	</choose>
+		 	
+		 	<choose>
+		 		<when test='adminTradingStatus.equals("전체")'></when>
+		 		<otherwise>
+					and trading_progress = #{adminTradingStatus}
+				</otherwise>
+		 	</choose>
+		 	
+		 	<if test="adminTradingNumber != null and adminTradingNumber != ''">
+		 		and trading_product_number like '%' || #{adminTradingNumber} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminTradingBuyerId != null and adminTradingBuyerId != ''">
+		 		and trading_buyer_id like '%' || #{adminTradingBuyerId} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminTradingSellerId != null and adminTradingSellerId != ''">
+		 		and product_id like '%' || #{adminTradingSellerId} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminTradingStartDate != null and adminTradingStartDate != '' and adminTradingEndDate != null and adminTradingEndDate != ''">
+		 		and trading_date between 
+		 			to_date(#{adminTradingStartDate}, 'yyyy-mm-dd') and 
+		 			to_date(#{adminTradingEndDate}, 'yyyy-mm-dd') + 1
+		 	</if>
+		 	)
+	 	<![CDATA[
+        where rnum >= #{startrow} and rnum <= #{endrow}
+        ]]>
+	</select>
+	
+	
 	
 </mapper>

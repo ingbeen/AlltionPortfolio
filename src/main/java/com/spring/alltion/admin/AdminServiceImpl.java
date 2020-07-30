@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alltion.login.MemberVO;
 import com.spring.alltion.mypage.Pagination;
+import com.spring.alltion.productRegistration.ProductVO;
 import com.spring.mapper.AdminMapper;
 
 @Service
@@ -107,5 +108,76 @@ public class AdminServiceImpl implements AdminService {
 	public void adminMemberUpdate(AdminMemberVO adminMemberVO) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
 		adminMapper.adminMemberUpdate(adminMemberVO);
+	}
+	
+	@Override
+	public HashMap<String, Object> getAdminProductDate(AdminProductVO adminProductVO) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		int page = adminProductVO.getPage();
+		int listcount = adminMapper.getProductListCount(adminProductVO);
+		
+		Pagination pagination = new Pagination(page, listcount, 15, 10);
+		pagination.setPageInfo();
+		
+		int startrow = pagination.getStartrow();
+		int endrow = pagination.getEndrow();
+		
+		adminProductVO.setStartrow(startrow);
+		adminProductVO.setEndrow(endrow);
+		
+		List<ProductVO> productList = adminMapper.getProductList(adminProductVO);
+		
+		for (ProductVO vo : productList) {
+			vo.changeTranslateCate_1ToKorean();
+		}
+		
+		HashMap<String, Object> adminMemberDate = new HashMap<String, Object>();
+		adminMemberDate.put("pagination", pagination);
+		adminMemberDate.put("listcount", listcount);
+		adminMemberDate.put("productList", productList);
+		
+		return adminMemberDate;
+	}
+	
+	@Override
+	public ProductVO adminProductEnd(ProductVO productVO) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		adminMapper.adminProductEnd(productVO);
+		
+		return productVO;
+	}
+	
+	@Override
+	public void getTradingListCount(AdminTradingVO adminTradingVO) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		int page = adminTradingVO.getPage();
+		int listcount = adminMapper.getTradingListCount(adminTradingVO);
+		
+		System.out.println(listcount);
+		
+		Pagination pagination = new Pagination(page, listcount, 15, 10);
+		pagination.setPageInfo();
+		
+		int startrow = pagination.getStartrow();
+		int endrow = pagination.getEndrow();
+		
+		adminTradingVO.setStartrow(startrow);
+		adminTradingVO.setEndrow(endrow);
+		
+//		List<ProductVO> productList = adminMapper.getProductList(adminProductVO);
+//		
+//		for (ProductVO vo : productList) {
+//			vo.changeTranslateCate_1ToKorean();
+//		}
+		
+		HashMap<String, Object> adminMemberDate = new HashMap<String, Object>();
+		adminMemberDate.put("pagination", pagination);
+		adminMemberDate.put("listcount", listcount);
+//		adminMemberDate.put("productList", productList);
+//		
+//		return adminMemberDate;
 	}
 }
