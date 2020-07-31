@@ -47,7 +47,7 @@ public class TradingVO {
     String trading_waybill_number; // 운송장번호
     
     String trading_progress; // 진행상태
-    String trading_date; // 등록일
+	String trading_date; // 등록일
     
 	public int getTrading_product_number() {
 		return trading_product_number;
@@ -145,7 +145,4 @@ public class TradingVO {
 	public void setTrading_date(String trading_date) {
 		this.trading_date = trading_date;
 	}
-    
-	
-	
 }

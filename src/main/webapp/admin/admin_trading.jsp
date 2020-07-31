@@ -111,18 +111,18 @@
             <div class="flex-column list--content">
                 <table class="list--table">
                     <tr class="list--tableHeader">
-                        <th style="width:8%">상품 번호</th>
-                        <th style="width:8%">구매자 아이디</th>
-                        <th style="width:8%">판매자 아이디</th>
-                        <th style="width:8%">거래 가격</th>
-                        <th style="width:10%">입금 기한</th>
-                        <th style="width:10%">운송장번호 입력기한</th>
-                        <th style="width:10%">구매확정기한</th>
-                        <th style="width:6%">거래방식</th>
-                        <th style="width:8%">운송장번호</th>
-                        <th style="width:8%">진행상태</th>
-                        <th style="width:10%">등록일</th>
-                        <th style="width:6%">수정</th>
+					    <th style="width:5%">상품 번호</th>
+					    <th style="width:9%">구매자 아이디</th>
+					    <th style="width:9%">판매자 아이디</th>
+					    <th style="width:7%">거래 가격</th>
+					    <th style="width:9%">입금 기한</th>
+					    <th style="width:9%">운송장번호 입력기한</th>
+					    <th style="width:9%">구매확정기한</th>
+					    <th style="width:6%">거래방식</th>
+					    <th style="width:10%">운송장번호</th>
+					    <th style="width:8%">진행상태</th>
+					    <th style="width:9%">등록일</th>
+					    <th style="width:10%">거래변경</th>
                     </tr>
                 </table>
                 <div class="flex-row list--pagingWarp">

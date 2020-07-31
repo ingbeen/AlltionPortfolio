@@ -57,4 +57,16 @@ public class AdminController {
         
 		return "admin/admin_trading";
 	}
+	
+	// 관리자페이지 거래관리로 이동
+	@RequestMapping(value = "adminPay.yb")
+	public String adminPay(HttpSession session, MemberVO membervo) {
+//		String userId = (String)session.getAttribute("userId");
+//        if(userId ==null)
+//        {
+//           return "member/login";
+//        }
+        
+		return "admin/admin_pay";
+	}
 }

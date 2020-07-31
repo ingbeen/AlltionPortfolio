@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.mapper.AdminMapper">
+	<resultMap type="TradingVO" id="TradingMap">
+		<id property="trading_product_number" column="trading_product_number" />
+		<id property="trading_buyer_id" column="trading_buyer_id" />
+		<id property="trading_price" column="trading_price" />
+		<id property="trading_deposit_deadline" column="trading_deposit_deadline" />
+		<id property="trading_waybill_deadline" column="trading_waybill_deadline" />
+		<id property="trading_purchase_deadline" column="trading_purchase_deadline" />
+		<id property="trading_transaction_method" column="trading_transaction_method" />
+		<id property="trading_waybill_number" column="trading_waybill_number" />
+		<id property="trading_progress" column="trading_progress" />
+		<id property="trading_date" column="trading_date" />
+	</resultMap>
+	
+	<resultMap type="ProductVO" id="ProductMap">
+		<id property="product_id" column="product_id" />
+	</resultMap>
+	
+	<resultMap type="AdminProductJoinTradingVO" id="AdminProductJoinTradingMap">
+		<collection property="tradingVO" resultMap="TradingMap" />
+		<collection property="productVO" resultMap="ProductMap" />
+	</resultMap>
+
 	
 	<!-- 회원수 -->
 	<select id="getMemberCount" resultType="int">
@@ -140,7 +162,7 @@
 				member_phone,
 				member_delete,
 				member_manager,
-				to_char(member_date, 'yyyy-mm-dd') member_date
+				to_char(member_date, 'yyyy-mm-dd hh24:mi') member_date
 	 		from member
 		 	where 
 		 	<choose>
@@ -207,7 +229,7 @@
 		where member_id = #{adminMemberId}
 	</update>
 	
-	<!-- 멤버리스트 검색결과 갯수 -->
+	<!-- 상품리스트 검색결과 갯수 -->
 	<select id="getProductListCount" parameterType="AdminProductVO" resultType="int">
 	 	select count(*)
 	 	from product
@@ -453,7 +475,7 @@
 	</select>
 	
 	<!-- 거래리스트 검색결과 -->
-	<select id="getTradingList" parameterType="AdminTradingVO" resultType="TradingVO">
+	<select id="getTradingList" parameterType="AdminTradingVO" resultMap="AdminProductJoinTradingMap">
 	 	select *
 	 	from (select
 	 		row_number() over (order by
@@ -476,13 +498,13 @@
                   trading_buyer_id,
                   product_id,
                   trading_price,
-                  to_char(trading_deposit_deadline, 'yyyy-mm-dd  hh24:mi') as trading_deposit_deadline,
-                  to_char(trading_waybill_deadline, 'yyyy-mm-dd  hh24:mi') as trading_waybill_deadline,
-                  to_char(trading_purchase_deadline, 'yyyy-mm-dd  hh24:mi') as trading_purchase_deadline,
+                  to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
+                  nvl(to_char(trading_waybill_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_waybill_deadline,
+                  nvl(to_char(trading_purchase_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_purchase_deadline,
                   trading_transaction_method,
-                  trading_waybill_number,
+                  nvl(trading_waybill_number,' ') as trading_waybill_number,
                   trading_progress,
-                  to_char(trading_date, 'yyyy-mm-dd  hh24:mi') as trading_date
+                  to_char(trading_date, 'yyyy-mm-dd hh24:mi') as trading_date
 		 	from trading, product
 		 	where product_number = trading_product_number
 		 	<choose>
@@ -530,6 +552,212 @@
         ]]>
 	</select>
 	
+	<!-- 거래기한 연장 -->
+	<update id="adminDeadlineExtension" parameterType="hashmap">
+		update trading
+		set 
+			<if test='target == 0'>
+		 		trading_purchase_deadline = trading_purchase_deadline + 1
+		 	</if>
+		 	
+			<if test='target == 1'>
+		 		trading_waybill_deadline = trading_waybill_deadline + 1
+		 	</if>
+		 	
+			<if test='target == 2'>
+		 		trading_deposit_deadline = trading_deposit_deadline + 1
+		 	</if>
+		where trading_product_number = #{tradingVO.trading_product_number}
+	</update>
 	
+	<!-- 거래기한 연장 후 새로운 거래기한 가져오기 -->
+	<select id="getTradingDeadline" parameterType="TradingVO" resultType="TradingVO">
+		select 
+			to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
+			nvl(to_char(trading_waybill_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_waybill_deadline,
+			nvl(to_char(trading_purchase_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_purchase_deadline
+		from trading
+		where trading_product_number = #{trading_product_number}
+	</select>
+	
+	<!-- 거래 초기화 -->
+	<update id="adminTradingReset" parameterType="TradingVO">
+		<selectKey keyProperty="trading_buyer_id,trading_price,trading_deposit_deadline,trading_waybill_deadline,trading_purchase_deadline,trading_transaction_method,trading_waybill_number,trading_progress" resultType="TradingVO" order="AFTER">
+			select 
+				trading_buyer_id,
+				trading_price,
+				to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
+				nvl(to_char(trading_waybill_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_waybill_deadline,
+				nvl(to_char(trading_purchase_deadline, 'yyyy-mm-dd hh24:mi'),' ') as trading_purchase_deadline,
+				trading_transaction_method,
+				trading_waybill_number,
+				trading_progress
+			from trading
+			where trading_product_number = #{trading_product_number}
+		</selectKey>
+		update trading
+		set 
+			trading_deposit_deadline = to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi'), 'yyyy-mm-dd hh24:mi') + 1,
+			trading_waybill_deadline = null,
+			trading_purchase_deadline = null,
+			trading_transaction_method = null,
+			trading_sample4_postcode = null,
+			trading_sample4_roadaddress = null,
+			trading_sample4_jibunaddress = null,
+			trading_sample4_detailaddress = null,
+			trading_phone = null,
+			trading_waybill_number = null,
+			trading_progress = '입금대기'
+		where trading_product_number = #{trading_product_number}
+	</update>
+	
+	<!-- 상품 제목 가져오기 -->
+	<select id="getProductSubject" parameterType="int" resultType="String">
+		select product_subject
+		from product
+		where product_number = #{productNumber}
+	</select>
+	
+	<!-- 현재 이머니잔액 가져오기 -->
+	<select id="findCurrentMoney" parameterType="String" resultType="String">
+		select pay_current_money from paylist where pay_id = #{buyerId}
+	</select>
+	 
+	<!-- 거래취소로 인한 이머니 복구 -->
+	<insert id="adminCancelPayment" parameterType="PaymentVO">
+		insert into payment
+		values (#{payment_userId}, 
+				#{payment_product_subject},
+				#{payment_amount},
+				#{payment_lastmoney},
+				#{payment_nowmoney},
+				#{payment_status},
+				sysdate)
+	</insert>
+	
+	<!-- 현재 이머니잔액 변경 -->
+	<update id="changeMoney" parameterType="hashmap">
+		update paylist 
+		set pay_current_money = #{newCurrentMoney} 
+		where pay_id = #{buyerId}
+	</update>
+	
+	<!-- 결제리스트 검색결과 갯수 -->
+	<select id="getPayListCount" parameterType="AdminPayVO" resultType="int">
+	 	select count(*)
+	 	from pay
+	 	where
+	 	<choose>
+	 		<when test='adminPayMoneyFilter == 0'>
+	 			<![CDATA[ 
+	 			pay_amount >= 0
+	 			]]>
+	 		</when>
+	 		<when test='adminPayMoneyFilter == 1'>
+	 			<![CDATA[ 
+	 			pay_amount >= #{adminPayMoney}
+	 			]]>
+	 		</when>
+	 		<when test='adminPayMoneyFilter == 2'>
+	 			<![CDATA[ 
+	 			pay_amount <= #{adminPayMoney}
+	 			]]>
+	 		</when>
+	 	</choose>
+	 	
+	 	<choose>
+	 		<when test='adminPayStatus.equals("전체")'></when>
+	 		<otherwise>
+				and pay_status = #{adminPayStatus}
+			</otherwise>
+	 	</choose>
+	 	
+	 	<if test="adminPayId != null and adminPayId != ''">
+	 		and pay_id like '%' || #{adminPayId} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminPayNumber != null and adminPayNumber != ''">
+	 		and pay_merchant_uid like '%' || #{adminPayNumber} || '%' 
+	 	</if>
+	 	
+	 	<if test="adminPayStartDate != null and adminPayStartDate != '' and adminPayEndDate != null and adminPayEndDate != ''">
+	 		and pay_date between 
+	 			to_date(#{adminPayStartDate}, 'yyyy-mm-dd') and 
+	 			to_date(#{adminPayEndDate}, 'yyyy-mm-dd') + 1
+	 	</if>
+	</select>
+	
+	<!-- 결제리스트 검색결과 -->
+	<select id="getPayList" parameterType="AdminPayVO" resultType="PayVO">
+	 	select *
+	 	from (select 
+	 			row_number() over (order by
+                    <choose>
+                        <when test="adminPaySort == 0">
+                             pay_date desc
+                        </when>
+                        <when test="adminPaySort == 1">
+                             pay_date asc
+                        </when>
+                        <when test="adminPaySort == 2">
+                             pay_amount desc
+                        </when>
+                        <when test="adminPaySort == 3">
+                             pay_amount asc
+                        </when>
+                  </choose>
+                  ) rnum,
+                  pay_merchant_uid,
+                  pay_id,
+                  pay_status,
+                  pay_amount,
+                  pay_lastmoney,
+                  pay_nowmoney,
+                  pay_date
+		 	from pay
+		 	where
+		 	<choose>
+		 		<when test='adminPayMoneyFilter == 0'>
+		 			<![CDATA[ 
+		 			pay_amount >= 0
+		 			]]>
+		 		</when>
+		 		<when test='adminPayMoneyFilter == 1'>
+		 			<![CDATA[ 
+		 			pay_amount >= #{adminPayMoney}
+		 			]]>
+		 		</when>
+		 		<when test='adminPayMoneyFilter == 2'>
+		 			<![CDATA[ 
+		 			pay_amount <= #{adminPayMoney}
+		 			]]>
+		 		</when>
+		 	</choose>
+		 	
+		 	<choose>
+		 		<when test='adminPayStatus.equals("전체")'></when>
+		 		<otherwise>
+					and pay_status = #{adminPayStatus}
+				</otherwise>
+		 	</choose>
+		 	
+		 	<if test="adminPayId != null and adminPayId != ''">
+		 		and pay_id like '%' || #{adminPayId} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminPayNumber != null and adminPayNumber != ''">
+		 		and pay_merchant_uid like '%' || #{adminPayNumber} || '%' 
+		 	</if>
+		 	
+		 	<if test="adminPayStartDate != null and adminPayStartDate != '' and adminPayEndDate != null and adminPayEndDate != ''">
+		 		and pay_date between 
+		 			to_date(#{adminPayStartDate}, 'yyyy-mm-dd') and 
+		 			to_date(#{adminPayEndDate}, 'yyyy-mm-dd') + 1
+		 	</if>
+		 	)
+	 	<![CDATA[
+        where rnum >= #{startrow} and rnum <= #{endrow}
+        ]]>
+	</select>
 	
 </mapper>

@@ -1,12 +1,20 @@
 package com.spring.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.alltion.admin.AdminMemberVO;
+import com.spring.alltion.admin.AdminPayVO;
+import com.spring.alltion.admin.AdminProductJoinTradingVO;
 import com.spring.alltion.admin.AdminProductVO;
 import com.spring.alltion.admin.AdminTradingVO;
 import com.spring.alltion.login.MemberVO;
+import com.spring.alltion.pay.PayVO;
+import com.spring.alltion.pay.PaymentVO;
 import com.spring.alltion.productRegistration.ProductVO;
+import com.spring.alltion.trading.TradingVO;
 
 public interface AdminMapper {
 	// 회원수
@@ -55,5 +63,33 @@ public interface AdminMapper {
 	int getTradingListCount(AdminTradingVO adminTradingVO);
 	
 	// 거래리스트 검색결과
-	List<ProductVO> getTradingList(AdminProductVO adminProductVO);
+	List<AdminProductJoinTradingVO> getTradingList(AdminTradingVO adminTradingVO);
+	
+	// 거래기한 연장
+	void adminDeadlineExtension(HashMap<String, Object> hm);
+	
+	// 거래기한 연장 후 새로운 거래기한 가져오기
+	TradingVO getTradingDeadline(TradingVO tradingVO);
+	
+	// 거래 초기화
+	void adminTradingReset(TradingVO tradingVO);
+	
+	// 상품 제목 가져오기
+	String getProductSubject(int productNumber);
+	
+	// 현재 이머니잔액 가져오기
+	String findCurrentMoney(String buyerId);
+	
+	// 거래취소로 인한 이머니 복구
+	void adminCancelPayment(PaymentVO paymentVO);
+	
+	// 현재 이머니잔액 변경
+	void changeMoney(@Param(value = "buyerId") String buyerId,
+					@Param(value = "newCurrentMoney") String newCurrentMoney);
+	
+	// 결제리스트 검색결과 갯수
+	int getPayListCount(AdminPayVO adminPayVO);
+	
+	// 결제리스트 검색결과
+	List<PayVO> getPayList(AdminPayVO adminPayVO);
 }

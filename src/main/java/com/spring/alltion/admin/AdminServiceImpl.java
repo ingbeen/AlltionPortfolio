@@ -1,6 +1,8 @@
 package com.spring.alltion.admin;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.spring.alltion.login.MemberVO;
 import com.spring.alltion.mypage.Pagination;
+import com.spring.alltion.pay.PayVO;
+import com.spring.alltion.pay.PaymentVO;
 import com.spring.alltion.productRegistration.ProductVO;
+import com.spring.alltion.trading.TradingVO;
 import com.spring.mapper.AdminMapper;
 
 @Service
@@ -132,31 +137,27 @@ public class AdminServiceImpl implements AdminService {
 			vo.changeTranslateCate_1ToKorean();
 		}
 		
-		HashMap<String, Object> adminMemberDate = new HashMap<String, Object>();
-		adminMemberDate.put("pagination", pagination);
-		adminMemberDate.put("listcount", listcount);
-		adminMemberDate.put("productList", productList);
+		HashMap<String, Object> adminProductDate = new HashMap<String, Object>();
+		adminProductDate.put("pagination", pagination);
+		adminProductDate.put("listcount", listcount);
+		adminProductDate.put("productList", productList);
 		
-		return adminMemberDate;
+		return adminProductDate;
 	}
 	
 	@Override
-	public ProductVO adminProductEnd(ProductVO productVO) {
+	public void adminProductEnd(ProductVO productVO) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
 		
 		adminMapper.adminProductEnd(productVO);
-		
-		return productVO;
 	}
 	
 	@Override
-	public void getTradingListCount(AdminTradingVO adminTradingVO) {
+	public HashMap<String, Object> getAdminTradingtDate(AdminTradingVO adminTradingVO) {
 		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
 		
 		int page = adminTradingVO.getPage();
 		int listcount = adminMapper.getTradingListCount(adminTradingVO);
-		
-		System.out.println(listcount);
 		
 		Pagination pagination = new Pagination(page, listcount, 15, 10);
 		pagination.setPageInfo();
@@ -167,17 +168,95 @@ public class AdminServiceImpl implements AdminService {
 		adminTradingVO.setStartrow(startrow);
 		adminTradingVO.setEndrow(endrow);
 		
-//		List<ProductVO> productList = adminMapper.getProductList(adminProductVO);
-//		
-//		for (ProductVO vo : productList) {
-//			vo.changeTranslateCate_1ToKorean();
-//		}
+		List<AdminProductJoinTradingVO> tradingList = adminMapper.getTradingList(adminTradingVO);
 		
-		HashMap<String, Object> adminMemberDate = new HashMap<String, Object>();
-		adminMemberDate.put("pagination", pagination);
-		adminMemberDate.put("listcount", listcount);
-//		adminMemberDate.put("productList", productList);
-//		
-//		return adminMemberDate;
+		HashMap<String, Object> adminTradingDate = new HashMap<String, Object>();
+		adminTradingDate.put("pagination", pagination);
+		adminTradingDate.put("listcount", listcount);
+		adminTradingDate.put("tradingList", tradingList);
+		
+		return adminTradingDate;
+	}
+	
+	@Override
+	public TradingVO adminDeadlineExtension(TradingVO tradingVO, int target) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		HashMap<String, Object> hm = new HashMap<String,  Object>();
+        hm.put("tradingVO", tradingVO);
+        hm.put("target", target);
+		
+		adminMapper.adminDeadlineExtension(hm);
+		
+		TradingVO newTradingVO = adminMapper.getTradingDeadline(tradingVO);
+		
+		return newTradingVO;
+	}
+	
+	@Override
+	public TradingVO adminTradingReset(TradingVO tradingVO) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		adminMapper.adminTradingReset(tradingVO);
+		
+		int productNumber = tradingVO.getTrading_product_number();
+		String buyerId = tradingVO.getTrading_buyer_id();
+		String productSubject = adminMapper.getProductSubject(productNumber);
+		String TradingPrice = Integer.toString(tradingVO.getTrading_price());
+		String currentMoney = adminMapper.findCurrentMoney(buyerId);
+		String newCurrentMoney = Integer.toString((Integer.parseInt(TradingPrice) + Integer.parseInt(currentMoney)));
+		
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setPayment_userId(buyerId);
+		paymentVO.setPayment_product_subject(productSubject);
+		paymentVO.setPayment_amount(TradingPrice);
+		paymentVO.setPayment_lastmoney(currentMoney);
+		paymentVO.setPayment_nowmoney(newCurrentMoney);
+		paymentVO.setPayment_status("거래취소");
+		
+		adminMapper.adminCancelPayment(paymentVO);
+		adminMapper.changeMoney(buyerId, newCurrentMoney);
+		
+		return tradingVO;
+	}
+	
+	@Override
+	public HashMap<String, Object> getAdminPayDate(AdminPayVO adminPayVO) {
+		AdminMapper adminMapper = sqlSession.getMapper(AdminMapper.class);
+		
+		int page = adminPayVO.getPage();
+		int listcount = adminMapper.getPayListCount(adminPayVO);
+		
+		System.out.println(listcount);
+		
+		Pagination pagination = new Pagination(page, listcount, 15, 10);
+		pagination.setPageInfo();
+		
+		int startrow = pagination.getStartrow();
+		int endrow = pagination.getEndrow();
+		
+		adminPayVO.setStartrow(startrow);
+		adminPayVO.setEndrow(endrow);
+		
+		List<PayVO> payList = adminMapper.getPayList(adminPayVO);
+		
+		ArrayList<String> payDateList = new ArrayList<String>();
+		for (PayVO payVO : payList) {
+			Date oldPayDate = payVO.getPay_date();
+			String newPayDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(oldPayDate);
+			payDateList.add(newPayDate);
+		}
+		
+		for (String str : payDateList) {
+			System.out.println(str);
+		}
+		
+		HashMap<String, Object> adminPayDate = new HashMap<String, Object>();
+		adminPayDate.put("pagination", pagination);
+		adminPayDate.put("listcount", listcount);
+		adminPayDate.put("payList", payList);
+		adminPayDate.put("payDateList", payDateList);
+		
+		return adminPayDate;
 	}
 }

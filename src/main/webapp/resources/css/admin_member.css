@@ -311,6 +311,7 @@ select:focus {
 
 .list--pagingWarp {
     margin: 15px 0;
+    min-width: 1200px;
 }
 
 .list--count {

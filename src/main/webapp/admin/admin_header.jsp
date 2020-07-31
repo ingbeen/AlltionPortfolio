@@ -38,7 +38,7 @@
                 <i class="fas fa-exchange-alt"></i>
                 <span>거래 관리</span>
             </li>
-            <li>
+            <li onclick="location.href='adminPay.yb'">
                 <i class="fas fa-hand-holding-usd"></i>
                 <span>결제 관리</span>
             </li>

@@ -81,13 +81,4 @@ public class AdminTradingVO {
 	public void setEndrow(int endrow) {
 		this.endrow = endrow;
 	}
-	@Override
-	public String toString() {
-		return "AdminTradingVO [adminTradingNumber=" + adminTradingNumber + ", adminTradingBuyerId="
-				+ adminTradingBuyerId + ", adminTradingSellerId=" + adminTradingSellerId + ", adminTradingSystem="
-				+ adminTradingSystem + ", adminTradingStartDate=" + adminTradingStartDate + ", adminTradingEndDate="
-				+ adminTradingEndDate + ", adminTradingStatus=" + adminTradingStatus + ", adminTradingSort="
-				+ adminTradingSort + ", page=" + page + ", startrow=" + startrow + ", endrow=" + endrow + "]";
-	}
-	
 }

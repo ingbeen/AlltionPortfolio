@@ -193,8 +193,6 @@ $(document).on('click', '.list--nonActive', (e) => {
 	getAdminProductDate(page);
 });
 
-let originData = [];
-
 $(document).on('click','.list--productEndBtn', function() {
 	let result = confirm("마감된 경매는 되돌리지 못합니다\n정말로 경매를 마감 하시겠습니까?");
 	if(!result) {
