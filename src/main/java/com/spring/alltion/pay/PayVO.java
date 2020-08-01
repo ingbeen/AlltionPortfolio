@@ -60,12 +60,4 @@ public class PayVO {
 	public void setPay_date(Date pay_date) {
 		this.pay_date = pay_date;
 	}
-	@Override
-	public String toString() {
-		return "PayVO [rnum=" + rnum + ", pay_merchant_uid=" + pay_merchant_uid + ", pay_amount=" + pay_amount
-				+ ", pay_status=" + pay_status + ", pay_id=" + pay_id + ", pay_lastmoney=" + pay_lastmoney
-				+ ", pay_nowmoney=" + pay_nowmoney + ", pay_date=" + pay_date + "]";
-	}
-	
-	
 }

@@ -31,7 +31,7 @@ function getAdminPayDate(page) {
         data : formData,
         dataType :"json",
         success : (adminPayDate) => {
-        	writePayList(adminPayDate.payList);
+        	writePayList(adminPayDate);
         	writePayCount(adminPayDate.listcount);
         	writePageInfo(adminPayDate.pagination);
         	commasHandler("on");
@@ -86,11 +86,16 @@ function searchFormCheck() {
     return false;
 };
 
-function writePayList(payList) {
+function writePayList(adminPayDate) {
 	let adminPayTable = "";
 	
-	console.log(payList);
+	let payList = adminPayDate.payList;
+	let payDateList = adminPayDate.payDateList;
 	
+	$.each(payList, (idx, vo) => {
+		vo.pay_date = payDateList[idx];
+	});
+ 	
 	adminPayTable += `
             <tr class="list--tableHeader">
 			    <th style="width:14%">결제 번호</th>
@@ -106,19 +111,19 @@ function writePayList(payList) {
 		vo.pay_amount = addCommas(vo.pay_amount);
 		vo.pay_lastmoney = addCommas(vo.pay_lastmoney);
 		vo.pay_nowmoney = addCommas(vo.pay_nowmoney);
-		if (payList.pay_status == "paid") {
-			payList.pay_status = "결제"
+		if (vo.pay_status == "paid") {
+			vo.pay_status = "결제"
 		}
 		
 		adminPayTable += `
 			<tr>
 	            <td class="tdCenter">${vo.pay_merchant_uid}</td>
-	            <td>${vo.pay_id}</td>
-	            <td>${vo.pay_status}</td>
-	            <td>${vo.pay_amount}</td>
-	            <td>${vo.pay_lastmoney}</td>
-	            <td>${vo.pay_nowmoney}</td>
-	            <td>${vo.pay_date}</td>`;
+	            <td class="tdCenter">${vo.pay_id}</td>
+	            <td class="tdCenter">${vo.pay_status}</td>
+	            <td class="tdRight">${vo.pay_amount}</td>
+	            <td class="tdRight">${vo.pay_lastmoney}</td>
+	            <td class="tdRight">${vo.pay_nowmoney}</td>
+	            <td class="tdCenter">${vo.pay_date}</td>`;
 	});
 	
 	$('.list--table').html(adminPayTable);

@@ -254,7 +254,7 @@ select:focus {
 }
 
 .list--table {
-    min-width: 1300px;
+    min-width: 1000px;
     border-spacing: 0px;
     border-collapse: separate;
     border: 1.5px solid #eee;
@@ -326,7 +326,7 @@ select:focus {
 
 .list--pagingWarp {
     margin: 15px 0;
-    min-width: 1300px;
+    min-width: 1000px;
 }
 
 .list--count {

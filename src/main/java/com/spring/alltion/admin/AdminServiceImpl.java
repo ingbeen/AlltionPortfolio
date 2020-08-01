@@ -227,8 +227,6 @@ public class AdminServiceImpl implements AdminService {
 		int page = adminPayVO.getPage();
 		int listcount = adminMapper.getPayListCount(adminPayVO);
 		
-		System.out.println(listcount);
-		
 		Pagination pagination = new Pagination(page, listcount, 15, 10);
 		pagination.setPageInfo();
 		
@@ -245,10 +243,6 @@ public class AdminServiceImpl implements AdminService {
 			Date oldPayDate = payVO.getPay_date();
 			String newPayDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(oldPayDate);
 			payDateList.add(newPayDate);
-		}
-		
-		for (String str : payDateList) {
-			System.out.println(str);
 		}
 		
 		HashMap<String, Object> adminPayDate = new HashMap<String, Object>();

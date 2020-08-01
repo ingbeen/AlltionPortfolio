@@ -47,6 +47,14 @@ button {
     outline: 0;
 }
 
+.tdCenter {
+	text-align: center;
+}
+
+.tdRight {
+	text-align: right;
+}
+
 /* 메인내용 */
 section {
     background: #e6e6e68c;

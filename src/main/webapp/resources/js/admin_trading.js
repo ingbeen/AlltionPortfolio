@@ -104,29 +104,29 @@ function writeTradingList(tradingList) {
 		adminTradingTable += `
 			<tr>
 	            <td class="tdCenter">${vo.tradingVO.trading_product_number}</td>
-	            <td>${vo.tradingVO.trading_buyer_id}</td>
-	            <td>${vo.productVO.product_id}</td>
+	            <td class="tdCenter">${vo.tradingVO.trading_buyer_id}</td>
+	            <td class="tdCenter">${vo.productVO.product_id}</td>
 	            <td class="tdRight">${vo.tradingVO.trading_price}</td>
-	            <td>${vo.tradingVO.trading_deposit_deadline}</td>
-	            <td>${vo.tradingVO.trading_waybill_deadline}</td>
-	            <td>${vo.tradingVO.trading_purchase_deadline}</td>`;
+	            <td class="tdCenter">${vo.tradingVO.trading_deposit_deadline}</td>
+	            <td class="tdCenter">${vo.tradingVO.trading_waybill_deadline}</td>
+	            <td class="tdCenter">${vo.tradingVO.trading_purchase_deadline}</td>`;
 		
 		if (vo.tradingVO.trading_transaction_method == "선불" ||
 				vo.tradingVO.trading_transaction_method == "착불") {
 			adminTradingTable += `
-				<td>택배</td>`;
+				<td class="tdCenter">택배</td>`;
 		} else if (vo.tradingVO.trading_transaction_method == null) {
 			adminTradingTable += `
-				<td>미정</td>`;
+				<td class="tdCenter">미정</td>`;
 		} else {
 			adminTradingTable += `
-				<td>직거래</td>`;
+				<td class="tdCenter">직거래</td>`;
 		}
 		
 		adminTradingTable += `
 	            <td class="tdCenter">${vo.tradingVO.trading_waybill_number}</td>
-	            <td>${vo.tradingVO.trading_progress}</td>
-	            <td>${vo.tradingVO.trading_date}</td>`;
+	            <td class="tdCenter">${vo.tradingVO.trading_progress}</td>
+	            <td class="tdCenter">${vo.tradingVO.trading_date}</td>`;
 		
 		adminTradingTable += `
 	            <td class="flex-row list--update">

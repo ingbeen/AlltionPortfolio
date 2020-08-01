@@ -101,19 +101,19 @@ function writeProductList(productList) {
 			<tr>
 	            <td class="tdCenter">${vo.product_number}</td>
 	            <td><p>${vo.product_subject}</p></td>
-	            <td>${vo.product_id}</td>
-	            <td>${vo.product_category_1}</td>
+	            <td class="tdCenter">${vo.product_id}</td>
+	            <td class="tdCenter">${vo.product_category_1}</td>
 	            <td class="tdRight">${vo.product_current_price}</td>
 	            <td class="tdRight">${vo.product_bids}</td>
-	            <td>${vo.product_end_date}</td>
-	            <td>${vo.product_issue_date}</td>`;
+	            <td class="tdCenter">${vo.product_end_date}</td>
+	            <td class="tdCenter">${vo.product_issue_date}</td>`;
 		
 		if (vo.product_progress == 0) {
 			adminProductTable += `
-				<td>진행중</td>`;
+				<td class="tdCenter">진행중</td>`;
 		} else if (vo.product_progress == 1) {
 			adminProductTable += `
-				<td>마감</td>`;
+				<td class="tdCenter">마감</td>`;
 		}
 		
 		adminProductTable += `

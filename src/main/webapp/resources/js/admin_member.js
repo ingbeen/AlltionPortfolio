@@ -97,24 +97,24 @@ function writeMemberList(memberList) {
 	$.each(memberList, (idx, vo) => {
 		adminMemberTable += `
 			<tr>
-	            <td>${vo.member_id}</td>
-	            <td>${vo.member_name}</td>
-	            <td>${vo.email}</td>
-	            <td>${vo.member_phone}</td>`;
+	            <td class="tdCenter">${vo.member_id}</td>
+	            <td class="tdCenter">${vo.member_name}</td>
+	            <td class="tdCenter">${vo.email}</td>
+	            <td class="tdCenter">${vo.member_phone}</td>`;
 		
 		if (vo.member_delete == 0 && vo.member_manager == 0) {
 			adminMemberTable += `
-				<td>정상</td>`;
+				<td class="tdCenter">정상</td>`;
 		} else if (vo.member_delete == 1 && vo.member_manager == 0) {
 			adminMemberTable += `
-				<td>탈퇴</td>`;
+				<td class="tdCenter">탈퇴</td>`;
 		} else if (vo.member_manager == 1) {
 			adminMemberTable += `
-				<td>관리자</td>`;
+				<td class="tdCenter">관리자</td>`;
 		}
 		
 		adminMemberTable += `
-	            <td>${vo.member_date}</td>
+	            <td class="tdCenter">${vo.member_date}</td>
 	            <td class="flex-row list--update">
 	                <button class="list--changeUpdateFormBtn" type="button">수정</button>
 	            </td>
@@ -207,11 +207,11 @@ $(document).on('click','.list--changeUpdateFormBtn', function() {
     }
 
     let updateFormOutput = `
-        <td>${originData[0]}</td>
-        <td><input type="text" value="${originData[1]}"></td>
-        <td><input type="text" value="${originData[2]}"></td>
-        <td><input type="text" value="${originData[3]}"></td>
-        <td>
+        <td class="tdCenter">${originData[0]}</td>
+        <td class="tdCenter"><input type="text" value="${originData[1]}"></td>
+        <td class="tdCenter"><input type="text" value="${originData[2]}"></td>
+        <td class="tdCenter"><input type="text" value="${originData[3]}"></td>
+        <td class="tdCenter">
             <select>`;
 
     if (originData[4] == "정상") {
@@ -234,7 +234,7 @@ $(document).on('click','.list--changeUpdateFormBtn', function() {
     updateFormOutput += `
             </select>
         </td>
-        <td>${originData[5]}</td>
+        <td class="tdCenter">${originData[5]}</td>
         <td class="flex-row list--update">
             <button class="list--updateBtn" type="button">수정</button>
             <button class="list--cancelUpdateFormBtn" type="button">취소</button>
@@ -247,12 +247,12 @@ $(document).on('click','.list--cancelUpdateFormBtn', function() {
     let tr = $(this).closest('tr');
 
     let updateFormOutput = `
-        <td>${originData[0]}</td>
-        <td>${originData[1]}</td>
-        <td>${originData[2]}</td>
-        <td>${originData[3]}</td>
-        <td>${originData[4]}</td>
-        <td>${originData[5]}</td>
+        <td class="tdCenter">${originData[0]}</td>
+        <td class="tdCenter">${originData[1]}</td>
+        <td class="tdCenter">${originData[2]}</td>
+        <td class="tdCenter">${originData[3]}</td>
+        <td class="tdCenter">${originData[4]}</td>
+        <td class="tdCenter">${originData[5]}</td>
         <td class="flex-row list--update">
             <button class="list--changeUpdateFormBtn" type="button">수정</button>
         </td>`;
