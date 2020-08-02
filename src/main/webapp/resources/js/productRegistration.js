@@ -520,7 +520,7 @@ function productInsert(imgSrcList) {
         type: 'post',
         data: formData,
         success: () => {
-        	alert("성공(alert창 삭제예정 : 마이페이지 - 판매관리로 이동)");
+        	window.location.href = "selling.hs?page=1";
         	clickCheck = false; // 중복클릭 방지해제
         },
         error: () => clickCheck = false // 중복클릭 방지해제
