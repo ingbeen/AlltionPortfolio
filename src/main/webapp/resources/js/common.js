@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(function() {
     // TOP 키
     let sc = $(window).scrollTop(); // scroll이 제일 위에 있을 때 위치값
     if(sc == 0){
@@ -25,10 +25,10 @@ $(document).ready(function() {
 //                console.log(sc);
     })
 
-//            // 광고 없애기 - 메인에만 넣기로 함
-//            $(".ad__banner--closeBtn").click(function() {
-//                $(".ad__banner").hide();
-//            })
+//    // 광고 없애기 - 메인에만 넣기로 함
+//    $(".ad__banner--closeBtn").click(function() {
+//        $(".ad__banner").hide();
+//    })
 
     // 헤더 고정
     let header = $('.lower_header');

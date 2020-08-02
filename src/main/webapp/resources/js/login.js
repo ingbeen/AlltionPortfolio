@@ -130,3 +130,20 @@ function check_input()
 	
 	login.submit();
 }
+
+/*엔터키 이벤트 발생 TEST (로그인용) By.Hong*/
+/*1.자바스크립트.*/
+/*
+window.onkeydown = function(event){
+	if(event.keyCode == 13){
+		check_input();
+	}
+}
+*/
+/*2.JQuery*/
+
+$(document).keydown(function(event){
+	if(event.keyCode == 13){
+		check_input();
+	}
+});

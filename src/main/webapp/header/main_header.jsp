@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="resources/css/kakaoTalk.css">
-    <link rel="shortcut icon" type="image⁄x-icon" href="./resources/img/header/logo.jpg">
+    <link rel="shortcut icon" type="image⁄x-icon" href=".././resources/img/header/logo.jpg">
     <title>All-tion</title>
 </head>
 <body>
@@ -29,6 +29,9 @@ pageEncoding="UTF-8"%>
 				<c:when test="${userId != null}"><!-- 메인페이지 로그인시 -->         
                 <li>
                     <a href="./mypage.kj">${userId}</a>
+                </li>
+                <li>
+                	<a href="./pay.ms">￦${currentMoney }</a>
                 </li>
                 <li>
                     <a href="./logout.kj">로그아웃</a>
@@ -497,10 +500,9 @@ pageEncoding="UTF-8"%>
                         <option value="cate12">기타잡화</option>
                     </select>
                     <input type="text" placeholder="찾으시는 상품을 입력해 주세요" class="search__input">
-                	<a href="#" class="searchBtn">
-					    <span class="material-icons">search</span>
-					</a>
-                	
+                    <a href="#" class="searchBtn">
+                    	<span class="material-icons">search</span>
+                    </a>
                 </div>
                 </div>
                 <ul class="member_info">

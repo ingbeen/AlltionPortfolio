@@ -537,6 +537,7 @@
 }
 #bid_notify li{
     border-bottom: thin solid darkgray;
+   
 }
 
 #bid_notify label{
@@ -581,6 +582,28 @@
 .review_image img{width:50px; height:50px;}
 .review_list{
 	padding-left: 70px;
+}
+
+/*페이징 버튼 css*/
+.paging_btns{
+	margin-top: 30px;
+}
+.paging_btns button{
+	display: inline-block;
+    text-align: center;
+    width: 35px;
+    height: 25px;
+    border: thin solid #444444;;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #444444;
+    margin: 0 2px;
+    background-color: white;
+    cursor: pointer;
+}
+.paging_btns button:hover,
+.paging_btns button:active{
+	background-color: darkgray;
 }
 /* 여기까지 판매자 구매후기 */
 

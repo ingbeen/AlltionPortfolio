@@ -13,6 +13,7 @@ public class Test_emoneyVO {
 		String pay_current_money;
 		String pay_id;
 		
+		
 		public String getMember_id() {
 			return member_id;
 		}

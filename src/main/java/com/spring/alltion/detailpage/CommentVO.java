@@ -11,6 +11,8 @@ create table comment_list(
     comment_secret varchar2(1) default '0' check(comment_secret in('0','1')), -- 0: 비밀x , 1: 비밀o
     comment_is_deleted varchar2(1) default '0' check(comment_is_deleted in('0','1')), -- 0: 삭제x , 1: 삭제o
     comment_date date default sysdate, -- 댓글 작성한 날짜
+    comment_report number default 0 check(comment_report in(0,1)), --신고 0:일반 1: 신고접수
+    comment_report_id varchar2(20), --신고한 아이디
     comment_list_no number -- 댓글 순서 넘버링, rnum과 같은효과
 );  
 */
@@ -28,6 +30,8 @@ public class CommentVO {
 	private String comment_secret;
 	private String comment_is_deleted;
 	private String comment_date;
+	private int comment_report;
+	private String comment_report_id;
 	private int comment_list_no;
 	public int getComment_number() {
 		return comment_number;
@@ -95,6 +99,18 @@ public class CommentVO {
 	}
 	public void setComment_original_id(String comment_original_id) {
 		this.comment_original_id = comment_original_id;
+	}
+	public int getComment_report() {
+		return comment_report;
+	}
+	public void setComment_report(int comment_report) {
+		this.comment_report = comment_report;
+	}
+	public String getComment_report_id() {
+		return comment_report_id;
+	}
+	public void setComment_report_id(String comment_report_id) {
+		this.comment_report_id = comment_report_id;
 	}
 	
 }

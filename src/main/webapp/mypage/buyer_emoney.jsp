@@ -6,10 +6,10 @@
 <%@ page import = "com.spring.alltion.pay.*" %>
 <%@ page import = "java.util.*" %>
 <%
-	Test_emoneyVO emoneyvo = (Test_emoneyVO)request.getAttribute("emoneyvo");
-	MemberVO membervo = (MemberVO)request.getAttribute("membervo");
-	Product_kjVO Product_kjvo = (Product_kjVO)request.getAttribute("Product_kjvo");
-	String pmvo = (String)request.getAttribute("pmvo");
+   Test_emoneyVO emoneyvo = (Test_emoneyVO)request.getAttribute("emoneyvo");
+   MemberVO membervo = (MemberVO)request.getAttribute("membervo");
+   Product_kjVO Product_kjvo = (Product_kjVO)request.getAttribute("Product_kjvo");
+   String pmvo = (String)request.getAttribute("pmvo");
 %>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>All-tion</title>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <!-- 모든 페이지 공통 영역 by 하나  -->
@@ -56,13 +56,14 @@
                     </ul>                   
                     </div>  
                      <div class="buyer_update--btn">
-       					<a href = "./pay.ms"  class = 	"base_btn">이머니 충전</a>    
-					</div>                
-     			 </div>
-      	<form name = "buyer_deal" action = "./buyer_deal.kj" method = "post">			
-   	 	<input type = "hidden" name = "trading_buyer_id" id = "trading_buyer_id" value = "<%=Product_kjvo.getTrading_buyer_id() %>">
-   	 	<input type = "hidden" name = "trading_price" id = "trading_price" value = "<%=Product_kjvo.getTrading_price() %>">
-   	 	<div class="eomney_update--form">
+                      <a href = "./pay.ms"  class =    "base_btn">이머니 충전</a>    
+               </div>                
+               </div>
+         <form name = "buyer_deal" action = "./buyer_deal.kj" method = "post">         
+          <input type = "hidden" name = "trading_buyer_id" id = "trading_buyer_id" value = "<%=Product_kjvo.getTrading_buyer_id() %>">
+          <input type = "hidden" name = "trading_price" id = "trading_price" value = "<%=Product_kjvo.getTrading_price() %>">
+          <input type = "hidden" name = "trading_product_number" id = "trading_product_number" value = "<%=Product_kjvo.getTrading_product_number() %>">         
+          <div class="eomney_update--form">
             <h3>택배 거래</h3>
             <div class="eomney_update--content">
                 <ul class="update_form list">
@@ -74,55 +75,55 @@
                             <span><%=Product_kjvo.getTrading_transaction_method() %></span>      
                         </div>               
                     </li>
-                    <form name = "buyer_deal_update" action = "./buyer_deal_update.kj" method = "post">
-                    <ul>
                     <li>
                         <div class="update_form__list title">
                             <span>주소</span>
                         </div>                      
                         <div class="update_form__list content">   
-							<span><%=membervo.getSample4_postcode() %>
-                        		<%=membervo.getSample4_roadAddress() %>
-                        	    <%=membervo.getSample4_jibunAddress() %>
-                        		<%=membervo.getSample4_detailAddress() %></span>
-				            	<input type ="button" onclick = "modal_display_address_deal()" value = "주소 변경"> 
-                            	<div id="update_address_deal" class="modal">
-                            	<div class="modal-content">
-                                <span class="close">&times;</span>
+                     <span><%=membervo.getSample4_postcode() %>
+                              <%=membervo.getSample4_roadAddress() %>
+                               <%=membervo.getSample4_jibunAddress() %>
+                              <%=membervo.getSample4_detailAddress() %></span>
+                              
+                              
+                           <input type ="button" onclick = "modal_display_address_deal()" value = "주소 변경"> 
+                                  
+                        </div>                                   
+                    </li>
+                    </ul>
+                    </div>
+                    <div class="buyer_update--btn">
+                    <a href = "javascript:buyer_deal.submit()" class = "base_btn">결제진행</a>
+                    </div>
+                    </div>             
+                    </form>
+                    </div>  
+					<form name = "buyer_deal_update" action = "./buyer_deal_update.kj" method = "post">
+                          <div id="update_address_deal" class="modal">
+                             <div class="modal-content">
+                             <span class="close">&times;</span>
                                 <fieldset id="member_update">
                                 <legend>주소 변경</legend>
                                 <br>
-                                <li>
+                                
                                 <label>우편 번호</label>
+                                
                                 <input type="text" id="sample4_postcode" class = "input_border" name="sample4_postcode" placeholder="우편번호">                             
                                 <label>도로명 주소</label>
                                 <input type="text" class = "input_border" id="sample4_roadAddress" name = "sample4_roadAddress" placeholder="도로명 주소">                                
                                 <label>지번 주소</label>
                                 <input type="text" class = "input_border" id="sample4_jibunAddress" name = "sample4_jibunAddress" placeholder="지번 주소">                               
                                 <label>상세 주소</label>
-                                <input type="text" class = "input_border" id="sample4_detailAddress" name = "sample4_detailAddress" placeholder="상세 주소를 입력해 주세요">				                                
+                                <input type="text" class = "input_border" id="sample4_detailAddress" name = "sample4_detailAddress" placeholder="상세 주소를 입력해 주세요">                                            
                                 <input type="button" class = "base_btn address" onclick="sample4_execDaumPostcode()" value="검색">&nbsp;&nbsp;&nbsp;&nbsp;
                                 <span id="guide" style="color:#999;display:none;"></span>
                                 <a href="javascript:buyer_deal_update.submit()" class="update_btn__submit" >주소 변경</a>&nbsp;&nbsp;
-                                </li>
+   
+                                </fieldset>
+                             </div>
+                          </div>   
+                      </form>                        
 
-                                   </fieldset>
-                                </div>
-                       		 </div>              
-                        </div>                                   
-                    </li>
-                    </ul>
-                    </form>
-                    </ul>
-                   
-                    <div class="buyer_update--btn">
-                    <a href = "javascript:buyer_deal.submit()" class = "base_btn">결제진행</a>
-                    </div>
-                    
-                    </div>                                     
-                    </div>
-                    </form>
-                    </div>
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">
@@ -164,7 +165,7 @@
                 </li>
             </ul>
         </div>
-		<div class="lower_footer">
+      <div class="lower_footer">
             <ul class="lower_footer__content">
                 <li>
                     <p>상호명 : (주)올션 / 짜면된다 / 주소: 서울특별시 종로구 삼일대로 서울특별시 서초구 서초4동 강남대로</p>

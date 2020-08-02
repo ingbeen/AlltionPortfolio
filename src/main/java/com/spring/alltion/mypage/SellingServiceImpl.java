@@ -27,7 +27,7 @@ public class SellingServiceImpl {
 	@Autowired
 	private DetailServiceImpl detailserviceImpl;
 	
-	public List<ProductVO> getSelling_product_Info(String userId, Model model, HttpServletRequest request) {
+	public List<ProductVO> getSelling_product_Info(String userId, Model model) {
 		SellingMapper sellingmapper = sqlSession.getMapper(SellingMapper.class);
 		
 		List<ProductVO> productvolist = sellingmapper.getProductVOList(userId);

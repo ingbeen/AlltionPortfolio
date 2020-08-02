@@ -94,6 +94,26 @@ CREATE TABLE sale_credit_score_list (
     constraint PK_sale_id primary key(sale_id)
 );
 
+/*
+review테이블 insert시 주의사항.
+review_number는 nvl(max(review_number),0)+1
+review_id 는 해당 리뷰 product_id를 받아서 입력하면 됨.
+review_evaluator 는 세션 아이디 값을 받아서 입력하면 됨.
+review_evaluate는 checkbox이용하여 입력.
+review_image는 product테이블의 product_img_1 로 입력.
+review_no 는 페이징에 사용할 넘버링. DetailMapper.java에서 countReviewList가 있는데 그거 그대로 사용하면됨. (+1)적용 해놨음.
+*/
+create table review(
+    review_number number primary key,  -- 리뷰테이블 고유번호
+    review_id varchar2(20) references member(member_id), -- 판매자 아이디
+    review_evaluator varchar2(20) references member(member_id), -- 구매자 아이디(리뷰달 아이디)
+    review_evaluate varchar2(20) check(review_evaluate in('매우 만족','만족','보통','불만족','매우 불만족')), -- 평가
+    review_image varchar2(1000), -- 썸네일 이미지 (1번이미지 사용)
+    review_subject varchar2(1000), -- 상품 제목
+    review_content varchar2(4000), -- 리뷰 내용
+    review_date date default sysdate, -- 리뷰 작성 날짜
+    review_no number -- 리뷰 넘버링 (페이징용)
+);
 
 */
 
@@ -177,5 +197,29 @@ create table wish_list (
     wish_product_number number, -- 상품번호
     wish_id varchar2(1000), -- 아이디
     wish_date Date -- 등록일
+);
+
+-- e머니 충전/결제/리스트
+create table paylist(
+    pay_id VARCHAR(60) primary key, --구매자 id
+    pay_current_money varchar2(1000) -- 구매자가 보유한 사이버머니
+);
+create table pay(
+	pay_merchant_uid VARCHAR2(60),  --결제주문번호
+ 	pay_amount VARCHAR2(100),  --결제금액
+ 	pay_status VARCHAR2(20),  --결제상태(paid:결제, 결제취소 : 결제취소)
+    pay_id VARCHAR2(20),  --구매자 id -> member_id 외래키 추가
+    pay_lastmoney VARCHAR2(100), -- 이전 금액
+    pay_nowmoney VARCHAR2(100), -- 변동 후 금액
+    pay_date date -- 구매 날짜
+);
+create table payment(
+    payment_userId VARCHAR2(60), --결제주문번호
+	payment_product_subject VARCHAR2(60), --결제한 상품제목
+	payment_amount VARCHAR2(100), -- 거래 금액
+	payment_lastmoney VARCHAR2(100),  --결제 이전 금액(변동 전)
+	payment_nowmoney VARCHAR2(100), --결제 후 금액(변동 후)
+    payment_status VARCHAR2(20),  --(판매 시)판매입금, (구매 시)상품결제
+	payment_date date  --거래 날짜(order by용도)
 );
 */

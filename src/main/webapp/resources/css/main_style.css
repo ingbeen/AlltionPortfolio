@@ -17,7 +17,6 @@ a {
 
 li {list-style: none;}
 
-
 /* 모든 페이지 공통 영역 */
 /* TOP 버튼 */
 #topKey {
@@ -173,7 +172,6 @@ li {list-style: none;}
     top: 4px;
 }
 
-
 /* 카테고리 영역 */
 .cate_search {
 	display: inline-block;
@@ -202,9 +200,9 @@ li {list-style: none;}
 .category--dropdown {
 	z-index: 9999;
     position: absolute;
-    margin-top: -4px;
     width: 680px;
     display: none;
+    margin-top: -4px;
     /* background-color: #F9A825; */
 }
 
@@ -252,7 +250,7 @@ li {list-style: none;}
     top: -1px;
     width: auto;
     float: left;
-    width: 570px;
+    width: 521px;
     text-align: left;
     padding: 0 32px 6px 32px;
     background-color: #ffffff;

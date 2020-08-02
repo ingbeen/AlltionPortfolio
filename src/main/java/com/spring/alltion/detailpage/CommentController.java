@@ -48,4 +48,11 @@ public class CommentController {
 		
 		return res;
 	}
+	
+	@RequestMapping(value="commentreport.hs",produces="application/json;charset=UTF-8")
+	public int commentreport(CommentVO commentvo)throws Exception{
+		int res = commentService.commentReportService(commentvo);
+		
+		return res;
+	}
 }

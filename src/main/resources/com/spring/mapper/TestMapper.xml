@@ -36,66 +36,40 @@
 		product_subject,
 		trading_price,
 		to_char(trading_deposit_deadline, 'yyyy-mm-dd hh24:mi') as trading_deposit_deadline,
-		trading_transaction_method,
-		product_id
-		from product_kj natural join product_kj_trading
-		where product_kj.product_number = product_kj_trading.trading_product_number 
-		and product_kj_trading.trading_progress = '구매중'
+		product_delivery,
+		product_transaction_area,
+		product_id,
+		trading_buyer_id,
+		trading_transaction_method
+		from product natural join trading
+		where product.product_number = trading.trading_product_number 
+		and trading.trading_progress = 'depositWaiting'
 		and trading_buyer_id = #{userId}
 		order by trading_deposit_deadline
 		
-	</select>
-	
-	<select id ="getdeliveryList" resultMap="Product_KjResultMap">
+		</select>
 		
-		select
-		product_number,
-		product_id,
-		trading_price,
-		product_subject,
-		trading_waybill_number
-		from product_kj natural join product_kj_trading
-		where product_kj.product_number = product_kj_trading.trading_product_number 
-		and product_kj_trading.trading_progress = '운송장번호입력'
-		and trading_buyer_id = #{userId}
+		<select id = "getdeposit_before" resultMap = "Product_KjResultMap">
 		
-	</select>
-	
-	<select id = "getdealcomplete_buyer" resultMap="Product_KjResultMap">
-	
-		select
+		select 
 		product_number,
 		product_subject,
 		trading_price,
-		to_char(trading_purchase_date, 'yyyy-mm-dd hh24:mi') as trading_purchase_date,
-		product_id
-		from product_kj natural join product_kj_trading
-		where product_kj.product_number = product_kj_trading.trading_product_number 
-		and product_kj_trading.trading_progress = '거래완료'
-		and trading_buyer_id = #{userId}
-		order by trading_purchase_date
-	
-	</select>
-	
-	<select id = "getdealcomplete_seller" resultMap="Product_KjResultMap">
-		
-		select
-		product_number,
-		product_subject,
-		trading_price,
-		to_char(trading_purchase_date, 'yyyy-mm-dd hh24:mi') as trading_purchase_date,
 		trading_buyer_id
-		from product_kj natural join product_kj_trading
-		where product_kj.product_number = product_kj_trading.trading_product_number 
-		and product_kj_trading.trading_progress = '거래완료'
-		and product_id = #{userId}
-	
-	</select>
-	
-	<select id = "getSalelist" resultMap="Product_KjResultMap">		
+		from product
+		natural join trading 
+		where product.product_number = trading.trading_product_number
+       	and trading.trading_progress = 'depositWaiting'
+       	and product_id = #{userId}
+      	order by product_number
+
+		</select>
+		
+		<select id = "getSalelist" resultMap="Product_KjResultMap">		
 		
 		select
 		trading_product_number,
+		product_number,
 		product_subject,
 		trading_price,
 		to_char(trading_waybill_deadline, 'yyyy-mm-dd hh24:mi') as trading_waybill_deadline,
@@ -103,57 +77,160 @@
 		trading_buyer_id,
 		member_name,
         member_phone,
-        sample4_postcode,
+      	sample4_postcode,
         sample4_roadAddress,
         sample4_jibunAddress,
         sample4_detailAddress
-		from product_kj 
-		natural join product_kj_trading 
+		from product
+		natural join trading 
 		natural join member 
-        where product_kj.product_number = product_kj_trading.trading_product_number
-        and product_kj_trading.trading_buyer_id = member.member_id
-        and product_kj_trading.trading_progress = '입금후'
+        where product.product_number = trading.trading_product_number
+       	and trading.trading_buyer_id = member.member_id
+       	and trading.trading_progress = '입금후'
         and product_id = #{userId}
-        order by trading_waybill_deadline
+       	order by trading_waybill_deadline
 					
-	</select>
-	  
-	<update id = "update_emoney" parameterType = "Product_kjVO">
-		update 
-        test_emoney 
-        set
-        emoney = emoney - trading_price
-        where emoney_id = #{userId}
-	</update>
-
+		</select>
 	
-	<select id = "selectEmoney" resultType = "com.spring.alltion.test.Test_emoneyVO">
+		<select id = "getdelivery_before" resultMap="Product_KjResultMap">
+		
+		select 
+		product_number,
+		product_subject,
+		trading_price,
+		trading_buyer_id
+		from product
+		natural join trading 
+		where product.product_number = trading.trading_product_number
+        		and trading.trading_progress = '입금후'
+        		and trading_buyer_id = #{userId}
+		
+		</select>
+	
+		<select id ="getdeliveryList" resultMap="Product_KjResultMap">
+		
+		select
+		product_number,
+		trading_waybill_number,
+		trading_price,
+		product_subject,
+		trading_product_number,
+		trading_progress,
+		trading_purchase_date
+		from product natural join trading
+		where product.product_number = trading.trading_product_number 
+		and trading.trading_progress = '운송장번호입력'
+		and trading_buyer_id = #{userId}
+		
+		</select>
+	
+		<select id = "getdealcomplete_buyer" resultMap="Product_KjResultMap">
+	
+		select
+		trading_buyer_id,
+		product_number,
+		product_subject,
+		trading_price,
+		to_char(trading_purchase_date, 'yyyy-mm-dd hh24:mi') as trading_purchase_date,
+		product_id
+		from product natural join trading
+		where product.product_number = trading.trading_product_number 
+		and trading.trading_progress = '거래완료'
+		and trading_buyer_id = #{userId}
+		order by trading_purchase_date desc
+	
+		</select>
+	
+		<select id = "getdealcomplete_seller" resultMap="Product_KjResultMap">
+		
+		select
+		product_number,
+		product_subject,
+		trading_price,
+		to_char(trading_purchase_date, 'yyyy-mm-dd hh24:mi') as trading_purchase_date,
+		trading_buyer_id
+		from product natural join trading
+		where product.product_number = trading.trading_product_number 
+		and trading.trading_progress = '거래완료'
+		and product_id = #{userId}
+	
+		</select>
+	
+		<select id = "Waybill" resultMap="Product_KjResultMap">
+		
+		select
+		trading_product_number,
+		trading_progress
+		from trading
+		where trading_product_number = #{product_number}
+
+		</select>
+	
+		<update id ="after_deposit" parameterType ="Product_kjVO">
+	 
+	 	update 
+		trading
+		set
+		trading_progress = '입금후', 
+		trading_waybill_deadline = sysdate+1 
+	 	where trading_buyer_id = #{trading_buyer_id}
+	 	and trading_product_number = #{trading_product_number}
+	 
+	 	</update>
+	
+		<update id = "updateWaybill" parameterType ="Product_kjVO">
+	 
+	 	update 
+		trading
+	 	set
+	 	trading_progress = '운송장번호입력',
+	 	trading_waybill_number = #{trading_waybill_number}
+	 	where trading_product_number = #{trading_product_number}
+	 
+	 	</update>
+	 
+	 	<update id ="deliverycomplete" parameterType ="Product_kjVO">
+	 
+	 	update 
+	 	trading
+	 	set 	 
+	 	trading_purchase_date = systimestamp,
+	 	trading_progress = '거래완료'
+	 	where trading_product_number = #{product_number}
+	 
+	 	</update>
+	
+		<select id = "selectEmoney" resultType = "com.spring.alltion.test.Test_emoneyVO">
 	
 		select 
 		member_id, 
-		pay_current_money 
-		from member natural join paylist
+		pay_current_money		
+		from member natural join paylist 
 		where member.member_id = paylist.pay_id and pay_id = #{userId}
 	
-	</select>
+		</select>
 	
-	<select id = "selectProduct" resultType = "com.spring.alltion.test.Product_kjVO">
+		<select id = "selectProduct" resultType = "com.spring.alltion.test.Product_kjVO">
 		
 		select
+		trading_product_number,
 		trading_price,
-		trading_sample4_postcode,
-		trading_sample4_roadaddress,
-		trading_sample4_jibunaddress,
-		trading_sample4_detailaddress,	
+		sample4_postcode,
+		sample4_roadaddress,
+		sample4_jibunaddress,
+		sample4_detailaddress,	
 		trading_buyer_id,
 		trading_transaction_method
-		from product_kj_trading 
-		where trading_buyer_id = #{userId}
+		from trading 
+		natural join member 		
+		where trading.trading_buyer_id = member.member_id
+		and trading_buyer_id = #{userId} 
+		and trading_product_number = #{product_number}
 	
-	</select>
+		</select>
 	
 	
-	<update id = "update_deal_address" parameterType = "MemberVO">
+		<update id = "update_deal_address" parameterType = "MemberVO">
 		 update 
 		 member 
 		 set 
@@ -162,31 +239,41 @@
 		 sample4_jibunAddress = #{sample4_jibunAddress}, 
 		 sample4_detailAddress = #{sample4_detailAddress}  
 		 where member_id = #{member_id} 
-	 </update>
+	 	</update>
 	 
-	 <update id = "updateWaybill" parameterType ="Product_kjVO">
+	 <insert id = "insertReview" parameterType = "ReviewVO">
+	 	<selectKey keyProperty="review_number" order="BEFORE" resultType = "int">
+	 		select nvl(max(review_number),0)+1 as review_number from review
+	 	</selectKey>
+	 	
+	 	insert into review
+	 	(review_id,review_evaluator,review_evaluate,review_subject,review_content,review_date)
+	 	values
+	 	(
+	 	#{review_id},
+	 	#{review_evaluator},
+	 	#{review_evaluate},
+	 	#{review_subject},
+	 	#{review_content},
+	 	sysdate
+	 	)
+	 	
+	 </insert>
 	 
-	 update 
-	 product_kj_trading
-	 set
-	 trading_progress = '운송장번호입력',
-	 trading_waybill_number = #{trading_waybill_number}
-	 where trading_product_number = #{trading_product_number}
+	 <select id = "findSubjectFromNum" resultType = "String">
+	 	select 
+	 		product_subject
+	 	from product 
+	 	where product_number = #{product_number}
+	 </select>
 	 
-	 </update>
-	 
-	 <update id ="after_deposit" parameterType ="Product_kjVO">
-	 update product_kj_trading
-	 set
-	 trading_progress = '입금후' 
-	 where trading_buyer_id = #{trading_buyer_id}
-	 </update>
-	 
-	 <update id ="deliverycomplete" parameterType ="Product_kjVO">
-	 update product_kj_trading
-	 set 
-	 trading_progress = '거래완료',
-	 trading_purchase_date = systimestamp
-	 where trading_buyer_id = #{userId}
-	 </update>
+	 <update id="updatetrading_transaction_method" parameterType ="Product_kjVO">
+    
+       update 
+       trading
+       set
+       trading_transaction_method = #{trading_transaction_method}
+       where trading_product_number = #{product_number}
+    
+    </update>
 </mapper>

@@ -38,6 +38,15 @@ public class MemberServiceImpl implements MemberService{
 	public int userCheck(MemberVO membervo) {
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		int res = memberMapper.userCheck(membervo);
+		if(res==1) {
+			String userId = membervo.getMember_id();
+			int result = check_manager(userId);
+			if(result == 1) {
+				//result가 1이면 관리자.
+				res = 3;
+			}
+		}
+		//res = 0 : 회원 x , res = 1: 일반회원 , res = 3: 관리자
 		return res;
 	}
 
@@ -106,5 +115,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberMapper.member_delete(membervo);
 	}
-
+	
+	// 관리자 인지 일반회원인지 체크. by.Hong
+	public int check_manager(String userId) {
+		MemberMapper membermapper = sqlSession.getMapper(MemberMapper.class);
+		int res = membermapper.getMember_manager(userId);
+		// res가 0이면 일반회원 res가 1이면 관리자.
+		return res;
+	}
 }

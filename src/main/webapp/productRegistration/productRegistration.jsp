@@ -312,7 +312,6 @@
             <div class="form--button">
                 <a class="form-button__submit" onclick="productSubmit()">등록</a>
                 <a class="form-button__cancel" onclick="product_form.reset()">다시 작성</a>
-                <a href="adminHome.yb">test관리자페이지</a>
             </div>
 
         </form>
@@ -370,7 +369,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>       

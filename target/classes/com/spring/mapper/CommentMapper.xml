@@ -70,4 +70,12 @@
 		values(#{comment_number},#{comment_group_number},#{comment_product_number},#{comment_id},#{comment_original_id},#{comment_content},'1',#{comment_secret},#{comment_list_no})
 	</insert>
 	
+	<update id="commentReport" parameterType="CommentVO">
+		update 
+			comment_list 
+		set 
+			comment_report = 1, comment_report_id=#{comment_report_id}
+		where 
+			comment_number = #{comment_number}
+	</update>
 </mapper>

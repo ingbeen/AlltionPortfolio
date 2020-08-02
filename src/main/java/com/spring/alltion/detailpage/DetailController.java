@@ -34,7 +34,7 @@ public class DetailController {
 	public String boardDetail(@RequestParam(value="product_number")int product_number,Model model) {
 		
 		// 상품번호를 통해서 상품 상세 정보를 얻는다.
-		ProductVO productvo = detailService.getDetail(product_number);
+		ProductVO productvo = detailService.getDetail(product_number,model);
 		model.addAttribute("productvo",productvo);
 		
 		// 판매자 정보를 얻는다.
@@ -84,15 +84,16 @@ public class DetailController {
 	
 	public String translateSale_credit(int sale_credit_score) {
 		String sale_credit = "";
-		if(sale_credit_score >= 150) {
+		
+		if(sale_credit_score >= 180) {
 			sale_credit = "다이아몬드";
-		}else if(sale_credit_score >= 120){
+		}else if(sale_credit_score >= 150){
 			sale_credit = "플레티넘";
-		}else if(sale_credit_score >= 100){
+		}else if(sale_credit_score >= 120){
 			sale_credit = "골드";
-		}else if(sale_credit_score >= 80) {
+		}else if(sale_credit_score >= 100) {
 			sale_credit = "실버";
-		}else if(sale_credit_score >= 40) {
+		}else if(sale_credit_score >= 60) {
 			sale_credit = "브론즈";
 		}else {
 			sale_credit = "등급 없음";

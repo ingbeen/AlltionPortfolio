@@ -62,7 +62,7 @@ function dailyAuction(dailyAuctionList) {
 	            ]
 	        ],
 	        types: {
-	            'dailyAuction': 'area-spline'
+	            'dailyAuction': 'area'
 	            // 'line', 'spline', 'step', 'area', 'area-step' are also available to stack
 	        },
 	        names: {
@@ -107,7 +107,7 @@ function cateCountChart(cateCountList) {
 	            ['cate09', cateCountList[8]],
 	            ['cate10', cateCountList[9]],
 	            ['cate11', cateCountList[10]],
-	            ['cate12', cateCountList[11]],
+	            ['cate12', cateCountList[11]]
 	        ],
 	        names: {
 	            cate01: '패션',
@@ -121,9 +121,23 @@ function cateCountChart(cateCountList) {
 	            cate09: '티켓/쿠폰',
 	            cate10: '스포츠',
 	            cate11: '공구/산업용품',
-	            cate12: '기타잡화',
+	            cate12: '기타잡화'
 	        },
-	        type : 'pie',
+	        colors: {
+	            cate01: '#1f77b4',
+	            cate02: '#ff7f0e',
+	            cate03: '#2ca02c',
+	            cate04: '#d62728',
+	            cate05: '#9467bd',
+	            cate06: '#8c564b',
+	            cate07: '#e377c2',
+	            cate08: '#7f7f7f',
+	            cate09: '#bcbd22',
+	            cate10: '#17becf',
+	            cate11: '#1fb492',
+	            cate12: '#d22c9f'
+	        },
+	        type : 'pie'
 	    },
 	    padding: {
 	        top: 20,
@@ -195,14 +209,7 @@ function LoadingWithMask() {
     	</div>';
     
     // 화면에 출력할 로딩이미지를 설정
-    let loadingImg = ' \
-    	<img id="loadingImg" src="resources/img/loading/Spinner-1s-200px.gif" \
-    	style=" \
-	    	position: relative; \
-	    	display: block; \
-	    	margin: 0px auto; \
-	    	top: 300px; \
-    	">';
+    let loadingImg = '<img id="loadingImg" src="resources/img/loading/Spinner-1s-200px.gif">';
  
     // 화면에 레이어 추가
     $('body').append(mask)

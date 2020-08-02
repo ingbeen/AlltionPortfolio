@@ -17,6 +17,7 @@
 	 	<result property="sample4_detailAddress" column="sample4_detailAddress"/>
 	 	<result property="member_delete" column="member_delete"/>
 		<result property="member_manager" column="member_manager"/>
+		<result property="member_date" column="member_date"/>
 	 </resultMap>
 	 
 	 <select id="userCheck" parameterType="MemberVO" resultType="int">
@@ -25,7 +26,6 @@
 	 	where member_id = #{member_id} 
 	 	and member_password = #{member_password} 
 	 	and member_delete = '0'
-	 	and member_manager = '0'
 	 </select>
 	 
 	 <insert id="insertMember" parameterType="MemberVO">
@@ -75,4 +75,13 @@
 	 where member_id = #{member_id}
 	 </update>
 	 
+	 <!-- 매니저 체크 -->
+	 <select id ="getMember_manager" parameterType="String" resultType="int">
+	 	select
+	 		member_manager
+	 	from 
+	 		member
+	 	where 
+	 		member_id = #{userId}
+	 </select>
 </mapper>

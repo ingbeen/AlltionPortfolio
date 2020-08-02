@@ -23,6 +23,8 @@ $(document).ready(() => {
 })
 
 function getAdminTradingDate(page) {
+	LoadingWithMask(); // 로딩화면 실행
+	
     let formData = $('#searchForm').serialize();
     formData += "&page=" + page;
     	
@@ -34,8 +36,9 @@ function getAdminTradingDate(page) {
         	writeTradingList(adminTradingDate.tradingList);
         	writeTradingCount(adminTradingDate.listcount);
         	writePageInfo(adminTradingDate.pagination);
+        	closeLoadingWithMask(); // 로딩화면 종료
     	},
-        error : () => {}
+        error : () => closeLoadingWithMask() // 로딩화면 종료
     });
 }
 
@@ -311,6 +314,44 @@ function successTradingReset(tradingVO, tr) {
 
 function addCommas(value) {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g,  ",");
+}
+
+//로딩화면
+function LoadingWithMask() {
+	// 화면의 높이와 너비를 구한다
+	let maskHeight = $(document).height();
+	let maskWidth  = window.document.body.clientWidth;
+	 
+	// 화면에 출력할 마스크를 설정
+	let mask       = ' \
+		<div id="mask" style=" \
+		    	position:absolute; \
+		    	z-index:999999; \
+		    	background-color:#000000; \
+		    	left:0; \
+		    	top:0;"> \
+		</div>';
+	
+	// 화면에 출력할 로딩이미지를 설정
+	let loadingImg = '<img id="loadingImg" src="resources/img/loading/Spinner-1s-200px.gif">';
+	
+	// 화면에 레이어 추가
+	$('body').append(mask)
+	
+	// 마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채움
+	$('#mask').css({
+	        'width' : maskWidth,
+	        'height': maskHeight,
+	        'opacity' :'0.3'
+	});
+	
+	// 로딩중 이미지 표시
+	$('body').append(loadingImg);
+}
+
+//로딩화면 해제
+function closeLoadingWithMask() {
+	$('#mask, #loadingImg').remove(); 
 }
 
 /* admin_trading 끝 by.유빈 */

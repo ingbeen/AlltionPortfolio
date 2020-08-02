@@ -32,6 +32,10 @@
     z-index: 999;
 }
 
+.category .category--dropdown {
+    margin-top: 0;
+}
+
 /* -- 배너 영역 */
 .banner {
 	width: 1200px;
@@ -85,32 +89,6 @@
     right: 10px;
 }
 
-.banner_dots {
-	display: inline-block;
-	position: absolute;
-	left: 50%;
-	bottom: 2%;
-	transform: translate(-50%, 0);
-	z-index: 99;
-	-webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
-    color: #BDBDBD;
-    opacity: 0.2;
-}
-
-.banner_dots .dot {
-	display: inline;
-	font-size: 48px;
-	margin-right: 2px;
-	cursor: pointer;
-}
-
-.banner_dots .dot.active {
-	color: #000000;
-	opacity: 1;
-}
-
 /* desktop-size(min:1280) */
 /* -- 메뉴 영역 */
 .menu {
@@ -139,7 +117,7 @@ input[type="radio"] {display: none;}
 input[type="radio"] + label {
     margin-left: -4px;
     display: inline-block;
-    width: 300px;
+    width: 33.3333%;
     height: 54px;
     text-align: center;
     line-height: 54px;
@@ -172,9 +150,9 @@ input[id="popular-items"] + label {
 } /* 모든 메뉴에 해당 */
 
 input[id="popular-items"]:checked ~ .content1 {display: block;}
-input[id="deadline-items"]:checked ~ .content2 {display: block;}
-input[id="resell-items"]:checked ~ .content3 {display: block;}
-input[id="premium-items"]:checked ~ .content4 {display: block;}
+input[id="recent-items"]:checked ~ .content2 {display: block;}
+input[id="deadline-items"]:checked ~ .content3 {display: block;}
+/*nput[id="premium-items"]:checked ~ .content4 {display: block;} */
 
 /* desktop-size(min:1280) */
 /* -- 인기 경매 */
@@ -186,10 +164,6 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     font-size: 30px;
 }
 */
-
-.items__list {
-    display: inline-block;
-}
 
 .items__list {
     margin-top: 52px;
@@ -213,7 +187,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 
 .product-box img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .items__product--info {position: relative;}
@@ -231,6 +205,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     vertical-align: middle;
 }
 
+/*
 .bookmark {
     position: absolute;
     top: 0;
@@ -246,6 +221,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
     font-size: 12px;
     margin-top: -8px;
 }
+*/
 
 .countdown {
     font-size: 14px;
@@ -274,6 +250,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 
 /* desktop-size(min:1280) */
 /* -- 마감 임박 */
+/*
 .deadline-items--product {display: none;}
 
 .deadline-items--product.active {display: block;}
@@ -301,15 +278,11 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 
 .deadline-items__category li:hover {font-weight: bold;}
 
+.deadline-items__category li.active {font-weight: bold;}
+
 .deadline-items__detail_menu, .deadline-items__detail_menu ul, .deadline-items__detail_menu ul li {
     display: inline-block;
 }
-
-/*
-.items__list.deadline > li:first-child {
-    text-align: center;
-}
-*/
 
 .deadline-items__detail_menu {
     padding-top: 70px;
@@ -319,7 +292,6 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 .deadline-items__detail {
     font-size: 24px;
     font-weight: 600;
-/*    margin-left: 14px;*/
 }
 
 .deadline-items__detail_menu ul {
@@ -336,6 +308,7 @@ input[id="premium-items"]:checked ~ .content4 {display: block;}
 .deadline-items__detail_menu ul li a:hover {
     text-decoration: underline;
 }
+*/
 
 /* desktop-size(min:1280) */
 /* -- 프리미엄관 */

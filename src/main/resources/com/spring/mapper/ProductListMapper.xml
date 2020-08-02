@@ -51,15 +51,14 @@
     		product_purchase_price,
     		product_progress 
     		from (select row_number()over(order by product_issue_date desc)rnum, p.* 
-             		from product p where sysdate <= product_end_date+1
-             		order by p.product_issue_date desc)
+             		from product p where sysdate <= product_end_date+1)
             where rnum>=#{startrow} and rnum<=#{endrow}
 		]]>
 	</select>
 	
 	<select id="getMainlist2" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
 		<![CDATA[
-        select  
+        select 
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -70,16 +69,16 @@
     		product_current_price, 
     		product_purchase_price,
     		product_progress 
-    		from (select row_number()over(order by product_issue_date desc)rnum, p.* 
-             		from product p where sysdate <= product_end_date+1
-             		order by p.product_views desc)
-            where rnum>=#{startrow} and rnum<=#{endrow}
+    		from (select row_number()over(order by product_views desc)rnum, p.* 
+             		from product p
+             		where sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
 		]]>
 	</select>
 	
 	<select id="getMainlist3" parameterType="Hashmap" resultType="com.spring.alltion.productRegistration.ProductVO">
 		<![CDATA[
-        select  
+        select 
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -90,10 +89,9 @@
     		product_current_price, 
     		product_purchase_price,
     		product_progress 
-    		from (select row_number()over(order by product_issue_date desc)rnum, p.* 
-             		from product p where sysdate <= product_end_date+1
-             		order by p.product_current_price asc)
-            where rnum>=#{startrow} and rnum<=#{endrow}
+    		from (select row_number()over(order by product_current_price asc)rnum, p.* 
+             		from product p where sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
 		]]>
 	</select>
 	
@@ -110,9 +108,8 @@
     		product_current_price, 
     		product_purchase_price,
     		product_progress 
-    		from (select row_number()over(order by product_issue_date desc)rnum, p.* 
-             		from product p where sysdate <= product_end_date+1
-             		order by p.product_current_price desc)
+    		from (select row_number()over(order by product_current_price desc)rnum, p.* 
+             		from product p where sysdate <= product_end_date+1)
             where rnum>=#{startrow} and rnum<=#{endrow}
 		]]>
 	</select>
@@ -132,8 +129,8 @@
     		product_progress 
     		from (select row_number()over(order by product_issue_date desc)rnum, p.* 
              		from product p
-             		where product_category_2 = #{product_category_2})
-		where rnum>=#{startrow} and rnum<=#{endrow} and sysdate <= product_end_date+1
+             		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
     ]]>
 	</select>
 	
@@ -152,8 +149,8 @@
     		product_progress 
     		from (select row_number()over(order by product_views desc)rnum, p.* 
              		from product p
-             		where product_category_2 = #{product_category_2})
-		where rnum>=#{startrow} and rnum<=#{endrow} and sysdate <= product_end_date+1
+             		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
     ]]>
 	</select>
 	
@@ -172,8 +169,8 @@
     		product_progress 
     		from (select row_number()over(order by product_current_price asc)rnum, p.* 
              		from product p
-             		where product_category_2 = #{product_category_2})
-		where rnum>=#{startrow} and rnum<=#{endrow} and sysdate <= product_end_date+1
+             		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
     ]]>
 	</select>
 	
@@ -192,8 +189,8 @@
     		product_progress 
     		from (select row_number()over(order by product_current_price desc)rnum, p.* 
              		from product p
-             		where product_category_2 = #{product_category_2})
-		where rnum>=#{startrow} and rnum<=#{endrow} and sysdate <= product_end_date+1
+             		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1)
+		where rnum>=#{startrow} and rnum<=#{endrow}
     ]]>
 	</select>
 	
@@ -258,6 +255,7 @@
 		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1
 		order by product_views desc
 	]]>
+	
 	</select>
 	
 	<select id="getfamousPricelist2" resultType="com.spring.alltion.productRegistration.ProductVO">
@@ -319,5 +317,4 @@
 		SELECT count(*) FROM product where sysdate <= product_end_date+1
 	]]>
 	</select>
-	
 </mapper>

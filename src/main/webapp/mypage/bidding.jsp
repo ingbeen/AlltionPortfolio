@@ -7,6 +7,7 @@
 	List<Integer> Bidding_bidvo = (List<Integer>)request.getAttribute("bidding_bidvo");
 	int nowpage = (int)request.getAttribute("page");
 	int maxpage = (int)((double)productvolist.size()/5.0 + 0.99);
+	int productvolist_size = productvolist.size();
 %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,7 @@
             </ul>
         </div>
         <div class="table_title">
-            <p>현재 참여중인 경매에 대해서 모두 <%=productvolist.size()%>개가 검색되었습니다.</p>
+            <p>현재 <font style="color:cornflowerblue;border-bottom: 1px solid #FFA30E;">참여중인 경매</font>에 대해서 모두 <%=productvolist.size()%>개가 검색되었습니다.</p>
         </div>
         <div class="bidding_list">
             <div class="bidding_list_header">
@@ -56,6 +57,11 @@
                 <div class="product_delivery">배송</div>
                 <div class="bid_deadline">마감 시간</div>
             </div>
+            <%if(productvolist.size()==0){%>
+				<div class="no_list" align="center">
+					<p>출력할 내용이 없습니다.</p>
+				</div>
+  			<%}%>
             <%for(int i=0;i<productvolist.size();i++){  
   				ProductVO productvo = productvolist.get(i);
   				int Bidding_bid_price = Bidding_bidvo.get(i);
@@ -88,6 +94,12 @@
                 </div>
                 <div class="bid_deadline">
                     <div class="bid_deadline_content">
+                    <p>
+                      	<span class="auction_countdown date<%=i %>"
+							data-endTime="<%=productvo.getProduct_end_date() %>"
+							data-complete="<%=productvo.getProduct_progress() %>">&nbsp;
+						</span>
+					</p>
                     <p><%=productvo.getProduct_end_date()%></p>
                     <p><a href="./boarddetail.hs?product_number=<%=productvo.getProduct_number()%>"><button>페이지로 이동하기</button></a></p>
                     </div>
@@ -98,17 +110,17 @@
         <div class="page_btns" align="center">
         	<%if(nowpage>1){ %>
 	        <a href="./bidding.hs?page=<%=nowpage-1%>"><button>&#171;</button></a>
-	        <%}else{%>
-	        <a><button>&#171;</button></a>
-	        <% }
+	        <%}
 	        for(int i=1;i<=maxpage;i++){ %>
+	        <%if(i==nowpage){ %>
+	        	<a href="./bidding.hs?page=<%=i %>"><button style="background-color:darkgray; cursor:default;" disabled="true"><%=i %></button></a>
+	        <%}else{ %>	
 	        	<a href="./bidding.hs?page=<%=i %>"><button><%=i %></button></a>
-	        <%} %>
+	        <%}} %>
+	        
 	        <%if(nowpage<maxpage){ %>
 	        <a href="./bidding.hs?page=<%=nowpage+1%>"><button>&#187;</button></a>
-        	<%}else{ %>
-        	<a><button>&#187;</button></a>
-        	<%} %>
+        	<%}%>
         </div>
     </div>
    
@@ -162,7 +174,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>   
@@ -170,5 +182,9 @@
     
     <!--  스크립트 영역  -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="./resources/js/common.js"></script>
+    <script type="text/javascript" src="./resources/js/selling.js?productvolist_size=<%=productvolist_size%>"></script>
+
 </body>
 </html>

@@ -24,4 +24,6 @@ public interface CommentMapper {
 
 	void makereplylistno(int comment_list_no);
 
+	int commentReport(CommentVO commentvo);
+
 }

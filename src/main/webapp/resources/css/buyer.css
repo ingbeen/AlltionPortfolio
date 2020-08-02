@@ -38,7 +38,7 @@
 }
 	.buyer--form {
     width: 960px;
-    margin: 40px auto;
+    margin: 50px auto;
     }
     .buyer--content {
     width: 100%;
@@ -135,9 +135,40 @@
     text-decoration: none;
     cursor: pointer;
 }
-#delivery ul{
-	width: 50px;
-    height: 500px;
-    border-top: thin solid darkgray;
+#member_update ul{
+	border-top: thin solid darkgray;
     border-bottom: thin solid darkgray;
+    height: 50px;
+}
+.page_btns{
+    margin-top: 30px;
+}
+.page_btns button{
+    display: inline-block;
+    text-align: center;
+    width: 35px;
+    height: 25px;
+    border: thin solid #444444;;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #444444;
+    margin: 0 2px;
+    background-color: white;
+    cursor: pointer;
+}
+.textarea {
+	width : 960px;
+	margin-top : 10px;
+	
+}
+
+.blind {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
 }

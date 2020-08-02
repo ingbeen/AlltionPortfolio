@@ -47,7 +47,6 @@
                 <span>카카오톡 채널로 이동</span>
             </li>
         </ul>
-        <div class="sidebar--toggle flex-row"><i class="fa fa-fw fa-angle-left"></i></div>
     </nav>
 
     <!--  스크립트 영역  -->

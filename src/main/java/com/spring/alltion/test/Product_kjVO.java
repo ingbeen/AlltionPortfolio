@@ -136,13 +136,7 @@ public class Product_kjVO {
 	}
 	public void setTrading_waybill_deadline(String trading_waybill_deadline) {
 		this.trading_waybill_deadline = trading_waybill_deadline;
-	}
-	public String getTrading_buyer_id() {
-			return trading_buyer_id;
-	}
-	public void setTrading_buyer_id(String trading_buyer_id) {
-		this.trading_buyer_id = trading_buyer_id;
-	}	 	 	
+	} 	 	
 	 public String getTrading_deposit_deadline() {
 		return trading_deposit_deadline;
 	}
@@ -232,6 +226,12 @@ public class Product_kjVO {
 	}
 	public void setTrading_progress(String trading_progress) {
 		this.trading_progress = trading_progress;
+	}
+	public String getTrading_buyer_id() {
+		return trading_buyer_id;
+	}
+	public void setTrading_buyer_id(String trading_buyer_id) {
+		this.trading_buyer_id = trading_buyer_id;
 	}
 	
 }

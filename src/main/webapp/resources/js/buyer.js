@@ -54,24 +54,40 @@
     });
     
   
-    function modal_display_delivery() {
+  //이메일 변경 모달
+    function modal_display_email(n) {
     	  
-        var delivery = document.getElementById('delivery');
-        var close0 = document.getElementsByClassName('close')[0];
-        delivery.style.display = "block";
-        close0onclick = function(event) {
-        	delivery.style.display = "none";
+        var member_update_modal_email = document.getElementsByClassName('modal')[n];
+        var close0 = document.getElementsByClassName('close')[n];
+        member_update_modal_email.style.display = "block";
+        close0.onclick = function(event) {
+        	member_update_modal_email.style.display = "none";
         }
 
 
     // ↓↓모달창 외부 클릭시 모달창 닫아짐.
     window.onclick = function(event) {
-        if (event.target == delivery) {
-        	delivery.style.display = "none";
+        if (event.target == member_update_modal_email) {
+        	member_update_modal_email.style.display = "none";
         }
-        if (event.target == bid_notify_modal) {
+        /*if (event.target == bid_notify_modal) {
             bid_notify_modal.style.display = "none";
+        }*/
+    }
+    }
+ 
+    function oneCheckbox(a){
+
+        var obj = document.getElementsByName("review_evaluate");
+
+        for(var i=0; i<obj.length; i++){
+
+            if(obj[i] != a){
+
+                obj[i].checked = false;
+
+            }
+
         }
+
     }
-    }
-    

@@ -87,7 +87,7 @@ public class PayController {
 
 	@RequestMapping(value = "/cancelData.bo", method = RequestMethod.POST)
 	@ResponseBody
-	public void cancelOracle(@RequestParam(value = "pay_merchant_uid") String pay_merchant_uid) {
+	public void cancelOracle(HttpSession session, @RequestParam(value = "pay_merchant_uid") String pay_merchant_uid) {
 		System.out.println("cancelOracle: " + pay_merchant_uid);
 		PayVO vo = new PayVO();
 		vo = payService.getPayList(pay_merchant_uid);
@@ -111,6 +111,7 @@ public class PayController {
 		payService.insertPay(vo);
 		String pay_id = vo.getPay_id();
 		payService.cancelPay(convertCancelMoney, pay_id);
+		session.setAttribute("currentMoney", convertCancelMoney);
 	}
 
 	@RequestMapping(value = "/charge.ms", method = RequestMethod.POST)
@@ -129,15 +130,17 @@ public class PayController {
 	public String goPaylist(HttpSession session, Model model,
 			@RequestParam(value = "page1", required = false, defaultValue = "1") int page1,
 			@RequestParam(value = "page2", required = false, defaultValue = "1") int page2,
-			@RequestParam(value = "page3", required = false, defaultValue = "1") int page3) {
+			@RequestParam(value = "page3", required = false, defaultValue = "1") int page3,
+			@RequestParam(value = "tab", required = false, defaultValue = "1") String tab) {
 		String userId = (String) session.getAttribute("userId");
 		if (userId == null) {
 			return "member/login";
 		}
-		String currentMoney = (String) session.getAttribute("currentMoney");
+		String currentMoney = payService.findCurrentMoney(userId);
 		if (currentMoney == null) {
 			currentMoney = "0";
 		}
+		session.setAttribute("currentMoney", currentMoney);
 		String paid = "paid";
 		String cancel = "결제취소";
 
@@ -177,7 +180,7 @@ public class PayController {
 		List<PayVO> cancelvo = payService.findCancellist(userId, cancel, startrow2, endrow2);
 		int maxpage2 = (int) ((double) listcount2 / limit + 0.95);
 		int startpage2 = (((int) ((double) page2 / 10 + 0.9)) - 1) * 10 + 1;
-		int endpage2 = maxpage1;
+		int endpage2 = maxpage2;
 
 		if (endpage2 > startpage2 + 10 - 1)
 			endpage2 = startpage2 + 10 - 1;
@@ -209,6 +212,8 @@ public class PayController {
 		model.addAttribute("startpage3", startpage3);
 		model.addAttribute("endpage3", endpage3);
 
+		model.addAttribute("tab", tab);
+		System.out.println("tab: " + tab);
 		return "pay/paylist";
 	}
 	

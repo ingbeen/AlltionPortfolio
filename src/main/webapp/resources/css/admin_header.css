@@ -39,6 +39,12 @@ li {list-style: none;}
     border-radius: .25rem;
 }
 
+#loadingImg {
+ 	position: fixed;
+	top: 45%;
+    left: 45%;
+}
+
 /* 헤더 */
 header {
     position: fixed;
@@ -76,7 +82,7 @@ nav > .sidebar {
     position: fixed;
     top: 57px;
     background-color: #343a40;
-    height: calc(100vh - 112px);
+    height: 100vh;
 }
 
 nav > .sidebar > li {
@@ -101,24 +107,6 @@ nav > .sidebar > li > span {
 nav > .sidebar > li:hover > i,
 nav > .sidebar > li:hover > span {
     color: #adb5bd;
-}
-
-nav > .sidebar--toggle {
-    position: fixed;
-    top: calc(100vh - 56px);
-    width: 220px;
-    height: 56px;
-    background-color: #212529;
-    cursor: pointer;
-    justify-content: center;
-}
-
-nav > .sidebar--toggle > i {
-    color: #adb5bd;
-}
-
-nav > .sidebar--toggle:hover > i {
-    font-size: 19px;
 }
 
 /* admin_header 끝 by.유빈 */

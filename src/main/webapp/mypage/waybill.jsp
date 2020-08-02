@@ -3,7 +3,7 @@
 <%@ page import = "com.spring.alltion.test.Product_kjVO" %>
 <%@ page import = "java.util.*" %>
 <%	
-	ArrayList<Product_kjVO> getSale_list = (ArrayList<Product_kjVO>)request.getAttribute("getSale_list");
+	Product_kjVO Product_kjvo = (Product_kjVO)request.getAttribute("Product_kjvo");
 %>
 <!DOCTYPE html>
 <html>
@@ -27,12 +27,7 @@
 
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!-- 운송장번호by.계정 -->
-    	<%
-        	for(int j = 0; j < getSale_list.size(); j++)
-        	{
-        		Product_kjVO Product_kjvo = (Product_kjVO)getSale_list.get(j);
-        	
-        %> 
+    	
     <div class="waybill_update--form">
             <h3>운송장 번호</h3>
             <div class="waybill_update--content">
@@ -43,7 +38,7 @@
                         </div>
                         <div class="update_form__list content">
                         <span><%=Product_kjvo.getTrading_product_number() %></span>
-                        <input type = "hidden" id = "trading_product_number" name = "trading_product_number">
+                        
                         </div>    
                     </li>
                 </ul>
@@ -56,7 +51,7 @@
                             <span>운송장번호</span>
                         </div>
                         <div class="update_form__list content">
-                            <span><input type = "text" id = "trading_waybill_number" name = "trading_waybill_number" placeholder="운송장 번호를 입력해 주세요"></span>
+                            <span><input type = "text" id = "trading_waybill_number" name = "trading_waybill_number" placeholder="운송장 번호를 입력해 주세요" required></span>
                             <br>
                             <br>                               
                             <h5>운송장 번호 입력후</h5>    
@@ -70,11 +65,7 @@
 					</div> 
 					 </form>                
      			 </div>
-     			 
-     			 
-    <%
-        	}
-    %>                
+            
     <!-- 푸터 영역 -->
     <div class="footer">
         <div class="upper_footer">
@@ -125,7 +116,7 @@
                 </li>
                 <li>
                     <p>올션은 통신판매중개자이며 통신 판매의 당사자가 아닙니다. 따라서 올션은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p> 
-                    <p>Copyright © eBay Korea LLC All rights reserved.</p>
+                    <p>Copyright © Alltion All rights reserved.</p>
                 </li>
             </ul>
         </div>   

@@ -97,4 +97,10 @@ public class CommentServiceImpl {
 		return commentmapper.commentreply(commentvo);
 	}
 
+	public int commentReportService(CommentVO commentvo) {
+		CommentMapper commentmapper = sqlSession.getMapper(CommentMapper.class);
+		int res = commentmapper.commentReport(commentvo);
+		return res;
+	}
+
 }

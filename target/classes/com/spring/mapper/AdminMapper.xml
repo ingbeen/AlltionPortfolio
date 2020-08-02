@@ -52,7 +52,7 @@
 	
 	<!-- 결제금액 -->
 	<select id="getPaySum" resultType="int">
-		select sum(pay_amount)
+		select nvl(sum(pay_amount), 0)
 		from pay
 		where pay_status = 'paid'
 	</select>
