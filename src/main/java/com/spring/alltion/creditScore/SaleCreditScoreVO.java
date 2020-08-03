@@ -1,4 +1,5 @@
 package com.spring.alltion.creditScore;
+import java.lang.Math;
 
 public class SaleCreditScoreVO {
 	private String sale_id;
@@ -58,11 +59,11 @@ public class SaleCreditScoreVO {
 	}
 	
 	public double getSale_success_rate() {
-		return sale_success_rate;
+		return Math.round(sale_success_rate * 100) / 100.0; // 소수점 둘째 자리까지 출력
 	}
 	
 	public void setSale_success_rate(int sale_success_rate) {
-		this.sale_success_rate = sale_success_rate;
+		this.sale_success_rate = sale_success_rate * 100;
 	}
 	
 	public void saleSuccessRateProcess() {

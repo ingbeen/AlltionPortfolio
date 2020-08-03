@@ -117,6 +117,7 @@
 	<select id="getCategorylist1" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select
+			product_bids,
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -137,6 +138,7 @@
 	<select id="getCategorylist2" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select
+			product_bids,
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -157,6 +159,7 @@
 	<select id="getCategorylist3" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select
+			product_bids,
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -177,6 +180,7 @@
 	<select id="getCategorylist4" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select
+			product_bids,
     		product_number, 
     		product_subject, 
     		product_img_1,
@@ -203,6 +207,7 @@
 	<select id="getfamousPricelist" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -222,6 +227,7 @@
 	<select id="getfamousParticipantslist" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -234,13 +240,14 @@
 			product_progress 
 		from product 
 		where product_category_2 = #{product_category_2} and sysdate <= product_end_date+1 
-		order by product_participants desc
+		order by product_bids desc
 	]]>
 	</select>
 	
 	<select id="getfamousViewslist" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -261,6 +268,7 @@
 	<select id="getfamousPricelist2" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -279,6 +287,7 @@
 	<select id="getfamousParticipantslist2" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -290,13 +299,14 @@
 			product_purchase_price,
 			product_progress 
 		from product where sysdate <= product_end_date+1 
-		order by product_participants desc
+		order by product_bids desc
 	]]>
 	</select>
 	
 	<select id="getfamousViewslist2" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		select 
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,

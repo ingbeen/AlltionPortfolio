@@ -22,17 +22,18 @@ ADD CONSTRAINT PK_purchase_id PRIMARY KEY (purchase_id); -- 기본키 부여
 
 -- 2. 회원 테이블
 create table member(
-    member_name varchar2(10),
-    member_id varchar2(20) primary key,
-    member_password varchar2(20) not null,
-    email varchar2(50) not null,
-    member_phone varchar2(11) not null,
-    sample4_postcode varchar2(30),
-    sample4_roadAddress varchar2(50),
-    sample4_jibunAddress varchar2(50),
-    sample4_detailAddress varchar2(50),
-    member_delete varchar2(2) default '0'   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
-);
+member_name varchar2(15),
+member_id varchar2(20) primary key,
+member_password varchar2(20) not null,
+email varchar2(50) not null,
+member_phone varchar2(11) not null,
+sample4_postcode varchar2(30),
+sample4_roadAddress varchar2(50),
+sample4_jibunAddress varchar2(50),
+sample4_detailAddress varchar2(50),
+member_delete number default 0,   -- 회원탈퇴시 값이 1으로 바뀌면서 로그인 불가
+member_manager number default 0,  --0은 일반회원 1은 관리자
+member_date date not null
 
 -- 3. 판매 등급 테이블
 CREATE TABLE sale_credit_score_list (

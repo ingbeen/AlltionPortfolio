@@ -62,7 +62,9 @@
          <form name = "buyer_deal" action = "./buyer_deal.kj" method = "post">         
           <input type = "hidden" name = "trading_buyer_id" id = "trading_buyer_id" value = "<%=Product_kjvo.getTrading_buyer_id() %>">
           <input type = "hidden" name = "trading_price" id = "trading_price" value = "<%=Product_kjvo.getTrading_price() %>">
-          <input type = "hidden" name = "trading_product_number" id = "trading_product_number" value = "<%=Product_kjvo.getTrading_product_number() %>">         
+          <input type = "hidden" name = "trading_product_number" id = "trading_product_number" value = "<%=Product_kjvo.getTrading_product_number() %>">
+          <input type = "hidden" name = "product_subject" id = "product_subject" value = "<%=Product_kjvo.getProduct_subject() %>">
+          
           <div class="eomney_update--form">
             <h3>택배 거래</h3>
             <div class="eomney_update--content">
@@ -80,12 +82,17 @@
                             <span>주소</span>
                         </div>                      
                         <div class="update_form__list content">   
-                     <span><%=membervo.getSample4_postcode() %>
-                              <%=membervo.getSample4_roadAddress() %>
-                               <%=membervo.getSample4_jibunAddress() %>
-                              <%=membervo.getSample4_detailAddress() %></span>
-                              
-                              
+                        <%=membervo.getMember_phone() %>
+                     			<span><%=membervo.getSample4_postcode() %>
+                                <%=membervo.getSample4_roadAddress() %>
+                                <%=membervo.getSample4_jibunAddress() %>
+                                <%=membervo.getSample4_detailAddress() %></span>
+                              <input type = "hidden" name = "member_phone" id = "Member_phone" value = "<%=membervo.getMember_phone() %>">
+                              <input type = "hidden" name = "trading_phone" id = "trading_phone" value = "<%=membervo.getMember_phone() %>">
+                              <input type = "hidden" name = "trading_sample4_postcode" id = "trading_sample4_postcode" value = "<%=membervo.getSample4_postcode() %>">
+                              <input type = "hidden" name = "trading_sample4_roadAddress" id = "trading_sample4_roadAddress" value = "<%=membervo.getSample4_roadAddress() %>">
+                              <input type = "hidden" name = "trading_sample4_jibunAddress" id = "trading_sample4_jibunAddress" value = "<%=membervo.getSample4_jibunAddress() %>">
+                              <input type = "hidden" name = "trading_sample4_detailAddress" id = "trading_sample4_detailAddress" value = "<%=membervo.getSample4_detailAddress() %>">   
                            <input type ="button" onclick = "modal_display_address_deal()" value = "주소 변경"> 
                                   
                         </div>                                   
@@ -98,7 +105,7 @@
                     </div>             
                     </form>
                     </div>  
-					<form name = "buyer_deal_update" action = "./buyer_deal_update.kj" method = "post">
+               <form name = "buyer_deal_update" action = "./buyer_deal_update.kj" method = "post">
                           <div id="update_address_deal" class="modal">
                              <div class="modal-content">
                              <span class="close">&times;</span>

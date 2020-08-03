@@ -10,7 +10,6 @@
 }
 
 .chargePageBox {
-    /*float: left;*/
     display: inline;
     width: 100%;
     padding: 20px;
@@ -108,7 +107,7 @@
     width: 1200px;
     border-top: solid 1px rgba(225, 217, 90, 0.16);
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tbl_money {
@@ -116,17 +115,22 @@
     min-height: 111.3px;
     border-collapse: collapse;
     height: 143px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
+.tbl_money tr {
+	border-bottom: 1px solid #dddddd;
+}
 
 .tbl_money th {
     background: #f0f0f0;
     text-align: center;
-    color: #666;
-    border-bottom: solid 1px rgba(225, 217, 90, 0.16);
+    color: #000000;
     font-weight: normal;
+    font-weight: bold;
 }
+
+
 
 .tbl_money td {
     border-bottom: solid 1px #e0e0e0;
@@ -137,14 +141,13 @@
 }
 
 .chargePageBox th {
-    background: rgba(225, 217, 90, 0.16);
     text-align: center;
     color: #666;
     border-bottom: solid 1px #e0e0e0;
     font-weight: normal;
 }
 .tabpanel th {
-	background: rgba(225, 217, 90, 0.16);
+	background-color: #f8f8f8;
     text-align: center;
     color: #666;
     border-bottom: solid 1px #e0e0e0;
@@ -330,7 +333,6 @@ body a.base_btn {
     font-weight: bold;
     color: black;
     text-align: center;
-    font-family: "맑은 고딕", "Malgun Gothic";
     border-radius: 7px;
     float: right;
 }
@@ -342,21 +344,27 @@ body a.base_btn {
     position: relative;
     margin: 0;
     padding: 0;
-    list-style: none;
     display: table;
     width: 100%;
 }
 
+.tablist .tab:hover {
+	background-color: #ffd149;
+	border-radius: 4px 4px 0 0;
+}
+
+/*
+.tablist .tab a:hover {
+	color: #ffffff;
+	font-weight: bold;
+}
+*/
+
 .tab {
     position: relative;
-    background-color: #eee;
     display: table-cell;
     margin-right: -4px;
-    text-transform: uppercase;
     text-align: center;
-    transform: background-color 1s;
-    border-left: solid 1px #ddd;
-    border-top: solid 1px #ddd;
 }
 
 .tab:last-child {
@@ -380,20 +388,15 @@ body a.base_btn {
     right: -1px;
     bottom: -1px;
     background: #fff;
-    border-top: solid 5px transparent;
-    transition: top .2s;
 }
 
 .tab-active:after {
     top: -1px;
 }
 
-.tab-active:first-child:after {
-    border-top-color: #ff5e10;
-}
-
-.tab-active:nth-child(2):after {
-    border-top-color: #00ceee;
+.tab-active:first-child:after, .tab-active:nth-child(2):after {
+	background-color: #FFAE36;
+	border-radius: 4px 4px 0 0;
 }
 
 .tab-active:nth-child(3):after {
@@ -418,6 +421,25 @@ body a.base_btn {
     margin: 0 0 1.5em;
 }
 
+.tabpanel .submit input {
+	cursor: pointer;
+	border: 1px solid #000000;
+	background: #ffffff;
+	border-radius: 4px;
+	padding: 8px 16px;
+}
+
+.tabpanel .submit input:hover {
+	background: #000000;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+.tabpanel .submit input:first-child {
+	margin-top: 24px;
+}
+
+
 #panel1 h1 {
     color: #ff5e10;
 }
@@ -434,6 +456,8 @@ body a.base_btn {
     display: none;
 }
 
+/* 반응형 */
+/*
 @media (max-width: 600px) {
     .tab {
         display: block;
@@ -475,6 +499,7 @@ body a.base_btn {
         margin-bottom: 4px;
     }
 }
+*/
 
 /* Page style */
 
@@ -486,7 +511,6 @@ body a.base_btn {
 
 .Main {
     font-size: 16px;
-    font-family: roboto, sans-serif;
     line-height: 1.45;
     width: 960px;
     color: #333;
@@ -500,16 +524,3 @@ body a.base_btn {
     min-height: 400px;
     max-height: 400px;
 }
-
-/* desktop-size(min:1280) */
-/* -- 프리미엄관 */
-
-/* desktop-size(min:1280) */
-/* -- 경매 규칙 및 회원 등급 제도 설명 */
-/*
-.rules {
-    width: 100%;
-    height: 400px;
-    background-color: gainsboro;
-}
-*/

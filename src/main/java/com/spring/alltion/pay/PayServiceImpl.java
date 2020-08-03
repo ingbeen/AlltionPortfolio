@@ -34,8 +34,6 @@ public class PayServiceImpl implements PayService {
 		// TODO Auto-generated method stub
 		payVO.setPay_amount(payVO.getPay_amount());
 		payVO.setPay_id(payVO.getPay_id());
-		//System.out.println(payVO.getPay_amount());
-		//System.out.println(payVO.getPay_id());
 		return payVO;
 	}
 
@@ -43,17 +41,11 @@ public class PayServiceImpl implements PayService {
 	public PayVO getPayList(String merchant_uid) {
 		PayMapper payMapper = sqlSession.getMapper(PayMapper.class);
 		PayVO payVO = new PayVO();
-		//System.out.println("getlist1: " + merchant_uid);
 		payVO.setPay_merchant_uid(merchant_uid);
-		//System.out.println("getlist2(payVOuid): " + payVO.getPay_merchant_uid());
 		payVO = payMapper.getPayList(payVO.getPay_merchant_uid());
-		//System.out.println("status:" + payVO.getPay_status());
-		//payVO.setName(payVO.getName());
 		payVO.setPay_status(payVO.getPay_status());
 		payVO.setPay_amount(payVO.getPay_amount());
-		//payVO.setBuyer_email(payVO.getBuyer_email());
 		payVO.setPay_id(payVO.getPay_id());
-		//payVO.setBuyer_tel(payVO.getBuyer_tel());
 		return payVO;
 	}
 

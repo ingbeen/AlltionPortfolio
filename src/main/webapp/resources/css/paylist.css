@@ -89,110 +89,124 @@ body {
 
 @charset "UTF-8";
 
-.wrap{
-	margin : 0 auto;
+.wrap {
+	margin: 0 auto;
 	width: 870px;
-	
 }
-.cTabContent li{
+
+.cTabContent li {
 	display: inline-block;
 	padding: 5px 5px 5px 5px;
 }
-.wrapper{
-	margin : 0 auto;
+
+.wrapper {
+	margin: 0 auto;
 	width: 660px;
 	padding-top: 40px;
 	display: inline-block;
 }
 
-.pay, .payment{
-	
+.pay, .payment {
 	display: inline-block;
-    /*padding: 2% 0 0 30%;*/
-    /*width: 1190px;*/
-    min-height: 500px;
-    margin:0 auto;
+	/*padding: 2% 0 0 30%;*/
+	/*width: 1190px;*/
+	min-height: 500px;
+	margin: 0 auto;
 }
-.chargehistory{
-    /*min-width: 362px;*/
-    position: relative;
-    width: 100%;
-    min-height: 300px;
-    align-content: center;
+
+.chargehistory {
+	/*min-width: 362px;*/
+	position: relative;
+	width: 100%;
+	min-height: 300px;
+	align-content: center;
 }
 
 .chargehistory h3, .cancelhistory h3, paymenthistory h3 {
-    padding: 0 0 15px 0;
+	padding: 0 0 15px 0;
 }
 
-.cancelhistory{
-    /*min-width: 362px;*/
-    position: relative;
-    width: 100%;
-    min-height: 300px;
-    align-content: center;
-}
-
-.paymenthistory{
+.cancelhistory {
+	/*min-width: 362px;*/
+	position: relative;
 	width: 100%;
-    min-height: 300px;
-    align-content: center;
+	min-height: 300px;
+	align-content: center;
 }
 
-.charge li{
-    display:inline;
-    border-left: 1px solid #999; 
-    float:left;
-    min-width: 140px;
-    text-align: center;
-    padding: 5px 5px 5px 5px;
-}
-.firstcharge li{
-    display:inline; 
-    float:left;
-    min-width: 140px;
-    text-align: center;
-    padding: 5px 5px 5px 5px;
+.paymenthistory {
+	width: 100%;
+	min-height: 300px;
+	align-content: center;
 }
 
-.cancel li, .paymentlist li{
-    display:inline;
-    border-left: 1px solid #999; 
-    float:left;
-    min-width: 140px;
-    text-align: center;
-    padding: 5px 5px 5px 5px;
-}
-.firstcancel li, .firstline li{
-    display:inline; 
-    float:left;
-    min-width: 140px;
-    text-align: center;
-    padding: 5px 5px 5px 5px;
-}
-.charge li:first-child, .cancel li:first-child, .paymentlist li:first-child{border-left:none;}
-.pay_list ul li:first-child{border-left:none;}
-.payment_list ul li:first-child{border-left:none;}
-
-.firstcharge li, .firstcancel li, .firstline li{
-    /*background-color: #BDBDBD;*/
-    background-color: rgba(255, 160, -255, 0.29);
-    border-bottom: 1px solid rgba(255, 160, -255, 1.09);
+.charge li {
+	display: inline;
+	border-left: 1px solid #999;
+	float: left;
+	min-width: 140px;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
 }
 
-.chargepage ul li, .cancelpage ul li, .paymentpage ul li{
-	display:inline-block;
+.firstcharge li {
+	display: inline;
+	float: left;
+	min-width: 140px;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+}
+
+.cancel li, .paymentlist li {
+	display: inline;
+	border-left: 1px solid #999;
+	float: left;
+	min-width: 140px;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+}
+
+.firstcancel li, .firstline li {
+	display: inline;
+	float: left;
+	min-width: 140px;
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+}
+
+.charge li:first-child, .cancel li:first-child, .paymentlist li:first-child
+	{
+	border-left: none;
+}
+
+.pay_list ul li:first-child {
+	border-left: none;
+}
+
+.payment_list ul li:first-child {
+	border-left: none;
+}
+
+.firstcharge li, .firstcancel li, .firstline li {
+	/*background-color: #BDBDBD;*/
+	background-color: rgba(255, 160, -255, 0.29);
+	border-bottom: 1px solid rgba(255, 160, -255, 1.09);
+}
+
+.chargepage ul li, .cancelpage ul li, .paymentpage ul li {
+	display: inline-block;
 	margin: 0 12px;
 }
+
 .chargepage, .cancelpage, .paymentpage {
-	margin:0 auto;
+	margin: 0 auto;
 }
 
-.page_number{
+.page_number {
 	text-align: center;
 }
 
-.page_number a.active{
+.page_number a.active {
 	cursor: default;
 	font-weight: bold;
 }
@@ -201,47 +215,98 @@ body {
 	font-weight: bold;
 }
 
-.page_number li:hover {font-weight: bold;}
-
+.page_number li:hover {
+	font-weight: bold;
+}
 
 .list_title {
-    margin-bottom: 50px;
-    border-bottom: 2px solid #FFA30E;
-    display: inline-block;
-    padding-bottom: 15px;
+	margin-bottom: 50px;
+	border-bottom: 2px solid #FFA30E;
+	display: inline-block;
+	padding-bottom: 15px;
 	font-size: 30px;
 }
+
 .main_body {
-    width: 960px;
-    position: relative;
-    height: 100%;
-    min-height: 10px;
-    margin: 50px auto 20px auto;
+	width: 960px;
+	position: relative;
+	height: 100%;
+	min-height: 10px;
+	margin: 50px auto 20px auto;
 }
+
 .list_notify {
-    background-color: rgba(240, 240, 240, 0.5);
-    font-size: 15px;
-    margin-bottom: 50px;
-    padding: 10px;
+	background-color: rgba(240, 240, 240, 0.5);
+	font-size: 15px;
+	margin-bottom: 50px;
+	padding: 10px;
 }
+
 .list_notify ul li {
-    line-height: 30px;
-    padding-left: 10px;
-    position: relative;
-    color: #444444;
+	line-height: 30px;
+	padding-left: 10px;
+	position: relative;
+	color: #444444;
 }
 
 .list_notify ul li::before {
-    position: absolute;
-    top: 13px;
-    left: 0;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #c6c9cb;
-    content: '';
+	position: absolute;
+	top: 13px;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: #c6c9cb;
+	content: '';
 }
 
+/*-------modal------------------------------------------------------------------*/
+#modal {
+	display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modal h3 {
+	margin: 0;
+    font-size: 22px;
+    display: inline-flex;
+
+}
+
+#modal button {
+	display: inline-block;
+    width: 20px;
+    margin-left: calc(0% - 0px - 0px);
+    float: right;
+}
+
+#modal .modal_content {
+	width: 400px;
+    height: 140px;
+    margin: 300px auto;
+    padding: 20px 10px;
+    background: #fff;
+    border: 2px solid #666;
+}
+
+#modal .modal_layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: -1;
+}
+/*--------------------------------------------------------------------------*/
 @media all and (min-width: 601px) {
 	.cTabs>div {
 		width: 25%;
@@ -274,5 +339,9 @@ body {
 	}
 }
 Resources1×0
+
+
 .5×0
+
+
 .25×Rerun

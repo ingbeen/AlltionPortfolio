@@ -18,9 +18,9 @@
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 $(function() {
-	//var IMP = window.IMP;
-    //var code = "imp42790723"; // 가맹점 식별코드
-    //IMP.init(code);
+	var IMP = window.IMP;
+    var code = "imp42790723"; // 가맹점 식별코드
+    IMP.init(code);
     
     jQuery.ajax({
       	url: "/alltion/cancel.bo",
@@ -48,10 +48,14 @@ $(function() {
         	data : {"pay_merchant_uid" : "<%=uid%>"},
         	contentType : 'application/x-www-form-urlencoded; charset=utf-8'
     	});
-          	alert("환불 성공 : " + result);
+    	if(result == "Failure"){
+          	alert("환불 실패하셨습니다. 결제 주문번호를 다시 확인하세요.");
+    	}else{
+    		alert("환불 성공하셨습니다. 해당 금액은 2~3일 이내로 계좌로 반환됩니다.");
+    	}
           	location.href='./pay.ms';
     }).fail(function(error) { // 환불 실패시 로직
-            alert("환불 실패 : " + error);
+            alert("환불 실패하셨습니다. 결제 주문번호를 다시 확인하세요.");
     });
 });
 </script>

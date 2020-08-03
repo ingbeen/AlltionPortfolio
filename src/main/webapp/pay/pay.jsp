@@ -12,7 +12,6 @@
 %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="./resources/css/main_style.css?after">
@@ -26,23 +25,26 @@
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <script>
-        function test1(value) {
-            $('.text2').val(value);
-        }
+
+    function test1(value) {
+        $('.text2').val(value);
+    }
 
     </script>
     <script>
-        function getFormatDate(date) {
-            var year = date.getFullYear(); //yyyy
-            var month = (1 + date.getMonth()); //M
-            month = month >= 10 ? month : '0' + month; //month 두자리로 저장
-            var day = date.getDate(); //d
-            day = day >= 10 ? day : '0' + day; //day 두자리로 저장
-            return year + '' + month + '' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
-        }
-        var date = new Date();
-        date = getFormatDate(date);
+    
+    function getFormatDate(date) {
+        var year = date.getFullYear(); //yyyy
+        var month = (1 + date.getMonth()); //M
+        month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+        var day = date.getDate(); //d
+        day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+        return year + '' + month + '' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+    }
 
+    var date = new Date();
+    date = getFormatDate(date);
+        
     </script>
 </head>
 
@@ -53,7 +55,6 @@
         <jsp:include page="../header/main_header.jsp"></jsp:include>
     </div>
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
-    <!------------------------------------------------------------------------------------------------>
     <div class="main_body">
         <div class="charging_title">
             <h1>E머니 충전/환불</h1>
@@ -61,27 +62,27 @@
         <div class="pay_notify">
             <ul>
                 <li>
-                    All-tion에서 이루어지는 모든 현금 결제는 적립되어 있는 사이버머니에서 차감됩니다.
+         			All-tion에서 이루어지는 모든 현금 결제는 적립되어 있는 사이버머니에서 차감됩니다.
                 </li>
                 <li>
                 </li>
                 <li>
-                    회원님께서 일정금액을 미리 사이버머니로 적립해 놓으셔야 응찰권 및 경매물품의
-                    낙찰금액에 대하여 현금 결제가 가능해 집니다.
+			                  회원님께서 일정금액을 미리 사이버머니로 적립해 놓으셔야 응찰권 및 경매물품의
+			                  낙찰금액에 대하여 현금 결제가 가능해 집니다.
                 </li>
                 <li>
                 </li>
                 <li>
-                    사이버머니가 충분하게 적립되어 있는 상태에서 즉시
-                    경매낙찰을 이용하실 경우, 판매자와의 직거래여부 선택에 따라 빠른 진행이 가능하십니다.
+			                  사이버머니가 충분하게 적립되어 있는 상태에서 즉시
+			                  경매낙찰을 이용하실 경우, 판매자와의 직거래여부 선택에 따라 빠른 진행이 가능하십니다.
                 </li>
 
             </ul>
         </div>
         <div class="paybox">
             <ul class="tablist" role="tablist">
-                <li class="tab" role="tab"><a href="#panel1" onclick="fnMove(1)">충 전</a></li>
-                <li class="tab" role="tab"><a href="#panel2" onclick="fnMove(1)">환 불</a></li>
+                <li class="tab" role="tab"><a href="#panel1" onclick="return false;">충 전</a></li>
+                <li class="tab" role="tab"><a href="#panel2" onclick="return false;">환 불</a></li>
                 <li class="tab-menu">
                     <div class="line"></div>
                     <div class="line"></div>
@@ -127,7 +128,7 @@
                                 </tbody>
                             </table>
                             <div class="submit">
-                                <input type="image" src="data:image/gif;base64,R0lGODlheQAlAMQAAPTW1+ioqdxxdNlhZOKPkPnr69M5PtZOUvfh4e7Awd+AgvHLzPz19eWcnuu0tbscIf///9AfJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgwNURBODcxNzM3RDExRTNCODNBQzdEODUzQzZEN0ZFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgwNURBODcyNzM3RDExRTNCODNBQzdEODUzQzZEN0ZFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODA1REE4NkY3MzdEMTFFM0I4M0FDN0Q4NTNDNkQ3RkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODA1REE4NzA3MzdEMTFFM0I4M0FDN0Q4NTNDNkQ3RkUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAeQAlAEAF/+AjjmRpnmiqrmzrvmIkz3Rt33iu73zv+7GfUDZgQCAAQWSwODIGMsURQogIBAlIYImYAgxWpA0AUcjIyuEvqBYGClNnAEwE2O93R04g1qHbQA+Ag4SFhjlsh4qLjDqJjTYBWjZxUzKSW5eTMnwAZwGgoWcQaZARj6ZLCmQFBFA0BwFVNJgHEE9LRwadnHAIdKOlkKipxcaBMMnKy8zNKsfQ0TvE0tXH1NbZw4LGBKBNRwigs5qZoGQBZJVavDXtf6nYh+v0cAxmA11VmHwFM3AD+DAAMMsAHDPBisk71GTBgRkGsiyY0Q4HAQAFACBsJwBhDXimFmobWUgkyZNqTNaiXNlDJcuXOFzCnDlDJs2ZNm++zKlzJU9AFxv8EBCg1EVyschZDPAwHrdi6uh5imAHTsapmBqcQwLqSh96CZ1Cw3IkC4QEHmU0mRon0xIBr8JMpdHgbNiQT1MNINB0xgECaepCaGBkTgRMEbosCNAEQZgjbvvNALnNWKitBS4HGOAA2JJyFdFUNNAlAQ3KjX7+OBA1DoK4FWUcEPDQQaUqvAaU9UyVlMK8pmwjAHyFQGmK9I7MtRH7BmpGqofsusK7p5Do1rNhz15tO/do3r9fAy5e54MQADs=" value="충전하기" style="width: 130px; height: 50px;">
+                                <input type="submit" value="충전하기">
                             </div>
                         </form>
                     </div>
@@ -155,13 +156,12 @@
                                 </tbody>
                             </table>
                             <div class="submit" style="text-align: center;">
-                                <input type="image" src="data:image/gif;base64,R0lGODlheQAlAMQAAPTW19xxdNZOUvz19eKPkO7AwdM5Pvnr69lhZPfh4eWcnvHLzOu0td+AguioqbscIf///9AfJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS41LWMwMTQgNzkuMTUxNDgxLCAyMDEzLzAzLzEzLTEyOjA5OjE1ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgzMUVDRTk0NzM3RDExRTM4QTAzQkU5RkMyNEFDQzRGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgzMUVDRTk1NzM3RDExRTM4QTAzQkU5RkMyNEFDQzRGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODMxRUNFOTI3MzdEMTFFMzhBMDNCRTlGQzI0QUNDNEYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODMxRUNFOTM3MzdEMTFFMzhBMDNCRTlGQzI0QUNDNEYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAeQAlAEAF/+AjjmRpnmiqrmzrvmIkz3Rt33iu73zv+7GfcDaAOCKCA4QQgDgdgoB0OkXIHJBFrQApzBBOiCKCfQ6FwbOQAWi73dZyeA4YOpTzRED9S/P/gIGCNn6DhoeIOYWJBjJNdREGj1cQAA6Xl1yQkQ5FTgMFjTRYRzOkiTSLiABhA24FBJUyBG9uRaURk5S4jgueEAcFAqipD8THyIEwy8zNzs8sydLTQMbU19jF2dvXqoeSAZhMCLpYBVQBCrIR6gmiMgsQDLlzYXunx97fDgkQAwt7JmG6xMrSwGEGuMwRJqPfgAaRuIzBR0zfIVZ7cGBxVQsAgQj1QjrZw+ojDVa8EupZ5MZS0MqWMNW8jEmzWs2bgGbi3FlDJ8+fPn/uDCr0JlE+AhyYRKLUkYOMX5rWiDLsRjioERo8RXZUSJOQAMqJdALJgEMGDhgoccfUQcFLwyii6iqEwK8u9PQkHbsOZQ1dMjQ59ZvPGjJWCy4VkQJMDl8IAQwUOYDJYVW7EBr0WxDHCFfDxAhkAragjTpItNooOeBmjIykBMhJ2RoBAcMZVRl4LjxNARQausINvKQEF2C5sUBhYjWgakXQx1gl6AigM+XhTal3tKL7gIIpuiF/LhoIHNbx5NP3hK6ePN322d7D78Z+Ps8HIQAAOw==" value="환불요청하기" style="width: 130px; height: 50px;">
+                                <input type="submit" value="환불요청하기">
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-    <!------------------------------------------------------------------------------------------------>
 
 
     <!-- 푸터 영역 -->
@@ -246,42 +246,6 @@
         $('.Tab_menu1').click();
 
     </script>
-    <script type="text/javascript">
-        $(function() {
-            // 광고 없애기
-            $(".ad__banner--closeBtn").click(function() {
-                $(".ad__banner").hide();
-            })
-
-            // 헤더 고정
-            var header = $('.lower_header');
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 0) {
-                    header.addClass('sticky');
-                } else {
-                    header.removeClass('sticky');
-                }
-            })
-
-            // 카테고리 누를 때마다 이동
-            $("ul.deadline-items__category a").click(function() {
-                //                
-                //                var activeTab = $(this).attr('id');
-                //                
-                //				$('ul.deadline-items__category a').removeClass('active');
-                //				$('.menu-box').removeClass('active');
-                //				$(this).prop('checked', true);
-                //				$('div#' + activeTab).addClass('active');
-            })
-        });
-    </script>
-    <script>
-    function fnMove(seq){
-        var offset = $("#div" + seq).offset();
-        $('html, body').animate({scrollTop : offset.top}, 400);
-    }
-    </script>
-
 	<!--  스크립트 영역  -->
 	<script src="<c:url value="https://code.jquery.com/jquery-3.5.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/pay.js" />"></script>

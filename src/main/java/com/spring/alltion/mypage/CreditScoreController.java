@@ -55,9 +55,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -75,9 +75,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -94,9 +94,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -113,9 +113,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -132,9 +132,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -151,9 +151,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -170,9 +170,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 	
@@ -189,9 +189,9 @@ public class CreditScoreController  {
 		PrintWriter writer = response.getWriter();
 		
 		if (result != 0) {
-			writer.write("<script>alert('테스트');location.href='./creditScore.hn';</script>");
+			writer.write("<script>location.href='./creditScore.hn';</script>");
 		} else {
-			writer.write("<script>alert('-_-');location.href='./creditScore.hn';</script>");
+			writer.write("<script>alert('다시 시도해 주십시오');location.href='./mypage.kj';</script>");
 		}
 	}
 }

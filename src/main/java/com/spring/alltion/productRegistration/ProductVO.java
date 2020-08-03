@@ -26,7 +26,7 @@ CREATE TABLE product (
         product_bidding_unit number not null, -- 입찰단위
         product_end_date date not null, -- 경매종료일
         
-        product_delivery varchar2(1000) not null, -- 택배거래(비용) : before = 착불, after = 착불, none = 불가능
+        product_delivery varchar2(1000) not null, -- 택배거래(비용) : before = 선불, after = 착불, none = 불가능
 		product_transaction_area varchar2(1000) not null, -- 거래가능지역 : none = 불가능, 사용자입력값
         
         product_purchase_price number not null, -- 즉시구매가격
@@ -37,8 +37,8 @@ CREATE TABLE product (
 		product_participants number not null, -- 참가자수
 		product_credit_score number not null, -- 신용도
 		product_views number not null, -- 조회수
-		product_issue_date date not null, -- 등록일
 		product_progress number not null -- 진행상태 : 진행중 = 0, 낙찰 = 1
+		product_issue_date date not null, -- 등록일
 );
 */
 

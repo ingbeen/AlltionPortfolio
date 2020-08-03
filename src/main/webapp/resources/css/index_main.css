@@ -228,6 +228,11 @@ input[id="deadline-items"]:checked ~ .content3 {display: block;}
     color: #6C6C6C;
 }
 
+.view_count_text, .view_count {
+	font-size: 12px;
+	color: #6C6C6C;
+}
+
 .price-txt {
     margin-top: 28px;
 }

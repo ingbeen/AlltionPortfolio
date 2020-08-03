@@ -1,4 +1,6 @@
 package com.spring.alltion.creditScore;
+import java.lang.Math;
+
 
 public class PurchaseCreditScoreVO {
 	private String purchase_id;
@@ -58,7 +60,7 @@ public class PurchaseCreditScoreVO {
 	}
 	
 	public double getPurchase_success_rate() {
-		return purchase_success_rate;
+		return Math.round(purchase_success_rate * 100) / 100.0; // 소수점 둘째 자리까지 출력
 	}
 	
 	public void setPurchase_success_rate(int purchase_success_rate) {

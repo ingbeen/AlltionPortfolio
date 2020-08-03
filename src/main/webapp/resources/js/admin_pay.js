@@ -199,7 +199,7 @@ $(document).on('click', '.list--nonActive', (e) => {
 	// 클릭한 페이지버튼의 번호를 가져온다
 	page = e.currentTarget.getAttribute('data-page');
 	
-	getAdminTradingDate(page);
+	getAdminPayDate(page);
 });
 
 $(document).on('click','.list--deadlineExtensionBtn', function() {

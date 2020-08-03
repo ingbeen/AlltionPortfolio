@@ -68,7 +68,7 @@
         	<div class="review_no"><p><%=reviewvo.getReview_no() %></p></div>
             <div class="product_image"><img src="<%=reviewvo.getReview_image()%>"></div>
             <div class="product_subject"><p><%=reviewvo.getReview_subject() %></p></div>
-            <div class="review_content"><p style="color: cornflowerblue;"><%=reviewvo.getReview_evaluate() %></p><p><%=reviewvo.getReview_content() %></p></div>
+            <div class="review_content"><p><font style="color: cornflowerblue;"><%=reviewvo.getReview_evaluate() %></font><br><%=reviewvo.getReview_content() %></p></div>
             <div class="review_writer"><p><%=reviewvo.getReview_evaluator().substring(0,3) %>***</p></div>
             <div class="review_date"><p><%=reviewvo.getReview_date() %></p></div>
         </div>

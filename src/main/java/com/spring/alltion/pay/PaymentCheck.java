@@ -42,14 +42,10 @@ public class PaymentCheck {
 			HttpResponse res = client.execute(post); // 클라이언트로 결과 전송 
 			ObjectMapper mapper = new ObjectMapper(); 
 			String body = EntityUtils.toString(res.getEntity()); 
-			System.out.println("body=" + body);
 			JsonNode rootNode = mapper.readTree(body); // body내용을 json형식으로 변환
-			System.out.println("rootNode=" + rootNode);
 			JsonNode resNode = rootNode.get("response"); 
-			System.out.println("resNode=" + resNode);
 			
 			result = resNode.get("access_token").asText(); 
-			System.out.println("result=" + result);
 		} catch (Exception e) { 
 			e.printStackTrace(); 
 		} return result; 

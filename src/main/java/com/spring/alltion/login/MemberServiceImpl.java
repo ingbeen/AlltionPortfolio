@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.alltion.creditScore.PurchaseCreditScoreVO;
+import com.spring.alltion.creditScore.SaleCreditScoreVO;
 import com.spring.mapper.MemberMapper;
 
 @Service("memberService")
@@ -114,6 +116,20 @@ public class MemberServiceImpl implements MemberService{
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 		
 		return memberMapper.member_delete(membervo);
+	}
+
+	@Override
+	public int insertpurchase(PurchaseCreditScoreVO PurchaseCreditScorevo, String purchase_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int purchase = memberMapper.insertpurchase(PurchaseCreditScorevo,purchase_id);
+		return purchase;
+	}
+
+	@Override
+	public int insertsale(SaleCreditScoreVO SaleCreditScorevo ,String sale_id) {
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+		int sale = memberMapper.insertsale(SaleCreditScorevo,sale_id);
+		return sale;
 	}
 	
 	// 관리자 인지 일반회원인지 체크. by.Hong

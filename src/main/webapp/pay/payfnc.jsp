@@ -77,12 +77,10 @@ function makeid() {
                 	contentType : 'application/x-www-form-urlencoded; charset=utf-8',
                 	dataType : "json",
                 	success: function(retVal){
-                		console.log('성공2');
-                		alert('성공');
+                		console.log('성공');
                 	},
                 	error: function(){
-                		alert('실패');
-                		console.log('실패2');
+                		console.log('실패');
                 	}
             	});
 

@@ -47,6 +47,10 @@
     margin-bottom: 12px;
 }
 
+.submenu li.on {
+	font-weight: bold;
+}
+
 .left_session.cate {
     flex-basis: 25%;
     position: relative;
@@ -114,10 +118,68 @@
   background-color: #717171;
 }
 
-
-
-
 /* 상품 목록 */
+.product_name {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 18px;
+    margin-bottom: 2px;
+}
+
+.material-icons.timer {
+    font-size: 18px;
+    color: #6C6C6C;
+    vertical-align: middle;
+}
+
+/*
+.bookmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+}
+
+.material-icons.bookmark_border {
+    font-size: 26px;
+}
+
+.bookmark--count {
+    font-size: 12px;
+    margin-top: -8px;
+}
+*/
+
+.countdown {
+    font-size: 14px;
+    color: #6C6C6C;
+}
+
+.view_count_text, .view_count {
+	font-size: 12px;
+	color: #6C6C6C;
+}
+
+.price-txt {
+    margin-top: 28px;
+}
+
+.price_text, .price_text {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.current_price {
+    color: #FFAE36;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.direct_price {
+    font-size: 16px;
+}
+
 .product_li {
     margin-top: 28px;
     position: relative;

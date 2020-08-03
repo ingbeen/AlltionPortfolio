@@ -1,12 +1,7 @@
 package com.spring.alltion.test;
 
-import java.util.ArrayList;
+
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Param;
-import org.springframework.ui.Model;
 
 import com.spring.alltion.login.MemberVO;
 import com.spring.alltion.detailpage.*;
@@ -36,10 +31,11 @@ public interface testService {
 		public int update_deal_address(MemberVO membervo);
 		public int deliverycomplete(Product_kjVO Product_kjvo,int product_number);	
 		
-		public int insertReview(ReviewVO Reviewvo);
-		
-		public String findSubjectFromNum(int product_number);
-		
+		public int insertReview(ReviewVO Reviewvo, int trading_product_number);		
+		public String findSubjectFromNum(int product_number);		
 		public int updatetrading_transaction_method(Product_kjVO Product_kjvo, String trading_transaction_method, int product_number);
+		
+		public int update_trading_address(Product_kjVO Product_kjvo);
+		
 
 }

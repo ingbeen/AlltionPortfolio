@@ -60,7 +60,7 @@ REFERENCES member(member_id); 외래키 부여
 	</update>
 	
 	<insert id="insertPaylist" parameterType="String">
-		INSERT INTO paylist (pay_id) values (#{pay_id})
+		INSERT INTO paylist (pay_id) values (#{pay_id, jdbcType=VARCHAR})
 	</insert>
 	<update id="chargePay" parameterType="String">
 		UPDATE paylist SET pay_current_money = #{convertChargeMoney} where pay_id=#{pay_id}

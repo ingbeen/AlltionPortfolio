@@ -23,7 +23,9 @@ public class ProductListController {
 
 	@RequestMapping(value = "/Mainlist.ms", method = RequestMethod.GET)
 	public String getMainlist(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page, @RequestParam(value = "sort", required = false, defaultValue = "1") String sort) {
+		// 화면에 출력할 수(한 페이지)
 		int limit = 6;
+		// 가져올 상품 전체 수
 		int listcount = productlistService.getListCount();
 		String startrow = Integer.toString((page - 1) * 6 + 1); // 1 7  13 19
 		String endrow = Integer.toString(Integer.parseInt(startrow) + limit - 1); // 6 12 18 24
@@ -33,14 +35,9 @@ public class ProductListController {
 		hashmap.put("endrow", endrow);
 		hashmap.put("sort", sort);
 		List<ProductVO> mainlist = productlistService.getMainlist(hashmap);
-		/*
-		int maxpage = (int) ((double) listcount / limit + 0.95);
-		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 5 + 1;
-		int endpage = maxpage;
-		if (endpage > startpage + 5 - 1)
-			endpage = startpage + 5 - 1;
-		*/
+		// 최대 페이지
 		int maxpage = listcount / limit;
+		// 화면에 보여질 페이지 나눔 수( 1 2 3 4 5 ) ( 6 7 8 9 10 )...
 		int countPage = 5;
 		if (listcount % limit > 0) {
 			maxpage++;
@@ -95,13 +92,7 @@ public class ProductListController {
 		hashmap.put("sort", sort); // 이 값으로 Order by에 필요한 데이터 넘겨짐.
 		
 		categorylist = productlistService.getCategorylist(hashmap);
-		/*
-		int maxpage = (int) ((double) listcount / limit + 0.95);
-		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 5 + 1;
-		int endpage = maxpage;
-		if (endpage > startpage + 5 - 1)
-			endpage = startpage + 5 - 1;
-		*/
+
 		int maxpage = listcount / limit;
 		int countPage = 5;
 		if (listcount % limit > 0) {

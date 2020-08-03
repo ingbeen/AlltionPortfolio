@@ -45,6 +45,8 @@
     			<span id="alert-success" style="display: none; color: #d92742;">일치하는 아이디가 존재합니다.</span>
                 <input type = "text" id = "member_id" name = "member_id"  class = "int" maxlength = "20" placeholder="최소6~최대20, 숫자와알파벳만 사용해 주세요">
                 <input type = "button" class = "base_btn1" value = "중복 확인" onclick="usercheck()">
+                <input type = "hidden" id = "purchase_id" name = "purchase_id">
+                <input type = "hidden" id = "sale_id" name = "sale_id" >
             </div>
             	
             <div class = "join_row">

@@ -70,7 +70,7 @@
 .review_list .review_no p{line-height:37px; font-size:14px; position:relative; top:50%;left:50%; transform:translate(-50%,-50%);}
 .product_image img{width:50px; height:50px; position:relative; top:50%;left:50%; transform:translate(-100%,-50%);}
 .product_subject p{line-height:37px;font-size: 14px;position:relative; top:50%;left:50%; transform:translate(-50%,-50%);}
-.review_list .review_content p{line-height:37px; padding-left:10px; font-size:14px; position:relative; top:50%;left:50%; transform:translate(-50%,0%);}
+.review_list .review_content p{line-height:37px; padding-left:10px; font-size:14px; position:relative; top:50%;left:50%; transform:translate(-50%,-50%);word-break:break-all;}
 .review_list .review_writer p{line-height:37px; font-size:14px; position:relative; top:50%;left:50%; transform:translate(-50%,-50%);}
 .review_list .review_date p{line-height:37px; font-size:14px; position:relative; top:50%;left:50%; transform:translate(-50%,-50%);}
 .review_list .review_content{text-align:left;}

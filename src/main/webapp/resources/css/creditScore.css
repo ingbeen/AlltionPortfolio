@@ -3,6 +3,14 @@
     width: 1200px;
 }
 
+.credit_score_form h2 {
+	font-size: 32px;
+	margin-bottom: 40px;
+    border-bottom: 2px solid #FFA30E;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
 .member_credit_score {
     flex-flow: column wrap;
     display: flex;

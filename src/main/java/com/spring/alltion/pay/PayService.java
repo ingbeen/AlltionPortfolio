@@ -13,8 +13,6 @@ public interface PayService {
 	void insertPaylist(String pay_id);
 	String findCurrentMoney(String pay_id);
 	String findPayid(String pay_id);
-	//List<PayVO> findChargelist(String pay_id, String pay_status);
-	//List<PayVO> findCancellist(String pay_id, String pay_status);
 	int getPaycount(String pay_status, String pay_id);
 	List<PayVO> findChargelist(String userId, String paid, int startrow1, int endrow1);
 	List<PayVO> findCancellist(String userId, String paid, int startrow2, int endrow2);

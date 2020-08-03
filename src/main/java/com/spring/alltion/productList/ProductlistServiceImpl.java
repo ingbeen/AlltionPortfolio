@@ -86,8 +86,6 @@ public class ProductlistServiceImpl implements ProductlistService {
             key = (String)entry.getKey();
             // value값 확인
             value = (String)entry.getValue();
-            //System.out.println("hashMap Key : " + key);
-            //System.out.println("hashMap Value : " + value);
             // 키가 sort인 value값에 따라 mapping
             if(key.equals("sort") && value.equals("1")) {
             	// 최신 순 
@@ -133,9 +131,7 @@ public class ProductlistServiceImpl implements ProductlistService {
             key = (String)entry.getKey();
             // value값 확인
             value = (String)entry.getValue();
-//            System.out.println("hashMap Key : " + key);
-//            System.out.println("hashMap Value : " + value);
-         // 키가 sort인 value값에 따라 mapping
+            // 키가 sort인 value값에 따라 mapping
             if(key.equals("sort") && value.equals("1")) {
             	// 최신 순
             	productlist = productListMapper.getCategorylist1(hashmap);

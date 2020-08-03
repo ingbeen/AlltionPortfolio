@@ -39,7 +39,6 @@ public class PayController {
 	@RequestMapping(value = "/cancel.bo", method = RequestMethod.POST)
 	@ResponseBody
 	public String cancel(@RequestParam(value = "pay_merchant_uid") String pay_merchant_uid) { // 결제번호 : merchant_uid
-		System.out.println("merchant_uid=" + pay_merchant_uid);
 		PaymentCheck obj = new PaymentCheck();
 		String token = obj.getImportToken();
 		int res = obj.cancelPayment(token, pay_merchant_uid);
@@ -79,7 +78,6 @@ public class PayController {
 			payService.insertPay(vo);
 			payService.chargePay(convertChargeMoney, pay_id);
 		} catch (Exception e) {
-			System.out.println("데이터삽입 실패");
 			e.printStackTrace();
 		}
 
@@ -88,7 +86,6 @@ public class PayController {
 	@RequestMapping(value = "/cancelData.bo", method = RequestMethod.POST)
 	@ResponseBody
 	public void cancelOracle(HttpSession session, @RequestParam(value = "pay_merchant_uid") String pay_merchant_uid) {
-		System.out.println("cancelOracle: " + pay_merchant_uid);
 		PayVO vo = new PayVO();
 		vo = payService.getPayList(pay_merchant_uid);
 		vo.setPay_merchant_uid(vo.getPay_merchant_uid());
@@ -213,7 +210,6 @@ public class PayController {
 		model.addAttribute("endpage3", endpage3);
 
 		model.addAttribute("tab", tab);
-		System.out.println("tab: " + tab);
 		return "pay/paylist";
 	}
 	
@@ -229,6 +225,112 @@ public class PayController {
 		String res = minusMoney(userId, amount, product_subject);
 		session.setAttribute("currentMoney", res); //currentMoney = 해당 유저가 보유 중인 사이버머니
 		return "pay/paylist";
+	}
+	
+	@RequestMapping(value = "outMoney.ms")
+	public String outMoney(HttpSession session, @RequestParam(value = "money") String money,
+			Model model,
+			@RequestParam(value = "page1", required = false, defaultValue = "1") int page1,
+			@RequestParam(value = "page2", required = false, defaultValue = "1") int page2,
+			@RequestParam(value = "page3", required = false, defaultValue = "1") int page3,
+			@RequestParam(value = "tab", required = false, defaultValue = "1") String tab
+			) {
+		
+		String userId = (String) session.getAttribute("userId");
+		if (userId == null) {
+			return "member/login";
+		}
+		String currentMoney = payService.findCurrentMoney(userId);
+		if (currentMoney == null) {
+			currentMoney = "0";
+		}
+		session.setAttribute("currentMoney", currentMoney);
+		String paid = "paid";
+		String cancel = "결제취소";
+
+		// List<PayVO> chargevo = payService.findChargelist(userId, paid);
+		// List<PayVO> cancelvo = payService.findCancellist(userId, cancel);
+
+		// model.addAttribute("chargevo", chargevo);
+		// model.addAttribute("cancelvo", cancelvo);
+
+		// 충전 내역 페이지
+		int limit = 10;
+
+		int listcount1 = payService.getPaycount(paid, userId);
+		int startrow1 = (page1 - 1) * 10 + 1;
+		int endrow1 = startrow1 + limit - 1;
+
+		List<PayVO> chargevo = payService.findChargelist(userId, paid, startrow1, endrow1);
+		int maxpage1 = (int) ((double) listcount1 / limit + 0.95);
+		int startpage1 = (((int) ((double) page1 / 10 + 0.9)) - 1) * 10 + 1;
+		int endpage1 = maxpage1;
+
+		if (endpage1 > startpage1 + 10 - 1)
+			endpage1 = startpage1 + 10 - 1;
+
+		model.addAttribute("page1", page1);
+		model.addAttribute("listcount1", listcount1);
+		model.addAttribute("chargevo", chargevo);
+		model.addAttribute("maxpage1", maxpage1);
+		model.addAttribute("startpage1", startpage1);
+		model.addAttribute("endpage1", endpage1);
+
+		// 환불 내역 페이지-----------------------------------------------
+		int listcount2 = payService.getPaycount(cancel, userId);
+		int startrow2 = (page2 - 1) * 10 + 1;
+		int endrow2 = startrow2 + limit - 1;
+
+		List<PayVO> cancelvo = payService.findCancellist(userId, cancel, startrow2, endrow2);
+		int maxpage2 = (int) ((double) listcount2 / limit + 0.95);
+		int startpage2 = (((int) ((double) page2 / 10 + 0.9)) - 1) * 10 + 1;
+		int endpage2 = maxpage2;
+
+		if (endpage2 > startpage2 + 10 - 1)
+			endpage2 = startpage2 + 10 - 1;
+
+		model.addAttribute("page2", page2);
+		model.addAttribute("listcount2", listcount2);
+		model.addAttribute("cancelvo", cancelvo);
+		model.addAttribute("maxpage2", maxpage2);
+		model.addAttribute("startpage2", startpage2);
+		model.addAttribute("endpage2", endpage2);	
+
+		// 거래내역 페이지-------------------------------------------------
+		int listcount3 = payService.getPaymentcount(userId);
+		int startrow3 = (page3 - 1) * 10 + 1;
+		int endrow3 = startrow3 + limit - 1;
+
+		List<PaymentVO> paymentvo = payService.getPaymentlist(userId, startrow3, endrow3);
+		int maxpage3 = (int) ((double) listcount3 / limit + 0.95);
+		int startpage3 = (((int) ((double) page3 / 10 + 0.9)) - 1) * 10 + 1;
+		int endpage3 = maxpage3;
+
+		if (endpage3 > startpage3 + 10 - 1)
+			endpage3 = startpage3 + 10 - 1;
+
+		model.addAttribute("page3", page3);
+		model.addAttribute("listcount3", listcount3);
+		model.addAttribute("paymentvo", paymentvo);
+		model.addAttribute("maxpage3", maxpage3);
+		model.addAttribute("startpage3", startpage3);
+		model.addAttribute("endpage3", endpage3);
+
+		model.addAttribute("tab", tab);
+		
+		if(money == "" || money == null || money == "undefined") {
+			money = "0";
+		}
+		if(Integer.parseInt(currentMoney) >= Integer.parseInt(money.trim())) {
+		// outMoney = 출금 후 금액, amount = 출금할 금액
+		String outMoney = Integer.toString(Integer.parseInt(currentMoney) - Integer.parseInt(money.trim()));
+		payService.changeMoney(userId, outMoney);
+		session.setAttribute("currentMoney", outMoney);
+		
+		return "pay/paylist";
+		}else {
+		return "pay/pay";
+		}
 	}
 	
 	// 입금될 경우 쓰는 메소드(userId에 amount만큼 입금, product_subject: 상품 이름)

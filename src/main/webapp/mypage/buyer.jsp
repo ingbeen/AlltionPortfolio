@@ -103,8 +103,10 @@
         <div class="buyer--form" id = "buyer_complete_list"></div>
         <div class="page_btns" id = "buyer_complete_page_list" align="center"></div>  
         
-        <form name = "review" action = "./review.kj" method = "post">
-       <div id="member_update_modal_email" class="modal">
+        <form name = "review<%=i %>" action = "./review.kj" method = "post">
+        <input type="hidden" name="review_image" value="<%=dealcompletevo.getProduct_img_1() %>"> 
+        <input type="hidden" name="trading_product_number" value="<%=dealcompletevo.getProduct_number() %>">    
+        <div id="member_update_modal_email" class="modal">
                                       <div class="modal-content">
                                           <span class="close">&times;</span>
                                           <fieldset id="member_update">
@@ -124,16 +126,16 @@
                                                     <span><%=dealcompletevo.getProduct_subject() %></span>
                                                   <br>
                                                   <label>평점 주기&nbsp;&nbsp;:&nbsp;&nbsp;</label>
-                                                  <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "매우만족" onclick="oneCheckbox(this)">&nbsp;매우만족&nbsp;&nbsp;&nbsp;
+                                                  <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "매우 만족" onclick="oneCheckbox(this)">&nbsp;매우만족&nbsp;&nbsp;&nbsp;
                                                   <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "만족" onclick="oneCheckbox(this)">&nbsp;만족&nbsp;&nbsp;&nbsp;
                                                   <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "보통" onclick="oneCheckbox(this)">&nbsp;보통&nbsp;&nbsp;&nbsp;
                                                   <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "불만족" onclick="oneCheckbox(this)">&nbsp;불만족&nbsp;&nbsp;&nbsp;
-                                                  <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "매우불만족" onclick="oneCheckbox(this)">&nbsp;매우불만족&nbsp;&nbsp;&nbsp;
+                                                  <input type = "checkbox" name = "review_evaluate" id = "review_evaluate" value = "매우 불만족" onclick="oneCheckbox(this)">&nbsp;매우불만족&nbsp;&nbsp;&nbsp;
                                                   <br>
                                                   <br>
-                                        <textarea id = "review_content" name = "review_content" style="width:100%;height:100px;border-style : solid;border-width : 1px; resize: none;"></textarea>
-                                        <br>
-                                        <a href="javascript:review.submit()" class="base_btn">리뷰 작성</a>&nbsp;&nbsp;
+                                       			 <textarea id = "review_content" name = "review_content" style="width:100%;height:100px;border-style : solid;border-width : 1px; resize: none;"></textarea>
+                                        		 <br>
+                                       			 <a href="javascript:review<%=i %>.submit()" class="base_btn">리뷰 작성</a>&nbsp;&nbsp;
 
                                                  </li>   
                                     
@@ -238,6 +240,7 @@
 
    <script src="./resources/js/buyer.js"></script>
    <script>
+   //구매중 경매 상품 page처리 ajax.by 계정
       function product_page(prod_page) {
          $("#product_list").empty();
          $("#product_page_list").empty();
@@ -312,6 +315,8 @@
                      output += '<span>거래 방식</span>';
                      output += '</div>';
                      output += '<div class="buyer_form__list content">';
+                     output += '<span>거래 방식을 선택하지 않으면 거래를 진행할수 없습니다. </span>';
+                     output += '<br>';
                      output += '<span>택배  </span>';
                      output += '&nbsp;&nbsp';
                      output += '<input type = "radio" name = "trading_transaction_method" id = "trading_transaction_method" value = "' + item.product_delivery + '">';
@@ -344,12 +349,14 @@
                      output += '</li>';
                      output += '</ul>';
                      output += '</div>';
-                     
-                     output += '<a href = "./buyer_emoney.kj?product_number=' + item.product_number + '" class = "base_btn" >입금 하기</a>';
-                     
+                     if(item.trading_transaction_method==="불가능"||item.trading_transaction_method==="미정"){
+                     	output += '<a class="base_btn no_select">입금 하기</a>';
+                     }else{
+                    	 output += '<a href = "./buyer_emoney.kj?product_number=' + item.product_number + '" class = "base_btn" >입금 하기</a>';
+                     }
                   }
                   $("#product_list").append(output);
-               });
+               });	
                var page_list = '';
                if(product_nowpage>1){
                   page_list += '<button onclick="product_page(' + (product_nowpage-1) + ')">&#171;</button>';
@@ -375,9 +382,25 @@
       $(function() {
          product_page(1);
       });
+      
+      var click = true;
+      $('.no_select').off("click").on('click',function(){
+      	if(click){
+    	  	click= !click;
+      		alert('거래방식을 선택해주세요.'); 
+      		
+      		setTimeout(function(){
+      			click=true;
+      		},1000);
+      	}else{
+      		console.log("중복됨");
+      	}
+      });
+      
    </script>
    
    <script>
+   //배송 대기중 경매 상품 page처리 ajax.by 계정
       function delivery_before(before_page){
          $("#delivery_before_list").empty();
          $("#delivery_before_page").empty();
@@ -462,7 +485,7 @@
    </script>
       
    <script>
-      
+   //운송장번호 확인후 판매자 한태 입금 page처리 ajax.by 계정 
    function delivery_complete(complete_page){
       $("#delivery_complete_list").empty();
       $("#delivery_complete_page_list").empty();
@@ -481,7 +504,7 @@
                var output = '';
                if(index == complete_page - 1){
                   output += '<h3>배송중 경매 상품입니다.</h3>';
-                  
+                  output += '<input type = "hidden" name = "product_id" id = "product_id" value = "'+ item.product_id +'">';
                   output += '<div class="buyer--content">';
                   
                   output += '<ul class="buyer_form list">';
@@ -518,8 +541,7 @@
                   output += '</ul>';
                   
                   output += '</div>';
-                  
-                  output += '<a href = "./delivery.kj?product_number=' + item.product_number + '" class = "base_btn" >입금 하기</a>';
+                  output += '<a href = "./delivery.kj?product_number=' + item.product_number + '&product_id='+item.product_id+'" class = "base_btn" >거래 완료</a>';
                   }
                   $("#delivery_complete_list").append(output);
                   });
@@ -552,6 +574,7 @@
    </script>
    
    <script>
+   //최종 구매 완료후 리뷰작성 page처리 ajax.by계정
       function buyer_complete(complete_page_buyer){
          $("#buyer_complete_list").empty();
          $("#buyer_complete_page_list").empty();
@@ -629,8 +652,9 @@
                      output += '</ul>';
                      
                      output += '</div>';
-                     output += '<input type = "button" id="modal_product_' + (index+1) + '" onclick = "modal_display_email('+(index)+')" value = "리뷰 작성" class="base_btn">';
-                     
+                     if(item.trading_progress==="거래완료"){
+                     	output += '<input type = "button" id="modal_product_' + (index+1) + '" onclick = "modal_display_email('+(index)+')" value = "리뷰 작성" class="base_btn">';
+                     }
                   }
                      $("#buyer_complete_list").append(output);
                   });

@@ -28,6 +28,7 @@
     <!-- !! 메인 페이지 내용(지워서 사용함) !! start -->
     <!-- 등급 페이지 by 하나 -->
     <div class="credit_score_form">
+    	<h2>신용도</h2>
         <ul class="member_credit_score">
             <li class="sale_credit_score">
                 <h3>판매 신용도</h3>
@@ -38,7 +39,9 @@
                         </div>
                         <div class="sale_credit_score-form content">
                             <span><%=saleCreditVO.getSale_normal() %> 건</span>
+                            <!-- 
                             <a href="saleNormalCount.hn">정상 거래</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -47,7 +50,9 @@
                         </div>
                         <div class="sale_credit_score-form content">
                             <span><%=saleCreditVO.getSale_denial() %> 건</span>
+                            <!-- 
                             <a href="saleDenialCount.hn">판매 거부</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -56,7 +61,9 @@
                         </div>
                         <div class="sale_credit_score-form content">
                             <span><%=saleCreditVO.getSale_undelivered() %> 건</span>
+                            <!-- 
                             <a href="saleUndeliveredCount.hn">미배송</a>
+                             -->
                         </div>
                     </li>
 
@@ -66,7 +73,9 @@
                         </div>
                         <div class="sale_credit_score-form content">
                             <span><%=saleCreditVO.getSale_return() %> 건</span>
+                            <!-- 
                             <a href="saleReturnCount.hn">반품</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -96,7 +105,9 @@
                         </div>
                         <div class="purchase_credit_score-form content">
                             <span><%=purchaseCreditVO.getPurchase_normal() %> 건</span>
+                            <!-- 
                             <a href="purchaseNormalCount.hn">정상 거래</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -105,7 +116,9 @@
                         </div>
                         <div class="purchase_credit_score-form content">
                             <span><%=purchaseCreditVO.getPurchase_denial() %> 건</span>
+                            <!-- 
                             <a href="purchaseDenialCount.hn">구매 거부</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -114,7 +127,9 @@
                         </div>
                         <div class="purchase_credit_score-form content">
                             <span><%=purchaseCreditVO.getPurchase_undelivered() %> 건</span>
+                            <!-- 
                             <a href="purchaseUndeliveredCount.hn">미입금</a>
+                             -->
                         </div>
                     </li>
                     <li>
@@ -123,7 +138,9 @@
                         </div>
                         <div class="purchase_credit_score-form content">
                             <span><%=purchaseCreditVO.getPurchase_return() %> 건</span>
+                            <!-- 
                             <a href="purchaseReturnCount.hn">반품</a>
+                             -->
                         </div>
                     </li>
                     <li>

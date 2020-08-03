@@ -39,6 +39,7 @@
 	<select id="getPopularList" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		SELECT
+		product_bids,
 		product_number, 
 		product_subject, 
 		product_img_1,
@@ -49,16 +50,16 @@
 		product_current_price, 
 		product_purchase_price,
 		product_progress 
-		FROM (SELECT row_number()over(order by product_current_price desc)rnum, p.* 
-		        FROM product p WHERE product_end_date >= sysdate and product_progress = 0
-		        ORDER BY product_bids DESC)
+		FROM (SELECT row_number()over(ORDER BY product_bids DESC)rnum, p.* 
+		      FROM product p WHERE sysdate <= product_end_date+1 and product_progress = 0)
 		WHERE rnum>=1 and rnum<=8
 	]]>
 	</select>
 	
 	<select id="getRecentList" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
-			select 
+			SELECT
+			product_bids,
 			product_number, 
 			product_subject, 
 			product_img_1,
@@ -80,6 +81,7 @@
 	<select id="getCloseDeadlineList" resultType="com.spring.alltion.productRegistration.ProductVO">
 	<![CDATA[
 		SELECT
+		product_bids,
 	    product_number, 
 	    product_subject, 
 	    product_img_1,

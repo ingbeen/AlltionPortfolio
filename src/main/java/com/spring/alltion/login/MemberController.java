@@ -19,8 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+
+import com.spring.alltion.creditScore.PurchaseCreditScoreVO;
+import com.spring.alltion.creditScore.SaleCreditScoreVO;
+
 import com.spring.alltion.main.MainController;
 import com.spring.alltion.pay.PayService;
+
 
 
 
@@ -162,28 +167,49 @@ public class MemberController {
 	{
 		return "member/joinForm";
 	}
-	@RequestMapping("/joinprocess.kj") 
-	public String insertMember(MemberVO membervo, HttpServletResponse response) 
-		throws Exception { 
-		//파라미터에는 form 양식의 name에 따라 값이 저장된다.\
-		int res = memberService.insertMember(membervo);
-		
-		
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter writer = response.getWriter();
-		if (res != 0)
-		{
-			writer.write("<script>alert('회원가입 성공!!');"
-					+ "location.href='./loginForm.kj';</script>");
+    @RequestMapping("/joinprocess.kj") 
+    public String insertMember(MemberVO membervo, PurchaseCreditScoreVO PurchaseCreditScorevo, SaleCreditScoreVO SaleCreditScorevo, 
+				HttpServletRequest request,HttpServletResponse response) 
+			throws Exception { 
+			//파라미터에는 form 양식의 name에 따라 값이 저장된다.\
+			int res = memberService.insertMember(membervo);
+			
+			String purchase_id = request.getParameter("member_id");
+			String sale_id = request.getParameter("member_id");
+			int purchase = memberService.insertpurchase(PurchaseCreditScorevo,purchase_id);
+			int sale = memberService.insertsale(SaleCreditScorevo,sale_id);
+			String pay_id = request.getParameter("member_id");
+			String findPay_id = payService.findPayid(pay_id);
+			if (findPay_id == null) {
+				payService.insertPaylist(pay_id);
+			}
+			String currentMoney = payService.findCurrentMoney(pay_id);
+			if (currentMoney == null) {
+				currentMoney = "0";
+				payService.changeMoney(pay_id, currentMoney);
+			}
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter writer = response.getWriter();
+			if (res != 0)
+			{
+				if(purchase != 0)
+				{
+					if(sale != 0)
+					{
+							writer.write("<script>alert('회원가입 성공!!');"
+							+ "location.href='./loginForm.kj';</script>");
+					}
+					else
+					{
+				writer.write("<script>alert('회원가입 실패!!');"
+						+ "location.href='./joinForm.kj';</script>");
+					}
+				}
+			}
+			return null;
 		}
-		else
-		{
-			writer.write("<script>alert('회원가입 실패!!');"
-					+ "location.href='./joinForm.kj';</script>");
-		}
-		return null;
-	}
+
 	@RequestMapping(value="/user_check.kj", produces= "application/json; charset=utf-8")
 	private @ResponseBody int idCheck(String member_id)throws Exception
 	{
@@ -205,22 +231,26 @@ public class MemberController {
 			HttpServletResponse response,@RequestParam(value="product_number")String product_number) throws Exception
 	{
 		
-		int res = memberService.userCheck(membervo);
-		
-		response.setCharacterEncoding("utf-8");
+        int res = memberService.userCheck(membervo);
+			
+        response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
 		if (res == 1)
 		{
-			session.setAttribute("userId",membervo.getMember_id());
-			
-			return "redirect:/boarddetail.hs?product_number="+product_number;
+            session.setAttribute("userId",membervo.getMember_id());
+            String userId = membervo.getMember_id();
+            // currentMoney = 로그인한 사람이 보유한 사이버머니
+            String currentMoney = payService.findCurrentMoney(userId);
+            if (currentMoney == null) {
+                currentMoney = "0";
+            }
+            session.setAttribute("currentMoney", currentMoney);
+            return "redirect:/boarddetail.hs?product_number="+product_number;
 		}
 		else 	
 		{
-				
-			writer.write("<script>alert('해당 아이디와 비밀번호를 확인해 주세요!!');location.href='./loginForm1.kj?product_number="+product_number+"';</script>");
-			
+            writer.write("<script>alert('해당 아이디와 비밀번호를 확인해 주세요!!');location.href='./loginForm1.kj?product_number="+product_number+"';</script>");
 		}
 		return null;
 	}

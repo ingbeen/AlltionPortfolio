@@ -51,89 +51,322 @@
             <div class="list_sidebar">
                 <li class="mainmenu" id="mainmenu1" style="cursor:pointer">패션</li>
                 <ul class="submenu" style="display:none;">
-                    <li>
+                    <li class="cate0101">
                         <a href="./getCategorylist.ms?product_category_2=cate0101">여성의류</a>
                     </li>
-                    <li>
+                    <li class="cate0102">
                         <a href="./getCategorylist.ms?product_category_2=cate0102">남성의류</a>
                     </li>
-                    <li>
+                    <li class="cate0103">
                         <a href="./getCategorylist.ms?product_category_2=cate0103">여성신발</a>
                     </li>
-                    <li>
+                    <li class="cate0104">
                         <a href="./getCategorylist.ms?product_category_2=cate0104">남성신발</a>
                     </li>
-                    <li>
+                    <li class="cate0105">
                         <a href="./getCategorylist.ms?product_category_2=cate0105">악세서리</a>
                     </li>
-                    <li>
+                    <li class="cate0106">
                         <a href="./getCategorylist.ms?product_category_2=cate0106">귀금속</a>
                     </li>
-                    <li>
+                    <li class="cate0107">
                         <a href="./getCategorylist.ms?product_category_2=cate0107">모자</a>
                     </li>
-                    <li>
+                    <li class="cate0108">
                         <a href="./getCategorylist.ms?product_category_2=cate0108">기타잡화/관련용품</a>
                     </li>
-                    <li>
+                    <li class="cate0109">
                         <a href="./getCategorylist.ms?product_category_2=cate0109">수입명품</a>
                     </li>
                 </ul>
-                <li class="mainmenu" style="cursor:pointer">뷰티</li>
+                <li class="mainmenu" id="mainmenu2" style="cursor:pointer">뷰티</li>
                 <ul class="submenu" style="display:none;">
-                    <li>
+                    <li class="cate0201">
                         <a href="./getCategorylist.ms?product_category_2=cate0201">스킨케어</a>
                     </li>
-                    <li>
+                    <li class="cate0202">
                         <a href="./getCategorylist.ms?product_category_2=cate0202">메이크업</a>
                     </li>
-                    <li>
+                    <li class="cate0203">
                         <a href="./getCategorylist.ms?product_category_2=cate0203">헤어/바디</a>
                     </li>
-                    <li>
+                    <li class="cate0204">
                         <a href="./getCategorylist.ms?product_category_2=cate0204">향수</a>
                     </li>
-                    <li>
+                    <li class="cate0205">
                         <a href="./getCategorylist.ms?product_category_2=cate0205">네일케어</a>
                     </li>
-                    <li>
+                    <li class="cate0206">
                         <a href="./getCategorylist.ms?product_category_2=cate0206">남성 화장품</a>
                     </li>
-                    <li>
+                    <li class="cate0207">
                         <a href="./getCategorylist.ms?product_category_2=cate0207">가발/기타용품</a>
                     </li>
                 </ul>
-                <li class="mainmenu" style="cursor:pointer">출산/유아동</li>
+                <li class="mainmenu" id="mainmenu3" style="cursor:pointer">출산/유아동</li>
                 <ul class="submenu" style="display:none;">
-                    <li>
+                    <li class="cate0301">
                         <a href="./getCategorylist.ms?product_category_2=cate0301">출산/육아용품</a>
                     </li>
-                    <li>
+                    <li class="cate0302">
                         <a href="./getCategorylist.ms?product_category_2=cate0302">유아동안전/실내용품</a>
                     </li>
-                    <li>
+                    <li class="cate0303">
                         <a href="./getCategorylist.ms?product_category_2=cate0303">유아동의류</a>
                     </li>
-                    <li>
+                    <li class="cate0304">
                         <a href="./getCategorylist.ms?product_category_2=cate0304">유아동잡화</a>
                     </li>
-                    <li>
+                    <li class="cate0305">
                         <a href="./getCategorylist.ms?product_category_2=cate0305">유아동가구</a>
                     </li>
-                    <li>
+                    <li class="cate0306">
                         <a href="./getCategorylist.ms?product_category_2=cate0306">기타 유아동용품</a>
                     </li>
                 </ul>
-                <li class="mainmenu" style="cursor:pointer">전자기기</li>
-                <li class="mainmenu" style="cursor:pointer">가전제품</li>
-                <li class="mainmenu" style="cursor:pointer">가구/인테리어</li>
-                <li class="mainmenu" style="cursor:pointer">반려동물/취미</li>
-                <li class="mainmenu" style="cursor:pointer">도서/음반/문구</li>
-                <li class="mainmenu" style="cursor:pointer">티켓/쿠폰</li>
-                <li class="mainmenu" style="cursor:pointer">스포츠</li>
-                <li class="mainmenu" style="cursor:pointer">공구/산업용품</li>
-                <li class="mainmenu" style="cursor:pointer">기타잡화</li>
-                <!--</div>-->
+                <li class="mainmenu" id="mainmenu4" style="cursor:pointer">전자기기</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0401">
+                        <a href="./getCategorylist.ms?product_category_2=cate0401">모바일</a>
+                    </li>
+                    <li class="cate0402">
+                        <a href="./getCategorylist.ms?product_category_2=cate0402">태블릿 PC</a>
+                    </li>
+                    <li class="cate0403">
+                        <a href="./getCategorylist.ms?product_category_2=cate0403">노트북</a>
+                    </li>
+                    <li class="cate0404">
+                        <a href="./getCategorylist.ms?product_category_2=cate0404">데스크탑</a>
+                    </li>
+                    <li class="cate0405">
+                        <a href="./getCategorylist.ms?product_category_2=cate0405">카메라</a>
+                    </li>
+                    <li class="cate0406">
+                        <a href="./getCategorylist.ms?product_category_2=cate0406">캠코더</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu5" style="cursor:pointer">가전제품</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0501">
+                        <a href="./getCategorylist.ms?product_category_2=cate0501">냉장고</a>
+                    </li>
+                    <li class="cate0502">
+                        <a href="./getCategorylist.ms?product_category_2=cate0502">TV</a>
+                    </li>
+                    <li class="cate0503">
+                        <a href="./getCategorylist.ms?product_category_2=cate0503">세탁기/건조기</a>
+                    </li>
+                    <li class="cate0504">
+                        <a href="./getCategorylist.ms?product_category_2=cate0504">주방가전</a>
+                    </li>
+                    <li class="cate0505">
+                        <a href="./getCategorylist.ms?product_category_2=cate0505">스마트홈</a>
+                    </li>
+                    <li class="cate0506">
+                        <a href="./getCategorylist.ms?product_category_2=cate0506">영상가전</a>
+                    </li>
+                    <li class="cate0507">
+                        <a href="./getCategorylist.ms?product_category_2=cate0507">계절가전</a>
+                    </li>
+                    <li class="cate0508">
+                        <a href="./getCategorylist.ms?product_category_2=cate0508">생활가전</a>
+                    </li>
+                    <li class="cate0509">
+                        <a href="./getCategorylist.ms?product_category_2=cate0509">기타 가전제품</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu6" style="cursor:pointer">가구/인테리어</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0601">
+                        <a href="./getCategorylist.ms?product_category_2=cate0601">침실가구</a>
+                    </li>
+                    <li class="cate0602">
+                        <a href="./getCategorylist.ms?product_category_2=cate0602">거실가구</a>
+                    </li>
+                    <li class="cate0603">
+                        <a href="./getCategorylist.ms?product_category_2=cate0603">주방가구</a>
+                    </li>
+                    <li class="cate0604">
+                        <a href="./getCategorylist.ms?product_category_2=cate0604">수납/선반/공간 박스</a>
+                    </li>
+                    <li class="cate0605">
+                        <a href="./getCategorylist.ms?product_category_2=cate0605">사무용가구</a>
+                    </li>
+                    <li class="cate0606">
+                        <a href="./getCategorylist.ms?product_category_2=cate0606">기타가구</a>
+                    </li>
+                    <li class="cate0607">
+                        <a href="./getCategorylist.ms?product_category_2=cate0607">침구</a>
+                    </li>
+                    <li class="cate0608">
+                        <a href="./getCategorylist.ms?product_category_2=cate0608">커튼/카페트</a>
+                    </li>
+                    <li class="cate0609">
+                        <a href="./getCategorylist.ms?product_category_2=cate0609">인테리어소품</a>
+                    </li>
+                    <li class="cate0610">
+                        <a href="./getCategorylist.ms?product_category_2=cate0610">이벤트/파티용품</a>
+                    </li>
+                    <li class="cate0611">
+                        <a href="./getCategorylist.ms?product_category_2=cate0611">리빙생활</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu7" style="cursor:pointer">반려동물/취미</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0701">
+                        <a href="./getCategorylist.ms?product_category_2=cate0701">반려동물</a>
+                    </li>
+                    <li class="cate0702">
+                        <a href="./getCategorylist.ms?product_category_2=cate0702">키덜트</a>
+                    </li>
+                    <li class="cate0703">
+                        <a href="./getCategorylist.ms?product_category_2=cate0703">핸드메이드/DIY</a>
+                    </li>
+                    <li class="cate0704">
+                        <a href="./getCategorylist.ms?product_category_2=cate0704">악기</a>
+                    </li>
+                    <li class="cate0705">
+                        <a href="./getCategorylist.ms?product_category_2=cate0705">예술작품/골동품 수집</a>
+                    </li>
+                    <li class="cate0706">
+                        <a href="./getCategorylist.ms?product_category_2=cate0706">미술재료/미술도구</a>
+                    </li>
+                    <li class="cate0707">
+                        <a href="./getCategorylist.ms?product_category_2=cate0707">게임</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu8" style="cursor:pointer">도서/음반/문구</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0801">
+                        <a href="./getCategorylist.ms?product_category_2=cate0801">유아동도서/음반</a>
+                    </li>
+                    <li class="cate0802">
+                        <a href="./getCategorylist.ms?product_category_2=cate0802">학습/교육</a>
+                    </li>
+                    <li class="cate0803">
+                        <a href="./getCategorylist.ms?product_category_2=cate0803">소설/만화책</a>
+                    </li>
+                    <li class="cate0804">
+                        <a href="./getCategorylist.ms?product_category_2=cate0804">여행/취미/레저</a>
+                    </li>
+                    <li class="cate0805">
+                        <a href="./getCategorylist.ms?product_category_2=cate0805">문화/과학/경영</a>
+                    </li>
+                    <li class="cate0806">
+                        <a href="./getCategorylist.ms?product_category_2=cate0806">예술/디자인</a>
+                    </li>
+                    <li class="cate0807">
+                        <a href="./getCategorylist.ms?product_category_2=cate0807">잡지</a>
+                    </li>
+                    <li class="cate0808">
+                        <a href="./getCategorylist.ms?product_category_2=cate0808">기타 도서</a>
+                    </li>
+                    <li class="cate0809">
+                        <a href="./getCategorylist.ms?product_category_2=cate0809">음반/DVD/굿즈</a>
+                    </li>
+                    <li class="cate0810">
+                        <a href="./getCategorylist.ms?product_category_2=cate0810">문구/사무용품</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu9" style="cursor:pointer">티켓/쿠폰</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate0901">
+                        <a href="./getCategorylist.ms?product_category_2=cate0901">티켓</a>
+                    </li>
+                    <li class="cate0902">
+                        <a href="./getCategorylist.ms?product_category_2=cate0902">상품권/쿠폰</a>
+                    </li>
+                    <li class="cate0903">
+                        <a href="./getCategorylist.ms?product_category_2=cate0903">여행숙박/이용권</a>
+                    </li>
+                    <li class="cate0904">
+                        <a href="./getCategorylist.ms?product_category_2=cate0904">기타 티켓/쿠폰/이용권</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu10" style="cursor:pointer">스포츠</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate1001">
+                        <a href="./getCategorylist.ms?product_category_2=cate1001">골프</a>
+                    </li>
+                    <li class="cate1002">
+                        <a href="./getCategorylist.ms?product_category_2=cate1002">자전거</a>
+                    </li>
+                    <li class="cate1003">
+                        <a href="./getCategorylist.ms?product_category_2=cate1003">인라인/스케이트/전동</a>
+                    </li>
+                    <li class="cate1004">
+                        <a href="./getCategorylist.ms?product_category_2=cate1004">축구</a>
+                    </li>
+                    <li class="cate1005">
+                        <a href="./getCategorylist.ms?product_category_2=cate1005">야구</a>
+                    </li>
+                    <li class="cate1006">
+                        <a href="./getCategorylist.ms?product_category_2=cate1006">농구</a>
+                    </li>
+                    <li class="cate1007">
+                        <a href="./getCategorylist.ms?product_category_2=cate1007">라켓스포츠</a>
+                    </li>
+                    <li class="cate1008">
+                        <a href="./getCategorylist.ms?product_category_2=cate1008">헬스/요가</a>
+                    </li>
+                    <li class="cate1009">
+                        <a href="./getCategorylist.ms?product_category_2=cate1009">수상스포츠</a>
+                    </li>
+                    <li class="cate1010">
+                        <a href="./getCategorylist.ms?product_category_2=cate1010">검도/격투/권투</a>
+                    </li>
+                    <li class="cate1011">
+                        <a href="./getCategorylist.ms?product_category_2=cate1011">기타 스포츠</a>
+                    </li>
+                    <li class="cate1012">
+                        <a href="./getCategorylist.ms?product_category_2=cate1012">레저/여행</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu11" style="cursor:pointer">공구/산업용품</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate1101">
+                        <a href="./getCategorylist.ms?product_category_2=cate1101">드릴/전동공구</a>
+                    </li>
+                    <li class="cate1102">
+                        <a href="./getCategorylist.ms?product_category_2=cate1102">에어/유압</a>
+                    </li>
+                    <li class="cate1103">
+                        <a href="./getCategorylist.ms?product_category_2=cate1103">작업공구</a>
+                    </li>
+                    <li class="cate1104">
+                        <a href="./getCategorylist.ms?product_category_2=cate1104">측정공구</a>
+                    </li>
+                    <li class="cate1105">
+                        <a href="./getCategorylist.ms?product_category_2=cate1105">초경/절삭/접착윤활</a>
+                    </li>
+                    <li class="cate1106">
+                        <a href="./getCategorylist.ms?product_category_2=cate1106">전기/전자</a>
+                    </li>
+                    <li class="cate1107">
+                        <a href="./getCategorylist.ms?product_category_2=cate1107">배관설비/포장운송</a>
+                    </li>
+                    <li class="cate1108">
+                        <a href="./getCategorylist.ms?product_category_2=cate1108">금형공작</a>
+                    </li>
+                    <li class="cate1109">
+                        <a href="./getCategorylist.ms?product_category_2=cate1109">용접기자재</a>
+                    </li>
+                    <li class="cate1110">
+                        <a href="./getCategorylist.ms?product_category_2=cate1110">산업/안전/공구함</a>
+                    </li>
+                    <li class="cate1111">
+                        <a href="./getCategorylist.ms?product_category_2=cate1111">산업자재</a>
+                    </li>
+                    <li class="cate1112">
+                        <a href="./getCategorylist.ms?product_category_2=cate1112">농기계/농업용공구</a>
+                    </li>
+                </ul>
+                <li class="mainmenu" id="mainmenu12" style="cursor:pointer">기타잡화</li>
+                <ul class="submenu" style="display:none;">
+                    <li class="cate1201">
+                        <a href="./getCategorylist.ms?product_category_2=cate1201">기타잡화</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- 상품 목록 영역 -->
@@ -156,15 +389,18 @@
                                     <p class="product_name"><%=vo.getProduct_subject() %></p>
                                     <span class="material-icons timer">timer</span>
                                     <span class="countdown" data-endTime="<%=vo.getProduct_end_date() %>" data-complete="<%=vo.getProduct_progress() %>"><%=vo.getProduct_issue_date() %> 00:00</span>
-                                    <div class="bookmark">
-                                        <span class="material-icons bookmark_border">bookmark_border</span>
-                                    </div>
-                                    <div class="price-txt">
-                                        <p class="price_text">현재가</p>
-                                        <p class="current_price"><%=vo.getProduct_current_price() %> 원</p>
-                                        <p class="price_text">즉시 구매가</p>
-                                        <p class="direct_price"><%=vo.getProduct_purchase_price() %> 원</p>
-                                    </div>
+                                    <span class="view_count_text">입찰</span>
+	                                <span class="view_count"><%=vo.getProduct_bids() %> 건</span>
+	                                <div class="price-txt">
+	                                    <span class="price_text">현재가</span>
+	                                    <span class="current_price"><%=vo.getProduct_current_price() %> 원</span><br>
+	                                    <span class="price_text">즉구가</span>
+	                                    <%if (vo.getProduct_purchase_price() == 0) {%>
+                                            <span class="direct_price">없음</span><br>
+                                        <%}else { %>    
+                                            <span class="direct_price"><%=vo.getProduct_purchase_price() %> 원</span><br>
+                                        <%} %>
+	                                </div>
                                 </div>
                             </a>
                         </li>
@@ -189,14 +425,17 @@
                                 <p class="product_name"><%=vo.getProduct_subject() %></p>
                                 <span class="material-icons timer">timer</span>
                                 <span class="countdown" data-endTime="<%=vo.getProduct_end_date() %>" data-complete="<%=vo.getProduct_progress() %>"><%=vo.getProduct_issue_date() %> 00:00</span>
-                                <div class="bookmark">
-                                    <span class="material-icons bookmark_border">bookmark_border</span>
-                                </div>
+                                <span class="view_count_text">입찰</span>
+                                <span class="view_count"><%=vo.getProduct_bids() %> 건</span>
                                 <div class="price-txt">
-                                    <p class="price_text">현재가</p>
-                                    <p class="current_price"><%=vo.getProduct_current_price() %> 원</p>
-                                    <p class="price_text">즉시 구매가</p>
-                                    <p class="direct_price"><%=vo.getProduct_purchase_price() %> 원</p>
+                                    <span class="price_text">현재가</span>
+	                                <span class="current_price"><%=vo.getProduct_current_price() %> 원</span><br>
+	                                <span class="price_text">즉구가</span>
+	                                <%if (vo.getProduct_purchase_price() == 0) {%>
+                                        <span class="direct_price">없음</span><br>
+                                    <%}else { %>    
+                                        <span class="direct_price"><%=vo.getProduct_purchase_price() %> 원</span><br>
+                                    <%} %>
                                 </div>
                             </div>
                         </a>
@@ -221,14 +460,17 @@
                                 <p class="product_name"><%=vo.getProduct_subject() %></p>
                                 <span class="material-icons timer">timer</span>
                                 <span class="countdown" data-endTime="<%=vo.getProduct_end_date() %>" data-complete="<%=vo.getProduct_progress() %>"><%=vo.getProduct_issue_date() %> 00:00</span>
-                                <div class="bookmark">
-                                    <span class="material-icons bookmark_border">bookmark_border</span>
-                                </div>
+                                <span class="view_count_text">입찰</span>
+                                <span class="view_count"><%=vo.getProduct_bids() %> 건</span>
                                 <div class="price-txt">
-                                    <p class="price_text">현재가</p>
-                                    <p class="current_price"><%=vo.getProduct_current_price() %> 원</p>
-                                    <p class="price_text">즉시 구매가</p>
-                                    <p class="direct_price"><%=vo.getProduct_purchase_price() %> 원</p>
+                                    <span class="price_text">현재가</span>
+	                                <span class="current_price"><%=vo.getProduct_current_price() %> 원</span><br>
+	                                <span class="price_text">즉구가</span>
+	                                <%if (vo.getProduct_purchase_price() == 0) {%>
+                                        <span class="direct_price">없음</span><br>
+                                    <%}else { %>    
+                                        <span class="direct_price"><%=vo.getProduct_purchase_price() %> 원</span><br>
+                                    <%} %>
                                 </div>
                             </div>
                         </a>
@@ -283,14 +525,17 @@
                                 <p class="product_name"><%=vo.getProduct_subject() %></p>
                                 <span class="material-icons timer">timer</span>
                                 <span class="countdown" data-endTime="<%=vo.getProduct_end_date() %>" data-complete="<%=vo.getProduct_progress() %>"><%=vo.getProduct_issue_date() %> 00:00</span>
-                                <div class="bookmark">
-                                    <span class="material-icons bookmark_border">bookmark_border</span>
-                                </div>
+                                <span class="view_count_text">입찰</span>
+                                <span class="view_count"><%=vo.getProduct_bids() %> 건</span>
                                 <div class="price-txt">
-                                    <p class="price_text">현재가</p>
-                                    <p class="current_price"><%=vo.getProduct_current_price() %> 원</p>
-                                    <p class="price_text">즉시 구매가</p>
-                                    <p class="direct_price"><%=vo.getProduct_purchase_price() %> 원</p>
+                                	<span class="price_text">현재가</span>
+	                                <span class="current_price"><%=vo.getProduct_current_price() %> 원</span><br>
+	                                <span class="price_text">즉구가</span>
+	                                <%if (vo.getProduct_purchase_price() == 0) {%>
+                                        <span class="direct_price">없음</span><br>
+                                    <%}else { %>    
+                                        <span class="direct_price"><%=vo.getProduct_purchase_price() %> 원</span><br>
+                                    <%} %>
                                 </div>
                             </div>
                         </a>
