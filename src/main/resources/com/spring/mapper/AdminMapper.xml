@@ -237,10 +237,10 @@
 	 	WHERE 
 	 	<choose>
 	 		<when test="adminProductStatus == 0">
-	 			PRODUCT_PROGRESS = #{adminMemberStatus}
+	 			PRODUCT_PROGRESS = #{adminProductStatus}
 	 		</when>
 	 		<when test="adminProductStatus == 1">
-	 			PRODUCT_PROGRESS = #{adminMemberStatus}
+	 			PRODUCT_PROGRESS = #{adminProductStatus}
 	 		</when>
 	 		<when test="adminProductStatus == 2">
 	 			PRODUCT_PROGRESS LIKE '%'
