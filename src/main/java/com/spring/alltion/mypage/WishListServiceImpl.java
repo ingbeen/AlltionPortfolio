@@ -20,8 +20,8 @@ public class WishListServiceImpl implements WishListService {
 	// wishList페이지에 필요한 정보를 HashMap에 할당하여 리턴한다
 	@Override
 	public HashMap<String, Object> getContentData(String userId, int page) {
-		WishListMapper wishListMapper; // 마이바티스 찜목록맵퍼
-		ProductMapper productMapper; // 마이바티스 상품맵퍼
+		WishListMapper wishListMapper;
+		ProductMapper productMapper;
 		
 		int listcount; // 찜몰록 갯수
 		Pagination pagination; // 페이징처리 객체
@@ -75,7 +75,7 @@ public class WishListServiceImpl implements WishListService {
 	// 찜목록 삭제
 	@Override
 	public void deleteWishList(List<String> deleteWishList, String userId) {
-		WishListMapper wishListMapper; // 마이바티스 찜목록맵퍼
+		WishListMapper wishListMapper;
 		HashMap<String, Object> paramList; // sql문에 들어갈 파라미터List 객체
 		
 		try {

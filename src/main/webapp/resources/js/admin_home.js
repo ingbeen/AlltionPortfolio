@@ -1,5 +1,3 @@
-/* admin_home by.유빈 */
-
 $(() => {
 	LoadingWithMask(); // 로딩화면 실행
 	
@@ -7,7 +5,7 @@ $(() => {
         url : "getAdminHomeData.yb",
         dataType :"json",
         success : (adminHomeData) => {
-        	setMainConut(adminHomeData);
+        	printMainConut(adminHomeData);
         	dailyAuction(adminHomeData.dailyAuctionList);
         	cateCountChart(adminHomeData.cateCountList);
         	dailySubscribersChart(adminHomeData.dailySubscribersList);
@@ -19,7 +17,8 @@ $(() => {
     });
 })
 
-function setMainConut(adminHomeData) {
+// 메인화면 상위 5개 카드 데이터 출력 - 회원수, 경매건수, 거래건수, 입차건수, 경제금액
+function printMainConut(adminHomeData) {
 	let countDataArr = [];
 	
 	countDataArr.push(adminHomeData.memberCount);
@@ -39,6 +38,7 @@ function setMainConut(adminHomeData) {
 	$('.paySum').html(countDataArr[4]);
 }
 
+// 3자리 단위마다 콤마 생성
 function addCommas(value) {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g,  ",");
 }
@@ -51,14 +51,14 @@ function dailyAuction(dailyAuctionList) {
 	        x : 'x',
 	        columns: [
 	            ['x', 'D-7', 'D-6', 'D-5', 'D-4', 'D-3', 'D-2', 'D-1'],
-	            ['dailyAuction', 
-            	dailyAuctionList[0], 
-            	dailyAuctionList[1], 
-            	dailyAuctionList[2],
-            	dailyAuctionList[3],
-            	dailyAuctionList[4], 
-            	dailyAuctionList[5], 
-            	dailyAuctionList[6]
+	            ['dailyAuction'
+            	, dailyAuctionList[0]
+            	, dailyAuctionList[1]
+            	, dailyAuctionList[2]
+            	, dailyAuctionList[3]
+            	, dailyAuctionList[4]
+            	, dailyAuctionList[5]
+            	, dailyAuctionList[6]
 	            ]
 	        ],
 	        types: {
@@ -74,7 +74,7 @@ function dailyAuction(dailyAuctionList) {
 	    },
 	    axis: {
 	        x: {
-	            type: 'category' // this needed to load string x value
+	            type: 'category'
 	        }
 	    },
 	    padding: {
@@ -96,46 +96,46 @@ function cateCountChart(cateCountList) {
 	    bindto: '.cateCount--chart',
 	    data: {
 	        columns: [
-	            ['cate01', cateCountList[0]],
-	            ['cate02', cateCountList[1]],
-	            ['cate03', cateCountList[2]],
-	            ['cate04', cateCountList[3]],
-	            ['cate05', cateCountList[4]],
-	            ['cate06', cateCountList[5]],
-	            ['cate07', cateCountList[6]],
-	            ['cate08', cateCountList[7]],
-	            ['cate09', cateCountList[8]],
-	            ['cate10', cateCountList[9]],
-	            ['cate11', cateCountList[10]],
-	            ['cate12', cateCountList[11]]
+	            ['cate01', cateCountList[0]]
+	            , ['cate02', cateCountList[1]]
+	            , ['cate03', cateCountList[2]]
+	            , ['cate04', cateCountList[3]]
+	            , ['cate05', cateCountList[4]]
+	            , ['cate06', cateCountList[5]]
+	            , ['cate07', cateCountList[6]]
+	            , ['cate08', cateCountList[7]]
+	            , ['cate09', cateCountList[8]]
+	            , ['cate10', cateCountList[9]]
+	            , ['cate11', cateCountList[10]]
+	            , ['cate12', cateCountList[11]]
 	        ],
 	        names: {
-	            cate01: '패션',
-	            cate02: '뷰티',
-	            cate03: '출산/유아동',
-	            cate04: '전자기기',
-	            cate05: '가전제품',
-	            cate06: '가구/인테리어',
-	            cate07: '반려동물/취미',
-	            cate08: '도서/음반/문구',
-	            cate09: '티켓/쿠폰',
-	            cate10: '스포츠',
-	            cate11: '공구/산업용품',
-	            cate12: '기타잡화'
+	        	cate01: '패션'
+	            , cate02: '뷰티'
+	            , cate03: '출산/유아동'
+	            , cate04: '전자기기'
+	            , cate05: '가전제품'
+	            , cate06: '가구/인테리어'
+	            , cate07: '반려동물/취미'
+	            , cate08: '도서/음반/문구'
+	            , cate09: '티켓/쿠폰'
+	            , cate10: '스포츠'
+	            , cate11: '공구/산업용품'
+	            , cate12: '기타잡화'
 	        },
 	        colors: {
-	            cate01: '#1f77b4',
-	            cate02: '#ff7f0e',
-	            cate03: '#2ca02c',
-	            cate04: '#d62728',
-	            cate05: '#9467bd',
-	            cate06: '#8c564b',
-	            cate07: '#e377c2',
-	            cate08: '#7f7f7f',
-	            cate09: '#bcbd22',
-	            cate10: '#17becf',
-	            cate11: '#1fb492',
-	            cate12: '#d22c9f'
+	            cate01: '#1f77b4'
+	            , cate02: '#ff7f0e'
+	            , cate03: '#2ca02c'
+	            , cate04: '#d62728'
+	            , cate05: '#9467bd'
+	            , cate06: '#8c564b'
+	            , cate07: '#e377c2'
+	            , cate08: '#7f7f7f'
+	            , cate09: '#bcbd22'
+	            , cate10: '#17becf'
+	            , cate11: '#1fb492'
+	            , cate12: '#d22c9f'
 	        },
 	        type : 'pie'
 	    },
@@ -157,14 +157,14 @@ function dailySubscribersChart(dailySubscribersList) {
 	        x : 'x',
 	        columns: [
 	            ['x', 'D-7', 'D-6', 'D-5', 'D-4', 'D-3', 'D-2', 'D-1'],
-	            ['dailySubscribers', 
-            	dailySubscribersList[0], 
-            	dailySubscribersList[1], 
-            	dailySubscribersList[2], 
-            	dailySubscribersList[3], 
-            	dailySubscribersList[4], 
-            	dailySubscribersList[5],
-            	dailySubscribersList[6]
+	            ['dailySubscribers'
+            	, dailySubscribersList[0]
+            	, dailySubscribersList[1]
+            	, dailySubscribersList[2]
+            	, dailySubscribersList[3]
+            	, dailySubscribersList[4]
+            	, dailySubscribersList[5]
+            	, dailySubscribersList[6]
             	]
 	        ],
 	        names: {
@@ -229,5 +229,3 @@ function LoadingWithMask() {
 function closeLoadingWithMask() {
     $('#mask, #loadingImg').remove(); 
 }
-
-/* admin_home 끝 by.유빈 */

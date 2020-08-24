@@ -66,7 +66,7 @@ public interface AdminMapper {
 	List<AdminProductJoinTradingVO> getTradingList(AdminTradingVO adminTradingVO);
 	
 	// 거래기한 연장
-	void adminDeadlineExtension(HashMap<String, Object> hm);
+	void adminExtendDeadlineOfTrading(HashMap<String, Object> hm);
 	
 	// 거래기한 연장 후 새로운 거래기한 가져오기
 	TradingVO getTradingDeadline(TradingVO tradingVO);

@@ -58,8 +58,8 @@ public class AdminRestController {
 	
 	// 관리자페이지 거래기한 연장
 	@RequestMapping(value = "adminDeadlineExtension.yb", produces="application/json;charset=UTF-8")
-	public TradingVO adminDeadlineExtension(TradingVO tradingVO, int target) {
-		TradingVO newTradingVO = adminServiceImpl.adminDeadlineExtension(tradingVO, target);
+	public TradingVO adminExtendDeadlineOfTrading(TradingVO tradingVO, int target) {
+		TradingVO newTradingVO = adminServiceImpl.adminExtendDeadlineOfTrading(tradingVO, target);
 		return newTradingVO;
 	}
 	

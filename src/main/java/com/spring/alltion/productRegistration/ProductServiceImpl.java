@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService {
 	// 상품객체 추가
 	@Override
 	public void ProductInsert(ProductVO productVO) {
-		ProductMapper productMapper; // 마이바티스 상품맵퍼
-		CreditScoreMapper creditScoreMapper; // 마이바티스 신용도맵퍼
+		ProductMapper productMapper;
+		CreditScoreMapper creditScoreMapper;
 		
 		String saleId; // 판매자아이디
 		int saleCreditScore; // 판매자 신용도
@@ -89,10 +89,12 @@ public class ProductServiceImpl implements ProductService {
 			response.setContentType("text/html; charset=UTF-8");
 			out = response.getWriter();
 			
-			// 업로드할 폴더 경로
-			// Servers 폴더의 server.xml <host>태그 안에 아래 문구 삽입(하단쪽)
-			// <Context docBase="C:\AlltionUpload"  path="alltion/AlltionUpload" reloadable="true"/>
-			// 실제 폴더도 직접 생성해주자
+			/*
+			 * 업로드할 폴더 경로
+			 * Servers 폴더의 server.xml <host>태그 안에 아래 문구 삽입(하단쪽)
+			 * <Context docBase="C:\AlltionUpload"  path="alltion/AlltionUpload" reloadable="true"/>
+			 * 실제 폴더도 직접 생성해주자
+			 */
 			realFolder = "C:\\AlltionUpload";
 			uuid = UUID.randomUUID();
 
@@ -103,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
 			
 			// 파일용량 유효성 검사, 3MB가 넘으면 리턴
 			size = file.getSize();
-			if (size > 3145728) {
+			if (size > 10485760) {
 				out.println(1);
 				out.close();
 				return;
@@ -233,13 +235,15 @@ public class ProductServiceImpl implements ProductService {
         ratio = (double)width/(double)imageWidth;
         newWidth = (int)(imageWidth * ratio);
         newHeight = (int)(imageHeight * ratio);
- 
-        // 이미지 리사이즈
-        // Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
-        // Image.SCALE_FAST    : 이미지 부드러움보다 속도 우선
-        // Image.SCALE_REPLICATE : ReplicateScaleFilter 클래스로 구체화 된 이미지 크기 조절 알고리즘
-        // Image.SCALE_SMOOTH  : 속도보다 이미지 부드러움을 우선
-        // Image.SCALE_AREA_AVERAGING  : 평균 알고리즘 사용
+        
+        /*
+         * 이미지 리사이즈
+         * Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
+         * Image.SCALE_FAST    : 이미지 부드러움보다 속도 우선
+         * Image.SCALE_REPLICATE : ReplicateScaleFilter 클래스로 구체화 된 이미지 크기 조절 알고리즘
+         * Image.SCALE_SMOOTH  : 속도보다 이미지 부드러움을 우선
+         * Image.SCALE_AREA_AVERAGING  : 평균 알고리즘 사용
+         */
         Image resizeImage = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
  
         // 새 이미지  저장하기

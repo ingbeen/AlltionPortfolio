@@ -1,6 +1,8 @@
-/* 상품등록 시작 by.유빈 */
+let isClickable = false; // 중복클릭 방지
+let uploadFiles = []; // 업로드 할 이미지가 할당 될 배열
+let thumbnailCount = 0; // 썸네일 갯수
 
-/* 카테고리 선택 시작 */
+// 카테고리 변경시 호출
 function changeCategory(item) {
     let name = item.name; // 카테고리1, 카테고리2
     let value = item.value; // 선택한 카테고리
@@ -82,11 +84,14 @@ function changeCategory(item) {
     else if (name == 'product_category_2') {
         // 2차 카테고리에서 선택한 값을 할당
         let category02Check = $('.category--select__02 option:selected').text();
-
-        if (category02Check == '- 선택해주세요 -') { // 1차경로만 표시
+        
+        // 1차경로만 표시
+        if (category02Check == '- 선택해주세요 -') { 
             routeOutput = $('.category--select__01 option:selected').text();
             $('.category--route__text').children('p').html(routeOutput);
-        } else { // 1차경로 + 2차경로 표시
+        }
+    	// 1차경로 + 2차경로 표시
+        else { 
             routeOutput = $('.category--select__01 option:selected').text();
             routeOutput += ' &gt; ';
             routeOutput += $('.category--select__02 option:selected').text();
@@ -102,7 +107,7 @@ function changeCategory_2(value) {
 
     $('.category--select__01').next().remove(); // 기존에 있던 2차카테고리 삭제
     
-    /* 2차 카테고리 태그 작성 시작 */
+    // 2차 카테고리 태그 작성 시작
     selectOutput = `<select class="category--select__02" 
     	name="product_category_2" size="7" onchange="changeCategory(this)">
             <option value="">- 선택해주세요 -</option>`;
@@ -113,19 +118,21 @@ function changeCategory_2(value) {
         	if(idx == 0) {
         		return true;
         	}
-        	if (idx < 10) { // 2차 카테고리 넘버가 한자리 수이면 앞에 0 붙이기. 예) 0 + 1 = 01
+        	
+        	// 2차 카테고리 넘버가 한자리 수이면 앞에 0 붙이기. 예) 0 + 1 = 01
+        	if (idx < 10) {
                 categoryNumber = 0 + String(idx);
             }
+        	
             // 함수의 0번쨰 파라미터를 제외한 나머지 갯수만큼 option태그 생성
             selectOutput += `<option value="${value}${categoryNumber}">
             	${argument}</option>`;
         });
+    
     selectOutput += `</select>`;
-    /* 2차 카테고리 태그 작성 끝 */
 
     $('.category--select__01').after(selectOutput);
 }
-/* 카테고리 선택 끝 by.유빈 */
 
 // 직거래, 가능지역 input태그 Open, Close 하기
 function changeInput(item) {
@@ -161,7 +168,7 @@ function changeInput(item) {
     
 }
 
-/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 시작  */
+// 시작가, 즉시구매가 입력시 천단위쉼표, 숫자
 $(".product--form [name$='price']")
 	.on("focus", function () {
 		let value = $(this).val(); // 입력값
@@ -182,12 +189,12 @@ $(".product--form [name$='price']")
     $(this).val($(this).val().replace(/[^0-9]/g, "")); // 숫자가 아닌것은 제거
 });
 
-//3자리 단위마다 콤마 생성
+// 3자리 단위마다 콤마 생성
 function addCommas(value) {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
  
-//모든 콤마 제거
+// 모든 콤마 제거
 function removeCommas(value) {
     if(!value || value.length == 0) {
     	return "";
@@ -195,7 +202,6 @@ function removeCommas(value) {
     	return value.split(",").join("");
     }
 }
-/* 시작가, 즉시구매가 천단위쉼표, 숫자만입력 끝 */
 
 // 경매기간에 따른 마감시간 계산 후 input태그에 삽입
 function changeEndDate(value) {
@@ -206,7 +212,6 @@ function changeEndDate(value) {
 
     let year = now.getFullYear(); // 년
 
-    // if문
     // 10이하는 한자리수 이므로 "0"을 붙여 2자리수로 만든다
     let month = now.getMonth() + 1; // 월
 
@@ -237,7 +242,7 @@ function changeEndDate(value) {
 
 }
 
-// 에디터 이미지 업로드 및 이미지 출력
+// 에디터 - 이미지 업로드 및 이미지 출력
 function editorImgUpload(file, editor) {
     let form_data = new FormData();
     form_data.append('file', file);
@@ -246,21 +251,20 @@ function editorImgUpload(file, editor) {
         type: "POST",
         url: 'editorImgUpload.yb',
     	/*
-    	- cache : false 로 선언 시 ajax 로 통신 중 cache 가 남아서 갱신된 데이터를 받아오지 못할 경우를 방지함
-    	- contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
-		- processData : false로 선언 시 formData를 string으로 변환하지 않음
-    	*/
+    	 * cache : false 로 선언 시 ajax 로 통신 중 cache 가 남아서 갱신된 데이터를 받아오지 못할 경우를 방지함
+    	 * contentType : false 로 선언 시 content-type 헤더가 multipart/form-data로 전송되게 함
+    	 * processData : false로 선언 시 formData를 string으로 변환하지 않음
+    	 */
         cache: false,
         contentType: false,
         processData: false,
         enctype: 'multipart/form-data',
         success: (img_name) => {
         	/*
-        	0 = jpg 형식이 아님.
-        	1 = 3MB 초과
-        	그외는 에디터에 이미지 추가
-        	*/
-        	
+        	 * 0 = jpg 형식이 아님.
+        	 * 1 = 3MB 초과
+        	 * 그외 에디터에 이미지 추가
+        	 */
             if (0 == img_name) {
                 alert("이미지는 jpg 형식만 가능합니다");
             } else if (1 == img_name) {
@@ -273,19 +277,15 @@ function editorImgUpload(file, editor) {
     });
 }
 
-/* 상품정보 - 이미지 등록 시작 */
-
-let uploadFiles = []; // 업로드 할 이미지가 할당 될 배열
-let thumbnailCount = 0;
-
+// 이미지(썽네일) 등록 시 호출
 $(document)
     .on("dragover", '#drop', dragOver) // 드래그 요소가 들어왔을때
     .on("dragleave", '#drop', dragOver) // 드래그 요소가 나갔을때
     .on('drop', '#drop', uploadFile); // 드래그 요소를 떨어트렸을때
-
 $(document)
     .on("change", '#fileUpload', uploadFile) // input으로 파일첨부가 되었을때
 
+// 드래그 시 css변경
 function dragOver(e) {
     e.stopPropagation();
     e.preventDefault();
@@ -300,6 +300,7 @@ function dragOver(e) {
     }
 }
 
+// 이미지(썸네일)등록 시 호출 
 function uploadFile(e) { // 파일첨부 실행
     let files; // 파일리스트를 담을 객체
     let file; // 파일을 담을 객체
@@ -308,7 +309,7 @@ function uploadFile(e) { // 파일첨부 실행
     e.stopPropagation(); // 이벤트 상위요소로 전파X
     e.preventDefault(); // 기본 이벤트 제거
 
-    /* input으로 파일첨부가 되엇을때 */
+    // input으로 파일첨부가 되엇을때
     if (e.type == "change") {
         file = this.files[0]; // 이미지 할당
 
@@ -319,7 +320,7 @@ function uploadFile(e) { // 파일첨부 실행
         idx = uploadFiles.push(file); // 업로드 목록에 추가
         preview(file, idx - 1); // 미리보기 만들기
     } 
-    /* 드랍으로 파일첨부가 되엇을때 */
+    // 드랍으로 파일첨부가 되엇을때
     else {
         dragOver(e); // 드랍되을때 css 원상복귀
         files = e.originalEvent.dataTransfer.files; // 드래그&드랍 항목들
@@ -338,13 +339,13 @@ function uploadFile(e) { // 파일첨부 실행
     
 }
 
-// 이미지 유효성 검사
+// 이미지(썸네일) - 이미지 유효성 검사
 function fileValidation(file) { 
     if (thumbnailCount > 4) { // 이미지는 최대 5장까지만
         alert("이미지는 최대 5장까지 가능합니다");
         return true;
-    } else if (file.size > 3145728) { // 용량 3MB 유효성 검사
-        alert("업로드 가능한 이미지의 최대용량은 3MB입니다");
+    } else if (file.size > 10485760) { // 용량 10MB 유효성 검사
+        alert("업로드 가능한 이미지의 최대용량은 10MB입니다");
         return true;
     } else if (file.type != "image/jpeg") { // 확장자 유효성 검사
         alert("이미지는 jpg 형식만 가능합니다");
@@ -354,7 +355,7 @@ function fileValidation(file) {
     return false;
 }
 
-// 미리보기 생성
+// 이미지(썸네일) - 미리보기 생성
 function preview (file, idx) {
     let reader = new FileReader(); // 파일을 읽기 위한 FileReader객체 생성
     
@@ -374,7 +375,7 @@ function preview (file, idx) {
 	$('#drop').css({"font-size": "0"}); // 드롭박스 안내문구 안보이게
 }
 
-// 미리보기 삭제
+// 이미지(썸네일) - 미리보기 삭제
 $("#thumbnails").on("click", ".close", (e) => {
     let idx = $(e.target).attr('data-idx');
     uploadFiles[idx].upload = 'disable'; // 삭제된 항목은 업로드하지 않기 위해 플래그 생성
@@ -387,18 +388,17 @@ $("#thumbnails").on("click", ".close", (e) => {
     }
 });
 
-/* 상품정보 - 이미지 등록 끝 */
 
-let clickCheck = false; // 중복클릭 방지
-
-// 상품(경매) 등록 - 버튼눌렀을때(썸네일이미지 등록부터)
-// 썸네일 이미지 등록을 완료하면 success에 있는 함수를 실행하여 DB등록을 한다
+/*
+ * 상품(경매) 등록 - 버튼눌렀을때(썸네일이미지 등록부터)
+ * 썸네일 이미지 등록을 완료하면 success에 있는 함수를 실행하여 DB등록을 한다
+ */
 function productSubmit() {
 	// 중복클릭이라면 함수 중지
-	if(clickCheck) {
+	if(isClickable) {
 		return;
 	}
-	clickCheck = true; // 중복클릭 방지설정
+	isClickable = true; // 중복클릭 방지설정
 	
 	// 시작가, 즉사거래가 쉼표 없애기
 	let purchase_price = $(".product--form [name='product_purchase_price']");
@@ -409,7 +409,7 @@ function productSubmit() {
 	if (formCheck()) { // 양식에 대한 유효성 검사
 		purchase_price.val(addCommas(purchase_price.val()));
 		starting_price.val(addCommas(starting_price.val()));
-		clickCheck = false; // 중복클릭 방지해제
+		isClickable = false; // 중복클릭 방지해제
 		return;
 	}
 	
@@ -427,7 +427,7 @@ function productSubmit() {
         processData: false,
         // 이미지경로를 담은 배열을 파라미터로 넘기고 상품등록 진행
         success: (imgSrcList) => productInsert(imgSrcList),
-        error: () => clickCheck = false // 중복클릭 방지해제
+        error: () => isClickable = false // 중복클릭 방지해제
     });
 };
 
@@ -444,7 +444,6 @@ function formCheck() {
 	let delivery = $('input[name=product_delivery]:checked'); // 택배거래
 	let direct = $('input[name=direct]:checked'); // 택배거래
 	
-	/* 유효성 검사 */
 	// 2차카테고리
 	if (!(category_2.length == 1 && category_2.val().startsWith('cate'))) {
 		alert("카테고리를 선택해주세요");
@@ -503,8 +502,7 @@ function formCheck() {
 		alert("택배거래와 직거래 중 최소 1개의 방법을 선택해주세요");
 		return true;
 	}
-		
-	// 유효성 검사 완료
+	
 	return false;
 }
 
@@ -521,9 +519,9 @@ function productInsert(imgSrcList) {
         data: formData,
         success: () => {
         	window.location.href = "selling.hs?page=1";
-        	clickCheck = false; // 중복클릭 방지해제
+        	isClickable = false; // 중복클릭 방지해제
         },
-        error: () => clickCheck = false // 중복클릭 방지해제
+        error: () => isClickable = false // 중복클릭 방지해제
     });
 }
 
@@ -549,4 +547,3 @@ $('document').ready(() => {
         }
     });
 })
-/* 상품등록 끝 by.유빈 */

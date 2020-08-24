@@ -237,7 +237,7 @@ $(document).on('click','.list--deadlineExtensionBtn', function() {
     }
 	
     $.ajax({
-		url : "adminDeadlineExtension.yb",
+		url : "adminExtendDeadlineOfTrading.yb",
 		data : {
 			"trading_product_number" : tradingNumber,
 			"target" : target,
